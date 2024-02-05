@@ -8,7 +8,7 @@ import {NavLink} from 'react-router-dom';
 const NavBar = () => {
     return (
         <Navbar>
-            <NavLink to="home"><img src={Logo} alt="lemon lime logo" /></NavLink>
+            <NavLink to="/"><img src={Logo} alt="lemon lime logo" /></NavLink>
             <RightNav>
                 <NavLink to='search'><img src={search} alt="search" /></NavLink>
                 <NavLink to='favorites'><img src={heart} alt="favourites" /></NavLink>

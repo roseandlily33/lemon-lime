@@ -1,8 +1,21 @@
+import RecipeContainer from "../../components/Recipe/recipe.component";
+import { MainDiv, LeftMainDiv, RightMainDiv } from "./home.styles";
 const HomePage = () => {
     return (
-        <>
-        <h1>Home Page</h1>
-        </>
+        <MainDiv>
+        <LeftMainDiv>
+            <h2>New Recipes</h2>
+            <RecipeContainer /> 
+            <RecipeContainer /> 
+            <RecipeContainer /> 
+            <RecipeContainer /> 
+            <RecipeContainer /> 
+
+        </LeftMainDiv>
+        <RightMainDiv>
+            <h2>Popular Recipes</h2>
+        </RightMainDiv>
+        </MainDiv>
     
        );
 }

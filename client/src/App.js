@@ -7,6 +7,7 @@ import FavoritesPage from './routes/favorites/favorites.component';
 import UserHome from './routes/user/user.component';
 import SearchPage from './routes/search/search.component';
 import BasePage from './routes/base/base.component';
+import Footer from './routes/footer/footer.component';
 
 const theme = {
   colors: {
@@ -29,12 +30,13 @@ function App() {
       <NavBar/>
      <Routes>
         <Route path='/' element={<BasePage />}>
-          <Route index path='home' element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route path='user' element={<UserHome />}/>
           <Route path='favorites' element={<FavoritesPage />}/>
           <Route path='search' element={<SearchPage />} />
         </Route>
      </Routes>
+     <Footer />
      </BrowserRouter>
      </ThemeProvider>
     </div>
