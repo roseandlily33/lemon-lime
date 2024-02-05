@@ -18,17 +18,14 @@ body{
     background-color: var(--white);
     color: black;
     font-family: 'Inter', sans-serif;
-    
+    background-image: url('./images/Background.png');
 }
-input{
-    border: var(--border);
-    padding: 0.5rem;
-}
+
 button{
     background-color: var(--lightYellow);
     padding: 1em;
     border: none;
 }
 button:hover{
-
+    background-color: var(--green);
 }
