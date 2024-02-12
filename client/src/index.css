@@ -21,11 +21,12 @@ body{
     background-image: url('./images/Background.png');
 }
 
-button{
+button, .button{
     background-color: var(--lightYellow);
     padding: 1em;
     border: none;
 }
-button:hover{
+button:hover, .button:hover{
     background-color: var(--green);
+    border: none;
 }

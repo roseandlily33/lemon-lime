@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const{ mongoose, Schema } = require('mongoose');
 
 const recipesSchema = new mongoose.Schema({
     recipeName: {
@@ -18,7 +18,7 @@ const recipesSchema = new mongoose.Schema({
         required: true
     },
     ingredients: [{
-        type: String,
+        type: Schema.Types.Mixed,
         required: true
     }],
     instructions: [{
