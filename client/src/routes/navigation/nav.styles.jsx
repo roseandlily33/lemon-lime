@@ -6,6 +6,8 @@ export const Navbar = styled.nav`
     justify-content: space-between;
     align-items: center;
     padding: 1em;
+    box-shadow: 1px 2px 15px 2px lightgrey;
+    margin-bottom: 1em;
 `;
 
 export const RightNav = styled.div`

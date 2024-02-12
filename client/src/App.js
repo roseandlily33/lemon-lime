@@ -9,6 +9,9 @@ import SearchPage from './routes/search/search.component';
 import BasePage from './routes/base/base.component';
 import Footer from './routes/footer/footer.component';
 
+import useRecipes from './hooks/useRecipes';
+import {httpCreateRecipe} from './hooks/requests';
+
 const theme = {
   colors: {
       white:' #F8F9F8',
@@ -23,6 +26,10 @@ const theme = {
 }
 
 function App() {
+  const {
+    allRecipes, 
+    getAllRecipes
+  } = useRecipes();
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -31,7 +38,7 @@ function App() {
      <Routes>
         <Route path='/' element={<BasePage />}>
           <Route index element={<HomePage />} />
-          <Route path='user' element={<UserHome />}/>
+          <Route path='user' element={<UserHome httpCreateRecipe={httpCreateRecipe} />}/>
           <Route path='favorites' element={<FavoritesPage />}/>
           <Route path='search' element={<SearchPage />} />
         </Route>
