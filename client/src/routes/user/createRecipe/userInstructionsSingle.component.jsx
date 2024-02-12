@@ -7,8 +7,8 @@ const UserInstructions = ({instructions, addNewInstruction}) => {
         <h3>{idx + 1}</h3>
         <input 
           type="text" 
-          name="ingredients"
-          value={x}
+          name={x[0]}
+          value={x[1]}
           onChange={addNewInstruction}
         />
         </EachInput>

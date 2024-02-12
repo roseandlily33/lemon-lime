@@ -19,7 +19,7 @@ const CreateRecipe = ({httpCreateRecipe}) => {
       })
       const addNewIngredient = (e) => {
         const {name, value} = e.target;
-          setIngredients({...ingredients,[name]: value})
+          setIngredients({...ingredients, [name]: value})
       }
       //For the Instructions
       const [instructions, setInstructions] = useState({
@@ -31,13 +31,13 @@ const CreateRecipe = ({httpCreateRecipe}) => {
       }
       const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form values', formValues);
-        console.log('Instruction values', Array(instructions), Object.entries(instructions), );
-        console.log('Ingredient Values', Array(ingredients));
-        let totalSending = {...formValues, ...Object.values(instructions), ...Object.values(ingredients)};
-        console.log('Total Sending', totalSending);
+        let newInstructions = Object.values(instructions); 
+        let newIngredients = Object.values(ingredients); 
+        let totalSending = Object.assign(formValues, {
+          instructions: newInstructions,
+          ingredients: newIngredients
+        })
         const response = await httpCreateRecipe(totalSending);
-         console.log('Recipe response', response);
        const success = response.ok;
        if (success) {
           alert('Was Successful');
@@ -103,12 +103,8 @@ const CreateRecipe = ({httpCreateRecipe}) => {
       <UserInstructions instructions={instructions} addNewInstruction={addNewInstruction}/>
       <input className="button" type="submit" />
       </SideForm>
-    
-
     </CreateRecipeForm>
-
  </>
-
 );
 }
  
