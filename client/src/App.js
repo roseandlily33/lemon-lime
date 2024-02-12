@@ -21,7 +21,7 @@ const theme = {
       green: '#758650',
       lightGreen: '#B5C267',
       orange: "#E3A547",
-      border: '5px solid var(--yellow)'
+      border: '3px solid var(--yellow)'
   }
 }
 

@@ -22,7 +22,7 @@ const recipesSchema = new mongoose.Schema({
         required: true
     }],
     instructions: [{
-        type: String,
+        type: Schema.Types.Mixed,
         required: true
     }],
     createdAt: {

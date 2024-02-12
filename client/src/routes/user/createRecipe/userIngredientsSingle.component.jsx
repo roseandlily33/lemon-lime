@@ -1,19 +1,19 @@
-
-
+import { EachInput } from "./userRecipe.styles";
 const UserIngredients = ({ingredients, addNewIngredient}) => {
+  console.log('Ingredients', ingredients);
     return (
     <>
-    <h1>User Ingredients</h1> 
-      {Object.keys(ingredients).map(x => {
-        return  <>
-        <h3>{x}</h3>
+      {Object.entries(ingredients).map((x, idx)=> {
+        console.log('Ingredients',ingredients,  x, idx)
+        return  <EachInput>
+        <h3>{idx + 1}</h3>
         <input 
           type="text" 
-          name="cookTime"
-          value={ingredients.x}
+          name="ingredients"
+          value={x}
           onChange={addNewIngredient}
         />
-        </>
+        </EachInput>
       })}
     </>
     );

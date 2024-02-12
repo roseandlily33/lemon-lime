@@ -1,43 +1,48 @@
 import styled from 'styled-components';
 export const CreateRecipeForm = styled.form`
-    width: 80vw;
+    width: 90vw;
     gap: 2em;
     height: 80vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-top: 1em;
-
-
-    border: 5px solid ${({theme}) => theme.colors.yellow};
     padding: 1em;
+    border: 5px solid ${({theme}) => theme.colors.yellow};
     background-color: ${({theme}) => theme.colors.white};
+    overflow-y: scroll;
     label{
        font-weight: bold;
        font-size: 1.3em;
     }
     input{
         padding: 0.8em;
-        border: 5px solid ${({theme}) => theme.colors.yellow};
-
+        border: 3px solid ${({theme}) => theme.colors.yellow};
         width: 70%;
     }
 `;
-// export const RightForm = styled.div`
-//    width: 50%;
-//    display: flex;
-//    flex-direction: column;
+export const TopForm = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-//    align-items: center;
-//    gap: 1em;
-// `;
+    gap: 1em;
+`
 
-// export const LeftForm = styled.div`
-//     display: flex;
-//     flex-direction: column;
+export const SideForm = styled.div`
+    width: 45%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1em;
+`;
 
-//     align-items: center;
-//     width: 50%;
-//     gap: 1em;
-
-// `;
+export const EachInput = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+`
