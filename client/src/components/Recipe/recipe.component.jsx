@@ -1,8 +1,11 @@
 import { RecipeCont } from "./recipe.styles";
-const RecipeContainer = () => {
+const RecipeContainer = ({recipe}) => {
     return ( 
-        <RecipeCont>
-            <h1>Recipe Container</h1>
+        <RecipeCont key={recipe._id}>
+            <h2>{recipe.recipeName}</h2>
+            <h4>{recipe.createdAt}</h4>
+            <h4>Favorites: {recipe.favorites}</h4>
+
         </RecipeCont>
      );
 }

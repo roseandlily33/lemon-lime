@@ -16,7 +16,7 @@ app.use('/', api);
 app.use('/*', (req, res) => {
     console.log('Router is working')
     res.send("Router is working")
-    //res.sendFile(path.join(__dirname, '..','public', 'index.html'));
+    res.sendFile(path.join(__dirname, '..','public', 'index.html'));
 });
 
 module.exports = app;

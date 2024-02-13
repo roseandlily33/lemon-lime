@@ -29,6 +29,14 @@ const recipesSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    subCategories: {
+        type: String,
+        required: true
+    },
+    favorites: {
+        type: Number,
+        default: 0
+    }
     // author: {
     //     type: Schema.Types.ObjectId,
     //     ref: 'User'
@@ -37,10 +45,7 @@ const recipesSchema = new mongoose.Schema({
     //     type: Schema.Types.ObjectId,
     //     ref: 'Comment'
     // }],
-    // subCategories: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'SubCategory'
-    // }]
+    
 });
 
 module.exports = mongoose.model('Recipe', recipesSchema);

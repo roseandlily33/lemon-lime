@@ -7,13 +7,17 @@ function useRecipes(){
     const getAllRecipes = useCallback(async() => {
         const allRecipes = await httpGetAllRecipes();
         setAllRecipes(allRecipes);
+        console.log('Inside function', allRecipes);
     }, []);
+    useEffect(() => {
+        getAllRecipes()
+    }, [getAllRecipes]);
 
 
     return {
-        allRecipes, 
-        getAllRecipes
+        allRecipes
     }
 }
+
 
 export default useRecipes; 

@@ -27,9 +27,9 @@ const theme = {
 
 function App() {
   const {
-    allRecipes, 
-    getAllRecipes
+    allRecipes
   } = useRecipes();
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -37,7 +37,7 @@ function App() {
       <NavBar/>
      <Routes>
         <Route path='/' element={<BasePage />}>
-          <Route index element={<HomePage />} />
+          <Route index element={<HomePage allRecipes={allRecipes}/>} />
           <Route path='user' element={<UserHome httpCreateRecipe={httpCreateRecipe} />}/>
           <Route path='favorites' element={<FavoritesPage />}/>
           <Route path='search' element={<SearchPage />} />
