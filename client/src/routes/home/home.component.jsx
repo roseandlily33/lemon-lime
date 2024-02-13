@@ -1,7 +1,6 @@
 import RecipeContainer from "../../components/Recipe/recipe.component";
 import { MainDiv, LeftMainDiv, RightMainDiv } from "./home.styles";
 const HomePage = ({ allRecipes}) => {
-    console.log('ALL RECIPES TOTAL', allRecipes);
     return (
         <MainDiv>
         <LeftMainDiv>

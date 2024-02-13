@@ -1,13 +1,13 @@
 import { useCallback, useState, useEffect } from "react";
-import { httpGetAllRecipes } from "./requests";
+import { httpGetAllRecipes, httpGetFullRecipeWithDetails } from "./requests";
 
 function useRecipes(){
     const [allRecipes, setAllRecipes] = useState([]);
 
+
     const getAllRecipes = useCallback(async() => {
         const allRecipes = await httpGetAllRecipes();
         setAllRecipes(allRecipes);
-        console.log('Inside function', allRecipes);
     }, []);
     useEffect(() => {
         getAllRecipes()
@@ -15,7 +15,7 @@ function useRecipes(){
 
 
     return {
-        allRecipes
+        allRecipes,
     }
 }
 

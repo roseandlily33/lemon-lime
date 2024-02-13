@@ -1,6 +1,7 @@
 const API_URL = 'http://localhost:8000';
 
 //Recipes endpoints
+//This works
 async function httpGetAllRecipes(){
     const response = await fetch(`${API_URL}/recipes`);
     let allRecipes = await response.json();
@@ -13,8 +14,8 @@ async function httpGetPopularRecipes(){
     return allRecipes;
 }
 
-async function httpGetNewlyCreatedRecipes(){
-    const response = await fetch(`${API_URL}/recipes/new`);
+async function httpGetFullRecipeWithDetails(id){
+    const response = await fetch(`${API_URL}/recipes/${id}`);
     let allRecipes = await response.json();
     return allRecipes;
 }
@@ -38,7 +39,7 @@ async function httpDeleteUserRecipe(id){
         };
       }
 }
-
+//This works
 async function httpCreateRecipe(recipe){
     console.log('HTTP CREATE RECIPE', recipe);
     try {
@@ -92,7 +93,7 @@ async function httpLoginUser(info){
 export {
     httpGetAllRecipes,
     httpGetPopularRecipes,
-    httpGetNewlyCreatedRecipes,
+    httpGetFullRecipeWithDetails,
     httpGetUserRecipes,
     httpDeleteUserRecipe,
     httpCreateRecipe,

@@ -13,7 +13,16 @@ async function httpGetPopularRecipes(req, res){
     return res.status(200).json(faveRecipes);
 }
 
+async function httpGetFullRecipeWithDetails(req, res){
+    let requestId = req.params.id;;
+    let foundRecipe = await recipes.find({
+        _id: requestId
+    }, {'__v': 0});
+    return res.status(200).json(foundRecipe);
+}
+
 module.exports = {
     httpGetAllRecipes,
-    httpGetPopularRecipes
+    httpGetPopularRecipes,
+    httpGetFullRecipeWithDetails
 }

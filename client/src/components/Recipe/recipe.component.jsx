@@ -1,11 +1,13 @@
 import { RecipeCont } from "./recipe.styles";
+import {formatDate} from '../../formattingUtils/date';
+import {NavLink} from 'react-router-dom'; 
 const RecipeContainer = ({recipe}) => {
+    const url = `recipe/${recipe._id}`
     return ( 
         <RecipeCont key={recipe._id}>
-            <h2>{recipe.recipeName}</h2>
-            <h4>{recipe.createdAt}</h4>
+           <NavLink to={url}>{recipe.recipeName}</NavLink>
+            <h4>{formatDate(recipe.createdAt)}</h4>
             <h4>Favorites: {recipe.favorites}</h4>
-
         </RecipeCont>
      );
 }
