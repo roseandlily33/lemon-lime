@@ -3,6 +3,7 @@ import { httpGetAllRecipes, httpGetFullRecipeWithDetails } from "./requests";
 
 function useRecipes(){
     const [allRecipes, setAllRecipes] = useState([]);
+   // const[singleRecipe, setSingleRecipe] = useState();
 
 
     const getAllRecipes = useCallback(async() => {
@@ -14,8 +15,14 @@ function useRecipes(){
     }, [getAllRecipes]);
 
 
+
+    
+
+
     return {
         allRecipes,
+      //  GetSingleRecipe,
+      //  singleRecipe
     }
 }
 

@@ -28,7 +28,9 @@ const theme = {
 
 function App() {
   const {
-    allRecipes
+    allRecipes,
+    GetSingleRecipe,
+    singleRecipe
   } = useRecipes();
 
   return (
@@ -40,7 +42,7 @@ function App() {
         <Route path='/' element={<BasePage />}>
           <Route index element={<HomePage allRecipes={allRecipes}/>} />
             <Route path="recipe">
-            <Route path=':id' element={<SingleRecipe />} />
+            <Route path=':id' element={<SingleRecipe GetSingleRecipe={GetSingleRecipe} singleRecipe={singleRecipe}/>} />
             </Route>
           <Route path='user' element={<UserHome httpCreateRecipe={httpCreateRecipe} />}/>
           <Route path='favorites' element={<FavoritesPage />}/>

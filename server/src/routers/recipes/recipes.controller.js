@@ -14,10 +14,14 @@ async function httpGetPopularRecipes(req, res){
 }
 
 async function httpGetFullRecipeWithDetails(req, res){
-    let requestId = req.params.id;;
+    let requestId = req.params.id;
+    if(!requestId){
+        return res.status(404).json({err: 'Recipe not found'});
+    }
     let foundRecipe = await recipes.find({
         _id: requestId
     }, {'__v': 0});
+    console.log('Returning 1 recipe', foundRecipe);
     return res.status(200).json(foundRecipe);
 }
 

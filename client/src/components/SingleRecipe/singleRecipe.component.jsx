@@ -1,27 +1,29 @@
 import { useState, useEffect, useCallback } from "react";
 import { httpGetFullRecipeWithDetails } from "../../hooks/requests";
 import { useParams } from "react-router-dom";
+import { formatDate } from "../../formattingUtils/date";
 const SingleRecipe = () => {
     const {id} = useParams();
-     const[singleRecipe, setSingleRecipe] = useState({});
-    
-     const getSingleRecipe = useCallback(async() => {
-        const fetchedrecipe = await httpGetFullRecipeWithDetails(id);
-        setSingleRecipe(fetchedrecipe)
-     }, [id]);
+    const [singleRecipe, setSingleRecipe] = useState();
 
-     useEffect(() => {
-        getSingleRecipe()
-     }, [getSingleRecipe, id]);
+    const fetchSingle = useCallback(async() => {
+        const fetchedRecipe = await httpGetFullRecipeWithDetails(id);
+        setSingleRecipe(fetchedRecipe);
+    },[id])
 
-
+    useEffect(() => {
+        fetchSingle(id)
+    }, [fetchSingle, id]);
    
     return ( 
        <>
-       {!singleRecipe ? <h3>Recipe is loading</h3>: 
+       <h1>Single Recipe</h1>
+       {!singleRecipe ?
+       <h3>Recipe is loading</h3>
+       : 
         <div>
         <h3>Recipe Name: {singleRecipe[0].recipeName}</h3>
-        <h3>Date: {singleRecipe[0].createdAt}</h3>
+        <h3>Date: {formatDate(singleRecipe[0].createdAt)}</h3>
         <h4>{singleRecipe[0].cookTime}</h4>
         <h4>{singleRecipe[0].prepTime}</h4>
         <h3>Ingredients</h3>
@@ -38,10 +40,8 @@ const SingleRecipe = () => {
         return <li>{item}</li>
        })}
        </ul>
-    </div>}
-       
-       
-       
+    </div>
+    }
        </>
      );
 }
