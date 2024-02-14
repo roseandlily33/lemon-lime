@@ -25,8 +25,23 @@ button, .button{
     background-color: var(--lightYellow);
     padding: 1em;
     border: none;
+    border-radius: 5px;
+    text-transform: capitalize;
+    width: 150px;
 }
 button:hover, .button:hover{
-    background-color: var(--green);
+    background-color: var(--lightGreen);
     border: none;
+}
+input{
+ border: 2px solid var(--yellow);
+ padding: 0.5em;
+ border-radius: 5px;
+ width: auto;
+}
+input:focus{
+    border:2px solid var(--lightGreen);
+}
+label{
+ font-size: 1.2em;
 }

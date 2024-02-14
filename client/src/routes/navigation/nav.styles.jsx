@@ -6,7 +6,7 @@ export const Navbar = styled.nav`
     justify-content: space-between;
     align-items: center;
     padding: 1em;
-    box-shadow: rgba(0, 0, 0, 0.06) 0px 3px 7px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     margin-bottom: 1em;
 `;
 
@@ -16,11 +16,8 @@ export const RightNav = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 1em;
-
-
-`
+`;
 export const SearchDiv = styled.div`
     gap: 1em;
     display: flex;
-
-`
+`;

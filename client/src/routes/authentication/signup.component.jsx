@@ -1,0 +1,48 @@
+import { useState } from "react";
+import { EachInput } from "./auth.styles";
+const SignUpComponent = ({setPage, page}) => {
+    const [formState, setFormState] = useState({
+        username: '',
+        email: '',
+        password: '',
+    });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+       
+    };
+    return ( 
+        <>
+        <h3>Sign Up</h3>
+        <EachInput>
+        <label>Username: </label>
+            <input type="text" value={formState.username} name='username' onChange={handleChange} required />
+            </EachInput>
+            <EachInput>
+            <label>Email: </label>
+            <input type="text" value={formState.email} name='email' onChange={handleChange} required/>
+            </EachInput>
+            <EachInput>
+            <label>Password:</label>
+            <input type="password" value={formState.password} name='password' onChange={handleChange} required/>
+            </EachInput>
+            <div>
+            <button className="button">Submit</button>
+            <div>
+            <h4>Have An Account?</h4>
+         <button onClick={() => setPage(true)}>Login Up</button>
+         </div>
+         </div>
+        </>
+     );
+}
+ 
+export default SignUpComponent;

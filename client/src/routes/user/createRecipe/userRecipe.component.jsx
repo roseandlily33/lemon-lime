@@ -10,7 +10,7 @@ const CreateRecipe = ({httpCreateRecipe}) => {
         cookTime: ''
     });
     //For the subCategory State
-    const [subCategory, setSubcategory] = useState('lunch');
+    const [subCategory, setSubcategory] = useState('Lunch');
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -99,11 +99,11 @@ const CreateRecipe = ({httpCreateRecipe}) => {
       </EachInput>
       <label for="subCategory">Choose SubCategory:</label>
         <select name="subCategory" onChange={(e) => setSubcategory(e.target.value)}>
-          <option value="breakfast">Breakfast</option>
-          <option value="lunch">Lunch</option>
-          <option value="dinner">Dinner</option>
-          <option value="dessert">Dessert</option>
-          <option value="drink">Drinks</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Dessert">Dessert</option>
+          <option value="Drink">Drinks</option>
         </select>
       </TopForm>
     <SideForm>

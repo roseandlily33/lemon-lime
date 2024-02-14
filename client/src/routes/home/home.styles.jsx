@@ -21,12 +21,17 @@ export const LeftMainDiv = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    margin-right: 1em;
+    padding: 1em;
 `;
 
 export const RightMainDiv = styled.div`
- min-width: 30%;
+    min-width: 30%;
     width: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     overflow-y: scroll;
+
+    padding: 1em;
 `;

@@ -7,6 +7,7 @@ import FavoritesPage from './routes/favorites/favorites.component';
 import UserHome from './routes/user/user.component';
 import SearchPage from './routes/search/search.component';
 import BasePage from './routes/base/base.component';
+import AuthComponent from './routes/authentication/auth.component';
 import Footer from './routes/footer/footer.component';
 import Recipe from './routes/recipe/recipe.component';
 import useRecipes from './hooks/useRecipes';
@@ -47,6 +48,7 @@ function App() {
           <Route path='user' element={<UserHome httpCreateRecipe={httpCreateRecipe} />}/>
           <Route path='favorites' element={<FavoritesPage />}/>
           <Route path='search' element={<SearchPage />} />
+          <Route path='signin' element={<AuthComponent />} />
           </Route>
      </Routes>
      <Footer />

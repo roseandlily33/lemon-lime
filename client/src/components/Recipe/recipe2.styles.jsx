@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const SideContainer = styled.div`
     display: flex;
     flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.06) 0px 3px 7px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     background-color: ${({theme}) => theme.colors.white};
     height: auto;
     width: auto;
