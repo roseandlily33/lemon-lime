@@ -6,7 +6,7 @@ export const Navbar = styled.nav`
     justify-content: space-between;
     align-items: center;
     padding: 1em;
-    box-shadow: 1px 2px 15px 2px lightgrey;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 3px 7px;
     margin-bottom: 1em;
 `;
 

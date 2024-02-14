@@ -22,6 +22,7 @@ const theme = {
       green: '#758650',
       lightGreen: '#B5C267',
       orange: "#E3A547",
+      grey: '#DEDEDE',
       border: '3px solid var(--yellow)'
   }
 }
@@ -29,8 +30,7 @@ const theme = {
 function App() {
   const {
     allRecipes,
-    GetSingleRecipe,
-    singleRecipe
+    popularRecipes
   } = useRecipes();
 
   return (
@@ -40,9 +40,9 @@ function App() {
       <NavBar/>
      <Routes>
         <Route path='/' element={<BasePage />}>
-          <Route index element={<HomePage allRecipes={allRecipes}/>} />
+          <Route index element={<HomePage allRecipes={allRecipes} popularRecipes={popularRecipes}/>} />
             <Route path="recipe">
-            <Route path=':id' element={<SingleRecipe GetSingleRecipe={GetSingleRecipe} singleRecipe={singleRecipe}/>} />
+            <Route path=':id' element={<SingleRecipe />} />
             </Route>
           <Route path='user' element={<UserHome httpCreateRecipe={httpCreateRecipe} />}/>
           <Route path='favorites' element={<FavoritesPage />}/>

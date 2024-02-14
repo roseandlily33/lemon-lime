@@ -9,13 +9,24 @@ export const MainDiv = styled.main`
     @media screen {
         flex-wrap: wrap-reverse;
     }
+    h2{
+        text-align: center;
+        color: ${({theme}) => theme.colors.green};
+    }
 
 `;
 
 export const LeftMainDiv = styled.div`
     width: 60%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
 `;
 
 export const RightMainDiv = styled.div`
-    max-width: 40%;
+ min-width: 30%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
 `;

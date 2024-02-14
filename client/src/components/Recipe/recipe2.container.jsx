@@ -1,21 +1,17 @@
-import { RecipeCont } from "./recipe.styles";
+import { SideContainer } from "./recipe2.styles";
 import {formatDate} from '../../formattingUtils/date';
 import {NavLink} from 'react-router-dom'; 
 import Lemons from '../../images/lemons.jpg';
-const RecipeContainer = ({recipe}) => {
+const RecipeContainer2 = ({recipe}) => {
     const url = `recipe/${recipe._id}`
     return ( 
-        <RecipeCont key={recipe._id}>
-           <div>
+        <SideContainer key={recipe._id}>
             <NavLink style={{color:'orange', textDecoration: 'none', fontSize: '1.5em'}} to={url}>{recipe.recipeName}</NavLink>
             <h4>{formatDate(recipe.createdAt)}</h4>
             <h4>Favorites: {recipe.favorites}</h4>
-           </div>
-            <div>
             <img src={Lemons} alt="lemons" />
-            </div>
-        </RecipeCont>
+        </SideContainer>
      );
 }
  
-export default RecipeContainer;
+export default RecipeContainer2;

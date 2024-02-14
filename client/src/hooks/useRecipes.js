@@ -1,8 +1,9 @@
 import { useCallback, useState, useEffect } from "react";
-import { httpGetAllRecipes, httpGetFullRecipeWithDetails } from "./requests";
+import { httpGetAllRecipes, httpGetPopularRecipes } from "./requests";
 
 function useRecipes(){
     const [allRecipes, setAllRecipes] = useState([]);
+    const [popularRecipes, setPopularRecipes] = useState([]);
    // const[singleRecipe, setSingleRecipe] = useState();
 
 
@@ -14,6 +15,14 @@ function useRecipes(){
         getAllRecipes()
     }, [getAllRecipes]);
 
+    const getPopularRecipes = useCallback(async() => {
+        const allRecipes = await httpGetPopularRecipes()
+        setPopularRecipes(allRecipes);
+    }, []);
+    useEffect(() => {
+        getPopularRecipes()
+    }, [getPopularRecipes]);
+
 
 
     
@@ -21,8 +30,7 @@ function useRecipes(){
 
     return {
         allRecipes,
-      //  GetSingleRecipe,
-      //  singleRecipe
+        popularRecipes
     }
 }
 

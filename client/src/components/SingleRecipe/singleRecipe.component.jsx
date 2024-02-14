@@ -2,6 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import { httpGetFullRecipeWithDetails } from "../../hooks/requests";
 import { useParams } from "react-router-dom";
 import { formatDate } from "../../formattingUtils/date";
+import Lemon from '../../images/lemons.jpg';
+import {SingleRecipeContainer }from './singleRecipe.styles';
+
 const SingleRecipe = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
@@ -16,7 +19,7 @@ const SingleRecipe = () => {
     }, [fetchSingle, id]);
    
     return ( 
-       <>
+       <SingleRecipeContainer >
        <h1>Single Recipe</h1>
        {!singleRecipe ?
        <h3>Recipe is loading</h3>
@@ -42,7 +45,7 @@ const SingleRecipe = () => {
        </ul>
     </div>
     }
-       </>
+       </SingleRecipeContainer >
      );
 }
  
