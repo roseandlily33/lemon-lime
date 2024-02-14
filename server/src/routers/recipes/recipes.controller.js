@@ -21,8 +21,11 @@ async function httpGetFullRecipeWithDetails(req, res){
     return res.status(200).json(foundRecipe);
 }
 
+
+
 module.exports = {
     httpGetAllRecipes,
     httpGetPopularRecipes,
-    httpGetFullRecipeWithDetails
+    httpGetFullRecipeWithDetails,
+    
 }

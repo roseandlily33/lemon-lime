@@ -17,6 +17,9 @@ const recipesSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    totalTime: {
+        type: Schema.Types.Mixed,
+    },
     ingredients: [{
         type: Schema.Types.Mixed,
         required: true
@@ -29,7 +32,7 @@ const recipesSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    subCategories: {
+    subCategory: {
         type: String,
         required: true
     },

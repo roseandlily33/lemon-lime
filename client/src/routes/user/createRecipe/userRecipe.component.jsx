@@ -2,12 +2,15 @@ import { useState } from "react";
 import {CreateRecipeForm, TopForm, SideForm, EachInput} from './userRecipe.styles';
 import UserIngredients from "./userIngredientsSingle.component";
 import UserInstructions from "./userInstructionsSingle.component";
+import { getTotalTime } from "../../../formattingUtils/totalTime";
 const CreateRecipe = ({httpCreateRecipe}) => {
     const [formValues, setFormValues] = useState({
         recipeName: '',
         prepTime: '',
-        cookTime: '',
+        cookTime: ''
     });
+    //For the subCategory State
+    const [subCategory, setSubcategory] = useState('lunch');
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -31,13 +34,16 @@ const CreateRecipe = ({httpCreateRecipe}) => {
       }
       const handleSubmit = async (e) => {
         e.preventDefault();
+        let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime)
         let newInstructions = Object.values(instructions); 
         let newIngredients = Object.values(ingredients); 
         let totalSending = Object.assign(formValues, {
           instructions: newInstructions,
-          ingredients: newIngredients
+          ingredients: newIngredients,
+          totalTime: totalTime,
+          subCategory: subCategory
         })
-        const response = await httpCreateRecipe(totalSending);
+       const response = await httpCreateRecipe(totalSending);
        const success = response.ok;
        if (success) {
           alert('Was Successful');
@@ -59,7 +65,6 @@ const CreateRecipe = ({httpCreateRecipe}) => {
     return (
     <>
     <h2>Create a recipe</h2>
-
     <CreateRecipeForm onSubmit={handleSubmit}>
     <TopForm>
       <EachInput>
@@ -91,8 +96,15 @@ const CreateRecipe = ({httpCreateRecipe}) => {
           onChange={handleChange}
           required
         />
-    
       </EachInput>
+      <label for="subCategory">Choose SubCategory:</label>
+        <select name="subCategory" onChange={(e) => setSubcategory(e.target.value)}>
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="dessert">Dessert</option>
+          <option value="drink">Drinks</option>
+        </select>
       </TopForm>
     <SideForm>
       <label style={{textTransform: 'uppercase', textDecoration: 'underline'}}>Ingredients</label>
