@@ -16,9 +16,9 @@ async function httpGetPopularRecipes(){
 
 async function httpGetFullRecipeWithDetails(id){
     const response = await fetch(`${API_URL}/recipes/${id}`);
-    let allRecipe = await response.json();
-    console.log('FULL SINGLE RECIPE ', allRecipe);
-    return allRecipe;
+    let oneRecipe = await response.json();
+    console.log('HOOK FUNCTION ONE RECIPE', oneRecipe, oneRecipe[0])
+    return oneRecipe[0];
 }
 
 //User endpoints

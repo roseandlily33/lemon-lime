@@ -1,16 +1,17 @@
 const recipes = require('../../models/Recipes/recipes.mongo');
 
+const mainExcludes = {
+    '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0
+}
+
 async function httpGetAllRecipes(req, res){
-    let allRecipes = await recipes.find({}, {
-        '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0
-    }).sort({createdAt: -1}).limit(6);
+    let allRecipes = await recipes.find({}, { mainExcludes}).sort({createdAt: -1}).limit(6);
     return res.status(200).json(allRecipes)
 };
 
 async function httpGetPopularRecipes(req, res){
     let faveRecipes = await recipes.find({}, {
-        '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0
-    }).sort({favorites: -1}).limit(6);
+       mainExcludes}).sort({favorites: -1}).limit(6);
     return res.status(200).json(faveRecipes);
 }
 
@@ -25,7 +26,6 @@ async function httpGetFullRecipeWithDetails(req, res){
     console.log('Returning 1 recipe', foundRecipe);
     return res.status(200).json(foundRecipe);
 }
-
 
 module.exports = {
     httpGetAllRecipes,

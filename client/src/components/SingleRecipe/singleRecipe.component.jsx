@@ -9,56 +9,63 @@ const SingleRecipe = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
 
-    const fetchSingle = useCallback(async() => {
-        const fetchedRecipe = await httpGetFullRecipeWithDetails(id);
-        setSingleRecipe(fetchedRecipe);
-    },[id])
+//    const FetchRecipe = async() => {
+//     const fetchSingle = useCallback(async() => {
+//         const fetchedRecipe = await httpGetFullRecipeWithDetails(id);
+//         await setSingleRecipe(fetchedRecipe);
+//     },[id])
+
+//     useEffect(async() => {
+//        await fetchSingle(id)
+//     }, [fetchSingle, id]);
+//    }
 
     useEffect(() => {
-        fetchSingle(id)
-    }, [fetchSingle, id]);
-   const totalTime = `${singleRecipe[0].totalTime.hours} Hours ${singleRecipe[0].totalTime.minutes} Minutes`;
-   // let totalTime = 5;
+        const fetchSingle = async() => {
+            const res = await httpGetFullRecipeWithDetails(id);
+            setSingleRecipe(res);
+        }
+        fetchSingle();
+    }, [id])
 
-    return (
+    console.log('Inside component', singleRecipe)
+    return(
         <>
-        <SingleRecipeContainer>
+      <SingleRecipeContainer>
       {!singleRecipe ?
        <h3>Recipe is loading</h3>
        : 
-       <>
-      <TopDiv>
+    <>
+    <TopDiv>
         <LeftSide>
-            <img src={Lemon} alt="lemon" />
-        </LeftSide>
-        <RightSide>
-        <h2>{singleRecipe[0].recipeName}</h2>
-        <h3>{formatDate(singleRecipe[0].createdAt)}</h3>
-        <h4>Cook Time:{singleRecipe[0].cookTime}</h4>
-        <h4>Prep Time: {singleRecipe[0].prepTime}</h4>
-        <h4>Total Time: {totalTime}</h4>
-        <h4>Sub Category: {singleRecipe[0].subCategory}</h4>
-        <br />
-        <h3>Ingredients</h3>
-        <ul>
-        {
-            singleRecipe[0].ingredients.map((item) => {
-                return <li>{item}</li>
-            })
-        }
-        </ul>      
-        </RightSide>
-    </TopDiv>
-    <Bottom>
-       <h3>Instructions</h3>
-       <ol>
-       {singleRecipe[0].instructions.map((item) => {
+             <img src={Lemon} alt="lemon" />
+       </LeftSide>
+    <RightSide>
+         <h2>{singleRecipe.recipeName}</h2>
+       <h3>{formatDate(singleRecipe.createdAt)}</h3>
+      <h4>Cook Time:{singleRecipe.cookTime}</h4>
+       <h4>Prep Time: {singleRecipe.prepTime}</h4>
+      <h4>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</h4>
+     <h4>Sub Category: {singleRecipe.subCategory}</h4>
+    <br />
+       <h3>Ingredients</h3>
+       <ul>
+    {singleRecipe.ingredients.map(item => {
         return <li>{item}</li>
-       })}
-       </ol>
-    </Bottom>
-       </>
-       }
+    })
+     }
+     </ul>      
+       </RightSide>
+     </TopDiv>
+    <Bottom>
+        <h3>Instructions</h3>
+       <ol>
+       {singleRecipe.instructions.map((item) => {
+      return <li>{item}</li>
+  })}
+   </ol>
+ </Bottom>
+       </>}
        </SingleRecipeContainer>
         </>
       );

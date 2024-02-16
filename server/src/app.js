@@ -4,8 +4,19 @@ const path = require('path');
 const morgan = require('morgan');
 const api = require('./routers/api');
 const helmet = require('helmet');
+const session = require('express-session');
 
+require('dotenv').config()
 const app = express();
+
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true,
+        maxAge: 24 * 60 * 60 * 1000,
+     }
+  }))
 
 app.use(helmet());
 
