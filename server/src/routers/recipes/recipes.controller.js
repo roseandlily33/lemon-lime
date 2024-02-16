@@ -1,4 +1,5 @@
 const recipes = require('../../models/Recipes/recipes.mongo');
+
 async function httpGetAllRecipes(req, res){
     let allRecipes = await recipes.find({}, {
         '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0
@@ -24,7 +25,6 @@ async function httpGetFullRecipeWithDetails(req, res){
     console.log('Returning 1 recipe', foundRecipe);
     return res.status(200).json(foundRecipe);
 }
-
 
 
 module.exports = {

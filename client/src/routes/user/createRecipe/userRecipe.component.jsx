@@ -1,8 +1,9 @@
 import { useState } from "react";
-import {CreateRecipeForm, TopForm, SideForm, EachInput} from './userRecipe.styles';
+import {CreateRecipeForm} from './userRecipe.styles';
+import { getTotalTime } from "../../../formattingUtils/totalTime";
+import { EachInput } from "./userRecipe.styles";
 import UserIngredients from "./userIngredientsSingle.component";
 import UserInstructions from "./userInstructionsSingle.component";
-import { getTotalTime } from "../../../formattingUtils/totalTime";
 const CreateRecipe = ({httpCreateRecipe}) => {
     const [formValues, setFormValues] = useState({
         recipeName: '',
@@ -11,6 +12,8 @@ const CreateRecipe = ({httpCreateRecipe}) => {
     });
     //For the subCategory State
     const [subCategory, setSubcategory] = useState('Lunch');
+    //For the result
+    const [result, setResult] = useState();
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -46,9 +49,9 @@ const CreateRecipe = ({httpCreateRecipe}) => {
        const response = await httpCreateRecipe(totalSending);
        const success = response.ok;
        if (success) {
-          alert('Was Successful');
+          setResult(true);
         } else {
-           alert('Wasnt Successful');
+          setResult(false);
          }
         setFormValues({
           recipeName: '',
@@ -62,12 +65,12 @@ const CreateRecipe = ({httpCreateRecipe}) => {
           i1: '', i2: '', i3: '', i4: '', i5: '', i6: '', i7: '', i8: ''
         })
       };
+
     return (
     <>
-    <h2>Create a recipe</h2>
     <CreateRecipeForm onSubmit={handleSubmit}>
-    <TopForm>
-      <EachInput>
+
+    <EachInput>
       <label>Recipe Name:</label>
         <input 
           type="text" 
@@ -105,16 +108,20 @@ const CreateRecipe = ({httpCreateRecipe}) => {
           <option value="Dessert">Dessert</option>
           <option value="Drink">Drinks</option>
         </select>
-      </TopForm>
-    <SideForm>
-      <label style={{textTransform: 'uppercase', textDecoration: 'underline'}}>Ingredients</label>
+
+    <label style={{textTransform: 'uppercase', textDecoration: 'underline'}}>Ingredients</label>
       <UserIngredients ingredients={ingredients} addNewIngredient={addNewIngredient}/>
-      </SideForm>
-      <SideForm>
+
       <label style={{textTransform: 'uppercase', textDecoration: 'underline'}}>Instructions</label>
       <UserInstructions instructions={instructions} addNewInstruction={addNewInstruction}/>
       <input className="button" type="submit" />
-      </SideForm>
+    
+      {result ?
+        <h4>Congrats! You have created a recipe!</h4>
+    : 
+          <h4>Sorry, there was an error saving your recipe</h4>
+      }
+
     </CreateRecipeForm>
  </>
 );

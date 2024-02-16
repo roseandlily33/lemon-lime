@@ -1,7 +1,7 @@
 const {
     createNewRecipe
 } = require('../../models/Recipes/recipes.model');
-const { getTotalTime} = require('../../models/Users/user.model');
+
 
 function httpGetUser(req, res){
     console.log('Getting the user');

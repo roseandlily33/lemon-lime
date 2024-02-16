@@ -38,7 +38,7 @@ const SignUpComponent = ({setPage, page}) => {
             <button className="button">Submit</button>
             <div>
             <h4>Have An Account?</h4>
-         <button onClick={() => setPage(true)}>Login Up</button>
+         <button onClick={() => setPage(true)}>Log In</button>
          </div>
          </div>
         </>

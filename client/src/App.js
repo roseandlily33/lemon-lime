@@ -10,9 +10,11 @@ import BasePage from './routes/base/base.component';
 import AuthComponent from './routes/authentication/auth.component';
 import Footer from './routes/footer/footer.component';
 import Recipe from './routes/recipe/recipe.component';
+import CreateRecipe from './routes/user/createRecipe/userRecipe.component';
 import useRecipes from './hooks/useRecipes';
 import {httpCreateRecipe} from './hooks/requests';
 import SingleRecipe from './components/SingleRecipe/singleRecipe.component';
+import { UserContainer } from './routes/user/user.styles';
 
 const theme = {
   colors: {
@@ -45,11 +47,13 @@ function App() {
             <Route path="recipe">
             <Route path=':id' element={<SingleRecipe />} />
             </Route>
-          <Route path='user' element={<UserHome httpCreateRecipe={httpCreateRecipe} />}/>
+          <Route  path='user' element={<UserHome httpCreateRecipe={httpCreateRecipe}/>}>
+          </Route>
           <Route path='favorites' element={<FavoritesPage />}/>
           <Route path='search' element={<SearchPage />} />
           <Route path='signin' element={<AuthComponent />} />
           </Route>
+          {/* <Route path='*' element={<ErrorPage/>} /> */}
      </Routes>
      <Footer />
      </BrowserRouter>

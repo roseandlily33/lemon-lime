@@ -2,7 +2,6 @@ const http = require('http');
 const app = require('./app');
 const {connectToMongoose} = require('./utils/connection');
 
-
 const PORT = process.env.PORT || 8000;
 
 const server = http.createServer(app);
