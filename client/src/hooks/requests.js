@@ -7,19 +7,20 @@ async function httpGetAllRecipes(){
     let allRecipes = await response.json();
     return allRecipes;
 }
-
+//This Works
 async function httpGetPopularRecipes(){
     const response = await fetch(`${API_URL}/recipes/popular`);
     let allRecipes = await response.json();
     return allRecipes;
 }
-
+//This Works
 async function httpGetFullRecipeWithDetails(id){
     const response = await fetch(`${API_URL}/recipes/${id}`);
     let oneRecipe = await response.json();
     console.log('HOOK FUNCTION ONE RECIPE', oneRecipe, oneRecipe[0])
     return oneRecipe[0];
 }
+
 
 //User endpoints
 async function httpGetUserRecipes(id){
@@ -40,7 +41,7 @@ async function httpDeleteUserRecipe(id){
         };
       }
 }
-//This works
+//This works - still need to add the user to it
 async function httpCreateRecipe(recipe){
     console.log('HTTP CREATE RECIPE', recipe);
     try {
@@ -78,13 +79,14 @@ async function httpCreateNewUser(info){
 async function httpLoginUser(info){
    try{
     const response = await fetch(`${API_URL}/user/login`, {
-        method: "get",
+        method: "post",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(info)
     });
     let userJSON = await response.json();
+    console.log('THE USER COMING IN', userJSON, userJSON[0])
     return userJSON;
    } catch(err){
      console.log(err)

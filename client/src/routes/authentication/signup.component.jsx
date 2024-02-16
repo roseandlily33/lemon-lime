@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { EachInput } from "./auth.styles";
+import { httpCreateNewUser } from "../../hooks/requests";
 const SignUpComponent = ({setPage, page}) => {
     const [formState, setFormState] = useState({
         username: '',
@@ -17,10 +18,24 @@ const SignUpComponent = ({setPage, page}) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        console.log('Submiting', formState);
+        const response = await httpCreateNewUser(formState);
+        const success = response.ok;
+        if (success) {
+         alert('Created User')
+         } else {
+           alert('User not created')
+          }
+         setFormState({
+            username: '',
+             email: '',
+             password: '',
+       });
        
     };
     return ( 
         <>
+        <form onSubmit={handleFormSubmit}>
         <h3>Sign Up</h3>
         <EachInput>
         <label>Username: </label>
@@ -34,13 +49,13 @@ const SignUpComponent = ({setPage, page}) => {
             <label>Password:</label>
             <input type="password" value={formState.password} name='password' onChange={handleChange} required/>
             </EachInput>
-            <div>
             <button className="button">Submit</button>
+            </form>
             <div>
             <h4>Have An Account?</h4>
          <button onClick={() => setPage(true)}>Log In</button>
          </div>
-         </div>
+ 
         </>
      );
 }
