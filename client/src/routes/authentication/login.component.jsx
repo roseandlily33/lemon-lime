@@ -1,7 +1,9 @@
 import { useState } from "react";
 import {EachInput} from './auth.styles';
 import { httpLoginUser } from "../../hooks/requests";
+import {useNavigate} from 'react-router-dom';
 const LoginComponent = ({setPage, page}) => {
+    const navigate = useNavigate();
     const [formState, setFormState] = useState({
         email: '',
         password: '',
@@ -17,19 +19,16 @@ const LoginComponent = ({setPage, page}) => {
 
     const handleFormSubmit = async (event) => {
        event.preventDefault();
-       console.log('Submiting', formState);
        const response = await httpLoginUser(formState);
-       const success = response.ok;
-       if (success) {
-        alert('Created User')
+       if (response._id) {
+             navigate('/')
         } else {
-          alert('User not created')
+          alert('Not logged in');
          }
         setFormState({
             email: '',
             password: '',
-      });
-        
+      }); 
     };
     return ( 
        <>

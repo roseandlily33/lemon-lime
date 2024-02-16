@@ -86,10 +86,11 @@ async function httpLoginUser(info){
         body: JSON.stringify(info)
     });
     let userJSON = await response.json();
-    console.log('THE USER COMING IN', userJSON, userJSON[0])
     return userJSON;
    } catch(err){
-     console.log(err)
+    return {
+      ok: false,
+    };
    }
 }
 

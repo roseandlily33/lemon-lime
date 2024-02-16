@@ -7,26 +7,27 @@ const User = require('../../models/Users/user.mongo');
 //Login the user
 async function httpLoginUser(req, res){
    try{
-    console.log('Logging in the user', req.body);
     const {email, password} = req.body;
-    // if(!email || !password){
-    //     return res.status(400).json({err: 'Must include all the fields'});
-    // }
-    const user = await User.findOne({where: {email: email}});
-    console.log('THE FOUND USER', user)
-    const validPassword = await bcrypt.compareSync(password, user.password);
-    if(!validPassword){
-        return res.status(400).json({err: 'Error with credentials'});
+    if(!email || !password){
+        //  res.status(400).json({err: 'Must include all the fields'});
+         return;
     }
-    await req.session.save(() => {
-        req.session.userId = user.id;
-        req.session.loggedIn = true;
-        res.json({user: user, message: 'You are now logged in'});
-    })
-    return res.status(201).json(user)
+    const userData = await User.findOne({email: email});
+    const validPassword = userData.isCorrectPassword(password);
+    if(!validPassword){
+        //  res.status(400).json({err: 'Error with credentials'});
+         return;
+    }
+    req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+        res.json(userData);
+      });
+   // res.redirect('/');
+    console.log('Signed in', req.session, req.session.user_id)
    } catch(err){
-    console.log(err, 'Couldnt login user');
-    return res.status(400).json({err: 'Couldnt login user'})
+    console.log('ERRRRRR', err)
+    res.status(400).json(err);
    }
 }
 //Create the User
@@ -34,13 +35,19 @@ async function httpCreateUser(req, res){
    try{
     if(!req.body){
         return res.status(400).json({msg: 'Cannot create user'})
-    }
-    const user = await User.create(req.body);
+    };
+    const {name, email, password} = req.body;
+    const user = await User.create({
+        name,
+        email,
+        password
+    });
     req.session.save(() => {
         req.session.userId = user.id;
         req.session.loggedIn = true;
-        res.status(200).json(user);
+        res.json(user);
     });
+    res.redirect('/');
    } catch(err){
     return res.status(400).json({err: 'Couldnt sign up'})
    }

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { EachInput } from "./auth.styles";
 import { httpCreateNewUser } from "../../hooks/requests";
-const SignUpComponent = ({setPage, page}) => {
+import {useNavigate} from 'react-router-dom';
+const SignUpComponent = ({setPage}) => {
+    const navigate = useNavigate();
     const [formState, setFormState] = useState({
         name: '',
         email: '',
@@ -18,14 +20,13 @@ const SignUpComponent = ({setPage, page}) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log('Submiting', formState);
         const response = await httpCreateNewUser(formState);
         const success = response.ok;
         if (success) {
-         alert('Created User')
+           navigate('/')
          } else {
-           alert('User not created')
-          }
+         alert('User not created')
+        }
          setFormState({
              name: '',
              email: '',
@@ -38,7 +39,7 @@ const SignUpComponent = ({setPage, page}) => {
         <form onSubmit={handleFormSubmit}>
         <h3>Sign Up</h3>
         <EachInput>
-        <label>Namee: </label>
+        <label>Name:</label>
             <input type="text" value={formState.name} name='name' onChange={handleChange} required />
             </EachInput>
             <EachInput>
