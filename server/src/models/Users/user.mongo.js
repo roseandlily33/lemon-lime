@@ -4,18 +4,19 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
-    username: {
+    email: {
         type: String,
         required: true,
         trim: true,
-        unique: true
+        unique: true,
+        match: [/.+@.+\..+/, 'Must match an email address!'],
     },
     password: {
         type: String,
         required: true,
-        minlength: 6
+        minlength: 5
     },
     recipes: [{
         type: Schema.Types.ObjectId,

@@ -1,8 +1,9 @@
 const express = require('express');
 const userRouter = express.Router();
-const {httpGetUser, httpCreateRecipe} = require('./user.controller');
+const {httpLoginUser, httpCreateRecipe, httpCreateUser} = require('./user.controller');
 
-userRouter.get('/', httpGetUser);
+userRouter.post('/login', httpLoginUser);
+userRouter.post('/create', httpCreateUser);
 userRouter.post('/', httpCreateRecipe);
 
 

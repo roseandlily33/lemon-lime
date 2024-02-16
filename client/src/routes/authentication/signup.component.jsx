@@ -3,7 +3,7 @@ import { EachInput } from "./auth.styles";
 import { httpCreateNewUser } from "../../hooks/requests";
 const SignUpComponent = ({setPage, page}) => {
     const [formState, setFormState] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
     });
@@ -27,7 +27,7 @@ const SignUpComponent = ({setPage, page}) => {
            alert('User not created')
           }
          setFormState({
-            username: '',
+             name: '',
              email: '',
              password: '',
        });
@@ -38,8 +38,8 @@ const SignUpComponent = ({setPage, page}) => {
         <form onSubmit={handleFormSubmit}>
         <h3>Sign Up</h3>
         <EachInput>
-        <label>Username: </label>
-            <input type="text" value={formState.username} name='username' onChange={handleChange} required />
+        <label>Namee: </label>
+            <input type="text" value={formState.name} name='name' onChange={handleChange} required />
             </EachInput>
             <EachInput>
             <label>Email: </label>
