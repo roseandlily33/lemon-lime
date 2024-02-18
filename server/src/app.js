@@ -5,8 +5,8 @@ const morgan = require('morgan');
 const api = require('./routers/api');
 const helmet = require('helmet');
 const cookieParser = require("cookie-parser");
-const User = require('./models/Users/user.model');
-const { userVerification } = require('./utils/authentication');
+const router = require('./routers/index');
+//onst { userVerification } = require('./utils/authentication');
 require('dotenv').config();
 
 const app = express();
@@ -26,10 +26,10 @@ app.use(morgan('combined'));
 
 app.use(express.static(path.join(__dirname, '..', 'public' )));
 
-app.use('/', api);
-app.use('/', userVerification,(req, res) => {
-    console.log('Home page')
-})
+app.use(router);
+// app.use('/', userVerification,(req, res) => {
+//     console.log('Home page')
+// })
 app.use('/*', (req, res) => {
     console.log('Router is working')
     res.send("Router is working")
