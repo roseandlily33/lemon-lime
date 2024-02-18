@@ -1,8 +1,12 @@
-const router = require('express').Router();
+const express = require('express');
+
 const {userVerification} = require('../utils/authentication');
-const homeRoutes = require('./homeRoutes.js/home.router.js');
-const userRoutes = require('./homeRoutes.js/home.router.js');
-router.use('/', homeRoutes);
-router.use('/user', userVerification, userRoutes)
+
+const homeRouter = require('./homeRoutes.js/home.router');
+const userRouter = require('./userRoutes.js/user.router');
+
+const router = express.Router();
+router.use('/home', homeRouter);
+router.use('/user', userVerification, userRouter);
 
 module.exports = router;

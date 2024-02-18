@@ -22,12 +22,7 @@ function useRecipes(){
     useEffect(() => {
         getPopularRecipes()
     }, [getPopularRecipes]);
-
-
-
     
-
-
     return {
         allRecipes,
         popularRecipes

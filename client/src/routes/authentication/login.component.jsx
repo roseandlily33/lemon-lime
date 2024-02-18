@@ -1,12 +1,11 @@
 import { useState } from "react";
 import {EachInput} from './auth.styles';
-import { httpLoginUser } from "../../hooks/requests";
+// import { httpLoginUser } from "../../hooks/requests";
 import {useNavigate} from 'react-router-dom';
-import { useContext } from "react";
-import { UserContext } from "../../App";
+
+import axios from "axios";
 
 const LoginComponent = ({setPage}) => {
-    const {setUser} = useContext(UserContext);
     const navigate = useNavigate();
     const [formState, setFormState] = useState({
         email: '',
@@ -23,18 +22,45 @@ const LoginComponent = ({setPage}) => {
 
     const handleFormSubmit = async (event) => {
        event.preventDefault();
-       const response = await httpLoginUser(formState);
-       console.log("Login Page", response);
-       if (response) {
-         setUser(response);
-         navigate('/')
+    //    const response = await httpLoginUser(formState);
+    //    console.log("Login Page", response);
+    //    if (response) {
+    //      setUser(response);
+    //      navigate('/')
+    //     } else {
+    //       alert('Not logged in');
+    //      }
+    //     setFormState({
+    //         email: '',
+    //         password: '',
+    //   }); 
+    try {
+        const { data } = await axios.post(
+          "http://localhost:8000/home/login",
+          {
+            ...formState,
+          },
+          { withCredentials: true }
+        );
+        console.log('SIGN UP ', data);
+        const { success, message } = data;
+        console.log('SIGN INSUCESS', success, 'Message', message)
+        if (success) {
+          alert(message);
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
         } else {
-          alert('Not logged in');
-         }
-        setFormState({
-            email: '',
-            password: '',
-      }); 
+          alert(message);
+        }
+      } catch (error) {
+        console.log('SIGN UP ERRO', error);
+      }
+     setFormState({
+         name: '',
+         email: '',
+         password: '',
+   });
     };
     return ( 
        <>

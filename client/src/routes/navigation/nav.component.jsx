@@ -42,6 +42,9 @@ const NavBar = () => {
         removeCookie("token");
         navigate("/signup");
       };
+    // const cookies = true;
+    // const username = 'me';
+    // const Logout = () => {console.log('me')}
     return (
         <Navbar>
             <NavLink to="/"><img src={Logo} alt="lemon lime logo" title="home" /></NavLink>

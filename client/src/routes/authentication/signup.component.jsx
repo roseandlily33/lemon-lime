@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { EachInput } from "./auth.styles";
-import { httpCreateNewUser } from "../../hooks/requests";
+// import { httpCreateNewUser } from "../../hooks/requests";
 import {useNavigate} from 'react-router-dom';
-import { useContext } from "react";
-import { UserContext } from "../../App";
 import axios from "axios";
 
 const SignUpComponent = ({setPage}) => {
-    const {setUser} = useContext(UserContext);
     const navigate = useNavigate();
     const [formState, setFormState] = useState({
         name: '',
@@ -33,7 +30,7 @@ const SignUpComponent = ({setPage}) => {
         // }
         try {
             const { data } = await axios.post(
-              "http://localhost:8000/user/create",
+              "http://localhost:8000/home/create",
               {
                 ...formState,
               },

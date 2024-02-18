@@ -3,19 +3,20 @@ const API_URL = 'http://localhost:8000';
 //Recipes endpoints
 //This works
 async function httpGetAllRecipes(){
-    const response = await fetch(`${API_URL}/recipes`);
+    const response = await fetch(`${API_URL}/home/recipes`);
     let allRecipes = await response.json();
+    console.log('Returned all recipes');
     return allRecipes;
 }
 //This Works
 async function httpGetPopularRecipes(){
-    const response = await fetch(`${API_URL}/recipes/popular`);
+    const response = await fetch(`${API_URL}/home/popular`);
     let allRecipes = await response.json();
     return allRecipes;
 }
 //This Works
 async function httpGetFullRecipeWithDetails(id){
-    const response = await fetch(`${API_URL}/recipes/${id}`);
+    const response = await fetch(`${API_URL}/home/${id}`);
     let oneRecipe = await response.json();
     return oneRecipe[0];
 }
