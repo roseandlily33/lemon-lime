@@ -4,9 +4,7 @@ const FavoritesPage = () => {
     return ( 
         <FavoritesContainer>
             <h2>Your Favorite Recipes</h2>
-            <RecipeContainer />
-            <RecipeContainer />
-            <RecipeContainer />
+            
         </FavoritesContainer>
      );
 }

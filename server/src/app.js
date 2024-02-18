@@ -4,38 +4,36 @@ const path = require('path');
 const morgan = require('morgan');
 const api = require('./routers/api');
 const helmet = require('helmet');
-const session = require('express-session');
+const cookieParser = require("cookie-parser");
+const User = require('./models/Users/user.model');
+const { userVerification } = require('./utils/authentication');
+require('dotenv').config();
 
-require('dotenv').config()
 const app = express();
-
-app.use(session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true,
-        maxAge: 24 * 60 * 60 * 1000,
-     }
-  }))
+app.use(cookieParser());
+app.use(express.json());
 
 app.use(helmet());
-
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:3000',
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
 }));
 
-app.use(morgan('combined'));
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json());
+app.use(morgan('combined'));
 
 app.use(express.static(path.join(__dirname, '..', 'public' )));
 
 app.use('/', api);
+app.use('/', userVerification,(req, res) => {
+    console.log('Home page')
+})
 app.use('/*', (req, res) => {
     console.log('Router is working')
     res.send("Router is working")
     res.sendFile(path.join(__dirname, '..','public', 'index.html'));
 });
-
 
 module.exports = app;

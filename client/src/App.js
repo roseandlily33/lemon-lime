@@ -15,7 +15,9 @@ import useRecipes from './hooks/useRecipes';
 import {httpCreateRecipe} from './hooks/requests';
 import SingleRecipe from './components/SingleRecipe/singleRecipe.component';
 import { UserContainer } from './routes/user/user.styles';
+import { createContext, useState } from 'react';
 
+export const UserContext = createContext(null);
 const theme = {
   colors: {
       white:' #F8F9F8',
@@ -31,6 +33,9 @@ const theme = {
 }
 
 function App() {
+  const [user, setUser] = useState();
+  console.log('USER APP LEVEL', user);
+
   const {
     allRecipes,
     popularRecipes
@@ -38,10 +43,11 @@ function App() {
 
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
+      <UserContext.Provider value={{user, setUser}}>
+    <ThemeProvider theme={theme}>
      <BrowserRouter>
       <NavBar/>
-     <Routes>
+       <Routes>
         <Route path='/' element={<BasePage />}>
           <Route index element={<HomePage allRecipes={allRecipes} popularRecipes={popularRecipes}/>} />
             <Route path="recipe">
@@ -58,6 +64,7 @@ function App() {
      <Footer />
      </BrowserRouter>
      </ThemeProvider>
+     </UserContext.Provider>
     </div>
   );
 }

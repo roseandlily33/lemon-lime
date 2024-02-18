@@ -17,7 +17,6 @@ async function httpGetPopularRecipes(){
 async function httpGetFullRecipeWithDetails(id){
     const response = await fetch(`${API_URL}/recipes/${id}`);
     let oneRecipe = await response.json();
-    console.log('HOOK FUNCTION ONE RECIPE', oneRecipe, oneRecipe[0])
     return oneRecipe[0];
 }
 
@@ -42,15 +41,18 @@ async function httpDeleteUserRecipe(id){
       }
 }
 //This works - still need to add the user to it
-async function httpCreateRecipe(recipe){
-    console.log('HTTP CREATE RECIPE', recipe);
+async function httpCreateRecipe(id, recipe){
+    console.log('HTTP CREATE RECIPE', recipe, 'FOR', id);
     try {
         return await fetch(`${API_URL}/user`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(recipe),
+        body: JSON.stringify({
+          id,
+          recipe
+        }),
       });
     } catch(err) {
       return {
@@ -61,19 +63,20 @@ async function httpCreateRecipe(recipe){
 
 async function httpCreateNewUser(info){
     try {
-        return await fetch(`${API_URL}/user/create`, {
+        let res = await fetch(`${API_URL}/user/create`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(info),
       });
+      console.log('CRAETING NEW USER', res);
+      return res;
     } catch(err) {
       return {
         ok: false,
       };
     }
-
 }
 
 async function httpLoginUser(info){
@@ -86,6 +89,7 @@ async function httpLoginUser(info){
         body: JSON.stringify(info)
     });
     let userJSON = await response.json();
+    console.log('HTTP RETURNED USER', userJSON)
     return userJSON;
    } catch(err){
     return {

@@ -9,6 +9,10 @@ import {NavLink} from 'react-router-dom';
 import { useState } from 'react';
 const NavBar = () => {
     const [loggedIn, setLoggedIn] = useState(false);
+    // const Logout = () => {
+    //     removeCookie("token");
+    //     navigate("/signup");
+    //   };
     return (
         <Navbar>
             <NavLink to="/"><img src={Logo} alt="lemon lime logo" /></NavLink>

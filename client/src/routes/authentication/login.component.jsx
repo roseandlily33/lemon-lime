@@ -2,7 +2,11 @@ import { useState } from "react";
 import {EachInput} from './auth.styles';
 import { httpLoginUser } from "../../hooks/requests";
 import {useNavigate} from 'react-router-dom';
-const LoginComponent = ({setPage, page}) => {
+import { useContext } from "react";
+import { UserContext } from "../../App";
+
+const LoginComponent = ({setPage}) => {
+    const {setUser} = useContext(UserContext);
     const navigate = useNavigate();
     const [formState, setFormState] = useState({
         email: '',
@@ -20,8 +24,10 @@ const LoginComponent = ({setPage, page}) => {
     const handleFormSubmit = async (event) => {
        event.preventDefault();
        const response = await httpLoginUser(formState);
-       if (response._id) {
-             navigate('/')
+       console.log("Login Page", response);
+       if (response) {
+         setUser(response);
+         navigate('/')
         } else {
           alert('Not logged in');
          }

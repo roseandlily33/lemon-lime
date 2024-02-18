@@ -2,7 +2,12 @@ import { useState } from "react";
 import { EachInput } from "./auth.styles";
 import { httpCreateNewUser } from "../../hooks/requests";
 import {useNavigate} from 'react-router-dom';
+import { useContext } from "react";
+import { UserContext } from "../../App";
+import axios from "axios";
+
 const SignUpComponent = ({setPage}) => {
+    const {setUser} = useContext(UserContext);
     const navigate = useNavigate();
     const [formState, setFormState] = useState({
         name: '',
@@ -20,19 +25,39 @@ const SignUpComponent = ({setPage}) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const response = await httpCreateNewUser(formState);
-        const success = response.ok;
-        if (success) {
-           navigate('/')
-         } else {
-         alert('User not created')
-        }
+        // const response = await httpCreateNewUser(formState);
+        // if (response.ok) {
+        //    navigate('/')
+        //  } else {
+        //    alert('User not created')
+        // }
+        try {
+            const { data } = await axios.post(
+              "http://localhost:8000/user/create",
+              {
+                ...formState,
+              },
+              { withCredentials: true }
+            );
+            console.log('SIGN UP ', data);
+            const { success, message } = data;
+            console.log('SIGN INSUCESS', success, 'Message', message)
+            if (success) {
+              alert(message);
+              setTimeout(() => {
+                navigate("/");
+              }, 1000);
+            } else {
+              alert(message);
+            }
+          } catch (error) {
+            console.log('SIGN UP ERRO', error);
+          }
          setFormState({
              name: '',
              email: '',
              password: '',
        });
-       
     };
     return ( 
         <>

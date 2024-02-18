@@ -10,9 +10,7 @@ const SearchPage = () => {
     <img src={SearchIcon} alt="search" />
     </StyledDiv>
     <ResultsDiv>
-        <RecipeContainer />
-        <RecipeContainer />
-        <RecipeContainer />
+        <h3>Recipes go here</h3>
     </ResultsDiv>
     </> );
 }

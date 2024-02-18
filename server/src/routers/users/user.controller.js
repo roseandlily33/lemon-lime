@@ -1,65 +1,72 @@
 const {
     createNewRecipe
 } = require('../../models/Recipes/recipes.model');
-const bcrypt = require('bcrypt');
 const User = require('../../models/Users/user.mongo');
+// const { signToken } = require('../../utils/jwt');
+const {createSecretToken} = require('../../utils/jwt');
 
 //Login the user
-async function httpLoginUser(req, res){
+async function httpLoginUser (req, res){
    try{
     const {email, password} = req.body;
     if(!email || !password){
-        //  res.status(400).json({err: 'Must include all the fields'});
-         return;
+        res.status(400).json({err: 'Must include all the fields'});
     }
     const userData = await User.findOne({email: email});
     const validPassword = userData.isCorrectPassword(password);
     if(!validPassword){
-        //  res.status(400).json({err: 'Error with credentials'});
-         return;
-    }
-    req.session.save(() => {
-        req.session.user_id = userData.id;
-        req.session.logged_in = true;
-        res.json(userData);
-      });
-   // res.redirect('/');
-    console.log('Signed in', req.session, req.session.user_id)
+        res.status(400).json({err: 'Error with credentials'});
+    } 
+    const token = createSecretToken(userData.id);
+    console.log('THE TOKEN', token);
+     res.cookie("token", token, {
+       withCredentials: true,
+       httpOnly: false,
+     });
+     res.status(200).json(userData);
    } catch(err){
-    console.log('ERRRRRR', err)
-    res.status(400).json(err);
+    console.log('There was an error siging in', err)
+     res.status(400).json(err)
    }
 }
 //Create the User
 async function httpCreateUser(req, res){
-   try{
+    console.log('CREATING THE USER', req.body);
     if(!req.body){
-        return res.status(400).json({msg: 'Cannot create user'})
+        res.status(400).json({msg: 'Cannot create user'})
     };
     const {name, email, password} = req.body;
-    const user = await User.create({
+    const userFound = await User.findOne({
         name,
         email,
         password
     });
-    req.session.save(() => {
-        req.session.userId = user.id;
-        req.session.loggedIn = true;
-        res.json(user);
+    if(userFound){
+        res.status(404).json({msg: 'User has been found'})
+    }
+    const userData = await User.create({
+        name,
+        email,
+        password
     });
-    res.redirect('/');
-   } catch(err){
-    return res.status(400).json({err: 'Couldnt sign up'})
-   }
+    const token = createSecretToken(userData.id);
+    res.cookie("token", token, {
+        withCredentials: true,
+        httpOnly: false,
+      });
+    //res.status(201).json({userData, token});
+    res.status(201).json({ message: "User logged in successfully", success: true });
+    next()
 }
 //User creates a recipe 
 async function httpCreateRecipe(req, res){
+    console.log(req.body, req.body.id, req.body.recipe)
     let recipe = req.body;
     console.log('Creating ', recipe);
     if(!recipe){
         return res.status(400).json({err: 'Missing information'})
     }
-    await createNewRecipe(recipe);
+   // await createNewRecipe(recipe);
     return res.status(201).json("Created Recipe")
 }
 

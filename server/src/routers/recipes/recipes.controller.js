@@ -31,5 +31,4 @@ module.exports = {
     httpGetAllRecipes,
     httpGetPopularRecipes,
     httpGetFullRecipeWithDetails,
-    
 }
