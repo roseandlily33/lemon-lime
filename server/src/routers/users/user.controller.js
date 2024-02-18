@@ -54,7 +54,6 @@ async function httpCreateUser(req, res){
         withCredentials: true,
         httpOnly: false,
       });
-    //res.status(201).json({userData, token});
     res.status(201).json({ message: "User logged in successfully", success: true });
     next()
 }
