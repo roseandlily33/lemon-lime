@@ -25,7 +25,7 @@ async function httpGetFullRecipeWithDetails(id){
 async function httpGetUserRecipes(id){
     const response = await fetch(`${API_URL}/user/${id}`);
     let allRecipes = await response.json();
-    return allRecipes;
+    return allRecipes[0];
 }
 
 async function httpDeleteUserRecipe(id){
@@ -61,42 +61,42 @@ async function httpCreateRecipe(user, recipe){
     }
 }
 
-async function httpCreateNewUser(info){
-    try {
-        let res = await fetch(`${API_URL}/user/create`, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(info),
-      });
-      console.log('CRAETING NEW USER', res);
-      return res;
-    } catch(err) {
-      return {
-        ok: false,
-      };
-    }
-}
+// async function httpCreateNewUser(info){
+//     try {
+//         let res = await fetch(`${API_URL}/user/create`, {
+//         method: "post",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(info),
+//       });
+//       console.log('CRAETING NEW USER', res);
+//       return res;
+//     } catch(err) {
+//       return {
+//         ok: false,
+//       };
+//     }
+// }
 
-async function httpLoginUser(info){
-   try{
-    const response = await fetch(`${API_URL}/user/login`, {
-        method: "post",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(info)
-    });
-    let userJSON = await response.json();
-    console.log('HTTP RETURNED USER', userJSON)
-    return userJSON;
-   } catch(err){
-    return {
-      ok: false,
-    };
-   }
-}
+// async function httpLoginUser(info){
+//    try{
+//     const response = await fetch(`${API_URL}/user/login`, {
+//         method: "post",
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(info)
+//     });
+//     let userJSON = await response.json();
+//     console.log('HTTP RETURNED USER', userJSON)
+//     return userJSON;
+//    } catch(err){
+//     return {
+//       ok: false,
+//     };
+//    }
+// }
 
 export {
     httpGetAllRecipes,
@@ -105,6 +105,6 @@ export {
     httpGetUserRecipes,
     httpDeleteUserRecipe,
     httpCreateRecipe,
-    httpCreateNewUser,
-    httpLoginUser
+    // httpCreateNewUser,
+    // httpLoginUser
 }

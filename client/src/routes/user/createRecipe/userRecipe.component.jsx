@@ -16,7 +16,7 @@ const CreateRecipe = ({httpCreateRecipe}) => {
     //For the subCategory State
     const [subCategory, setSubcategory] = useState('Lunch');
     //For the result
-    const [result, setResult] = useState('');
+    const [result, setResult] = useState('Fill in the form to submit a recipe');
 
     const handleChange = (e) => {
         const {name, value} = e.target;

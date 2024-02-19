@@ -1,8 +1,12 @@
 const userRouter = require('express').Router();
-const {httpCreateRecipe} = require('./user.controller');
+const {
+    httpCreateRecipe,
+    httpGetUserRecipes
+} = require('./user.controller');
 
 //user/
 userRouter.post('/', httpCreateRecipe);
+userRouter.get('/:id', httpGetUserRecipes);
 
 
 module.exports = userRouter;

@@ -11,9 +11,8 @@ import Footer from './routes/footer/footer.component';
 import useRecipes from './hooks/useRecipes';
 import {httpCreateRecipe} from './hooks/requests';
 import SingleRecipe from './components/SingleRecipe/singleRecipe.component';
-import { createContext, useState, useEffect  } from 'react';
-import { useCookies } from "react-cookie";
-import axios from 'axios';
+import { createContext} from 'react';
+import CreateRecipe from './routes/user/createRecipe/userRecipe.component';
 
 export const UserContext = createContext(null);
 const theme = {
@@ -75,7 +74,8 @@ function App() {
             <Route path="recipe">
             <Route path=':id' element={<SingleRecipe />} />
             </Route>
-          <Route  path='user' element={<UserHome httpCreateRecipe={httpCreateRecipe}/>}>
+            <Route path='user' element={<UserHome />}>
+            <Route path='create' element={<CreateRecipe httpCreateRecipe={httpCreateRecipe}/>}/>
           </Route>
           <Route path='favorites' element={<FavoritesPage />}/>
           <Route path='search' element={<SearchPage />} />
