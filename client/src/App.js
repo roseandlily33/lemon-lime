@@ -1,6 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {ThemeProvider} from 'styled-components';
-
 import HomePage from "./routes/home/home.component";
 import NavBar from "./routes/navigation/nav.component";
 import FavoritesPage from './routes/favorites/favorites.component';
@@ -9,13 +8,12 @@ import SearchPage from './routes/search/search.component';
 import BasePage from './routes/base/base.component';
 import AuthComponent from './routes/authentication/auth.component';
 import Footer from './routes/footer/footer.component';
-import Recipe from './routes/recipe/recipe.component';
-import CreateRecipe from './routes/user/createRecipe/userRecipe.component';
 import useRecipes from './hooks/useRecipes';
 import {httpCreateRecipe} from './hooks/requests';
 import SingleRecipe from './components/SingleRecipe/singleRecipe.component';
-import { UserContainer } from './routes/user/user.styles';
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect  } from 'react';
+import { useCookies } from "react-cookie";
+import axios from 'axios';
 
 export const UserContext = createContext(null);
 const theme = {
@@ -33,20 +31,44 @@ const theme = {
 }
 
 function App() {
-  const [user, setUser] = useState();
-  console.log('USER APP LEVEL', user);
-
   const {
     allRecipes,
     popularRecipes
   } = useRecipes();
 
+  //const [user, setUser] = useState();
+  //let cookies = localStorage.getItem('jwt');
+  // console.log('TOP LEVEL COOKIES', cookies);
+  // console.log('TOP LEVEL User', user);
+  // useEffect(() => {
+  //     const verifyCookie = async () => {
+  //       console.log('Cookies', cookies.token);
+  //       if (!cookies.token) {
+  //         console.log('No cookies', cookies)
+  //         //navigate("/signin");
+  //       } 
+  //       let myCookies = localStorage.getItem('jwt');
+  //        const { data } = await axios.post(
+  //         "http://localhost:8000/home",
+  //         {...myCookies},
+  //         { withCredentials: true }
+  //       );
+  //       console.log('Returned data from home page', data);
+  //       const { status, user } = data;
+  //       console.log('Status', status, 'User', user);
+  //       setUser(user);
+        
+  //     };
+  //     verifyCookie();
+  //   },[cookies]);
+   //<UserContext.Provider value={{user, setUser}}>
+   //cookies={cookies}  user={user}
+//</UserContext.Provider>
   return (
     <div className="App">
-      <UserContext.Provider value={{user, setUser}}>
     <ThemeProvider theme={theme}>
      <BrowserRouter>
-      <NavBar/>
+      <NavBar  />
        <Routes>
         <Route path='/' element={<BasePage />}>
           <Route index element={<HomePage allRecipes={allRecipes} popularRecipes={popularRecipes}/>} />
@@ -64,7 +86,7 @@ function App() {
      <Footer />
      </BrowserRouter>
      </ThemeProvider>
-     </UserContext.Provider>
+     
     </div>
   );
 }

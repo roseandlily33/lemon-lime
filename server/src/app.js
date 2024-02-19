@@ -32,12 +32,14 @@ app.use(express.static(path.join(__dirname, '..', 'public' )));
 app.use((req, res, next) => {
     console.log('INCOMING REQUEST', req.path);
     next()
-})
+});
+
 app.use('/', router);
 // app.use('/', userVerification,(req, res) => {
 //     console.log('Home page')
 // })
 app.get('/', (req, res) => {
+    console.log('MAIN', req.body);
     return res.status(200).json({msg: "Hello"})
 })
  app.get('/popular', async(req, res) => {

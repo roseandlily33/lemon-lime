@@ -21,7 +21,6 @@ async function httpGetFullRecipeWithDetails(id){
     return oneRecipe[0];
 }
 
-
 //User endpoints
 async function httpGetUserRecipes(id){
     const response = await fetch(`${API_URL}/user/${id}`);
@@ -42,8 +41,8 @@ async function httpDeleteUserRecipe(id){
       }
 }
 //This works - still need to add the user to it
-async function httpCreateRecipe(id, recipe){
-    console.log('HTTP CREATE RECIPE', recipe, 'FOR', id);
+async function httpCreateRecipe(user, recipe){
+    console.log('HTTP CREATE RECIPE', recipe, 'FOR', user);
     try {
         return await fetch(`${API_URL}/user`, {
         method: "post",
@@ -51,7 +50,7 @@ async function httpCreateRecipe(id, recipe){
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id,
+          user,
           recipe
         }),
       });

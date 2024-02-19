@@ -8,6 +8,7 @@ const {
     httpCreateUser,
     httpGetMain
 } = require('./home.controller');
+const {userVerification } = require('../../utils/authentication');
 
 // /
 homeRouter.get('/', httpGetMain);

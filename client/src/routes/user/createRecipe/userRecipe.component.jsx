@@ -4,10 +4,10 @@ import { getTotalTime } from "../../../formattingUtils/totalTime";
 import { EachInput } from "./userRecipe.styles";
 import UserIngredients from "./userIngredientsSingle.component";
 import UserInstructions from "./userInstructionsSingle.component";
-import { UserContext } from "../../../App";
-import { useContext } from "react";
+import {useAuth0} from '@auth0/auth0-react';
 const CreateRecipe = ({httpCreateRecipe}) => {
-    const {user} = useContext(UserContext);
+    const {user} = useAuth0();
+    console.log('Create rec', user);
     const [formValues, setFormValues] = useState({
         recipeName: '',
         prepTime: '',
@@ -49,7 +49,7 @@ const CreateRecipe = ({httpCreateRecipe}) => {
           totalTime: totalTime,
           subCategory: subCategory
         })
-       const response = await httpCreateRecipe(user.id, totalSending);
+       const response = await httpCreateRecipe(user, totalSending);
        const success = response.ok;
        if (success) {
           setResult(true);
@@ -72,7 +72,6 @@ const CreateRecipe = ({httpCreateRecipe}) => {
     return (
     <>
     <CreateRecipeForm onSubmit={handleSubmit}>
-
     <EachInput>
       <label>Recipe Name:</label>
         <input 

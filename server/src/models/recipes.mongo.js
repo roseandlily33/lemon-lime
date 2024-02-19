@@ -39,11 +39,11 @@ const recipesSchema = new mongoose.Schema({
     favorites: {
         type: Number,
         default: 0
-    }
-    // author: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
+    },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     // comments: [{
     //     type: Schema.Types.ObjectId,
     //     ref: 'Comment'

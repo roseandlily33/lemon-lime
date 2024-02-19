@@ -9,9 +9,9 @@ const AuthComponent = () => {
     <AuthPage>
     <AuthForm>
         {page ? 
-         <LoginComponent setPage={setPage}  page={page}/>
+         <LoginComponent setPage={setPage}/>
             : 
-        <SignUpComponent setPage={setPage} page={page}/>
+        <SignUpComponent setPage={setPage} />
         }
     </AuthForm>
     </AuthPage>  

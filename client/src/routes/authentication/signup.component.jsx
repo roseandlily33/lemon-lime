@@ -3,8 +3,11 @@ import { EachInput } from "./auth.styles";
 // import { httpCreateNewUser } from "../../hooks/requests";
 import {useNavigate} from 'react-router-dom';
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "../../App";
 
 const SignUpComponent = ({setPage}) => {
+  const {setUser} = useContext(UserContext);
     const navigate = useNavigate();
     const [formState, setFormState] = useState({
         name: '',
@@ -37,10 +40,12 @@ const SignUpComponent = ({setPage}) => {
               { withCredentials: true }
             );
             console.log('SIGN UP ', data);
-            const { success, message } = data;
+            const { success, message, token, userData } = data;
             console.log('SIGN INSUCESS', success, 'Message', message)
             if (success) {
               alert(message);
+              setUser(userData);
+              localStorage.setItem("jwt", token);
               setTimeout(() => {
                 navigate("/");
               }, 1000);
