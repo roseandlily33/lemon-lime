@@ -1,10 +1,10 @@
-import { UserContainer} from "./user.styles";
+import { UserContainer, UserRecipesContainer, UserOptionsContainer} from "./user.styles";
 import { useEffect, useState } from "react";
 import {Outlet} from 'react-router-dom';
 import {useAuth0} from '@auth0/auth0-react';
 import RecipeContainer2 from '../../components/Recipe/recipe2.container';
 import {useNavigate} from 'react-router-dom';
-
+import RecipeContainer3 from "../../components/Recipe/recipe3.component";
 import { httpGetUserRecipes } from "../../hooks/requests";
 import CreateRecipe from "./createRecipe/userRecipe.component";
 const UserHome = () => {
@@ -29,17 +29,21 @@ const UserHome = () => {
         <UserContainer>
          {isAuthenticated ?
          <>
-          <h1>Welcome {user.nickname}</h1>
+          <UserRecipesContainer>
           {!recipes ? <h3>Loading Recipes</h3>:
           <>
+          <UserOptionsContainer>
+          <h1>Welcome {user.nickname}</h1>
+          <button onClick={createRecipe}>Create a recipe</button>
+          </UserOptionsContainer>
           {recipes.map((r) => {
-            return <RecipeContainer2 recipe={r}/>
+            return <RecipeContainer3 recipe={r}/>
           })}
            </>
           }
-          <Outlet />
+          </UserRecipesContainer>
+          {/* <Outlet /> */}
           {/* <CreateRecipe httpCreateRecipe={httpCreateRecipe}/> */}
-         <button onClick={createRecipe}>Create a recipe</button>
          </> :
          <h2>Login To View Your Recipes</h2>
         }

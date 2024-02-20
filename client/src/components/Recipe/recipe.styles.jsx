@@ -11,7 +11,7 @@ export const RecipeCont = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-top: 1em;
-    h4{
+    h3{
         margin-top: 0.5em;
     }
     img{

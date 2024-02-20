@@ -20,18 +20,41 @@ body{
     font-family: 'Inter', sans-serif;
     background-image: url('./images/Background.png');
 }
+h1{
+ font-size: 1.5em;
+}
+h2{
+  font-size: 1.25em;
+}
+h3 {
+ font-size: 1em;
+}
+h4{
+  font-size: 0.8em;
+}
+h5{
+    font-size: 0.6em;
+}
+h6{
+    font-size: 0.4em;
+}
 
 button, .button{
-    background-color: var(--lightYellow);
+    background-color: var(--orange);
     padding: 1em;
     border: none;
     border-radius: 5px;
     text-transform: capitalize;
     width: 150px;
+    max-width: 130px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 button:hover, .button:hover{
-    background-color: var(--lightGreen);
+    background-color: var(--green);
     border: none;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 input{
  border: 2px solid var(--yellow);

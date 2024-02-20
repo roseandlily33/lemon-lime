@@ -9,17 +9,6 @@ const SingleRecipe = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
 
-//    const FetchRecipe = async() => {
-//     const fetchSingle = useCallback(async() => {
-//         const fetchedRecipe = await httpGetFullRecipeWithDetails(id);
-//         await setSingleRecipe(fetchedRecipe);
-//     },[id])
-
-//     useEffect(async() => {
-//        await fetchSingle(id)
-//     }, [fetchSingle, id]);
-//    }
-
     useEffect(() => {
         const fetchSingle = async() => {
             const res = await httpGetFullRecipeWithDetails(id);
@@ -38,34 +27,44 @@ const SingleRecipe = () => {
     <>
     <TopDiv>
         <LeftSide>
-             <img src={Lemon} alt="lemon" />
+         <img src={Lemon} alt="lemon" />
        </LeftSide>
-    <RightSide>
-         <h2>{singleRecipe.recipeName}</h2>
-       <h3>{formatDate(singleRecipe.createdAt)}</h3>
-      <h4>Cook Time:{singleRecipe.cookTime}</h4>
-       <h4>Prep Time: {singleRecipe.prepTime}</h4>
-      <h4>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</h4>
-     <h4>Sub Category: {singleRecipe.subCategory}</h4>
-    <br />
-       <h3>Ingredients</h3>
-       <ul>
-    {singleRecipe.ingredients.map(item => {
-        return <li>{item}</li>
-    })
-     }
-     </ul>      
+         <RightSide>
+        <h1>{singleRecipe.recipeName}</h1>
+        <hr />
+        <h2 style={{fontStyle: 'italic'}}>Created By: _____ ,{formatDate(singleRecipe.createdAt)}</h2>
+        <>
+        <h3>Cook Time: {singleRecipe.cookTime}</h3>
+        <h3>Prep Time: {singleRecipe.prepTime}</h3>
+        <h3>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</h3>
+        <h3>Sub Category: {singleRecipe.subCategory}</h3>
+        <h3>Favorites: {singleRecipe.favorites}</h3>
+        </>
+        <>
+        <h2>Ingredients</h2>
+        <hr/>
+        <ul>
+        {singleRecipe.ingredients.map(item => {
+            return <li>{item}</li>
+        })
+        }
+        </ul>  
+        </>
+           
        </RightSide>
      </TopDiv>
-    <Bottom>
-        <h3>Instructions</h3>
-       <ol>
-       {singleRecipe.instructions.map((item) => {
-      return <li>{item}</li>
-  })}
-   </ol>
- </Bottom>
-       </>}
+     <Bottom>
+        <h2>Instructions</h2>
+        <hr />
+
+        <ol>
+        {singleRecipe.instructions.map((item) => {
+        return <li>{item}</li>
+        })}
+        </ol>
+        </Bottom>
+       </>
+       }
        </SingleRecipeContainer>
         </>
       );

@@ -6,7 +6,7 @@ const HomePage = ({ allRecipes, popularRecipes}) => {
     return (
         <MainDiv>
         <LeftMainDiv>
-            <h2>New Recipes</h2>
+            <h1>New Recipes</h1>
             {
                 allRecipes.map((recipe) => {
                     return <RecipeContainer recipe={recipe} /> 
@@ -14,7 +14,7 @@ const HomePage = ({ allRecipes, popularRecipes}) => {
             }
         </LeftMainDiv>
         <RightMainDiv>
-            <h2>Popular Recipes</h2>
+            <h1>Popular Recipes</h1>
             {
                 popularRecipes.map((recipe) => {
                     return <RecipeContainer2 recipe={recipe} /> 

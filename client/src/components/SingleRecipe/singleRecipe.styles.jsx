@@ -1,64 +1,65 @@
 import styled from 'styled-components';
 
 export const SingleRecipeContainer  = styled.section`
-    height: 100vh;
-    width: 100vw;
+    height: auto;
+    width: 95%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    h1{
+       color: ${({theme}) => theme.colors.orange};
+       font-weight: bold;
+       text-transform: uppercase;
+    }
     h2{
-        color: ${({theme}) => theme.colors.lightYellow};
+        font-weight: bolder;
     }
 `;
 
 export const TopDiv = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: row;
 `;
 
 export const LeftSide = styled.div`
-    border: 1px solid purple;
-    height: 400px;
-    width: 500px;
     img{
-        height: 400px;
-        width: 500px;
+        height: 300px;
+        width: 400px;
     }
 `;
 
 export const RightSide = styled.div`
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
-    gap: 1em;
     width: 100%;
-    padding: 1em;
+    gap: 0.5em;
+    padding: 0.5em;
     ul{
         padding: 1em;
-        background-color: ${({theme}) => theme.colors.lightYellow};
-;
-        width: 600px;
+        background-color: ${({theme}) => theme.colors.white};
+        border-radius: 5px;
     }
     li{
-        margin-top: 0.5em;
+        margin-top: 1em;
         text-decoration: none;
-        font-size: 1.2em;
     }
 
 `;
 
 export const Bottom = styled.div`
-border: 1px solid green;
-display: flex;
-flex-direction: column;
-gap: 1em;
-padding: 3em;
 width: 100%;
+padding: 0.5em;
 h3{
     text-align: center;
     color: ${({theme}) => theme.colors.yellow};
 }
+ol{
+    background-color: ${({theme}) => theme.colors.white};
+    border-radius: 5px;
+    padding: 0.2em;
+}
 li{
-    margin-top: 0.5em;
+    margin-top: 1em;
 }
 `;

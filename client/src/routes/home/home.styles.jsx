@@ -9,15 +9,17 @@ export const MainDiv = styled.main`
     @media screen {
         flex-wrap: wrap-reverse;
     }
-    h2{
+    h1{
         text-align: center;
         color: ${({theme}) => theme.colors.green};
+        font-weight: bold;
     }
 
 `;
 
 export const LeftMainDiv = styled.div`
     width: 60%;
+    max-height: 70%;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -27,11 +29,11 @@ export const LeftMainDiv = styled.div`
 
 export const RightMainDiv = styled.div`
     min-width: 30%;
+    max-height: 50%;
     width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
-
     padding: 1em;
 `;

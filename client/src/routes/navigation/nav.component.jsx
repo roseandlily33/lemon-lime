@@ -20,7 +20,6 @@ const NavBar = () => {
         <Navbar>
             <NavLink to="/"><img src={Logo} alt="lemon lime logo" title="home" /></NavLink>
             <RightNav>
-                <h1>Welcome</h1>
                 <NavLink to='search'><img src={search} title="search" alt="search" /></NavLink>
                 {isAuthenticated ?  
                 <>

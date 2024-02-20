@@ -14,7 +14,6 @@ export const CreateRecipeForm = styled.form`
     overflow-y: scroll;
     label{
        font-weight: bold;
-       font-size: 1.3em;
     }
     input{
         padding: 0.8em;
