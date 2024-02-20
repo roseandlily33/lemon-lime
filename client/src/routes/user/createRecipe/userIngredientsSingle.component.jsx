@@ -1,19 +1,18 @@
-import { EachInput } from "./userRecipe.styles";
+import { IngredientsDiv } from "./userRecipe.styles";
 const UserIngredients = ({ingredients, addNewIngredient}) => {
     return (
-    <>
-      {Object.entries(ingredients).map((x, idx)=> {
-        return  <EachInput>
-        <h3>{idx + 1}</h3>
+    <IngredientsDiv>
+      {Object.entries(ingredients).map((x)=> {
+        return  <div>
         <input 
           type="text" 
           name={x[0]}
           value={x[1]}
           onChange={addNewIngredient}
         />
-        </EachInput>
+        </div>
       })}
-    </>
+    </IngredientsDiv>
     );
 }
  

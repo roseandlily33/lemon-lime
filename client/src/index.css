@@ -59,12 +59,20 @@ button:hover, .button:hover{
 input{
  border: 2px solid var(--yellow);
  padding: 0.5em;
- border-radius: 5px;
- width: auto;
+ border-radius: 2px;
+
 }
 input:focus{
-    border:2px solid var(--lightGreen);
+    border:1.5px solid var(--lightGreen);
 }
 label{
- font-size: 1.2em;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+select{
+    background-color: var(--lightYellow);
+    border: none;
+    border-radius: 2px;
+    padding: 0.5em;
+  
 }

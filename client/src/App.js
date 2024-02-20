@@ -1,19 +1,21 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { createContext} from 'react';
+import {httpCreateRecipe} from './hooks/requests';
+import useRecipes from './hooks/useRecipes';
 import {ThemeProvider} from 'styled-components';
+//Pages:
 import HomePage from "./routes/home/home.component";
 import NavBar from "./routes/navigation/nav.component";
 import FavoritesPage from './routes/favorites/favorites.component';
 import UserHome from './routes/user/user.component';
 import SearchPage from './routes/search/search.component';
-import BasePage from './routes/base/base.component';
 import AuthComponent from './routes/authentication/auth.component';
 import Footer from './routes/footer/footer.component';
-import useRecipes from './hooks/useRecipes';
-import {httpCreateRecipe} from './hooks/requests';
 import SingleRecipe from './components/SingleRecipe/singleRecipe.component';
-import { createContext} from 'react';
 import CreateRecipe from './routes/user/createRecipe/userRecipe.component';
 import UserBase from './routes/user/userBase.component.jsx';
+import BasePage from './routes/base/base.component';
+import NotFound from './routes/notFound/notFound.component.jsx';
 
 export const UserContext = createContext(null);
 const theme = {
@@ -83,7 +85,7 @@ function App() {
           <Route path='search' element={<SearchPage />} />
           <Route path='signin' element={<AuthComponent />} />
           </Route>
-          {/* <Route path='*' element={<ErrorPage/>} /> */}
+          <Route path='*' element={<NotFound />} />
      </Routes>
      <Footer />
      </BrowserRouter>

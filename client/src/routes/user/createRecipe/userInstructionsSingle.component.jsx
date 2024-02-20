@@ -1,9 +1,9 @@
-import { EachInput } from "./userRecipe.styles";
+import {InstructionsDiv} from './userRecipe.styles'
 const UserInstructions = ({instructions, addNewInstruction}) => {
     return (
     <>
       {Object.entries(instructions).map((x, idx) => {
-        return  <EachInput>
+        return  <InstructionsDiv>
         <h3>{idx + 1}</h3>
         <input 
           type="text" 
@@ -11,7 +11,7 @@ const UserInstructions = ({instructions, addNewInstruction}) => {
           value={x[1]}
           onChange={addNewInstruction}
         />
-        </EachInput>
+        </InstructionsDiv>
       })}
     </>
     );
