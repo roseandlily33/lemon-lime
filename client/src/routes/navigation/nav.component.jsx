@@ -24,7 +24,7 @@ const NavBar = () => {
                 {isAuthenticated ?  
                 <>
                 <NavLink to='favorites'><img src={heart} title="favourites" alt="favourites" /></NavLink>
-                <NavLink to='user'><img src={userIcon} title="user page" alt="user page" /></NavLink>
+                <NavLink to='user/home'><img src={userIcon} title="user page" alt="user page" /></NavLink>
                 <button onClick={() =>logout()}>Logout</button>
                 </>
                :

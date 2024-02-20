@@ -13,6 +13,7 @@ import {httpCreateRecipe} from './hooks/requests';
 import SingleRecipe from './components/SingleRecipe/singleRecipe.component';
 import { createContext} from 'react';
 import CreateRecipe from './routes/user/createRecipe/userRecipe.component';
+import UserBase from './routes/user/userBase.component.jsx';
 
 export const UserContext = createContext(null);
 const theme = {
@@ -74,7 +75,8 @@ function App() {
             <Route path="recipe">
             <Route path=':id' element={<SingleRecipe />} />
             </Route>
-            <Route path='user' element={<UserHome />}>
+            <Route path='user' element={<UserBase />}>
+              <Route index path="home" element={<UserHome />} />
             <Route path='create' element={<CreateRecipe httpCreateRecipe={httpCreateRecipe}/>}/>
           </Route>
           <Route path='favorites' element={<FavoritesPage />}/>

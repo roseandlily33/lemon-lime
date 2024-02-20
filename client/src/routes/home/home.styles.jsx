@@ -14,7 +14,6 @@ export const MainDiv = styled.main`
         color: ${({theme}) => theme.colors.green};
         font-weight: bold;
     }
-
 `;
 
 export const LeftMainDiv = styled.div`
