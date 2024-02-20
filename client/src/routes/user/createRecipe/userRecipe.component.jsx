@@ -8,12 +8,11 @@ import {useAuth0} from '@auth0/auth0-react';
 
 const CreateRecipe = ({httpCreateRecipe}) => {
     const {user} = useAuth0();
-    let result;
     //All forms values excpet Instructions and Ingredient
     const [formValues, setFormValues] = useState({
         recipeName: '',
-        prepTime: 0,
-        cookTime: 0,
+        prepTime: 10,
+        cookTime: 10,
         subCategory: "Breakfast"
     });
     const handleChange = (e) => {
@@ -30,7 +29,7 @@ const CreateRecipe = ({httpCreateRecipe}) => {
       }
       //For the Measurements 
       const [measurements, setMeasurements] = useState({
-        m1: 0, m2: 0, m3: 0, m4: 0, m5: 0, m6: 0, m7: 0, m8: 0
+        m1: '1 Cup', m2: '1 Cup', m3: '1 Cup', m4: '1 Cup', m5: '1 Cup', m6: '1 Cup', m7: '1 Cup', m8: '1 Cup'
       });
       const addNewMeasurement = (e) => {
         const {name, value} = e.target;
@@ -49,22 +48,26 @@ const CreateRecipe = ({httpCreateRecipe}) => {
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
         let newInstructions = Object.values(instructions); 
         let newIngredients = Object.values(ingredients); 
+        let newMeasurements = Object.values(measurements);
         let totalSending = Object.assign(formValues, {
           instructions: newInstructions,
           ingredients: newIngredients,
+          measurements: newMeasurements,
           totalTime: totalTime,
         })
        const response = await httpCreateRecipe(user, totalSending);
        const success = response.ok;
        if (success) {
-          result = <h2 style={{color: 'green'}}>Created the recipe</h2>
+        alert('Success')
+          //result = <h2 style={{color: 'green'}}>Created the recipe</h2>
         } else {
-          result = <h2 style={{color: 'red'}}>There was an error creating the recipe</h2>
+          alert('Failure')
+          //result = <h2 style={{color: 'red'}}>There was an error creating the recipe</h2>
          }
         setFormValues({
           recipeName: '',
-          prepTime: 0,
-          cookTime: 0,
+          prepTime: 10,
+          cookTime: 10,
           subCategory: 'Breakfast'
       });
         setIngredients({
@@ -130,7 +133,6 @@ const CreateRecipe = ({httpCreateRecipe}) => {
       <UserInstructions instructions={instructions} addNewInstruction={addNewInstruction}/>
       </BottomForm>
       <input className="button" type="submit" />
-      {result}
     </CreateRecipeForm>
  </>
 );

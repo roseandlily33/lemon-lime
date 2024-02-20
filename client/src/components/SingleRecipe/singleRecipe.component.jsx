@@ -43,12 +43,20 @@ const SingleRecipe = () => {
         <>
         <h2>Ingredients</h2>
         <hr/>
+        <div>
+        <ul>
+          {singleRecipe?.measurements.map(item => {
+            return <li>{item}</li>
+          })}
+        </ul>
         <ul>
         {singleRecipe.ingredients.map(item => {
             return <li>{item}</li>
         })
         }
         </ul>  
+
+        </div>
         </>
            
        </RightSide>

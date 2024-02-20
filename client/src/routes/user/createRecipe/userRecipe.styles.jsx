@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 export const CreateRecipeForm = styled.form`
-border: 1px solid red;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -83,5 +82,4 @@ export const InstructionsDiv = styled.div`
  input{
         width: 75%;
     }
-
 `;
