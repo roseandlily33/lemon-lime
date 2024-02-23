@@ -1,19 +1,26 @@
+import { useState } from "react";
+const UserIngredientsArray = ({formValues, setFormValues}) => {
+    const {ingredients} = formValues;
 
-const UserIngredientsArray = ({formValues, handleChange}) => {
+    const  handleChange = (e) => {
+       const {name, value} = e.target
+       setFormValues({...formValues, [name]: value})
+    }
+
     return ( 
         <>
-        {formValues.ingredients.map((x, idx) => {
-            return <>
-        <h3>{idx + 1}</h3>
+        {ingredients.map((x, idx) => {
+            console.log('Inside', x, idx)
+        return <>
+        <label name={idx}>{idx + 1}</label>
         <input 
           type="text" 
-          name={x[0]}   
-          value={x[1]}
+          name={idx}   
+          value={x}
           onChange={handleChange}
         />
             </>
         })}
-        
         </>
      );
 }

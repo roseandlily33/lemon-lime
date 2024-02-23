@@ -72,6 +72,10 @@ async function httpEditRecipe(req, res){
 async function httpDeleteRecipe(req, res){
   try{
     console.log('Deleting', req.params.id);
+    let id = req.params.id;
+    let deletedRecipe = await Recipe.findOneAndDelete({_id: id});
+    console.log('Deleted recipe', deletedRecipe);
+    res.status(200).json(deletedRecipe);
 
   } catch(err){
     console.log('ERR DELETING RECIPE', err);

@@ -50,7 +50,7 @@ async function httpCreateRecipe(user, recipe){
 }
 
 async function httpEditUserRecipe(id, info){
-  console.log('HTTP EDIT CREATE RECIPE', id);
+  console.log('HTTP EDIT CREATE RECIPE', id, info);
     try {
         return await fetch(`${API_URL}/user/recipe/${id}`, {
         method: "put",
@@ -64,6 +64,22 @@ async function httpEditUserRecipe(id, info){
         ok: false,
       };
     }
+}
+
+async function httpDeleteRecipe(id){
+  console.log('HTTP DELETE RECIPE', id);
+  try{
+    return await fetch(`${API_URL}/user/recipe/${id}`, {
+      method: 'delete',
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+  } catch(err){
+    return {
+      ok: false,
+    };
+  }
 }
 
 // async function httpCreateNewUser(info){
@@ -109,7 +125,8 @@ export {
     httpGetFullRecipeWithDetails,
     httpGetUserRecipes,
     httpCreateRecipe,
-    httpEditUserRecipe
+    httpEditUserRecipe,
+    httpDeleteRecipe
     // httpCreateNewUser,
     // httpLoginUser
 }
