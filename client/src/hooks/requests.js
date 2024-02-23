@@ -28,18 +28,6 @@ async function httpGetUserRecipes(id){
     return allRecipes[0];
 }
 
-async function httpDeleteUserRecipe(id){
-    try {
-        return await fetch(`${API_URL}/user/${id}`, {
-          method: "delete",
-        });
-      } catch(err) {
-        console.log(err);
-        return {
-          ok: false,
-        };
-      }
-}
 //This works - still need to add the user to it
 async function httpCreateRecipe(user, recipe){
     console.log('HTTP CREATE RECIPE', recipe, 'FOR', user);
@@ -53,6 +41,23 @@ async function httpCreateRecipe(user, recipe){
           user,
           recipe
         }),
+      });
+    } catch(err) {
+      return {
+        ok: false,
+      };
+    }
+}
+
+async function httpEditUserRecipe(id, info){
+  console.log('HTTP EDIT CREATE RECIPE', id);
+    try {
+        return await fetch(`${API_URL}/user/recipe/${id}`, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(info),
       });
     } catch(err) {
       return {
@@ -103,8 +108,8 @@ export {
     httpGetPopularRecipes,
     httpGetFullRecipeWithDetails,
     httpGetUserRecipes,
-    httpDeleteUserRecipe,
     httpCreateRecipe,
+    httpEditUserRecipe
     // httpCreateNewUser,
     // httpLoginUser
 }

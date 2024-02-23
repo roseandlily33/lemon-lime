@@ -9,24 +9,20 @@ const router = require('./routers');
 
 require('dotenv').config();
 
-const mainExcludes = {
-    '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0
-}
-
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
-
-app.use(helmet());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('combined'));
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin:'http://localhost:3000',
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+   // preflightContinue: false,
+   // optionsSuccessStatus: 204, 
+    //allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
-app.use(express.urlencoded({ extended: true }));
-
-app.use(morgan('combined'));
+app.use(helmet());
 
 app.use(express.static(path.join(__dirname, '..', 'public' )));
 app.use((req, res, next) => {

@@ -55,10 +55,24 @@ async function httpGetUserRecipes(req, res){
     }
 }
 
+// async function httpEditRecipe(req, res){
+//   try{
+//     let editId = req.params.id;
+//     let recipeBody = req.body.info;
+//     console.log('Edit id', editId, recipeBody);
+//     let editedRecipe = await Recipe.findOneAndUpdate({_id: editId}, recipeBody, {upsert: true});
+//     console.log('edited recipe', editedRecipe);
+//     res.status(200).json(editedRecipe);
+//   }catch(err){
+//     console.log('Editing error', err)
+//     return res.status(404).json({msg: "Could not edit the recipe"})
+//   }
+// }
 
 
 
 module.exports = {
     httpCreateRecipe,
-    httpGetUserRecipes
+    httpGetUserRecipes,
+    //httpEditRecipe
 }

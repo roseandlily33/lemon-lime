@@ -1,4 +1,4 @@
-import { IngredientsDiv } from "./userRecipe.styles";
+import { IngredientsDiv } from "../userRecipe.styles";
 const UserIngredients = ({ingredients, addNewIngredient}) => {
     return (
     <IngredientsDiv>

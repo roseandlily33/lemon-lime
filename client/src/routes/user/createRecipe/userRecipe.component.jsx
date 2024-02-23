@@ -1,10 +1,14 @@
 import { useState } from "react";
 import {CreateRecipeForm, TopForm, MiddleForm, BottomForm} from './userRecipe.styles';
 import { getTotalTime } from "../../../formattingUtils/totalTime";
-import UserIngredients from "./userIngredientsSingle.component";
-import UserMeasurements from "./userMeasurements.component";
-import UserInstructions from "./userInstructionsSingle.component";
+import UserIngredients from "./recipeFormElements/userIngredientsSingle.component";
+import UserMeasurements from "./recipeFormElements/userMeasurements.component";
+import UserInstructions from "./recipeFormElements/userInstructionsSingle.component";
 import {useAuth0} from '@auth0/auth0-react';
+import PrepTime from "./recipeFormElements/userPrepTime.component";
+import CookTime from "./recipeFormElements/userCookTime.component";
+import SubCategory from "./recipeFormElements/userSubCategory.component";
+import RecipeName from "./recipeFormElements/userRecipeName.component";
 
 const CreateRecipe = ({httpCreateRecipe}) => {
     const {user} = useAuth0();
@@ -59,10 +63,8 @@ const CreateRecipe = ({httpCreateRecipe}) => {
        const success = response.ok;
        if (success) {
         alert('Success')
-          //result = <h2 style={{color: 'green'}}>Created the recipe</h2>
         } else {
           alert('Failure')
-          //result = <h2 style={{color: 'red'}}>There was an error creating the recipe</h2>
          }
         setFormValues({
           recipeName: '',
@@ -84,52 +86,27 @@ const CreateRecipe = ({httpCreateRecipe}) => {
     <CreateRecipeForm onSubmit={handleSubmit}>
       <h1>Create a recipe</h1>
       <TopForm>
-    {/* Recipe Name */}
-      <label>Recipe Name:</label>
-        <input 
-          type="text" 
-          name="recipeName"
-          value={formValues.recipeName}
-          onChange={handleChange}
-          required
-        />
+       {/* Recipe Name */}
+      <RecipeName formValues={formValues} handleChange={handleChange} />
       {/* Prep Time */}
-      <label for={formValues.prepTime}>Prep Time:</label>
-        <select name="prepTime" onChange={handleChange}>
-          <option value={formValues.prepTime[10]}>10</option>
-          <option value={formValues.prepTime[20]}>20</option>
-          <option value={formValues.prepTime[30]}>30</option>
-          <option value={formValues.prepTime[40]}>40</option>
-          <option value={formValues.prepTime[50]}>50</option>
-        </select>
+      <PrepTime formValues={formValues} handleChange={handleChange}/>
       {/* Cook Time */}
-      <label for={formValues.cookTime}>Cook Time:</label>
-        <select name="cookTime" onChange={handleChange}>
-          <option value={formValues.cookTime[10]}>10</option>
-          <option value={formValues.cookTime[20]}>20</option>
-          <option value={formValues.cookTime[30]}>30</option>
-          <option value={formValues.cookTime[40]}>40</option>
-          <option value={formValues.cookTime[50]}>50</option>
-        </select>
+      <CookTime formValues={formValues} handleChange={handleChange} />
       {/* SubCategory */}
-      <label for={formValues.subCategory}>Choose SubCategory:</label>
-      <select name="subCategory" onChange={handleChange}>
-          <option value={formValues.subCategory["Breakfast"]}>Breakfast</option>
-          <option value={formValues.subCategory["Lunch"]}>Lunch</option>
-          <option value={formValues.subCategory["Dinner"]}>Dinner</option>
-          <option value={formValues.subCategory["Dessert"]}>Dessert</option>
-          <option value={formValues.subCategory["Drinks"]}>Drinks</option>
-        </select>
-        </TopForm>
+      <SubCategory formValues={formValues} handleChange={handleChange} />
+      </TopForm>
       <hr/>
       <h2>Ingredients</h2>
       <MiddleForm>
+        {/* Measurements */}
       <UserMeasurements measurements={measurements} addNewMeasurement={addNewMeasurement}/>
+      {/* Ingredients */}
       <UserIngredients ingredients={ingredients} addNewIngredient={addNewIngredient}/>
       </MiddleForm>
       <hr />
       <h2>Instructions</h2>
       <BottomForm>
+        {/* Instructions */}
       <UserInstructions instructions={instructions} addNewInstruction={addNewInstruction}/>
       </BottomForm>
       <input className="button" type="submit" />

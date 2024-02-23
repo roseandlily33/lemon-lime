@@ -1,12 +1,13 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { createContext} from 'react';
 import {httpCreateRecipe} from './hooks/requests';
-import useRecipes from './hooks/useRecipes';
+import useRecipes from './hooks/mainPageRecipes.js';
 import {ThemeProvider} from 'styled-components';
 //Pages:
 import HomePage from "./routes/home/home.component";
 import NavBar from "./routes/navigation/nav.component";
 import FavoritesPage from './routes/favorites/favorites.component';
+import EditRecipe from './routes/user/editRecipe/edit.component.jsx';
 import UserHome from './routes/user/user.component';
 import SearchPage from './routes/search/search.component';
 import AuthComponent from './routes/authentication/auth.component';
@@ -79,7 +80,8 @@ function App() {
             </Route>
             <Route path='user' element={<UserBase />}>
               <Route index path="home" element={<UserHome />} />
-            <Route path='create' element={<CreateRecipe httpCreateRecipe={httpCreateRecipe}/>}/>
+              <Route path='create' element={<CreateRecipe httpCreateRecipe={httpCreateRecipe}/>}/>
+              <Route path="edit/:id" element={<EditRecipe />}></Route>
           </Route>
           <Route path='favorites' element={<FavoritesPage />}/>
           <Route path='search' element={<SearchPage />} />

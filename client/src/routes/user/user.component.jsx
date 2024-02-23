@@ -1,12 +1,9 @@
 import { UserContainer, UserRecipesContainer, UserOptionsContainer} from "./user.styles";
 import { useEffect, useState } from "react";
-import {Outlet} from 'react-router-dom';
 import {useAuth0} from '@auth0/auth0-react';
-import RecipeContainer2 from '../../components/Recipe/recipe2.container';
 import {useNavigate} from 'react-router-dom';
 import RecipeContainer3 from "../../components/Recipe/recipe3.component";
 import { httpGetUserRecipes } from "../../hooks/requests";
-import CreateRecipe from "./createRecipe/userRecipe.component";
 const UserHome = () => {
   const navigate = useNavigate();
   const [recipes, setRecipes] = useState();

@@ -1,23 +1,21 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect} from "react";
 import { httpGetFullRecipeWithDetails } from "../../hooks/requests";
 import { useParams } from "react-router-dom";
 import { formatDate } from "../../formattingUtils/date";
 import Lemon from '../../images/lemons.jpg';
 import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom }from './singleRecipe.styles';
 
-const SingleRecipe = () => {
+const SingleRecipe = async() => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
-
     useEffect(() => {
-        const fetchSingle = async() => {
-            const res = await httpGetFullRecipeWithDetails(id);
-            setSingleRecipe(res);
-        }
-        fetchSingle();
-    }, [id])
+      const fetchSingle = async() => {
+          const res = await httpGetFullRecipeWithDetails(id);
+          setSingleRecipe(res);
+      }
+      fetchSingle();
+  }, [id])
 
-    console.log('Inside component', singleRecipe)
     return(
         <>
       <SingleRecipeContainer>

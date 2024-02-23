@@ -4,8 +4,6 @@ import { httpGetAllRecipes, httpGetPopularRecipes } from "./requests";
 function useRecipes(){
     const [allRecipes, setAllRecipes] = useState([]);
     const [popularRecipes, setPopularRecipes] = useState([]);
-   // const[singleRecipe, setSingleRecipe] = useState();
-
 
     const getAllRecipes = useCallback(async() => {
         const allRecipes = await httpGetAllRecipes();
