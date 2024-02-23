@@ -3,8 +3,11 @@
 const UserInstructionsArray = ({formValues, handleChange}) => {
     return ( 
         <>
-        {formValues.instructions.map(e => {
-            return <h3>{e}</h3>
+        {formValues.instructions.map((ele, idx )=> {
+            return <>
+            <h3>{idx + 1}</h3>
+            <input type="text" value={ele} onChange={handleChange}/>
+            </>
         })}
         
         </>
