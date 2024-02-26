@@ -1,44 +1,37 @@
 const API_URL = 'http://localhost:8000';
 
-//Recipes endpoints
-//This works
+//Gets all the recipes for the main page
 async function httpGetAllRecipes(){
     const response = await fetch(`${API_URL}/home/recipes`);
     let allRecipes = await response.json();
-    console.log('Returned all recipes');
     return allRecipes;
 }
-//This Works
+//Gets all the popular recipes for the main page
 async function httpGetPopularRecipes(){
     const response = await fetch(`${API_URL}/home/popular`);
     let allRecipes = await response.json();
     return allRecipes;
 }
-//This Works
+//Gets the full recipe with details for a view page
 async function httpGetFullRecipeWithDetails(id){
     const response = await fetch(`${API_URL}/home/${id}`);
     let oneRecipe = await response.json();
     return oneRecipe;
-   //return oneRecipe[0];
 }
-
+//Gets the full recipe details for the edit a recipe page
 async function httpGetFullRecipeWithDetailsEditPage(id){
   const response = await fetch(`${API_URL}/user/edit/${id}`);
   let oneRecipe = await response.json();
-  console.log('Returned from HPTT', oneRecipe);
   return oneRecipe[0];
 }
-
-//User endpoints
+//Gets all of the users recipes
 async function httpGetUserRecipes(id){
     const response = await fetch(`${API_URL}/user/${id}`);
     let allRecipes = await response.json();
     return allRecipes[0];
 }
-
-//This works - still need to add the user to it
+//Allows the user to create a recipe
 async function httpCreateRecipe(user, recipe){
-    console.log('HTTP CREATE RECIPE', recipe, 'FOR', user);
     try {
         return await fetch(`${API_URL}/user`, {
         method: "post",
@@ -56,7 +49,7 @@ async function httpCreateRecipe(user, recipe){
       };
     }
 }
-
+//Allows the user to edit a recipe
 async function httpEditUserRecipe(id, info){
   console.log('HTTP EDIT CREATE RECIPE', id, info);
     try {
@@ -73,7 +66,7 @@ async function httpEditUserRecipe(id, info){
       };
     }
 }
-
+//Allows the user to delete a recipe
 async function httpDeleteRecipe(id){
   console.log('HTTP DELETE RECIPE', id);
   try{
@@ -89,7 +82,7 @@ async function httpDeleteRecipe(id){
     };
   }
 }
-
+//Allows the user to add a favorite recipe
 async function httpAddFavoriteRecipe(user, id){
   console.log('Adding a fave recipe for', user, id)
   try{
@@ -106,8 +99,25 @@ async function httpAddFavoriteRecipe(user, id){
     };
   }
 }
+//Allows a user to comment on a recipe
+async function httpAddComment(user, comment){
+  try{
+    return await fetch(`${API_URL}/comments`, {
+      method: 'post',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(comment)
+    })
+  } catch(err){
+    return {
+      ok: false,
+    };
+  }
+}
 
 
+//Some functionailty for maybe a login page
 // async function httpCreateNewUser(info){
 //     try {
 //         let res = await fetch(`${API_URL}/user/create`, {

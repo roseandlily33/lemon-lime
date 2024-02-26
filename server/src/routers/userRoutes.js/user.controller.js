@@ -38,48 +38,41 @@ async function httpCreateRecipe(req, res){
         return res.status(404).json({msg: 'Could not create the recipe'})
     }
 }
-
+//Gets all of the users recipes
 async function httpGetUserRecipes(req, res){
-  console.log('HITTING GET USER RECIPES');
     try{
       let userId = req.params.id;
-     // console.log('Getting for user', userId); 
       let fetchedRecipes = await User.find({authId: userId}).populate("recipes").sort({createdAt: -1});
-    //  console.log('Found these recipes', fetchedRecipes);
       res.status(200).json(fetchedRecipes);
     } catch (err){
       console.log('GETTING USER RECIPES ERR', err);
       return res.status(404).json({msg: "Could not get the recipe"})
     }
 }
-
+//Edit a user recipe
 async function httpEditRecipe(req, res){
   try{
     let editId = req.params.id;
     let recipeBody = req.body;
     let editedRecipe = await Recipe.findOneAndUpdate({_id: editId}, recipeBody, {upsert: true});
     res.status(200).json(editedRecipe);
-   
   }catch(err){
     console.log('Editing error', err)
     return res.status(404).json({msg: "Could not edit the recipe"})
   }
 }
-
+//Delete a user recipe
 async function httpDeleteRecipe(req, res){
   try{
-   // console.log('Deleting', req.params.id);
     let id = req.params.id;
     let deletedRecipe = await Recipe.findOneAndDelete({_id: id});
-   // console.log('Deleted recipe', deletedRecipe);
     res.status(200).json(deletedRecipe);
-
   } catch(err){
     console.log('ERR DELETING RECIPE', err);
     return res.status(404).json({msg: "Could not delete the recipe"});
   }
 }
-
+//Adds a favorite recipe for a user
 async function httpAddFavoriteRecipe(req, res){
   try{
     let user = req.body;
@@ -90,7 +83,7 @@ async function httpAddFavoriteRecipe(req, res){
     return res.status(404).json({msg: "Could not favorite the recipe"});
   }
 }
-
+//Deletes a favorite recipe for a user
 async function httpDeleteFavoriteRecipe(req, res){
   try{
     console.log('Deelting a user recpe', req.body)
@@ -99,7 +92,7 @@ async function httpDeleteFavoriteRecipe(req, res){
     return res.status(404).json({msg: "Could not delete favorite the recipe"});
   }
 }
-
+//Edits a favorite recipe for a user
 async function httpGetEditRecipe(req, res){
   console.log('Getting the edit recipe');
   try{

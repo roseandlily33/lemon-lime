@@ -1,12 +1,12 @@
-const recipes = require('../../models/recipes.mongo');
-
+const Recipe = require('../../models/recipes.mongo');
 const User = require('../../models/user.mongo');
 //const {createSecretToken} = require('../../utils/jwt');
-const generateToken = require('../../utils/newjwt');
+//const generateToken = require('../../utils/newjwt');
 
 const mainExcludes = {
     '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0
 }
+//Gets nothing
 async function httpGetMain(req, res){
     try{
         console.log('Getting the main', req.body)
@@ -16,21 +16,22 @@ async function httpGetMain(req, res){
         return res.status(400).json({msg: "error in get"})
     }
 }
+//Gets all of the recipes for the main page the newest 6
 async function httpGetAllRecipes(req, res){
    console.log('GETTING ALL THE RECIPES')
    try{
-    let allRecipes = await recipes.find({}, { mainExcludes}).sort({createdAt: -1}).limit(6);
+    let allRecipes = await Recipe.find({}, { mainExcludes}).sort({createdAt: -1}).limit(6);
     return res.status(200).json(allRecipes)
    } catch(err){
     console.log('ERERR',err);
     return res.status(400).json(err);
    }
 };
-
+//Gets the most popular recipes the top 6
 async function httpGetPopularRecipes(req, res){
     console.log('GETTING ALL THE POPULAR RECIPES')
     try{
-        let faveRecipes = await recipes.find({}, {
+        let faveRecipes = await Recipe.find({}, {
             mainExcludes}).sort({favorites: -1}).limit(6);
          return res.status(200).json(faveRecipes);
     }catch(err){
@@ -38,7 +39,7 @@ async function httpGetPopularRecipes(req, res){
         return res.status(400).json(err);
     }
 }
-
+//Gets the full recipe with details
 async function httpGetFullRecipeWithDetails(req, res){
     console.log('GETTING THE ONE RECIPE WITH DETAILS')
     try{
@@ -46,7 +47,7 @@ async function httpGetFullRecipeWithDetails(req, res){
     if(!requestId){
         return res.status(404).json({err: 'Recipe not found'});
     }
-    let foundRecipe = await recipes.find({
+    let foundRecipe = await Recipe.find({
         _id: requestId
     }, {'__v': 0});
     let authorOfRecipe = await User.findOne({_id: foundRecipe[0].author});
@@ -57,7 +58,7 @@ async function httpGetFullRecipeWithDetails(req, res){
         return res.status(400).json(err);
        }
 }
-// //Login the user
+// //Login the user = not in use
 async function httpLoginUser (req, res){
     console.log('LOGGIN IN THE USER')
     try{
@@ -83,12 +84,11 @@ async function httpLoginUser (req, res){
       });
       return res.status(201).json({ message: "User logged in successfully", success: true, token: token, userData: sendingData });
     } catch(err){
-     console.log('There was an error siging in', err)
       return res.status(400).json(err)
     }
  }
 
- //Create the User
+ //Create the User - not in use
  async function httpCreateUser(req, res){
      console.log('CREATING THE USER', req.body);
      try{
@@ -139,5 +139,4 @@ module.exports = {
     httpLoginUser,
     httpCreateUser,
     httpGetMain
-
 }

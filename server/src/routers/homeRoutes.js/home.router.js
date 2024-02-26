@@ -8,19 +8,14 @@ const {
     httpCreateUser,
     httpGetMain
 } = require('./home.controller');
-const {userVerification } = require('../../utils/authentication');
+//const {userVerification } = require('../../utils/authentication');
 
 // /
 homeRouter.get('/', httpGetMain);
-
 homeRouter.get('/recipes', httpGetAllRecipes);
-
 homeRouter.get('/popular', httpGetPopularRecipes);
-
 homeRouter.get('/:id', httpGetFullRecipeWithDetails);
-
 homeRouter.post('/login', httpLoginUser);
-
 homeRouter.post('/create', httpCreateUser);
 
 module.exports = homeRouter;

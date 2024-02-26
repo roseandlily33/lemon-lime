@@ -3,7 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 const helmet = require('helmet');
-const Recipes = require('./models/recipes.mongo');
+//const Recipes = require('./models/recipes.mongo');
 const cookieParser = require("cookie-parser");
 const router = require('./routers');
 
@@ -34,25 +34,21 @@ app.use('/', router);
 // app.use('/', userVerification,(req, res) => {
 //     console.log('Home page')
 // })
-app.get('/', (req, res) => {
-    console.log('MAIN', req.body);
-    return res.status(200).json({msg: "Hello"})
-})
- app.get('/popular', async(req, res) => {
-    console.log('GETTING ALL THE POPULAR RECIPES')
-    try{
-        let faveRecipes = await Recipes.find({}, {
-            mainExcludes}).sort({favorites: -1}).limit(6);
-         return res.status(200).json(faveRecipes);
-    }catch(err){
-        console.log('ERERR',err);
-        return res.status(400).json(err);
-    }
- })
-//  async function httpGetPopularRecipes(req, res){
-    
-//  }
-
+// app.get('/', (req, res) => {
+//     console.log('MAIN', req.body);
+//     return res.status(200).json({msg: "Hello"})
+// })
+//  app.get('/popular', async(req, res) => {
+//     console.log('GETTING ALL THE POPULAR RECIPES')
+//     try{
+//         let faveRecipes = await Recipes.find({}, {
+//             mainExcludes}).sort({favorites: -1}).limit(6);
+//          return res.status(200).json(faveRecipes);
+//     }catch(err){
+//         console.log('ERERR',err);
+//         return res.status(400).json(err);
+//     }
+//  })
 
 app.use('/*', (req, res) => {
     console.log('Router is working')
