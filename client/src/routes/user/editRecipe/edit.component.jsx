@@ -14,6 +14,8 @@ import SubCategory from '../createRecipe/recipeFormElements/userSubCategory.comp
 import UserInstructionsArray from '../createRecipe/recipeFormElements/userArrInstructions.component';
 import UserIngredientsArray from '../createRecipe/recipeFormElements/userArrIngredients';
 import UserArrayMeasurements from '../createRecipe/recipeFormElements/userArrMeasurements';
+//Styles
+import { CreateRecipeForm, TopForm, MiddleForm, BottomForm } from '../createRecipe/userRecipe.styles';
 
 const EditRecipe = () => {
     const {user} = useAuth0();
@@ -51,7 +53,6 @@ const EditRecipe = () => {
           measurements: newMeasurements,
           totalTime: totalTime,
         })
-       console.log('These are the final form values', totalSending);
        const response = await httpEditUserRecipe(id, totalSending);
        const success = response.ok;
        if (success) {
@@ -66,24 +67,28 @@ const EditRecipe = () => {
     {!formValues ?
      <h2>Recipe is Loading...</h2> 
      :
-     <>
-    <h1>Edit Recipe </h1>
+     <CreateRecipeForm>
+        <h1>Edit Recipe </h1>
+     <TopForm> 
     <RecipeName formValues={formValues} handleChange={handleChange}/>
     <CookTime formValues={formValues} handleChange={handleChange} />
     <PrepTime formValues={formValues} handleChange={handleChange} />
     <SubCategory formValues={formValues} handleChange={handleChange}  />
-    <div>
-         <h3>Measurements</h3>
+    </TopForm>
+    <hr/>
+    <h3>Ingredients</h3>
+    <MiddleForm>
         {formValues.measurements && <UserArrayMeasurements formValues={formValues} handleChange={handleChange} setFormValues={setFormValues}/>}
-        <h3>Ingredients</h3>
         {formValues.ingredients && <UserIngredientsArray formValues={formValues} setFormValues={setFormValues} />}
-    </div>
+    </MiddleForm>
+    <hr />
     <h3>Instructions</h3>
+    <BottomForm>
     {formValues.instructions && <UserInstructionsArray formValues={formValues} setFormValues={setFormValues} />}
-    
+    </BottomForm>
     <button onClick={handleSubmit}>Update Recipe</button>
     <DeleteRecipe id={id} />
-    </>
+    </CreateRecipeForm>
 }
     </>);
 }

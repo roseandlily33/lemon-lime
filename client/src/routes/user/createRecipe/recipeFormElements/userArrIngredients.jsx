@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { IngredientsDiv } from "../userRecipe.styles";
 const UserIngredientsArray = ({formValues, setFormValues}) => {
     const {ingredients} = formValues;
     const newIngredients = Object.assign({}, ingredients);
@@ -11,19 +12,19 @@ const UserIngredientsArray = ({formValues, setFormValues}) => {
     }
 
     return ( 
-        <>
+        <IngredientsDiv >
         {Object.entries(newIng).map((x, idx) => {
-             return <>
-             <label name={idx}>{idx + 1}</label>
+             return <div>
+             {/* <label name={idx}>{idx + 1}</label> */}
              <input 
                type="text" 
                name={x[0]}   
                value={x[1]}
                onChange={handleChange}
              />
-            </>
+            </div>
         })}
-        </>
+        </IngredientsDiv>
      );
 }
  
