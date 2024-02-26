@@ -1,15 +1,27 @@
+import { useState } from "react";
+const UserInstructionsArray = ({formValues, setFormValues}) => {
+    const {instructions} = formValues;
+    const newInstructions = Object.assign({}, instructions);
+    const [newIns, setNewIns] = useState(newInstructions);
 
-
-const UserInstructionsArray = ({formValues, handleChange}) => {
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setNewIns({...newIns, [name]: value});
+        setFormValues({...formValues, instructions: newIns});
+    }
     return ( 
         <>
-        {formValues.instructions.map((ele, idx )=> {
+        {Object.entries(newIns).map((x, idx) => {
             return <>
-            <h3>{idx + 1}</h3>
-            <input type="text" value={ele} onChange={handleChange}/>
+            <label name={idx}>{idx + 1}</label>
+             <input 
+               type="text" 
+               name={x[0]}   
+               value={x[1]}
+               onChange={handleChange}
+             />
             </>
         })}
-        
         </>
      );
 }

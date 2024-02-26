@@ -24,7 +24,11 @@ const userSchema = new mongoose.Schema({
     recipes: [{
         type: Schema.Types.ObjectId,
         ref: 'Recipe'
-    }]
+    }],
+    favorites: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Recipe'
+    }],
 });
 
 // userSchema.pre('save', async function (next) {

@@ -42,8 +42,13 @@ const EditRecipe = () => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
-        
+        let newInstructions = Object.values(formValues.instructions); 
+        let newIngredients = Object.values(formValues.ingredients); 
+        let newMeasurements = Object.values(formValues.measurements);
         let totalSending = Object.assign(formValues, {
+          instructions: newInstructions,
+          ingredients: newIngredients,
+          measurements: newMeasurements,
           totalTime: totalTime,
         })
        console.log('These are the final form values', totalSending);
@@ -51,7 +56,7 @@ const EditRecipe = () => {
        const success = response.ok;
        if (success) {
         alert('Success')
-        navigate('/user')
+        navigate('/user/home')
         } else {
           alert('Failure')
          }
@@ -68,13 +73,13 @@ const EditRecipe = () => {
     <PrepTime formValues={formValues} handleChange={handleChange} />
     <SubCategory formValues={formValues} handleChange={handleChange}  />
     <div>
-    {/* <h3>Measurements</h3> */}
-        {/* {formValues.measurements.length !== 0 && <UserArrayMeasurements formValues={formValues} handleChange={handleChange} />} */}
+         <h3>Measurements</h3>
+        {formValues.measurements && <UserArrayMeasurements formValues={formValues} handleChange={handleChange} setFormValues={setFormValues}/>}
         <h3>Ingredients</h3>
-        {formValues.ingredients && <UserIngredientsArray formValues={formValues} handleChange={handleChange}setFormValues={setFormValues} />}
+        {formValues.ingredients && <UserIngredientsArray formValues={formValues} setFormValues={setFormValues} />}
     </div>
     <h3>Instructions</h3>
-    {formValues.instructions && <UserInstructionsArray formValues={formValues} handleChange={handleChange} />}
+    {formValues.instructions && <UserInstructionsArray formValues={formValues} setFormValues={setFormValues} />}
     
     <button onClick={handleSubmit}>Update Recipe</button>
     <DeleteRecipe id={id} />

@@ -4,15 +4,16 @@ export const UserContainer = styled.div`
     height:100vh;
     width: 100%;
     text-align: center;
-    border: 1px solid orange;
     display: flex;
     flex-direction: column;
-
 `;
 export const UserRecipesContainer = styled.div`
     width: 100%;
-    border: 1px solid green;
-
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    padding: 1em;
+    flex-wrap: wrap;
 `;
 
 export const UserOptionsContainer = styled.div`
@@ -21,7 +22,6 @@ export const UserOptionsContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
 `;
 
 

@@ -5,7 +5,7 @@ import { formatDate } from "../../formattingUtils/date";
 import Lemon from '../../images/lemons.jpg';
 import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom }from './singleRecipe.styles';
 
-const SingleRecipe = async() => {
+const SingleRecipe = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
     useEffect(() => {
@@ -14,7 +14,7 @@ const SingleRecipe = async() => {
           setSingleRecipe(res);
       }
       fetchSingle();
-  }, [id])
+  }, [id]);
 
     return(
         <>

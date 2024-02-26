@@ -3,7 +3,9 @@ const {
     httpCreateRecipe,
     httpGetUserRecipes,
     httpEditRecipe,
-    httpDeleteRecipe
+    httpDeleteRecipe,
+    httpAddFavoriteRecipe,
+    httpDeleteFavoriteRecipe
 } = require('./user.controller');
 
 //user/
@@ -11,5 +13,7 @@ userRouter.post('/', httpCreateRecipe);
 userRouter.get('/:id', httpGetUserRecipes);
 userRouter.put('/recipe/:id', httpEditRecipe);
 userRouter.delete('/recipe/:id', httpDeleteRecipe);
+userRouter.post('/favorites/:id', httpAddFavoriteRecipe);
+userRouter.delete('/favorites/:id', httpDeleteFavoriteRecipe);
 
 module.exports = userRouter;

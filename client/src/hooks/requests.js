@@ -82,6 +82,24 @@ async function httpDeleteRecipe(id){
   }
 }
 
+async function httpAddFavoriteRecipe(user, id){
+  console.log('Adding a fave recipe for', user, id)
+  try{
+    return await fetch(`${API_URL}/user/favorites/${id}`, {
+      method: 'post',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user)
+    })
+  } catch(err){
+    return {
+      ok: false,
+    };
+  }
+}
+
+
 // async function httpCreateNewUser(info){
 //     try {
 //         let res = await fetch(`${API_URL}/user/create`, {
@@ -126,6 +144,7 @@ export {
     httpGetUserRecipes,
     httpCreateRecipe,
     httpEditUserRecipe,
+    httpAddFavoriteRecipe,
     httpDeleteRecipe
     // httpCreateNewUser,
     // httpLoginUser
