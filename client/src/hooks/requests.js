@@ -18,7 +18,8 @@ async function httpGetPopularRecipes(){
 async function httpGetFullRecipeWithDetails(id){
     const response = await fetch(`${API_URL}/home/${id}`);
     let oneRecipe = await response.json();
-    return oneRecipe[0];
+    return oneRecipe;
+   //return oneRecipe[0];
 }
 
 //User endpoints

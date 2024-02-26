@@ -16,7 +16,7 @@ import UserIngredientsArray from '../createRecipe/recipeFormElements/userArrIngr
 import UserArrayMeasurements from '../createRecipe/recipeFormElements/userArrMeasurements';
 //Styles
 import { CreateRecipeForm, TopForm, MiddleForm, BottomForm } from '../createRecipe/userRecipe.styles';
-
+import { ButtonDiv } from './edit.styles';
 const EditRecipe = () => {
     const {user} = useAuth0();
     const navigate = useNavigate();
@@ -86,8 +86,10 @@ const EditRecipe = () => {
     <BottomForm>
     {formValues.instructions && <UserInstructionsArray formValues={formValues} setFormValues={setFormValues} />}
     </BottomForm>
+    <ButtonDiv>
     <button onClick={handleSubmit}>Update Recipe</button>
     <DeleteRecipe id={id} />
+    </ButtonDiv>
     </CreateRecipeForm>
 }
     </>);

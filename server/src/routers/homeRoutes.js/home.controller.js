@@ -49,7 +49,9 @@ async function httpGetFullRecipeWithDetails(req, res){
     let foundRecipe = await recipes.find({
         _id: requestId
     }, {'__v': 0});
-    return res.status(200).json(foundRecipe);
+    let authorOfRecipe = await User.findOne({_id: foundRecipe[0].author});
+     console.log('Author', authorOfRecipe, authorOfRecipe)
+    return res.status(200).json({foundRecipe, authorOfRecipe});
     }catch(err){
         console.log('ERERR',err);
         return res.status(400).json(err);

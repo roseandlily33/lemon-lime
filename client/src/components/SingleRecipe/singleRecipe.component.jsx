@@ -8,10 +8,12 @@ import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom }from './sing
 const SingleRecipe = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
+    const [usersName, setUsersName] = useState();
     useEffect(() => {
       const fetchSingle = async() => {
           const res = await httpGetFullRecipeWithDetails(id);
-          setSingleRecipe(res);
+          setSingleRecipe(res.foundRecipe[0]);
+          setUsersName(res.authorOfRecipe.name);
       }
       fetchSingle();
   }, [id]);
@@ -27,10 +29,10 @@ const SingleRecipe = () => {
         <LeftSide>
          <img src={Lemon} alt="lemon" />
        </LeftSide>
-         <RightSide>
+        <RightSide>
         <h1>{singleRecipe.recipeName}</h1>
         <hr />
-        <h2 style={{fontStyle: 'italic'}}>Created By: _____ ,{formatDate(singleRecipe.createdAt)}</h2>
+        <h2>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</h2>
         <>
         <h3>Cook Time: {singleRecipe.cookTime}</h3>
         <h3>Prep Time: {singleRecipe.prepTime}</h3>
@@ -53,16 +55,13 @@ const SingleRecipe = () => {
         })
         }
         </ul>  
-
         </div>
         </>
-           
        </RightSide>
      </TopDiv>
      <Bottom>
         <h2>Instructions</h2>
         <hr />
-
         <ol>
         {singleRecipe.instructions.map((item) => {
         return <li>{item}</li>

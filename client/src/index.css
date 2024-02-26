@@ -45,8 +45,7 @@ button, .button{
     border: none;
     border-radius: 5px;
     text-transform: capitalize;
-    width: 150px;
-    max-width: 130px;
+    min-width: 150px;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
