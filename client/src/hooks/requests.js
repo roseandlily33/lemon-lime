@@ -100,7 +100,7 @@ async function httpAddFavoriteRecipe(user, id){
   }
 }
 //Allows a user to comment on a recipe
-async function httpAddComment(user, comment){
+async function httpAddComment(comment){
   try{
     return await fetch(`${API_URL}/comments`, {
       method: 'post',
@@ -110,6 +110,32 @@ async function httpAddComment(user, comment){
       body: JSON.stringify(comment)
     })
   } catch(err){
+    return {
+      ok: false,
+    };
+  }
+}
+async function httpDeleteComment(id){
+  try{
+    return await fetch(`${API_URL}/comments/${id}`, {
+      method: 'delete',
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+  }catch(err){
+    return {
+      ok: false,
+    };
+  }
+}
+
+async function httpGetAllCommentsForRecipe(id){
+  try{
+    const response = await fetch(`${API_URL}/comments/${id}`);
+    let allRecipes = await response.json();
+    return allRecipes;
+  }catch(err){
     return {
       ok: false,
     };
@@ -164,7 +190,10 @@ export {
     httpCreateRecipe,
     httpEditUserRecipe,
     httpAddFavoriteRecipe,
-    httpDeleteRecipe
+    httpDeleteRecipe,
+    httpAddComment,
+    httpDeleteComment,
+    httpGetAllCommentsForRecipe
     // httpCreateNewUser,
     // httpLoginUser
 }

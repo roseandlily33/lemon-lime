@@ -6,8 +6,8 @@ const {
 } = require('./comment.controller');
 
 // comment
-commentRouter.get('/', httpGetAllCommentsForRecipe);
+commentRouter.get('/:id', httpGetAllCommentsForRecipe);
 commentRouter.post('/', httpAddComment);
-commentRouter.delete('/', httpDeleteComment);
+commentRouter.delete('/:id', httpDeleteComment);
 
 module.exports = commentRouter;

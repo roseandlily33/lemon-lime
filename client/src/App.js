@@ -30,9 +30,14 @@ const theme = {
       orange: "#E3A547",
       grey: '#DEDEDE',
       border: '3px solid var(--yellow)'
+      // yellow: '#ca4a81',
+      // lightYellow: '#f486b2',
+      // green: '#ef4c4d',
+      // lightGreen: '#F48687',
+      // border: '5px solid var(--yellow)',
+      // orange:'#ca4a81'
   }
 }
-
 function App() {
   const {
     allRecipes,
