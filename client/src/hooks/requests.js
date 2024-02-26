@@ -22,6 +22,13 @@ async function httpGetFullRecipeWithDetails(id){
    //return oneRecipe[0];
 }
 
+async function httpGetFullRecipeWithDetailsEditPage(id){
+  const response = await fetch(`${API_URL}/user/edit/${id}`);
+  let oneRecipe = await response.json();
+  console.log('Returned from HPTT', oneRecipe);
+  return oneRecipe[0];
+}
+
 //User endpoints
 async function httpGetUserRecipes(id){
     const response = await fetch(`${API_URL}/user/${id}`);
@@ -53,7 +60,7 @@ async function httpCreateRecipe(user, recipe){
 async function httpEditUserRecipe(id, info){
   console.log('HTTP EDIT CREATE RECIPE', id, info);
     try {
-        return await fetch(`${API_URL}/user/recipe/${id}`, {
+        return await fetch(`${API_URL}/user/edit/${id}`, {
         method: "put",
         headers: {
           "Content-Type": "application/json",
@@ -142,6 +149,7 @@ export {
     httpGetAllRecipes,
     httpGetPopularRecipes,
     httpGetFullRecipeWithDetails,
+    httpGetFullRecipeWithDetailsEditPage,
     httpGetUserRecipes,
     httpCreateRecipe,
     httpEditUserRecipe,

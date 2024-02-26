@@ -1,7 +1,6 @@
 import {useParams} from 'react-router-dom';
-import { httpGetFullRecipeWithDetails } from '../../../hooks/requests';
 import { useState, useEffect } from 'react';
-import { httpEditUserRecipe } from '../../../hooks/requests';
+import { httpGetFullRecipeWithDetailsEditPage, httpEditUserRecipe } from '../../../hooks/requests';
 import { getTotalTime } from '../../../formattingUtils/totalTime';
 import {useAuth0} from '@auth0/auth0-react';
 import {useNavigate} from 'react-router-dom';
@@ -29,8 +28,9 @@ const EditRecipe = () => {
 
     useEffect(() => {
         const fetchSingle = async() => {
-            const res = await httpGetFullRecipeWithDetails(id);
+            const res = await httpGetFullRecipeWithDetailsEditPage(id);
             setFormValues(res);
+            console.log('Edit Page', res)
         }
         fetchSingle();
     }, [id]);

@@ -3,7 +3,8 @@ import { httpGetFullRecipeWithDetails } from "../../hooks/requests";
 import { useParams } from "react-router-dom";
 import { formatDate } from "../../formattingUtils/date";
 import Lemon from '../../images/lemons.jpg';
-import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom }from './singleRecipe.styles';
+import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom, IngredientsDiv }from './singleRecipe.styles';
+
 
 const SingleRecipe = () => {
     const {id} = useParams();
@@ -19,7 +20,7 @@ const SingleRecipe = () => {
   }, [id]);
 
     return(
-        <>
+      <>
       <SingleRecipeContainer>
       {!singleRecipe ?
        <h3>Recipe is loading</h3>
@@ -43,7 +44,7 @@ const SingleRecipe = () => {
         <>
         <h2>Ingredients</h2>
         <hr/>
-        <div>
+        <IngredientsDiv>
         <ul>
           {singleRecipe?.measurements.map(item => {
             return <li>{item}</li>
@@ -55,7 +56,7 @@ const SingleRecipe = () => {
         })
         }
         </ul>  
-        </div>
+        </IngredientsDiv>
         </>
        </RightSide>
      </TopDiv>

@@ -36,15 +36,9 @@ export const RightSide = styled.div`
     gap: 0.5em;
     padding: 0.5em;
     ul{
-        padding: 1em;
         background-color: ${({theme}) => theme.colors.white};
         border-radius: 5px;
     }
-    li{
-        margin-top: 1em;
-        text-decoration: none;
-    }
-
 `;
 
 export const Bottom = styled.div`
@@ -60,6 +54,22 @@ ol{
     padding: 0.2em;
 }
 li{
-    margin-top: 1em;
+    margin-top: 0.5em;
 }
+`;
+
+export const IngredientsDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    background-color: ${({theme}) => theme.colors.white};
+    gap: 1em;
+    padding: 0.2em;
+    ul {
+        list-style-type: none;
+        padding: 0.2em;
+        
+    }
+    li{
+        margin-top: 0.5em;
+    }
 `;

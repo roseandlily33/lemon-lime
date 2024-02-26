@@ -16,7 +16,7 @@ async function httpCreateRecipe(req, res){
               $addToSet: {recipes: recipe.id}
             }
           );
-        //  console.log('Finished Creating recipe', finished)
+          console.log('Finished Creating recipe', finished)
           res.status(201).json({msg: 'Created the recipe'})
       } else {
         let newUser = await User.create({
@@ -100,6 +100,22 @@ async function httpDeleteFavoriteRecipe(req, res){
   }
 }
 
+async function httpGetEditRecipe(req, res){
+  console.log('Getting the edit recipe');
+  try{
+    let requestId = req.params.id;
+    if(!requestId){
+        return res.status(404).json({err: 'Recipe not found'});
+    }
+    let foundRecipe = await Recipe.find({
+        _id: requestId
+    }, {'__v': 0});
+    console.log('GET RECIPE FOR EDIT', foundRecipe);
+    res.status(200).json(foundRecipe);
+  } catch(err){
+    return res.status(404).json({msg: 'Could not edit the recipe'})
+  }
+}
 
 module.exports = {
     httpCreateRecipe,
@@ -107,5 +123,6 @@ module.exports = {
     httpEditRecipe,
     httpDeleteRecipe,
     httpAddFavoriteRecipe,
-    httpDeleteFavoriteRecipe
+    httpDeleteFavoriteRecipe,
+    httpGetEditRecipe
 }

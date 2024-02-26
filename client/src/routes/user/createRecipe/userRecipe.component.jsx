@@ -9,8 +9,10 @@ import PrepTime from "./recipeFormElements/userPrepTime.component";
 import CookTime from "./recipeFormElements/userCookTime.component";
 import SubCategory from "./recipeFormElements/userSubCategory.component";
 import RecipeName from "./recipeFormElements/userRecipeName.component";
+import {useNavigate} from 'react-router-dom';
 
 const CreateRecipe = ({httpCreateRecipe}) => {
+  const navigate = useNavigate();
     const {user} = useAuth0();
     //All forms values excpet Instructions and Ingredient
     const [formValues, setFormValues] = useState({
@@ -62,7 +64,8 @@ const CreateRecipe = ({httpCreateRecipe}) => {
        const response = await httpCreateRecipe(user, totalSending);
        const success = response.ok;
        if (success) {
-        alert('Success')
+        alert('Success');
+        navigate('/user/home');
         } else {
           alert('Failure')
          }
