@@ -34,6 +34,11 @@ const Comment = () => {
         } else {
             alert('Comment has not been created');
         }
+        setFormState({
+            title: '',
+            comment: '',
+        })
+        setStarRating(0)
     }
     
     return ( 

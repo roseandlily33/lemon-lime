@@ -1,11 +1,25 @@
 const Comment = require('../../models/comments.mongo');
+const User = require('../../models/user.mongo');
+const Recipe = require('../../models/recipes.mongo');
 
 //Adds a comment under a post
 async function httpAddComment(req, res){
-    console.log('Adding a comment');
     try{
-        console.log('Adding', req.body);
+        let authorId =  await User.findOne({authId : req.body.author});
+        let newComment = await Comment.create({...req.body, author: authorId});
+        await User.findOneAndUpdate({
+            _id: authorId.id}, {
+              $addToSet: {comments: newComment.id}
+            }
+        );
+        await Recipe.findOneAndUpdate({
+            _id: newComment.recipe
+        }, {
+            $addToSet: {comments: newComment.id}
+        })
+        res.status(201).json(newComment);
     } catch(err){
+        console.log('Errr' ,err)
         return res.status(404).json({msg: "Unable to add a comment"})
     }
 }

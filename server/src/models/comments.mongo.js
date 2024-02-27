@@ -1,6 +1,10 @@
 const{ mongoose, Schema } = require('mongoose');
 
 const commentsSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
     comment: {
         type: String,
         requied: true,
@@ -15,10 +19,7 @@ const commentsSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    title: {
-        type: String,
-        required: true
-    },
+    
     // likes: {
     //     type: Number,
     //     default: 0
