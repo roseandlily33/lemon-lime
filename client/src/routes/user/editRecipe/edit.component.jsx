@@ -16,6 +16,9 @@ import UserArrayMeasurements from '../createRecipe/recipeFormElements/userArrMea
 //Styles
 import { CreateRecipeForm, TopForm, MiddleForm, BottomForm } from '../createRecipe/userRecipe.styles';
 import { ButtonDiv } from './edit.styles';
+import Loader from '../../../components/Loader/loader.component';
+
+
 const EditRecipe = () => {
     const {user} = useAuth0();
     const navigate = useNavigate();
@@ -30,7 +33,6 @@ const EditRecipe = () => {
         const fetchSingle = async() => {
             const res = await httpGetFullRecipeWithDetailsEditPage(id);
             setFormValues(res);
-            console.log('Edit Page', res)
         }
         fetchSingle();
     }, [id]);
@@ -39,7 +41,6 @@ const EditRecipe = () => {
         const {name, value} = e.target;
        setFormValues({...formValues, [name]: value})
    }
-   console.log('Single Recipe', formValues)
 
       const handleSubmit = async (e) => {
         e.preventDefault();
@@ -65,7 +66,7 @@ const EditRecipe = () => {
     
     return ( <>
     {!formValues ?
-     <h2>Recipe is Loading...</h2> 
+         <Loader />
      :
      <CreateRecipeForm>
         <h1>Edit Recipe </h1>

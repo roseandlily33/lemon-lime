@@ -7,7 +7,7 @@ const {
 
 // comment
 commentRouter.get('/:id', httpGetAllCommentsForRecipe);
-commentRouter.post('/', httpAddComment);
+commentRouter.post('/add', httpAddComment);
 commentRouter.delete('/:id', httpDeleteComment);
 
 module.exports = commentRouter;

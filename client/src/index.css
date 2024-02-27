@@ -49,22 +49,6 @@ h6{
     font-size: 0.4rem;
 }
 
-/* button, .button{
-    background-color: var(--orange);
-    padding: 1em;
-    border: none;
-    border-radius: 5px;
-    text-transform: capitalize;
-    min-width: 150px;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-button:hover, .button:hover{
-    background-color: var(--green);
-    border: none;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-} */
 button, .button {
     min-width: 130px;
     height: 40px;
@@ -106,6 +90,11 @@ input{
  padding: 0.5em;
  border-radius: 2px;
 
+}
+textarea{
+ border: 2px solid var(--yellow);
+ padding: 0.5em;
+ border-radius: 2px;
 }
 input:focus{
     border:1.5px solid var(--lightGreen);

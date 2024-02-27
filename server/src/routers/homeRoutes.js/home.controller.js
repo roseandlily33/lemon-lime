@@ -51,7 +51,7 @@ async function httpGetFullRecipeWithDetails(req, res){
         _id: requestId
     }, {'__v': 0});
     let authorOfRecipe = await User.findOne({_id: foundRecipe[0].author});
-     console.log('Author', authorOfRecipe, authorOfRecipe)
+    // console.log('Author', authorOfRecipe, authorOfRecipe)
     return res.status(200).json({foundRecipe, authorOfRecipe});
     }catch(err){
         console.log('ERERR',err);
@@ -75,7 +75,7 @@ async function httpLoginUser (req, res){
         userData.id,
         userData.name
      ];
-     console.log('SENDING DATA', sendingData);
+     //console.log('SENDING DATA', sendingData);
      const token = createSecretToken(userData.id);
      console.log('Created token', token)
       res.cookie("token", token, {

@@ -101,8 +101,9 @@ async function httpAddFavoriteRecipe(user, id){
 }
 //Allows a user to comment on a recipe
 async function httpAddComment(comment){
+  console.log('Sending', comment);
   try{
-    return await fetch(`${API_URL}/comments`, {
+    return await fetch(`${API_URL}/comments/add`, {
       method: 'post',
       headers: {
         "Content-Type": "application/json",

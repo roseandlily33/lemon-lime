@@ -2,7 +2,7 @@ import { LoaderDiv } from "./loader.styles";
 const Loader = () => {
     return ( 
         <LoaderDiv>
-        <div class="lds-hourglass"></div>
+        <div className="lds-hourglass"></div>
         </LoaderDiv>
      );
 }
