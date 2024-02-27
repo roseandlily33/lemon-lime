@@ -49,7 +49,7 @@ h6{
     font-size: 0.4rem;
 }
 
-button, .button{
+/* button, .button{
     background-color: var(--orange);
     padding: 1em;
     border: none;
@@ -64,7 +64,43 @@ button:hover, .button:hover{
     background-color: var(--green);
     border: none;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-}
+} */
+button, .button {
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid var(--lightGreen);
+    color: var(--green);
+  }
+  button:hover, .button:hover {
+    color: #fff;
+  }
+  button:hover:after, .button:hover:after {
+    height: 100%;
+  }
+  button:after, .button:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    top: 0;
+    height: 0;
+    width: 100%;
+    background: var(--lightGreen);
+  }
+
 input{
  border: 2px solid var(--yellow);
  padding: 0.5em;
@@ -84,4 +120,7 @@ select{
     border-radius: 2px;
     padding: 0.5em;
   
+}
+textarea{
+    resize: none;
 }

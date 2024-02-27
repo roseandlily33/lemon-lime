@@ -4,12 +4,13 @@ import {useAuth0} from '@auth0/auth0-react';
 import {useNavigate} from 'react-router-dom';
 import RecipeContainer3 from "../../components/Recipe/recipe3.component";
 import { httpGetUserRecipes } from "../../hooks/requests";
+import Loader from "../../components/Loader/loader.component";
 
 const UserHome = () => {
   const navigate = useNavigate();
   const [recipes, setRecipes] = useState();
   const {user, isAuthenticated} = useAuth0();
-  
+
     useEffect(() => {
       const getRecipes = async() => {
         if(user.sub){
@@ -29,7 +30,7 @@ const UserHome = () => {
          {isAuthenticated ?
          <>
           <UserRecipesContainer>
-          {!recipes ? <h3>Click on create a recipe to create a recipe!</h3>:
+          {!recipes ? <Loader />:
           <>
           <UserOptionsContainer>
           <h1>Welcome {user.nickname}</h1>

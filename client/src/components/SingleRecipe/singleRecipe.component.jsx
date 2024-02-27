@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { formatDate } from "../../formattingUtils/date";
 import Lemon from '../../images/lemons.jpg';
 import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom, IngredientsDiv }from './singleRecipe.styles';
+import Comment from "../Comments/comments.component";
+import Loader from "../Loader/loader.component";
 
 
 const SingleRecipe = () => {
@@ -23,7 +25,7 @@ const SingleRecipe = () => {
       <>
       <SingleRecipeContainer>
       {!singleRecipe ?
-       <h3>Recipe is loading</h3>
+       <Loader />
        : 
     <>
     <TopDiv>
@@ -72,6 +74,8 @@ const SingleRecipe = () => {
        </>
        }
        </SingleRecipeContainer>
+       
+       <Comment/>
         </>
       );
 }

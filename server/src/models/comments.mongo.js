@@ -11,6 +11,10 @@ const commentsSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    rating: {
+        type: Number,
+        required: true
+    },
     // likes: {
     //     type: Number,
     //     default: 0
