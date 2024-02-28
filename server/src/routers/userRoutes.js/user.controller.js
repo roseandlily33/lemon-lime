@@ -110,6 +110,17 @@ async function httpGetEditRecipe(req, res){
   }
 }
 
+//Gets the users comments
+async function httpGetUserComments(req,res){
+  try{
+    const userComments = await Comments.find({author: req.params.id});
+    res.status(200).json(userComments);
+  } catch(err){
+    return res.status(404).json({msg: 'Could not find comments'})
+  }
+}
+
+
 module.exports = {
     httpCreateRecipe,
     httpGetUserRecipes,
@@ -117,5 +128,6 @@ module.exports = {
     httpDeleteRecipe,
     httpAddFavoriteRecipe,
     httpDeleteFavoriteRecipe,
-    httpGetEditRecipe
+    httpGetEditRecipe,
+    httpGetUserComments
 }

@@ -76,7 +76,7 @@ const SingleRecipe = () => {
        </SingleRecipeContainer>
        
        <Comment/>
-       <RecipeComments />
+       <RecipeComments id={id} />
         </>
       );
 }

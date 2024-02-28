@@ -2,7 +2,7 @@ import { CommentContainer, CommentForm } from "./comments.styles";
 import { useState } from "react";
 import {useParams} from 'react-router-dom';
 import {useAuth0} from '@auth0/auth0-react';
-import { httpAddComment } from "../../../hooks/requests";
+import {httpAddComment} from '../../../hooks/commentRequests';
 import Rating from "../../Rating/rating.component";
 
 const Comment = () => {

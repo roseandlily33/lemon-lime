@@ -24,6 +24,9 @@ const UserHome = () => {
     const createRecipe = () => {
       navigate('/user/create')
     }
+    const editComments = () => {
+      navigate('/user/comments')
+    }
 
     return ( 
         <UserContainer>
@@ -35,6 +38,7 @@ const UserHome = () => {
           <UserOptionsContainer>
           <h1>Welcome {user.nickname}</h1>
           <button onClick={createRecipe}>Create a recipe</button>
+          <button onClick={editComments}>Edit Comments</button>
           </UserOptionsContainer>
           {recipes.map((r) => {
             return <RecipeContainer3 recipe={r}/>

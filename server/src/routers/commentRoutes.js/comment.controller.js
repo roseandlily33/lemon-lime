@@ -38,7 +38,10 @@ async function httpDeleteComment(req, res){
 async function httpGetAllCommentsForRecipe(req, res){
     console.log('Getting all comments for a post')
     try{
-        
+        console.log('Comments for ', req.params.id);
+        const allComments = await Comment.find({recipe: req.params.id}).sort({createdAt: -1});
+        console.log('All the comments', allComments);
+        res.status(200).json(allComments);
     } catch(err){
         return res.status(404).json({msg: "Unable to add a comment"})
     }

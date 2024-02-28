@@ -16,6 +16,7 @@ import CreateRecipe from './routes/user/createRecipe/userRecipe.component';
 import UserBase from './routes/user/userBase.component.jsx';
 import BasePage from './routes/base/base.component';
 import NotFound from './routes/notFound/notFound.component.jsx';
+import UserComments from './components/Comments/userComments/userComments.component.jsx';
 
 export const UserContext = createContext(null);
 const theme = {
@@ -79,7 +80,8 @@ function App() {
             <Route path='user' element={<UserBase />}>
               <Route index path="home" element={<UserHome />} />
               <Route path='create' element={<CreateRecipe />}/>
-              <Route path="edit/:id" element={<EditRecipe />}></Route>
+              <Route path="edit/:id" element={<EditRecipe />}/>
+              <Route path="/user/comments" element={<UserComments/>}/>
           </Route>
           <Route path='favorites' element={<FavoritesPage />}/>
           <Route path='search' element={<SearchPage />} />

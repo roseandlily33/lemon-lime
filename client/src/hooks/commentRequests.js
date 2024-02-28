@@ -35,8 +35,8 @@ async function httpAddComment(comment){
   async function httpGetAllCommentsForRecipe(id){
     try{
       const response = await fetch(`${API_URL}/comments/${id}`);
-      let allRecipes = await response.json();
-      return allRecipes;
+      let allComments = await response.json();
+      return allComments;
     }catch(err){
       return {
         ok: false,
@@ -44,8 +44,10 @@ async function httpAddComment(comment){
     }
   }
 
+  
+
   export {
     httpAddComment,
     httpGetAllCommentsForRecipe,
-    httpDeleteComment
+    httpDeleteComment,
   }
