@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
-import { httpGetAllRecipes, httpGetPopularRecipes } from "./requests";
+import { httpGetAllRecipes, httpGetPopularRecipes } from "./recipeRequests";
 
 function useRecipes(){
     const [allRecipes, setAllRecipes] = useState([]);

@@ -10,8 +10,9 @@ import CookTime from "./recipeFormElements/userCookTime.component";
 import SubCategory from "./recipeFormElements/userSubCategory.component";
 import RecipeName from "./recipeFormElements/userRecipeName.component";
 import {useNavigate} from 'react-router-dom';
+import { httpCreateRecipe } from "../../../hooks/userRequests";
 
-const CreateRecipe = ({httpCreateRecipe}) => {
+const CreateRecipe = () => {
   const navigate = useNavigate();
     const {user} = useAuth0();
     //All forms values excpet Instructions and Ingredient

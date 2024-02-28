@@ -2,8 +2,8 @@ import { useCallback, useState, useEffect } from "react";
 import { RatingDiv } from "./rating.styles";
 
 const Rating = ({name, value, onChange}) => {
-    const [hoveredRating, setHoveredRating] = useState(0);
-    const[currentRating, setCurrentRating] = useState(0);
+    const [hoveredRating, setHoveredRating] = useState(1);
+    const[currentRating, setCurrentRating] = useState(1);
     const handleClick = useCallback((ratingValue) => {
         if(currentRating === ratingValue){
             setCurrentRating(0);

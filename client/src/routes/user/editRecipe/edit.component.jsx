@@ -1,6 +1,7 @@
 import {useParams} from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { httpGetFullRecipeWithDetailsEditPage, httpEditUserRecipe } from '../../../hooks/requests';
+import { useState, useEffect } from 'react'; 
+import { httpEditUserRecipe } from '../../../hooks/userRequests';
+import { httpGetFullRecipeWithDetailsEditPage } from '../../../hooks/recipeRequests';
 import { getTotalTime } from '../../../formattingUtils/totalTime';
 import {useAuth0} from '@auth0/auth0-react';
 import {useNavigate} from 'react-router-dom';

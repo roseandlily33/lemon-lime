@@ -1,12 +1,12 @@
 import { useState, useEffect} from "react";
-import { httpGetFullRecipeWithDetails } from "../../hooks/requests";
+import { httpGetFullRecipeWithDetails } from "../../hooks/recipeRequests";
 import { useParams } from "react-router-dom";
 import { formatDate } from "../../formattingUtils/date";
 import Lemon from '../../images/lemons.jpg';
 import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom, IngredientsDiv }from './singleRecipe.styles';
-import Comment from "../Comments/comments.component";
+import Comment from "../Comments/addComment/comments.component";
 import Loader from "../Loader/loader.component";
-
+import RecipeComments from "../Comments/recipeComments/recipeComment.component";
 
 const SingleRecipe = () => {
     const {id} = useParams();
@@ -76,6 +76,7 @@ const SingleRecipe = () => {
        </SingleRecipeContainer>
        
        <Comment/>
+       <RecipeComments />
         </>
       );
 }

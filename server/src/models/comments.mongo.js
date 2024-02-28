@@ -8,7 +8,7 @@ const commentsSchema = new mongoose.Schema({
     comment: {
         type: String,
         requied: true,
-        maxLength: 20,
+        maxLength: 300,
         minLength: 1
     },
     createdAt: {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {useAuth0} from '@auth0/auth0-react';
 import {useNavigate} from 'react-router-dom';
 import RecipeContainer3 from "../../components/Recipe/recipe3.component";
-import { httpGetUserRecipes } from "../../hooks/requests";
+import { httpGetUserRecipes } from "../../hooks/userRequests";
 import Loader from "../../components/Loader/loader.component";
 
 const UserHome = () => {

@@ -1,4 +1,4 @@
-import { httpDeleteRecipe } from "../../../hooks/requests";
+import { httpDeleteRecipe } from '../../../hooks/userRequests';
 import {useAuth0} from '@auth0/auth0-react';
 import {useNavigate} from 'react-router-dom';
 // import Modal from "../../../components/Modal/modal.component";

@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
 export const LoaderDiv = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+margin:auto;
+
 .lds-hourglass {
   display: inline-block;
   position: relative;

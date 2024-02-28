@@ -2,8 +2,8 @@ import { CommentContainer, CommentForm } from "./comments.styles";
 import { useState } from "react";
 import {useParams} from 'react-router-dom';
 import {useAuth0} from '@auth0/auth0-react';
-import { httpAddComment } from "../../hooks/requests";
-import Rating from "../Rating/rating.component";
+import { httpAddComment } from "../../../hooks/requests";
+import Rating from "../../Rating/rating.component";
 
 const Comment = () => {
     const {id} = useParams();
@@ -12,7 +12,7 @@ const Comment = () => {
         title: '',
         comment: '',
     });
-    const[starRating, setStarRating] = useState(0);
+    const[starRating, setStarRating] = useState(1);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -38,7 +38,7 @@ const Comment = () => {
             title: '',
             comment: '',
         })
-        setStarRating(0)
+        setStarRating(1)
     }
     
     return ( 

@@ -1,6 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { createContext} from 'react';
-import {httpCreateRecipe} from './hooks/requests';
 import useRecipes from './hooks/mainPageRecipes.js';
 import {ThemeProvider} from 'styled-components';
 //Pages:
@@ -30,12 +29,6 @@ const theme = {
       orange: "#E3A547",
       grey: '#DEDEDE',
       border: '3px solid var(--yellow)'
-      // yellow: '#ca4a81',
-      // lightYellow: '#f486b2',
-      // green: '#ef4c4d',
-      // lightGreen: '#F48687',
-      // border: '5px solid var(--yellow)',
-      // orange:'#ca4a81'
   }
 }
 function App() {
@@ -85,7 +78,7 @@ function App() {
             </Route>
             <Route path='user' element={<UserBase />}>
               <Route index path="home" element={<UserHome />} />
-              <Route path='create' element={<CreateRecipe httpCreateRecipe={httpCreateRecipe}/>}/>
+              <Route path='create' element={<CreateRecipe />}/>
               <Route path="edit/:id" element={<EditRecipe />}></Route>
           </Route>
           <Route path='favorites' element={<FavoritesPage />}/>

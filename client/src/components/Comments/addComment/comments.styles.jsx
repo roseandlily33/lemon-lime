@@ -10,11 +10,6 @@ export const CommentContainer = styled.div`
     
 `;
 
-export const RatingDiv = styled.div`
-    
-
-`;
-
 export const CommentForm = styled.form`
      padding-left: 1em;
      display: flex;
