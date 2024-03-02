@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
 export const RecipeCommentsDiv = styled.div`
-    border: 1px solid orange;
     width: 100vw;
     margin: 1em;
 `;
 export const SingleCommentDiv = styled.div`
-    border: 1px solid purple;
     padding: 1em;
     margin: 1.5em;
     background-color: ${({theme}) => theme.colors.white};
@@ -21,7 +19,6 @@ export const SingleTop = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-   
     gap: 1em;
    
 `;

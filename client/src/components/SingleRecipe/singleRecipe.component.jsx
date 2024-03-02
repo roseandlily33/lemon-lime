@@ -35,21 +35,24 @@ const SingleRecipe = () => {
         <RightSide>
         <h1>{singleRecipe.recipeName}</h1>
         <hr />
-        <h2>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</h2>
+        <span>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
         <>
-        <h3>Cook Time: {singleRecipe.cookTime}</h3>
-        <h3>Prep Time: {singleRecipe.prepTime}</h3>
-        <h3>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</h3>
-        <h3>Sub Category: {singleRecipe.subCategory}</h3>
-        <h3>Favorites: {singleRecipe.favorites}</h3>
+        <h4>Cook Time: {singleRecipe.cookTime}</h4>
+        <h4>Prep Time: {singleRecipe.prepTime}</h4>
+        <h4>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</h4>
+        <h4>Sub Category: {singleRecipe.subCategory}</h4>
+        <h4>Favorites: {singleRecipe.favorites}</h4>
         </>
         <>
         <h2>Ingredients</h2>
         <hr/>
         <IngredientsDiv>
         <ul>
-          {singleRecipe?.measurements.map(item => {
-            return <li>{item}</li>
+          {singleRecipe?.measurements.map((item, index) => {
+            return <div style={{display: 'flex'}}>
+            <li style={{paddingRight: '1em', color: 'green'}}>{index + 1}</li>
+            <li>{item}</li>
+            </div>
           })}
         </ul>
         <ul>

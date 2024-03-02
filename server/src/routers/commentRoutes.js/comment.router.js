@@ -5,7 +5,7 @@ const {
    httpGetAllCommentsForRecipe
 } = require('./comment.controller');
 
-// comment
+// comments
 commentRouter.get('/:id', httpGetAllCommentsForRecipe);
 commentRouter.post('/add', httpAddComment);
 commentRouter.delete('/:id', httpDeleteComment);

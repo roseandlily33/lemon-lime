@@ -12,7 +12,7 @@ export const SingleRecipeContainer  = styled.section`
        text-transform: uppercase;
     }
     h2{
-        font-weight: bolder;
+        font-weight: bold;
     }
 `;
 

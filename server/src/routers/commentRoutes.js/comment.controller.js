@@ -28,7 +28,11 @@ async function httpAddComment(req, res){
 async function httpDeleteComment(req, res){
     console.log('Deleting a comment')
     try{
-
+    const id = req.params.id;
+    let deletedComment = await Comment.findOneAndDelete({_id: id});
+   // await User.findOneAndDelete({comment: deletedComment});
+   console.log('Deleted Comment', deletedComment);
+    res.status(200).json(deletedComment);
     } catch(err){
         return res.status(404).json({msg: "Unable to add a comment"})
     }

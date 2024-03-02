@@ -3,9 +3,6 @@ const User = require('../../models/user.mongo');
 //const {createSecretToken} = require('../../utils/jwt');
 //const generateToken = require('../../utils/newjwt');
 
-const mainExcludes = {
-    '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0
-}
 //Gets nothing
 async function httpGetMain(req, res){
     try{
@@ -20,7 +17,9 @@ async function httpGetMain(req, res){
 async function httpGetAllRecipes(req, res){
    console.log('GETTING ALL THE RECIPES')
    try{
-    let allRecipes = await Recipe.find({}, { mainExcludes}).sort({createdAt: -1}).limit(6);
+    let allRecipes = await Recipe.find({}, {
+        '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'measurements': 0
+    }).sort({createdAt: -1}).limit(6);
     return res.status(200).json(allRecipes)
    } catch(err){
     console.log('ERERR',err);
@@ -32,7 +31,9 @@ async function httpGetPopularRecipes(req, res){
     console.log('GETTING ALL THE POPULAR RECIPES')
     try{
         let faveRecipes = await Recipe.find({}, {
-            mainExcludes}).sort({favorites: -1}).limit(6);
+            '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'measurements': 0
+        }).sort({favorites: -1}).limit(6);
+            console.log('Fave Recipes', faveRecipes)
          return res.status(200).json(faveRecipes);
     }catch(err){
         console.log('ERERR',err);

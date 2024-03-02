@@ -25,12 +25,11 @@ async function httpCreateRecipe(req, res){
           email: email
         });
         const recipe = await Recipe.create({...req.body.recipe, author: newUser.id });
-        let finished = await User.findOneAndUpdate({
+        await User.findOneAndUpdate({
           _id: newUser.id}, {
             $addToSet: {recipes: recipe.id}
           }
         );
-      //  console.log('Finished', finished)
         res.status(201).json({msg: 'Created the recipe'})
       }
     } catch(err){
@@ -94,7 +93,6 @@ async function httpDeleteFavoriteRecipe(req, res){
 }
 //Edits a favorite recipe for a user
 async function httpGetEditRecipe(req, res){
-  console.log('Getting the edit recipe');
   try{
     let requestId = req.params.id;
     if(!requestId){
@@ -103,7 +101,6 @@ async function httpGetEditRecipe(req, res){
     let foundRecipe = await Recipe.find({
         _id: requestId
     }, {'__v': 0});
-    console.log('GET RECIPE FOR EDIT', foundRecipe);
     res.status(200).json(foundRecipe);
   } catch(err){
     return res.status(404).json({msg: 'Could not edit the recipe'})
@@ -113,8 +110,8 @@ async function httpGetEditRecipe(req, res){
 //Gets the users comments
 async function httpGetUserComments(req,res){
   try{
-    const userComments = await Comments.find({author: req.params.id});
-    res.status(200).json(userComments);
+    const commentsForUser = await User.findOne({authId: req.params.id}, {'email': 0, 'recipes': 0, '__v': 0, 'favorites': 0 }).populate('comments');
+    res.status(200).json(commentsForUser);
   } catch(err){
     return res.status(404).json({msg: 'Could not find comments'})
   }

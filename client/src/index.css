@@ -31,22 +31,39 @@ body{
     background-size: cover;
 }
 h1{
- font-size: 1.5rem;
+ /* font-size: 1.5rem; */
+ font-size: 1.802rem;
 }
 h2{
-  font-size: 1.25rem;
+  /* font-size: 1.25rem; */
+  font-size: 1.602rem;
 }
 h3 {
- font-size: 1rem;
+ /* font-size: 1rem; */
+ font-size: 1.424rem;
 }
 h4{
-  font-size: 0.8rem;
+  /* font-size: 0.8rem; */
+  font-size: 1.266rem;
 }
 h5{
-    font-size: 0.6rem;
+    /* font-size: 0.6rem; */
+    font-size: 1.125rem;
 }
 h6{
-    font-size: 0.4rem;
+    /* font-size: 0.4rem; */
+    font-size: 1rem;
+}
+li, ul, ol, p{
+  font-size: 1.1rem;
+}
+label{
+  font-size: 1.266rem;
+
+}
+span{
+  font-size: 1.1rem;
+  font-style: italic;
 }
 
 button, .button {
@@ -99,17 +116,22 @@ textarea{
 input:focus{
     border:1.5px solid var(--lightGreen);
 }
-label{
-    font-size: 1.1em;
-    font-weight: bold;
-}
+
 select{
     background-color: var(--lightYellow);
     border: none;
     border-radius: 2px;
-    padding: 0.5em;
-  
+    padding: 0.5em; 
 }
 textarea{
     resize: none;
+}
+.glass{
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.38);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.3px);
+-webkit-backdrop-filter: blur(3.3px);
+border: 1px solid rgba(255, 255, 255, 0.57);
 }

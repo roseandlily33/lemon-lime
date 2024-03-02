@@ -4,6 +4,7 @@ import { httpGetAllCommentsForRecipe } from "../../../hooks/commentRequests";
 import { RecipeCommentsDiv, SingleCommentDiv, SingleTop } from "./recipeComments.styles";
 import { formatDate } from "../../../formattingUtils/date";
 import { formatStars } from "../../../formattingUtils/stars";
+
 const RecipeComments = ({id}) => {
     const [comments, setComments] = useState();
     useEffect(() => {

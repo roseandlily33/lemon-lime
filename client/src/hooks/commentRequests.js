@@ -19,6 +19,7 @@ async function httpAddComment(comment){
   }
   async function httpDeleteComment(id){
     try{
+      console.log('The deleting id for the HTTP', id);
       return await fetch(`${API_URL}/comments/${id}`, {
         method: 'delete',
         headers: {

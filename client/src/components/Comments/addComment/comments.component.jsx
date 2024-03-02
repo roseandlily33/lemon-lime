@@ -1,6 +1,6 @@
-import { CommentContainer, CommentForm } from "./comments.styles";
+import { CommentContainer, CommentForm, FormElement } from "./comments.styles";
 import { useState } from "react";
-import {useParams} from 'react-router-dom';
+import {Form, useParams} from 'react-router-dom';
 import {useAuth0} from '@auth0/auth0-react';
 import {httpAddComment} from '../../../hooks/commentRequests';
 import Rating from "../../Rating/rating.component";
@@ -43,10 +43,12 @@ const Comment = () => {
     
     return ( 
         <CommentContainer>
-        <h2>Leave a review</h2>
+        <hr />
+        <h3 style={{textAlign: 'center', marginTop: '1em'}}>Leave a review</h3>
         {isAuthenticated ? 
          <CommentForm onSubmit={handleSubmit}>
         {/* Title */}
+        <FormElement>
         <label>Title:</label>
         <input 
             type="text" 
@@ -55,13 +57,16 @@ const Comment = () => {
             onChange={handleChange}
             required
         />
+        </FormElement>
         {/* Rating */}
-        <Rating  name="starRating"
+        <Rating name="starRating"
             value={starRating}
             onChange={setStarRating} />
         {/* Comment */}
+        <FormElement>
         <label>Review:</label>
         <textarea rows="6" cols="50" name="comment" value={formState.comment} onChange={handleChange}></textarea>
+        </FormElement>
         <input className="button" type="submit" />
          </CommentForm>
     : <h3>Login to post a comment</h3>

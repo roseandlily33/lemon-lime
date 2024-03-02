@@ -13,8 +13,8 @@ const RecipeContainer3 = ({recipe}) => {
     return ( 
         <SideContainer key={recipe._id}>
             <NavLink style={{color:'orange', textDecoration: 'none', fontSize: '1.5em', fontWeight: 'bold', textTransform: 'uppercase'}} to={recipeUrl}>{recipe.recipeName}</NavLink>
-            <h3>{formatDate(recipe.createdAt)}</h3>
-            <h3>Favorites: {recipe.favorites}</h3>
+            <h4>{formatDate(recipe.createdAt)}</h4>
+            <h4>Favorites: {recipe.favorites}</h4>
             <img src={Lemons} alt="lemons" />
             <ButtonRecipeContainer>
             <button onClick={() => navigate(editUrl)}>Edit</button>
