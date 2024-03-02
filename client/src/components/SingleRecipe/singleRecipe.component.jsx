@@ -45,7 +45,7 @@ const SingleRecipe = () => {
         </>
         <>
         <h2>Ingredients</h2>
-        <hr/>
+  
         <IngredientsDiv>
         <ul>
           {singleRecipe?.measurements.map((item, index) => {
@@ -67,7 +67,7 @@ const SingleRecipe = () => {
      </TopDiv>
      <Bottom>
         <h2>Instructions</h2>
-        <hr />
+    
         <ol>
         {singleRecipe.instructions.map((item) => {
         return <li>{item}</li>

@@ -35,4 +35,5 @@ export const RightMainDiv = styled.div`
     align-items: center;
     overflow-y: scroll;
     padding: 1em;
+    
 `;

@@ -9,6 +9,7 @@ export const SingleCommentDiv = styled.div`
     margin: 1.5em;
     background-color: ${({theme}) => theme.colors.white};
     border: none;
+    border: 2px solid ${({theme}) => theme.colors.green};
     border-radius: 5px;
     p{
         padding-top: 0.4em;
