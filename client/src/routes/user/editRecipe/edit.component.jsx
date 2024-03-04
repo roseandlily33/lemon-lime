@@ -19,7 +19,6 @@ import { CreateRecipeForm, TopForm, MiddleForm, BottomForm } from '../createReci
 import { ButtonDiv } from './edit.styles';
 import Loader from '../../../components/Loader/loader.component';
 
-
 const EditRecipe = () => {
     const {user} = useAuth0();
     const navigate = useNavigate();
@@ -49,11 +48,13 @@ const EditRecipe = () => {
         let newInstructions = Object.values(formValues.instructions); 
         let newIngredients = Object.values(formValues.ingredients); 
         let newMeasurements = Object.values(formValues.measurements);
+        let newRecipeName = formValues.recipeName.toLowerCase();
         let totalSending = Object.assign(formValues, {
           instructions: newInstructions,
           ingredients: newIngredients,
           measurements: newMeasurements,
           totalTime: totalTime,
+          recipeName: newRecipeName
         })
        const response = await httpEditUserRecipe(id, totalSending);
        const success = response.ok;

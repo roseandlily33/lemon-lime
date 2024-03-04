@@ -1,12 +1,13 @@
-
+import RecipeContainer2 from "../../../components/Recipe/recipe2.container";
+import { SearchResultsContainer } from "./searchResults.styles";
 const SearchResults  = ({results }) => {
+
     return ( 
-        <>
-        <h4>Search Results</h4>
-        {results?.map((res) => {
-            return <h4>{res.recipeName}</h4>
+        <SearchResultsContainer>
+        {results?.map((recipe) => {
+          return  <RecipeContainer2 recipe={recipe} />
         })}
-        </>
+        </SearchResultsContainer>
     );
 }
  

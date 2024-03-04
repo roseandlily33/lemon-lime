@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 import Lemons from '../../images/lemons.jpg';
 
 const RecipeContainer2 = ({recipe}) => {
-    const url = `recipe/${recipe._id}`
+    const url = `/recipe/${recipe._id}`
     return ( 
         <SideContainer key={recipe._id}>
             <NavLink style={{color:'orange', textDecoration: 'none', fontSize: '1.5em', fontWeight: 'bold', textTransform: 'uppercase'}} to={url}>{recipe.recipeName}</NavLink>

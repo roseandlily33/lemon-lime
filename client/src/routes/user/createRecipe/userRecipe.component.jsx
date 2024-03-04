@@ -56,11 +56,13 @@ const CreateRecipe = () => {
         let newInstructions = Object.values(instructions); 
         let newIngredients = Object.values(ingredients); 
         let newMeasurements = Object.values(measurements);
+        let newRecipeName = formValues.recipeName.toLowerCase();
         let totalSending = Object.assign(formValues, {
           instructions: newInstructions,
           ingredients: newIngredients,
           measurements: newMeasurements,
           totalTime: totalTime,
+          recipeName: newRecipeName
         })
        const response = await httpCreateRecipe(user, totalSending);
        const success = response.ok;

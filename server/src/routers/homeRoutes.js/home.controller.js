@@ -33,7 +33,6 @@ async function httpGetPopularRecipes(req, res){
         let faveRecipes = await Recipe.find({}, {
             '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'measurements': 0
         }).sort({favorites: -1}).limit(6);
-            console.log('Fave Recipes', faveRecipes)
          return res.status(200).json(faveRecipes);
     }catch(err){
         console.log('ERERR',err);
@@ -133,11 +132,23 @@ async function httpLoginUser (req, res){
        }
  }
 
+ async function httpSearchRecipes(req, res){
+    console.log('HTTP SEARCHING RECIPES', req.params.searchText);
+    try{
+        const searchingFor = req.params.searchText.toLowerCase();
+        const foundRecipes = await Recipe.find({recipeName: {$regex: searchingFor}});
+        res.status(200).json(foundRecipes);
+    } catch(err){
+      return  res.status(400).json({msg: "Cannot search for recipes"})
+    }
+ }
+
 module.exports = {
     httpGetAllRecipes,
     httpGetPopularRecipes,
     httpGetFullRecipeWithDetails,
     httpLoginUser,
     httpCreateUser,
-    httpGetMain
+    httpGetMain,
+    httpSearchRecipes
 }
