@@ -1,6 +1,6 @@
 import Logo from '../../images/Logo2.png';
 import { Navbar, RightNav} from './nav.styles';
-import heart from '../../images/icons/icons8-heart-material-outlined/icons8-heart-24.png';
+import heart from '../../images/icons/icons8-heart-material-outlined (2)/icons8-heart-24.png';
 import userIcon from '../../images/icons/icons8-user-windows/icons8-user-32.png';
 import search from '../../images/icons/search-icon/icons8-search-24.png';
 import { useState } from 'react';

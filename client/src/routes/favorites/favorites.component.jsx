@@ -1,5 +1,6 @@
 import { FavoritesContainer } from "./favorites.styles";
 import RecipeContainer from "../../components/Recipe/recipe.component";
+
 const FavoritesPage = () => {
     return ( 
         <FavoritesContainer>

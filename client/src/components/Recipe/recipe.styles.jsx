@@ -15,7 +15,11 @@ export const RecipeCont = styled.div`
         margin-top: 0.3em;
     }
     img{
+        float: right;
         height: 150px;
         width: 250px;
+        z-index: -1;
+        margin-top: 0.3em;
+   
     }
 `;

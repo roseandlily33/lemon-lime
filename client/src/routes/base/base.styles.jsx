@@ -7,3 +7,4 @@ export const MainContainer = styled.div`
     justify-content: center;
     height: 100%;
 `;
+

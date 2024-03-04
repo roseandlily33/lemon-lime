@@ -11,13 +11,10 @@ export const RecentContainer = styled.div`
     h3{
         color: ${({theme}) => theme.colors.green};
     }
-
 `;
 
 export const RecentOption = styled.h4`
     color: ${({theme}) => theme.colors.orange};
     font-weight: bold;
     text-align: center;
-
-
 `;

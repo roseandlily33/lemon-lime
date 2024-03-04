@@ -5,7 +5,6 @@ import SearchResults from './results/searchResults.component';
 import RecentlySearched from './recent/recent.component';
 import { httpSearchRecipes } from '../../hooks/recipeRequests';
 
-
 const SearchPage = () => {
     const [searching, setSearching] = useState('');
     const [recent, setRecent] = useState([]);
@@ -16,6 +15,7 @@ const SearchPage = () => {
         setResults(foundRecipes);
         setRecent([...recent, searching]);
     }
+
     if(recent.length > 5){
         recent.shift();
     }
@@ -27,7 +27,7 @@ const SearchPage = () => {
     <img src={SearchIcon} alt="search" onClick={searchForRecipe}/>
     </StyledDiv>
     <ResultsDiv>
-        <RecentlySearched recent={recent} setRecent={setRecent} />
+        <RecentlySearched recent={recent} />
         <SearchResults results={results} />
     </ResultsDiv>
     </SearchContainer> );

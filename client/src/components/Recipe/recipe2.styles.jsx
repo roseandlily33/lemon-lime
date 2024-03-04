@@ -18,5 +18,11 @@ export const SideContainer = styled.div`
         width: 250px;
         border-radius: 2px;
     }
+`;
 
+export const TopContainer = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1em;
 `;
