@@ -75,7 +75,13 @@ async function httpDeleteRecipe(req, res){
 //Deletes a favorite recipe for a user
 async function httpDeleteFavoriteRecipe(req, res){
   try{
-    console.log('Deelting a user recpe', req.body)
+    let userId = req.body.userId;
+    let recipeId = req.body.recipeId;
+    let oldFavourite = await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: -1}});
+    await User.findOneAndUpdate({authId: userId}, {
+      $pull: {favorites: oldFavourite.id}
+    });
+    res.status(201).json({msg: 'Removed the favorite recipe'})
   } catch(err){
     console.log('ERR favorite deleting RECIPE', err);
     return res.status(404).json({msg: "Could not delete favorite the recipe"});

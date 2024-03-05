@@ -96,12 +96,12 @@ async function httpGetFavoritesForMainPage(userId){
 // Delete a favorited recipe for a user
 async function httpDeleteFavoriteRecipe(userId, recipeId){
   try{
-    return await fetch(`${API_URL}/user/favorites/${userId}`, {
+    return await fetch(`${API_URL}/user/favorites`, {
       method: 'delete',
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(recipeId)
+      body: JSON.stringify({userId, recipeId})
     })
   } catch(err){
     return {

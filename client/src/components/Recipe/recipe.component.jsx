@@ -12,37 +12,34 @@ import {useAuth0} from '@auth0/auth0-react';
 const RecipeContainer = ({recipe}) => {
     const {user} = useAuth0();
     const [usersFave, setUsersFave] = useState();
+    const [foundRecipe, setFoundRecipe] = useState();
+   
     useEffect(() => {
         const GetFavorites = async() => {
-            let recipes = await httpGetFavoritesForMainPage(user.sub);
-            setUsersFave(recipes.favorites);
+            try{
+                let recipes = await httpGetFavoritesForMainPage(user.sub);
+                setUsersFave(recipes.favorites);
+            } catch(err){
+                alert('Error on getting faves')
+            }
+            finally{
+                let foundRecipe = usersFave.find((f) => {
+                    return f._id === recipe._id
+                });
+                setFoundRecipe(foundRecipe);
+            }
         }
         GetFavorites();
-    }, [user]);
+    }, [user, recipe._id, usersFave]);
 
     const url = `recipe/${recipe._id}`;
-    console.log('User faves', usersFave);
+
     return ( 
         <RecipeCont key={recipe._id}>
            <div>
            <TopContainer>
             <NavLink style={{color:'orange', textDecoration: 'none', fontSize: '1.516em', fontWeight: 'bold', textTransform: 'uppercase'}} to={url}>{recipe.recipeName}</NavLink>
-            <>
-            {/* The heart  */}
-            {usersFave?.map((fave) => {
-            let heartCount = 0;
-            return (fave._id === recipe._id) ? 
-            (   heartCount++ &&
-                <DeleteHeart id={recipe._id} />
-            )
-            :  (heartCount >= 1) ? 
-                <h6 style={{color: 'white'}}>0</h6>
-                :
-                <Heart id={recipe._id}/>    
-            }
-        )}
-            
-            </>
+            {foundRecipe ? <DeleteHeart id={recipe._id} /> : <Heart id={recipe._id} /> }
             </TopContainer>
             <h4>{formatDate(recipe.createdAt)}</h4>
             <h4>Total Time: {recipe.totalTime.hours}:{recipe.totalTime.minutes}</h4>
