@@ -12,11 +12,11 @@ export const SideContainer = styled.div`
     padding: 1em;
     border-radius: 5px;
     margin-top: 1em;
-    img{
+    .recipePhoto{
         margin-top: 0.2em;
         height: 150px;
         width: 250px;
-        border-radius: 2px;
+        border-radius: 5px;
     }
 `;
 

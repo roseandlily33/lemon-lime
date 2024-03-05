@@ -46,9 +46,6 @@ const NavBar = () => {
               <button onClick={() => loginWithRedirect()}>Login</button>
               }
 
-
-
-               
             </RightNav>
         </Navbar>
       );

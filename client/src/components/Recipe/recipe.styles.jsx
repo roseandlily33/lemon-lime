@@ -4,22 +4,31 @@ export const RecipeCont = styled.div`
    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     background-color: ${({theme}) => theme.colors.white};
     height: auto;
-    width: auto;
+    gap: 1em;
     padding: 1em;
-    border-radius: 5px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1em;
+    border-radius: 5px;
+    margin-block: 0.7em;
     h4{
-        margin-top: 0.3em;
+        margin-top: 0.1em;
     }
-    img{
-        float: right;
+    .recipePhoto{
         height: 150px;
         width: 250px;
-        z-index: -1;
-        margin-top: 0.3em;
-   
+        border-radius: 5px;
+        float: right;
     }
+`;
+
+export const TopLabel = styled.div`
+        display: flex;
+        align-items: center;   
+`;
+
+export const LeftContainer = styled.div`
+    width: 50%;
+`;
+
+export const RightContainer = styled.div`
+    width: 50%;
 `;

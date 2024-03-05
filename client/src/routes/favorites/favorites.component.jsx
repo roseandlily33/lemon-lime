@@ -1,5 +1,5 @@
-import { FavoritesContainer } from "./favorites.styles";
-import RecipeContainer from "../../components/Recipe/recipe.component";
+import { FavoritesContainerMain, FavoritesRecipesDiv  } from "./favorites.styles";
+import RecipeContainer2 from "../../components/Recipe/recipe2.container";
 import { useEffect, useState } from "react";
 import {useAuth0} from '@auth0/auth0-react';
 import { httpGetUsersFavoriteRecipes } from "../../hooks/userRequests";
@@ -11,11 +11,11 @@ const FavoritesPage = () => {
     const {user, isAuthenticated} = useAuth0();
 
     useEffect(() => {
-        const getFaveRecipes = async() => {
+        const GetFaveRecipes = async() => {
             let recipes = await httpGetUsersFavoriteRecipes(user.sub);
             setFavoriteRecipes(recipes.favorites);
         }    
-        getFaveRecipes();
+        GetFaveRecipes();
     }, [user]);
 
     if(!isAuthenticated){
@@ -23,12 +23,14 @@ const FavoritesPage = () => {
     }
 
     return ( 
-        <FavoritesContainer>
+        <FavoritesContainerMain>
             <h2>Your Favorite Recipes</h2>
+            <FavoritesRecipesDiv>
             {favoriteRecipes?.map((recipe) => {
-                return <RecipeContainer recipe={recipe} />
+                return <RecipeContainer2 recipe={recipe} />
             })}
-        </FavoritesContainer>
+            </FavoritesRecipesDiv>
+        </FavoritesContainerMain>
      );
 }
  

@@ -1,5 +1,5 @@
 import FilledHeart from '../../images/icons/icons8-heart-material-sharp/icons8-heart-24.png';
-import { FavoriteDiv } from './favorites.styles';
+import { FavoritesContainer } from '../../routes/favorites/favorites.styles';
 import {useAuth0} from '@auth0/auth0-react';
 import { httpDeleteFavoriteRecipe } from '../../hooks/userRequests';
 
@@ -15,9 +15,9 @@ const DeleteHeart = ({id}) => {
        }
     }
     return ( 
-        <FavoriteDiv>
+        <FavoritesContainer>
         <img src={FilledHeart} alt="Click to add favorite" onClick={() => deleteFavorite(id)}/>
-        </FavoriteDiv>
+        </FavoritesContainer>
          );
 }
  
