@@ -2,7 +2,7 @@ import { SideContainer, TopContainer } from "./recipe2.styles";
 import {formatDate} from '../../formattingUtils/date';
 import {NavLink} from 'react-router-dom'; 
 import Lemons from '../../images/lemons.jpg';
-import Heart from "../../routes/favorites/favorite.component";
+import Heart from "../../routes/favorites/addFave.component";
 
 const RecipeContainer2 = ({recipe}) => {
     const url = `/recipe/${recipe._id}`

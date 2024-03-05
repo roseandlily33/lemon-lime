@@ -108,12 +108,23 @@ async function httpGetUserComments(req,res){
 }
 
 async function httpGetUsersFavoriteRecipes(req, res){
-  console.log('Getting favorite recipes for ', req.params.userId);
   try{
-    let userFavorites = await User.findOne({authId: req.params.id},
-      {'email': 0, 'recipes': 0, '__v': 0});
-      res.status(200).json(userFavorites);
+    let userFavorites = await User.findOne({authId: req.params.userId}, {
+      'comments': 0, 'email': 0, 'recipes': 0, '__v': 0, 'name': 0
+    }).populate('favorites');
+    res.status(200).json(userFavorites);
   } catch(err){
+    return res.status(404).json({msg: 'Could not find favorite recipes'})
+  }
+}
+
+async function httpGetFavoritesForMainPage(req, res){
+  try{
+    let userFavorites = await User.findOne({authId: req.params.userId}, {
+      'comments': 0, 'email': 0, 'recipes': 0, '__v': 0, 'name': 0
+    }).populate('favorites', '_id');
+    res.status(200).json(userFavorites);
+  } catch (err){
     return res.status(404).json({msg: 'Could not find favorite recipes'})
   }
 }
@@ -142,5 +153,6 @@ module.exports = {
     httpDeleteFavoriteRecipe,
     httpGetEditRecipe,
     httpGetUserComments,
-    httpGetUsersFavoriteRecipes
+    httpGetUsersFavoriteRecipes,
+    httpGetFavoritesForMainPage
 }

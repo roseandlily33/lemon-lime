@@ -5,7 +5,6 @@ import {useAuth0} from '@auth0/auth0-react';
 import { httpGetUsersFavoriteRecipes } from "../../hooks/userRequests";
 import {useNavigate} from 'react-router-dom';
 
-
 const FavoritesPage = () => {
     const navigate = useNavigate();
     const [favoriteRecipes, setFavoriteRecipes] = useState();
@@ -14,8 +13,7 @@ const FavoritesPage = () => {
     useEffect(() => {
         const getFaveRecipes = async() => {
             let recipes = await httpGetUsersFavoriteRecipes(user.sub);
-            console.log('Users Fave Recipes', recipes);
-            setFavoriteRecipes(recipes);
+            setFavoriteRecipes(recipes.favorites);
         }    
         getFaveRecipes();
     }, [user]);
