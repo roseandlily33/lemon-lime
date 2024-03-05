@@ -71,17 +71,7 @@ async function httpDeleteRecipe(req, res){
     return res.status(404).json({msg: "Could not delete the recipe"});
   }
 }
-//Adds a favorite recipe for a user
-async function httpAddFavoriteRecipe(req, res){
-  try{
-    let user = req.body;
-    let recipeId = req.params.id
-    console.log('For ', user, 'Recipe', recipeId)
-  } catch(err){
-    console.log('ERR favorite RECIPE', err);
-    return res.status(404).json({msg: "Could not favorite the recipe"});
-  }
-}
+
 //Deletes a favorite recipe for a user
 async function httpDeleteFavoriteRecipe(req, res){
   try{
@@ -117,6 +107,31 @@ async function httpGetUserComments(req,res){
   }
 }
 
+async function httpGetUsersFavoriteRecipes(req, res){
+  console.log('Getting favorite recipes for ', req.params.userId);
+  try{
+    let userFavorites = await User.findOne({authId: req.params.id},
+      {'email': 0, 'recipes': 0, '__v': 0});
+      res.status(200).json(userFavorites);
+  } catch(err){
+    return res.status(404).json({msg: 'Could not find favorite recipes'})
+  }
+}
+
+async function httpAddFavoriteRecipe(req, res){
+  try{ 
+    let userId = req.body.userId;
+    let recipeId = req.body.recipeId;
+    let newFavourite = await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: 1}});
+    await User.findOneAndUpdate({authId: userId}, {
+      $addToSet: {favorites: newFavourite.id}
+    });
+    res.status(201).json({msg: 'Added the new recipe'})
+  } catch(err){
+    console.log('ERROR', err)
+    return res.status(404).json({msg: 'Could not add a favorite recipe'})
+  }
+}
 
 module.exports = {
     httpCreateRecipe,
@@ -126,5 +141,6 @@ module.exports = {
     httpAddFavoriteRecipe,
     httpDeleteFavoriteRecipe,
     httpGetEditRecipe,
-    httpGetUserComments
+    httpGetUserComments,
+    httpGetUsersFavoriteRecipes
 }

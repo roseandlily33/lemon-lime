@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 import Heart from "../../routes/favorites/favorite.component";
 import Lemons from '../../images/lemons.jpg';
 import { TopContainer } from "./recipe2.styles";
+
 const RecipeContainer = ({recipe}) => {
     const url = `recipe/${recipe._id}`
     return ( 
@@ -11,7 +12,7 @@ const RecipeContainer = ({recipe}) => {
            <div>
            <TopContainer>
             <NavLink style={{color:'orange', textDecoration: 'none', fontSize: '1.516em', fontWeight: 'bold', textTransform: 'uppercase'}} to={url}>{recipe.recipeName}</NavLink>
-            <Heart/>
+            <Heart id={recipe._id}/>
             </TopContainer>
             <h4>{formatDate(recipe.createdAt)}</h4>
             <h4>Total Time: {recipe.totalTime.hours}:{recipe.totalTime.minutes}</h4>

@@ -11,7 +11,7 @@ const RecipeContainer2 = ({recipe}) => {
            <div>
            <TopContainer>
            <NavLink style={{color:'orange', textDecoration: 'none', fontSize: '1.5em', fontWeight: 'bold', textTransform: 'uppercase'}} to={url}>{recipe.recipeName}</NavLink>
-           <Heart />
+           <Heart id={recipe._id}/>
            </TopContainer>
             <h4>{formatDate(recipe.createdAt)}</h4>
             <h4>Favorites: {recipe.favorites}</h4>

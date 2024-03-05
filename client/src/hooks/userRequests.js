@@ -59,15 +59,43 @@ async function httpDeleteRecipe(id){
   }
 }
 //Allows the user to add a favorite recipe
-async function httpAddFavoriteRecipe(user, id){
-  console.log('Adding a fave recipe for', user, id)
+async function httpAddFavoriteRecipe(userId, recipeId){
+  console.log('ADDING HTTP FAVE RECIPE', userId, recipeId)
   try{
-    return await fetch(`${API_URL}/user/favorites/${id}`, {
+    return await fetch(`${API_URL}/user/favorites`, {
       method: 'post',
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify({
+        userId,
+        recipeId
+      })
+    })
+  } catch(err){
+    console.log('HTTP ERROR', err);
+    return {
+      ok: false,
+    };
+  }
+}
+
+//Gets all the favorited recipes for a user
+async function httpGetUsersFavoriteRecipes(userId){
+  const response = await fetch(`${API_URL}/user/favorites/${userId}`);
+  let allFavorites = await response.json();
+  return allFavorites;
+}
+
+// Delete a favorited recipe for a user
+async function httpDeleteFavoriteRecipe(userId, recipeId){
+  try{
+    return await fetch(`${API_URL}/user/favorites/${userId}`, {
+      method: 'delete',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(recipeId)
     })
   } catch(err){
     return {
@@ -75,6 +103,7 @@ async function httpAddFavoriteRecipe(user, id){
     };
   }
 }
+
 
 //Some functionailty for maybe a login page
 // async function httpCreateNewUser(info){
@@ -127,11 +156,13 @@ async function httpGetUserComments(id){
   }
 }
 
-export  {
+export {
     httpAddFavoriteRecipe,
     httpCreateRecipe,
     httpDeleteRecipe,
     httpEditUserRecipe,
     httpGetUserRecipes,
-    httpGetUserComments
+    httpGetUserComments,
+    httpGetUsersFavoriteRecipes,
+    httpDeleteFavoriteRecipe
 }

@@ -7,7 +7,8 @@ const {
     httpAddFavoriteRecipe,
     httpDeleteFavoriteRecipe,
     httpGetEditRecipe,
-    httpGetUserComments
+    httpGetUserComments,
+    httpGetUsersFavoriteRecipes,
 } = require('./user.controller');
 
 //user/
@@ -16,8 +17,10 @@ userRouter.get('/:id', httpGetUserRecipes);
 userRouter.get('/edit/:id', httpGetEditRecipe);
 userRouter.put('/edit/:id', httpEditRecipe);
 userRouter.delete('/recipe/:id', httpDeleteRecipe);
-userRouter.post('/favorites/:id', httpAddFavoriteRecipe);
 userRouter.delete('/favorites/:id', httpDeleteFavoriteRecipe);
 userRouter.get('/comments/:id', httpGetUserComments);
+userRouter.get('/favorites/:userId', httpGetUsersFavoriteRecipes);
+userRouter.post('/favorites', httpAddFavoriteRecipe);
+
 
 module.exports = userRouter;
