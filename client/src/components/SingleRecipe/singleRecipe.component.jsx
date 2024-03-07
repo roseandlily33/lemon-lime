@@ -57,7 +57,7 @@ const SingleRecipe = () => {
           })}
         </ul>
         <ul>
-        {singleRecipe.ingredients.map(item => {
+        {singleRecipe?.ingredients.map(item => {
             return <li>{item}</li>
         })
         }
@@ -69,7 +69,7 @@ const SingleRecipe = () => {
      <Bottom>
         <h2>Instructions</h2>
         <ol>
-        {singleRecipe.instructions.map((item) => {
+        {singleRecipe?.instructions.map((item) => {
         return <li>{item}</li>
         })}
         </ol>

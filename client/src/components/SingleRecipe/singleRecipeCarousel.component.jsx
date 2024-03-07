@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { CarouselDiv, Direction, LeftDirection, RightDirection, Indicator, RecipeImage } from "./singleRecipeCarousel.styles";
 
-
 const Carousel = ({images}) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);

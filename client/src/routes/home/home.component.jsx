@@ -8,7 +8,7 @@ const HomePage = ({ allRecipes, popularRecipes}) => {
         <LeftMainDiv>
             <h1>New Recipes</h1>
             {
-                allRecipes.map((recipe) => {
+                allRecipes?.map((recipe) => {
                     return <RecipeContainer recipe={recipe} /> 
                 })
             }
@@ -16,7 +16,7 @@ const HomePage = ({ allRecipes, popularRecipes}) => {
         <RightMainDiv>
             <h1>Popular Recipes</h1>
             {
-                popularRecipes.map((recipe) => {
+                popularRecipes?.map((recipe) => {
                     return <RecipeContainer2 recipe={recipe} /> 
                 })
             }

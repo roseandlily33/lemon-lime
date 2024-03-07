@@ -53,11 +53,10 @@ const CreateRecipe = () => {
       }
       //For the photos
       const [images, setImages] = useState([]);
-      const maxNumber = 6;
+      const maxNumber = 4;
       const onChange = (imageList, addUpdateIndex) => {
       setImages(imageList);
       };
-      console.log('Images', images);
 
       const handleSubmit = async (e) => {
         e.preventDefault();
