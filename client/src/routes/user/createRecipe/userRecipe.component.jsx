@@ -1,8 +1,6 @@
 import { useState } from "react";
 import {CreateRecipeForm, TopForm, MiddleForm, BottomForm, PhotosSection} from './userRecipe.styles';
 import { getTotalTime } from "../../../formattingUtils/totalTime";
-import UserIngredients from "./recipeFormElements/userIngredientsSingle.component";
-import UserMeasurements from "./recipeFormElements/userMeasurements.component";
 import UserInstructions from "./recipeFormElements/userInstructionsSingle.component";
 import {useAuth0} from '@auth0/auth0-react';
 import PrepTime from "./recipeFormElements/userPrepTime.component";
@@ -11,6 +9,7 @@ import SubCategory from "./recipeFormElements/userSubCategory.component";
 import RecipeName from "./recipeFormElements/userRecipeName.component";
 import {useNavigate} from 'react-router-dom';
 import { httpCreateRecipe } from "../../../hooks/userRequests";
+import IngredientsAndMeasurements from "./recipeFormElements/dynamicIngMea.component";
 import UserPhotos from "./recipeFormElements/userPhotos.component";
 
 const CreateRecipe = () => {
@@ -27,29 +26,21 @@ const CreateRecipe = () => {
         const {name, value} = e.target;
         setFormValues({...formValues, [name]: value})
     }
-      //For the Ingredients
-      const [ingredients, setIngredients] = useState({
-        i1: '', i2: '', i3: '', i4: '', i5: '', i6: '', i7: '', i8: ''
-      })
-      const addNewIngredient = (e) => {
-        const {name, value} = e.target;
-          setIngredients({...ingredients, [name]: value})
+      const [ingredients, setIngredients] = useState([]);
+      const addNewIngredient = (ing) => {
+        setIngredients([...ingredients, ing])
       }
-      //For the Measurements 
-      const [measurements, setMeasurements] = useState({
-        m1: '1 Cup', m2: '1 Cup', m3: '1 Cup', m4: '1 Cup', m5: '1 Cup', m6: '1 Cup', m7: '1 Cup', m8: '1 Cup'
-      });
-      const addNewMeasurement = (e) => {
-        const {name, value} = e.target;
-          setMeasurements({...measurements, [name]: value})
+      
+      const [measurements, setMeasurements] = useState([]);
+      const addNewMeasurement = (mea) => {
+        console.log('Adding measurement in', mea)
+          setMeasurements([...measurements, mea]);
       }
-      //For the Instructions
-      const [instructions, setInstructions] = useState({
-        i1: '', i2: '', i3: '', i4: '', i5: '', i6: '', i7: '', i8: ''
-      })
-      const addNewInstruction = (e) => {
-        const {name, value} = e.target;
-          setInstructions({...instructions,[name]: value })
+     
+      const [instructions, setInstructions] = useState([])
+      const addNewInstruction = (ins) => {
+        console.log('Adding instruciton in', ins);
+        setInstructions([...instructions, ins])
       }
       //For the photos
       const [images, setImages] = useState([]);
@@ -60,22 +51,18 @@ const CreateRecipe = () => {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log()
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
-        let newInstructions = Object.values(instructions); 
-        let newIngredients = Object.values(ingredients); 
-        let newMeasurements = Object.values(measurements);
         let newRecipeName = formValues.recipeName.toLowerCase();
         let totalSending = Object.assign(formValues, {
-          instructions: newInstructions,
-          ingredients: newIngredients,
-          measurements: newMeasurements,
+          instructions: instructions,
+          ingredients: ingredients,
+          measurements: measurements,
           totalTime: totalTime,
           recipeName: newRecipeName,
           images: images
-        })
-       const response = await httpCreateRecipe(user, totalSending);
-       const success = response.ok;
+        });
+      const response = await httpCreateRecipe(user, totalSending);
+      const success = response.ok;
        if (success) {
         alert('Success');
         navigate('/user/home');
@@ -88,15 +75,10 @@ const CreateRecipe = () => {
           cookTime: 10,
           subCategory: 'Breakfast'
       });
-        setIngredients({
-          i1: '', i2: '', i3: '', i4: '', i5: '', i6: '', i7: '', i8: ''
-        });
-        setInstructions({
-          i1: '', i2: '', i3: '', i4: '', i5: '', i6: '', i7: '', i8: ''
-        })
+        setIngredients([]);
+        setInstructions([]);
+        setMeasurements([]);
       };
-      console.log('Form values', formValues)
-      console.log('Ingredients', measurements, ingredients)
     return (
     <>
     <CreateRecipeForm onSubmit={handleSubmit}>
@@ -114,10 +96,8 @@ const CreateRecipe = () => {
       <hr/>
       <h2>Ingredients</h2>
       <MiddleForm>
-        {/* Measurements */}
-      <UserMeasurements measurements={measurements} addNewMeasurement={addNewMeasurement}/>
-      {/* Ingredients */}
-      <UserIngredients ingredients={ingredients} addNewIngredient={addNewIngredient}/>
+         {/* Measurements and Ingredients */}
+        <IngredientsAndMeasurements ingredients={ingredients} addNewIngredient={addNewIngredient} measurements={measurements} addNewMeasurement={addNewMeasurement}/>
       </MiddleForm>
       <hr />
       <h2>Instructions</h2>

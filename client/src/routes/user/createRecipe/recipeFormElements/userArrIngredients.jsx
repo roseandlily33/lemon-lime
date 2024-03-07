@@ -15,7 +15,6 @@ const UserIngredientsArray = ({formValues, setFormValues}) => {
         <IngredientsDiv >
         {Object.entries(newIng).map((x, idx) => {
              return <div>
-             {/* <label name={idx}>{idx + 1}</label> */}
              <input 
                type="text" 
                name={x[0]}   

@@ -8,7 +8,6 @@ const RecipeName = ({formValues, handleChange}) => {
           name="recipeName"
           value={formValues.recipeName}
           onChange={handleChange}
-          required
         />
         </>
      );
