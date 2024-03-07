@@ -17,6 +17,7 @@ const Comment = () => {
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormState({...formState, [name]: value});
+        
     }
 
     const handleSubmit = async(e) => {

@@ -13,17 +13,19 @@ import PrepTime from '../createRecipe/recipeFormElements/userPrepTime.component'
 import SubCategory from '../createRecipe/recipeFormElements/userSubCategory.component';
 import UserInstructionsArray from '../createRecipe/recipeFormElements/userArrInstructions.component';
 import UserIngredientsArray from '../createRecipe/recipeFormElements/userArrIngredients';
-import UserArrayMeasurements from '../createRecipe/recipeFormElements/userArrMeasurements';
 //Styles
-import { CreateRecipeForm, TopForm, MiddleForm, BottomForm } from '../createRecipe/userRecipe.styles';
+import { CreateRecipeForm, TopForm, MiddleForm, LeftDiv, RightDiv, PhotosSection} from '../createRecipe/userRecipe.styles';
 import { ButtonDiv } from './edit.styles';
 import Loader from '../../../components/Loader/loader.component';
+import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
+import UserPhotos from '../createRecipe/recipeFormElements/userPhotos.component';
 
 const EditRecipe = () => {
     const {user} = useAuth0();
     const navigate = useNavigate();
     const {id} = useParams();
     const [formValues, setFormValues] = useState();
+    const maxNumber = 4;
    
     if(!user){
         navigate('/');
@@ -41,7 +43,7 @@ const EditRecipe = () => {
         const {name, value} = e.target;
        setFormValues({...formValues, [name]: value})
    }
-
+   console.log('Form Values', formValues)
       const handleSubmit = async (e) => {
         e.preventDefault();
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
@@ -71,24 +73,37 @@ const EditRecipe = () => {
          <Loader />
      :
      <CreateRecipeForm>
-        <h1>Edit Recipe </h1>
+    <h1>Edit Recipe</h1>
      <TopForm> 
+    <LeftDiv>
     <RecipeName formValues={formValues} handleChange={handleChange}/>
-    <CookTime formValues={formValues} handleChange={handleChange} />
     <PrepTime formValues={formValues} handleChange={handleChange} />
-    <SubCategory formValues={formValues} handleChange={handleChange}  />
+    <CookTime formValues={formValues} handleChange={handleChange} />
+    <SubCategory formValues={formValues} handleChange={handleChange} />
+    </LeftDiv>
+    <RightDiv>
+      <img src={CookingIllustration} alt="Cooking Illustration" className="cooking-image"/>
+      </RightDiv>
     </TopForm>
     <hr/>
-    <h3>Ingredients</h3>
+    <h2>Ingredients</h2>
     <MiddleForm>
-        {formValues.measurements && <UserArrayMeasurements formValues={formValues} handleChange={handleChange} setFormValues={setFormValues}/>}
+        {/* {formValues.measurements && <UserArrayMeasurements formValues={formValues} handleChange={handleChange} setFormValues={setFormValues}/>} */}
         {formValues.ingredients && <UserIngredientsArray formValues={formValues} setFormValues={setFormValues} />}
     </MiddleForm>
     <hr />
-    <h3>Instructions</h3>
-    <BottomForm>
+    <h2>Instructions</h2>
+    <MiddleForm>
     {formValues.instructions && <UserInstructionsArray formValues={formValues} setFormValues={setFormValues} />}
-    </BottomForm>
+    </MiddleForm>
+    <PhotosSection>
+    <h2>Images <span style={{fontSize: '1rem', fontStyle: 'italic'}}>JPG Only,
+      max of 4 images <br />
+      Image size displayed here is the actual size </span></h2>
+      {/* {formValues.images &&
+      <UserPhotos images={formValues.images} onChange={setFormValues} maxNumber={maxNumber}/>
+      } */}
+    </PhotosSection>
     <ButtonDiv>
     <button onClick={handleSubmit}>Update Recipe</button>
     <DeleteRecipe id={id} />

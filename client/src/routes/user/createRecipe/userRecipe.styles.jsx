@@ -2,7 +2,6 @@ import styled from 'styled-components';
 export const CreateRecipeForm = styled.form`
 display: flex;
 flex-direction: column;
-align-items: center;
 width: 95%;
 box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 background-color: ${({theme}) => theme.colors.white};
@@ -11,97 +10,108 @@ border-radius: 5px;
 margin-bottom: 1em;
  h1{
     margin-bottom: 0.5em;
-    text-align: center;
     color: ${({theme}) => theme.colors.green};
+    text-decoration: underline;
+ }
+ hr{
+    margin-bottom: 1em;
  }
 `;
 
 export const TopForm = styled.div`
-    width: 95%;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 1em;
-     gap: 0.8em;
-     select{
-        width: auto;
-     }
-     input{
-        width: 40%;
-     }
-`;
-
-export const MiddleForm = styled.div`
-    width: 95%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding-top: 1em;
-    padding-bottom: 1em;
-`;
-export const MeasurementsDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 0.7em;
-    width: 20%;
-    div{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 1em;
+    select{
+        width: 20%;
     }
-`;
-export const IngredientsDiv = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.53em;
     input{
-        width: 100%;
+        width: 40%;
     }
+    
 `;
-
-export const BottomForm = styled.div`
-    width: 95%;
+export const LeftDiv = styled.div`
+    width: 60%;
     display: flex;
     flex-direction: column;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    justify-content: center;
     gap: 1em;
 `;
 
-export const InstructionsDiv = styled.div`
- display: flex;
- flex-direction: row;
- align-items: center;
- justify-content: center;
- gap: 1em;
- input{
-        width: 75%;
+export const RightDiv = styled.div`
+    width: auto;
+    .cooking-image{
+        height: 250px;
+        width: 250px;
+        float: right;
+    } 
+`;
+
+export const SingleInputDiv = styled.div`
+    display: flex;
+    gap: 1.5em;
+`;
+
+export const MiddleForm = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const TopIngDiv = styled.div`
+    padding: 1em;
+`
+export const BottomIngDiv = styled.div`
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    input{
+        width: 50%;
     }
 `;
+
+export const SingleMeaIngDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    margin-bottom: 0.5em;
+    align-items: center;
+    h4{
+        color: ${({theme}) => theme.colors.green}
+    }
+    div{
+        display: flex;
+        gap: 2em;
+        align-items: center;
+    }
+    
+`;
+
+
 
 export const PhotosSection = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-bottom: 1em;
+    .buttonContainer{
+        margin-block: 1em;
+    }
     .items{
         display: flex;
         width: 100%;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        flex-wrap: wrap;
         margin: 0.5em;
+        gap: 1em;
     }
    .items button{
         width: 100%;
+        margin-top: 0.5em;
     }
     img{
-        width: 100%;
+        height: 150px;
+        width: 250px;
     }
 `;

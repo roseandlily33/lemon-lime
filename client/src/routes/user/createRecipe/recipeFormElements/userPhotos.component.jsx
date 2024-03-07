@@ -21,8 +21,8 @@ const UserPhotos = ({images, onChange, maxNumber}) => {
           }) => (
             // write your building UI
             <div className="options">
-                
-              <button
+              <div className='buttonContainer'>
+              <button 
                 style={isDragging ? { color: 'orange' } : undefined}
                 onClick={onImageUpload}
                 {...dragProps}
@@ -31,6 +31,7 @@ const UserPhotos = ({images, onChange, maxNumber}) => {
               </button>
               &nbsp;
               <button onClick={onImageRemoveAll}>Remove all images</button>
+              </div>
               <div className='items'>
               {imageList.map((image, index) => (
                 <div key={index} className="image-item">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {CreateRecipeForm, TopForm, MiddleForm, BottomForm, PhotosSection} from './userRecipe.styles';
+import {CreateRecipeForm, TopForm, MiddleForm, PhotosSection} from './userRecipe.styles';
 import { getTotalTime } from "../../../formattingUtils/totalTime";
 import UserInstructions from "./recipeFormElements/userInstructionsSingle.component";
 import {useAuth0} from '@auth0/auth0-react';
@@ -11,6 +11,8 @@ import {useNavigate} from 'react-router-dom';
 import { httpCreateRecipe } from "../../../hooks/userRequests";
 import IngredientsAndMeasurements from "./recipeFormElements/dynamicIngMea.component";
 import UserPhotos from "./recipeFormElements/userPhotos.component";
+import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
+import { RightDiv, LeftDiv } from "./userRecipe.styles";
 
 const CreateRecipe = () => {
   const navigate = useNavigate();
@@ -84,7 +86,8 @@ const CreateRecipe = () => {
     <CreateRecipeForm onSubmit={handleSubmit}>
       <h1>Create a recipe</h1>
       <TopForm>
-       {/* Recipe Name */}
+      <LeftDiv>
+      {/* Recipe Name */}
       <RecipeName formValues={formValues} handleChange={handleChange} />
       {/* Prep Time */}
       <PrepTime formValues={formValues} handleChange={handleChange}/>
@@ -92,21 +95,28 @@ const CreateRecipe = () => {
       <CookTime formValues={formValues} handleChange={handleChange} />
       {/* SubCategory */}
       <SubCategory formValues={formValues} handleChange={handleChange} />
+      </LeftDiv>
+      <RightDiv>
+      <img src={CookingIllustration} alt="Cooking Illustration" className="cooking-image"/>
+      </RightDiv>
       </TopForm>
       <hr/>
       <h2>Ingredients</h2>
       <MiddleForm>
          {/* Measurements and Ingredients */}
-        <IngredientsAndMeasurements ingredients={ingredients} addNewIngredient={addNewIngredient} measurements={measurements} addNewMeasurement={addNewMeasurement}/>
+        <IngredientsAndMeasurements ingredients={ingredients} addNewIngredient={addNewIngredient} measurements={measurements} addNewMeasurement={addNewMeasurement} setIngredients={setIngredients} setMeasurements={setMeasurements}/>
       </MiddleForm>
       <hr />
       <h2>Instructions</h2>
-      <BottomForm>
+      <MiddleForm>
         {/* Instructions */}
-      <UserInstructions instructions={instructions} addNewInstruction={addNewInstruction}/>
-      </BottomForm>
+      <UserInstructions instructions={instructions} setInstructions={setInstructions} addNewInstruction={addNewInstruction}/>
+      </MiddleForm>
+      <hr />
       <PhotosSection>
-      <h2 style={{textAlign: 'center'}}>Images <span style={{fontStyle: 'italic'}}>JPG Only</span></h2>
+      <h2>Images <span style={{fontSize: '1rem', fontStyle: 'italic'}}>JPG Only,
+      max of 4 images <br />
+      Image size displayed here is the actual size </span></h2>
       <UserPhotos images={images} onChange={onChange} maxNumber={maxNumber}/>
       </PhotosSection>
       <input className="button" type="submit" />

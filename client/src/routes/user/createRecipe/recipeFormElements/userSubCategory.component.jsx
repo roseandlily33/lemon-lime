@@ -1,7 +1,7 @@
-
+import { SingleInputDiv } from "../userRecipe.styles";
 const SubCategory = ({formValues, handleChange}) => {
     return ( 
-        <>
+        <SingleInputDiv>
         <label for={formValues.subCategory}>Choose SubCategory:</label>
          <select name="subCategory" defaultValue={formValues.subCategory} onChange={handleChange}>
           <option value={formValues.subCategory["Breakfast"]}>Breakfast</option>
@@ -10,7 +10,7 @@ const SubCategory = ({formValues, handleChange}) => {
           <option value={formValues.subCategory["Dessert"]}>Dessert</option>
           <option value={formValues.subCategory["Drinks"]}>Drinks</option>
         </select>
-        </>
+        </SingleInputDiv>
      );
 }
  

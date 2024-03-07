@@ -71,8 +71,7 @@ export const IngredientsDiv = styled.div`
     border-radius: 5px;
     ul {
         list-style-type: none;
-        padding: 0.2em;
-        
+        padding: 0.2em;   
     }
     li{
         margin-top: 0.5em;
