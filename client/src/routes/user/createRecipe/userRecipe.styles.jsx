@@ -83,3 +83,25 @@ export const InstructionsDiv = styled.div`
         width: 75%;
     }
 `;
+
+export const PhotosSection = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+    .items{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: 0.5em;
+    }
+   .items button{
+        width: 100%;
+    }
+    img{
+        width: 100%;
+    }
+`;

@@ -16,18 +16,19 @@ const Heart = ({recipe}) => {
             try{
                 let recipes = await httpGetFavoritesForMainPage(user.sub);
                 setUsersFave(recipes.favorites);
-            } catch(err){
-               // alert('Error on getting faves');
-               console.log('Err', err)
-            }
-            finally{
-               if(usersFave){
                 let foundRecipe = await usersFave.find((f) => {
                     return f._id === recipe._id
                 });
                 setFoundRecipe(foundRecipe);
-               }
+            } catch(err){
+               // alert('Error on getting faves');
+               console.log('Err', err)
             }
+            // finally{
+            //    if(usersFave){
+               
+            //    }
+            // }
         }
         GetFavorites();
     }, [user, recipe._id, usersFave]);

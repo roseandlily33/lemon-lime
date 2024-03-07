@@ -6,9 +6,9 @@ const recipesSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    // images: [{
-    //     url: String
-    // }],
+    images: [{
+       type: Schema.Types.Mixed
+    }],
     prepTime: {
         type: String,
         required: true

@@ -21,7 +21,7 @@ const RecipeContainer = ({recipe}) => {
             <h4>{recipe.subCategory}</h4>
            </LeftContainer>
            <RightContainer>
-            <img src={Lemons} alt="lemons" className="recipePhoto"/>
+            {recipe.images[0] ? <img src={recipe.images[0].data_url} alt="userPhoto" className="recipePhoto"/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
             </RightContainer>
         </RecipeCont>
      );

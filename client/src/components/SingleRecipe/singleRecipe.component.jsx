@@ -7,6 +7,7 @@ import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom, IngredientsD
 import Comment from "../Comments/addComment/comments.component";
 import Loader from "../Loader/loader.component";
 import RecipeComments from "../Comments/recipeComments/recipeComment.component";
+import Carousel from "./singleRecipeCarousel.component";
 
 const SingleRecipe = () => {
     const {id} = useParams();
@@ -30,7 +31,7 @@ const SingleRecipe = () => {
     <>
     <TopDiv>
         <LeftSide>
-         <img src={Lemon} alt="lemon" />
+        {singleRecipe.images[0] ? <Carousel images={singleRecipe.images} /> : <img src={Lemon} alt="lemons" className="recipePhoto"/>}
        </LeftSide>
         <RightSide>
         <h1>{singleRecipe.recipeName}</h1>
@@ -67,7 +68,6 @@ const SingleRecipe = () => {
      </TopDiv>
      <Bottom>
         <h2>Instructions</h2>
-    
         <ol>
         {singleRecipe.instructions.map((item) => {
         return <li>{item}</li>

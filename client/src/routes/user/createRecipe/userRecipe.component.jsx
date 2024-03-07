@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {CreateRecipeForm, TopForm, MiddleForm, BottomForm} from './userRecipe.styles';
+import {CreateRecipeForm, TopForm, MiddleForm, BottomForm, PhotosSection} from './userRecipe.styles';
 import { getTotalTime } from "../../../formattingUtils/totalTime";
 import UserIngredients from "./recipeFormElements/userIngredientsSingle.component";
 import UserMeasurements from "./recipeFormElements/userMeasurements.component";
@@ -11,11 +11,12 @@ import SubCategory from "./recipeFormElements/userSubCategory.component";
 import RecipeName from "./recipeFormElements/userRecipeName.component";
 import {useNavigate} from 'react-router-dom';
 import { httpCreateRecipe } from "../../../hooks/userRequests";
+import UserPhotos from "./recipeFormElements/userPhotos.component";
 
 const CreateRecipe = () => {
   const navigate = useNavigate();
     const {user} = useAuth0();
-    //All forms values excpet Instructions and Ingredient
+    //All forms values excpet Instructions,Ingredient, Measurements, Photos
     const [formValues, setFormValues] = useState({
         recipeName: '',
         prepTime: 10,
@@ -50,8 +51,17 @@ const CreateRecipe = () => {
         const {name, value} = e.target;
           setInstructions({...instructions,[name]: value })
       }
+      //For the photos
+      const [images, setImages] = useState([]);
+      const maxNumber = 6;
+      const onChange = (imageList, addUpdateIndex) => {
+      setImages(imageList);
+      };
+      console.log('Images', images);
+
       const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log()
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
         let newInstructions = Object.values(instructions); 
         let newIngredients = Object.values(ingredients); 
@@ -62,7 +72,8 @@ const CreateRecipe = () => {
           ingredients: newIngredients,
           measurements: newMeasurements,
           totalTime: totalTime,
-          recipeName: newRecipeName
+          recipeName: newRecipeName,
+          images: images
         })
        const response = await httpCreateRecipe(user, totalSending);
        const success = response.ok;
@@ -115,6 +126,10 @@ const CreateRecipe = () => {
         {/* Instructions */}
       <UserInstructions instructions={instructions} addNewInstruction={addNewInstruction}/>
       </BottomForm>
+      <PhotosSection>
+      <h2 style={{textAlign: 'center'}}>Images <span style={{fontStyle: 'italic'}}>JPG Only</span></h2>
+      <UserPhotos images={images} onChange={onChange} maxNumber={maxNumber}/>
+      </PhotosSection>
       <input className="button" type="submit" />
     </CreateRecipeForm>
  </>

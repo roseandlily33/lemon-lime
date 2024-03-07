@@ -17,7 +17,7 @@ const RecipeContainer2 = ({recipe}) => {
             <h4>{formatDate(recipe.createdAt)}</h4>
             <h4>Favorites: {recipe.favorites}</h4>
            </div>
-            <img src={Lemons} alt="lemons" className="recipePhoto"/>
+           {recipe.images[0] ? <img src={recipe.images[0].data_url} alt="userPhoto" className="recipePhoto"/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
         </SideContainer>
      );
 }
