@@ -3,7 +3,7 @@ import { httpGetFullRecipeWithDetails } from "../../hooks/recipeRequests";
 import { useParams } from "react-router-dom";
 import { formatDate } from "../../formattingUtils/date";
 import Lemon from '../../images/lemons.jpg';
-import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom }from './singleRecipe.styles';
+import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom, IngredientsDiv }from './singleRecipe.styles';
 import Comment from "../Comments/addComment/comments.component";
 import Loader from "../Loader/loader.component";
 import RecipeComments from "../Comments/recipeComments/recipeComment.component";
@@ -47,22 +47,22 @@ const SingleRecipe = () => {
         <>
         <h2>Ingredients</h2>
   
-        <>
+        <IngredientsDiv>
         <ul>
           {singleRecipe?.measurements.map((item, index) => {
             return <div style={{display: 'flex'}}>
-            <li style={{paddingRight: '1em', color: 'green'}}>{index + 1}</li>
-            <li>{item}</li>
+            <li style={{paddingRight: '1em', color: 'green', listStyleType: 'none'}}>{index + 1}</li>
+            <li style={{listStyleType: 'none'}}>{item}</li>
             </div>
           })}
         </ul>
         <ul>
         {singleRecipe?.ingredients.map(item => {
-            return <li>{item}</li>
+            return <li style={{listStyleType: 'none'}}>{item}</li>
         })
         }
         </ul>  
-        </>
+        </IngredientsDiv>
         </>
        </RightSide>
      </TopDiv>

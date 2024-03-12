@@ -16,6 +16,10 @@ const Heart = ({recipe}) => {
             try{
                 let recipes = await httpGetFavoritesForMainPage(user.sub);
                 setUsersFave(recipes.favorites);
+        //                 Let cache = {}
+        // Function memoFuncition(n){
+        // if(n in cache){ return cache[n];}
+        // Else { cache[n] = 5 + 80; return cache[n]}}
                 let foundRecipe = await usersFave.find((f) => {
                     return f._id === recipe._id
                 });

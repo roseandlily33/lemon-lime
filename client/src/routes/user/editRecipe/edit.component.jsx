@@ -11,8 +11,8 @@ import RecipeName from '../createRecipe/recipeFormElements/userRecipeName.compon
 import CookTime from '../createRecipe/recipeFormElements/userCookTime.component';
 import PrepTime from '../createRecipe/recipeFormElements/userPrepTime.component';
 import SubCategory from '../createRecipe/recipeFormElements/userSubCategory.component';
-import UserInstructionsArray from '../createRecipe/recipeFormElements/userArrInstructions.component';
-import UserIngredientsArray from '../createRecipe/recipeFormElements/userArrIngredients';
+import UserInstructionsArray from './editFormElements/userArrInstructions.component';
+import UserIngredientsArray from './editFormElements/userArrIngredients';
 //Styles
 import { CreateRecipeForm, TopForm, MiddleForm, LeftDiv, RightDiv, PhotosSection} from '../createRecipe/userRecipe.styles';
 import { ButtonDiv } from './edit.styles';
@@ -41,9 +41,8 @@ const EditRecipe = () => {
 
    const handleChange = (e) => {
         const {name, value} = e.target;
-       setFormValues({...formValues, [name]: value})
+        setFormValues({...formValues, [name]: value})
    }
-   console.log('Form Values', formValues)
       const handleSubmit = async (e) => {
         e.preventDefault();
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
@@ -67,7 +66,7 @@ const EditRecipe = () => {
           alert('Failure')
          }
       };
-    
+    console.log('Form values edit page', formValues);
     return ( <>
     {!formValues ?
          <Loader />
