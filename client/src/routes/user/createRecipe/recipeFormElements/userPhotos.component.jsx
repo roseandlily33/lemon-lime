@@ -19,7 +19,7 @@ const UserPhotos = ({images, onChange, maxNumber}) => {
             isDragging,
             dragProps,
           }) => (
-            // write your building UI
+
             <div className="options">
               <div className='buttonContainer'>
               <button 

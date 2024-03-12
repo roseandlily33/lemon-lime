@@ -18,7 +18,7 @@ import { CreateRecipeForm, TopForm, MiddleForm, LeftDiv, RightDiv, PhotosSection
 import { ButtonDiv } from './edit.styles';
 import Loader from '../../../components/Loader/loader.component';
 import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
-import UserPhotos from '../createRecipe/recipeFormElements/userPhotos.component';
+import UserEditPhotos from './editFormElements/userPhotosEdit';
 
 const EditRecipe = () => {
     const {user} = useAuth0();
@@ -42,7 +42,8 @@ const EditRecipe = () => {
    const handleChange = (e) => {
         const {name, value} = e.target;
         setFormValues({...formValues, [name]: value})
-   }
+   };
+   
       const handleSubmit = async (e) => {
         e.preventDefault();
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
@@ -66,7 +67,7 @@ const EditRecipe = () => {
           alert('Failure')
          }
       };
-    console.log('Form values edit page', formValues);
+
     return ( <>
     {!formValues ?
          <Loader />
@@ -99,9 +100,7 @@ const EditRecipe = () => {
     <h2>Images <span style={{fontSize: '1rem', fontStyle: 'italic'}}>JPG Only,
       max of 4 images <br />
       Image size displayed here is the actual size </span></h2>
-      {/* {formValues.images &&
-      <UserPhotos images={formValues.images} onChange={setFormValues} maxNumber={maxNumber}/>
-      } */}
+      <UserEditPhotos formValues={formValues} setFormValues={setFormValues} maxNumber={maxNumber}/>
     </PhotosSection>
     <ButtonDiv>
     <button onClick={handleSubmit}>Update Recipe</button>

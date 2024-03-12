@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SingleMeaIngDiv } from "../../createRecipe/userRecipe.styles";
 const UserInstructionsArray = ({formValues, setFormValues}) => {
     const {instructions} = formValues;
     const newInstructions = Object.assign({}, instructions);
@@ -12,7 +13,7 @@ const UserInstructionsArray = ({formValues, setFormValues}) => {
     return ( 
         <>
         {Object.entries(newIns).map((x, idx) => {
-            return <>
+            return <SingleMeaIngDiv className="glass" key="i">
             <label name={idx}>{idx + 1}</label>
              <input 
                type="text" 
@@ -20,7 +21,7 @@ const UserInstructionsArray = ({formValues, setFormValues}) => {
                value={x[1]}
                onChange={handleChange}
              />
-            </>
+            </SingleMeaIngDiv>
         })}
         </>
      );
