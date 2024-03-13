@@ -11,6 +11,7 @@ const UserInstructions = ({instructions, addNewInstruction, setInstructions}) =>
     e.preventDefault();
       if(maxSteps > count){
           addNewInstruction(ing);
+          setIng('');
           setCount(count + 1);
       } else {
           alert('Cannot add more cards');

@@ -8,7 +8,7 @@ const UserEditPhotos = ({ maxNumber, images, setImages}) => {
       setNewImages(imageList);
       setImages(imageList);
       };
-    console.log('INside photos', images, 'new Images',  newImages, 'img', img)
+      let x = newImages || img;
     return ( 
         <>
         {/* Images  */}

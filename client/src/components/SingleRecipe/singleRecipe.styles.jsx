@@ -15,18 +15,26 @@ export const SingleRecipeContainer  = styled.section`
     h2{
         font-weight: bold;
     }
+    @media screen and (max-width: 900px){
+        border: 2px solid orange;
+    }
 `;
 
 export const TopDiv = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
+    @media screen and (max-width: 900px){
+        flex-wrap: wrap-reverse;
+        border: 2px solid orange;
+    }
 `;
 
 export const LeftSide = styled.div`
     img{
         height: 300px;
         width: 400px;
+        
     }
 `;
 
@@ -59,6 +67,10 @@ ol{
 li{
     margin-top: 0.5em;
 }
+@media screen and (max-width: 900px){
+        flex-wrap: wrap;
+        border: 2px solid orange;
+    }
 `;
 
 export const IngredientsDiv = styled.div`
@@ -69,6 +81,7 @@ export const IngredientsDiv = styled.div`
     padding: 0.2em;
     border: 2px solid ${({theme}) => theme.colors.green};
     border-radius: 5px;
+    
     ul {
         list-style-type: none;
         padding: 0.2em;   

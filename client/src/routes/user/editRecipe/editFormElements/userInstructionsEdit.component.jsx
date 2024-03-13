@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { SingleMeaIngDiv, BottomIngDiv } from "../../createRecipe/userRecipe.styles";
 
 const UserInstructionsEdit = ({instructions, setInstructions}) => {
@@ -6,26 +6,22 @@ const UserInstructionsEdit = ({instructions, setInstructions}) => {
     const objInstructions = Object.assign({}, instructions);
     const maxSteps = 15;
     const [ing, setIng] = useState('');
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(instructions.length);
     const [myIns, setMyIns] = useState(objInstructions);
 
-    useEffect(() => {
-      const objIns = Object.assign({},
-        instructions);
-        setMyIns(objIns);
-    }, [instructions])
-    
+ 
     const handleChange = (e) => {
+      e.preventDefault()
         const {name, value} = e.target;
         setMyIns({...myIns, [name]: value});
         const mainHomeInstructions = Object.values(myIns);
-        setInstructions(mainHomeInstructions)
+        setInstructions(mainHomeInstructions);
     }
     
-    const addCard = (e) => {
+    const addCard = (e, ing) => {
       e.preventDefault();
         if(maxSteps > count){
-          const objIns = Object.assign({},   instructions);
+          const objIns = Object.assign({}, instructions);
             setMyIns(objIns);
             setInstructions([...instructions, ing]);
             setIng('');
@@ -40,13 +36,14 @@ const UserInstructionsEdit = ({instructions, setInstructions}) => {
       const newInstructions = Object.values(myIns).filter((x, i) => {
         return i !== deleteI
       });
-      setMyIns(newInstructions)
+      const newInstructionsObj = Object.assign({}, newInstructions);
+      setMyIns(newInstructionsObj)
       setInstructions(newInstructions)
     }
 
     return ( 
         <>
-        {Object.values(myIns).map((x, idx) => {
+        {Object.values(objInstructions).map((x, idx) => {
             return <SingleMeaIngDiv className="glass" key={idx}>
             <label name={idx}>{idx + 1}</label>
              <input 
@@ -59,12 +56,14 @@ const UserInstructionsEdit = ({instructions, setInstructions}) => {
             </SingleMeaIngDiv>
         })}
          <BottomIngDiv>
-       <input 
-       type="text" 
-       value={ing} 
-       onChange={(e) => setIng(e.target.value)} />
-        <button onClick={addCard}>Add Instruction</button>
-       </BottomIngDiv>
+            <input 
+            type="text" 
+            value={ing} 
+            onChange={(e) => setIng(e.target.value)} />
+              <button onClick={(e) => {
+                addCard(e, ing)
+              }}>Add Instruction</button>
+            </BottomIngDiv>
         </>
      );
 }

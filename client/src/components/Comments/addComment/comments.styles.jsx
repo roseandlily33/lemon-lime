@@ -7,6 +7,13 @@ export const CommentContainer = styled.div`
     align-items: center;
     margin: 1em;
     padding-left: 1em;
+    @media screen and (max-width: 900px){
+        width: 100%;
+        border: 2px solid blue;
+        padding: 0;
+        margin: 0;
+        
+    }
 `;
 
 export const CommentForm = styled.form`
@@ -19,6 +26,12 @@ export const CommentForm = styled.form`
      .button{
         width: 50%;
      }
+     @media screen and (max-width: 900px){
+        width: 100%;
+        border: 2px solid orange;
+        padding-left: 0;
+        padding-inline: 1em;
+    }
 `;
 
 export const FormElement = styled.div`

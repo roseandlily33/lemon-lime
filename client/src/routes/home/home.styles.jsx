@@ -6,8 +6,11 @@ export const MainDiv = styled.main`
     width: 95%;
     height: 90%;
     gap: 1em;
-    @media screen {
-        flex-wrap: wrap-reverse;
+    @media screen and (max-width: 900px){
+        flex-wrap: wrap;
+        border: 2px solid orange;
+        align-items: center;
+        justify-content: center;
     }
     h1{
         text-align: center;
@@ -24,6 +27,10 @@ export const LeftMainDiv = styled.div`
     overflow-y: scroll;
     margin-right: 1em;
     padding: 1em;
+    @media screen and (max-width: 900px){
+        border: 2px solid orange;
+        width: 100%;
+    }
 `;
 
 export const RightMainDiv = styled.div`
@@ -35,5 +42,9 @@ export const RightMainDiv = styled.div`
     align-items: center;
     overflow-y: scroll;
     padding: 1em;
+    @media screen and (max-width: 900px){
+        width: 100%;
+        border: 2px solid orange;
+    }
     
 `;

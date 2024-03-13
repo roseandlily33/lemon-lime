@@ -7,4 +7,11 @@ export const SearchResultsContainer = styled.div`
     height: auto;
     gap: 1em;
     margin-inline: 1em;
+    margin-block: 1em;
+    @media screen and (max-width: 900px){
+        flex-wrap: wrap;
+        border: 2px solid orange;
+        justify-content: center;
+     
+    }
 `;

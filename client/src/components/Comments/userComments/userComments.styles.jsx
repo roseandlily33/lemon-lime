@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const UserCommentsContainer = styled.section`
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     padding-inline: 1em;
@@ -23,6 +23,11 @@ export const SingleCommentDiv = styled.div`
         width: 150px;
         margin-left: 60%;
         margin-right: 80%;
+    }
+    @media screen and (max-width: 900px){
+        flex-wrap: wrap;
+        border: 2px solid orange;
+        width: 90%;
     }
 
 

@@ -30,7 +30,6 @@ const EditRecipe = () => {
     const [measurements, setMeasurements] = useState();
     const [ingredients, setIngredients] = useState();
     const [images, setImages] = useState();
-    console.log('Outside images', images)
     
     if(!user){
         navigate('/');
