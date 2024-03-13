@@ -3,16 +3,6 @@ import { useState } from 'react';
 
 const UserEditPhotos = ({formValues, setFormValues, maxNumber}) => {
     const [img, setImg] = useState();
-    console.log("Form values", formValues, formValues.images);
-   // console.log('Images coming in', images);
-
-    // const setPhotoValues = (e) => {
-    //     console.log('Settting photo', e);
-    //     const newPhoto = e;
-    //     setImg([...img, newPhoto]);
-    //     setFormValues({...formValues, images: img});
-    //     console.log('Final Form for images', formValues)
-    // }
     const [images, setImages] = useState(formValues.images);
       const onChange = (imageList, addUpdateIndex) => {
       setImages(imageList);
@@ -39,12 +29,10 @@ const UserEditPhotos = ({formValues, setFormValues, maxNumber}) => {
             isDragging,
             dragProps,
           }) => {
-            console.log('Img list', imageList)
+           // console.log('Img list', imageList)
             setImg(imageList);
             return (
                 (
-            
-                    // write your building UI
                     <div className="options">
                       <div className='buttonContainer'>
                       <button 
@@ -62,12 +50,19 @@ const UserEditPhotos = ({formValues, setFormValues, maxNumber}) => {
                         console.log('Image list', imageList)
                         console.log('Image', image)
                         return (
-                        
                             <div key={index} className="image-item">
                               <img src={image['data_url']} alt="" width="100" />
                               <div className="image-options">
-                                <button onClick={() => onImageUpdate(index)}>Update</button>
-                                <button onClick={() => onImageRemove(index)}>Remove</button>
+                                <button onClick={(e) => {
+                                    e.preventDefault();
+                                    onImageUpdate(index)
+                                }
+                                }>Update</button>
+                                <button onClick={(e) => {
+                                    e.preventDefault();
+                                    onImageRemove(index)
+                                }
+                                    }>Remove</button>
                               </div>
                             </div>
                           )

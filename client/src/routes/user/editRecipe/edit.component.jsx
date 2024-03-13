@@ -19,6 +19,7 @@ import { ButtonDiv } from './edit.styles';
 import Loader from '../../../components/Loader/loader.component';
 import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
 import UserEditPhotos from './editFormElements/userPhotosEdit';
+import UserInstructionsArray2 from '../editRecipe/editFormElements/userArr2.component';
 
 const EditRecipe = () => {
     const {user} = useAuth0();
@@ -26,6 +27,7 @@ const EditRecipe = () => {
     const {id} = useParams();
     const [formValues, setFormValues] = useState();
     const maxNumber = 4;
+    const [instructions, setInstructions]= useState();
    
     if(!user){
         navigate('/');
@@ -35,6 +37,7 @@ const EditRecipe = () => {
         const fetchSingle = async() => {
             const res = await httpGetFullRecipeWithDetailsEditPage(id);
             setFormValues(res);
+            setInstructions(res.instructions)
         }
         fetchSingle();
     }, [id]);
@@ -94,7 +97,11 @@ const EditRecipe = () => {
     <hr />
     <h2>Instructions</h2>
     <MiddleForm>
-    {formValues.instructions && <UserInstructionsArray formValues={formValues} setFormValues={setFormValues} />}
+    {formValues.instructions && 
+    <UserInstructionsArray2 instructions={instructions} setInstructions={setInstructions} formValues={formValues} setFormValues={setFormValues}/>
+    // <UserInstructionsArray formValues={formValues} setFormValues={setFormValues} />
+    
+    }
     </MiddleForm>
     <PhotosSection>
     <h2>Images <span style={{fontSize: '1rem', fontStyle: 'italic'}}>JPG Only,

@@ -1,28 +1,20 @@
 import { useState } from "react";
 import { SingleMeaIngDiv, BottomIngDiv } from "../../createRecipe/userRecipe.styles";
 
-const UserInstructionsArray = ({formValues, setFormValues}) => {
-
-    const {instructions} = formValues;
+const UserInstructionsArray2 = ({instructions, setInstructions}) => {
     const maxSteps = 15;
     const [ing, setIng] = useState('');
     const [count, setCount] = useState(0);
-    const newInstructions = Object.assign({}, instructions);
-    const [myIns, setMyIns] = useState(newInstructions);
-
+    const [myIns, setMyIns] = useState(instructions);
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        setMyIns({...myIns, [name]: value});
-        const newInsValues = Object.values(myIns);
-        setFormValues({...formValues, instructions: newInsValues});
+        setMyIns([...myIns, ing])
+        setInstructions([...instructions, myIns])
     }
     
     const addCard = (e) => {
       e.preventDefault();
-      console.log('Add e', e)
         if(maxSteps > count){
-            setMyIns({...myIns, ing});
-            console.log('My ins and incoming ins', myIns, ing)
+            setMyIns([...myIns, ing]);
             setIng('');
             setCount(count + 1);
         } else {
@@ -32,21 +24,22 @@ const UserInstructionsArray = ({formValues, setFormValues}) => {
   
     const deleteInstruction = (e, deleteI) => {
       e.preventDefault();
-      const newInstructions = instructions.filter((x, i) => {
+      const newInstructions = myIns.filter((x, i) => {
         return i !== deleteI
-      })
+      });
       setMyIns(newInstructions)
+      setInstructions(newInstructions)
     }
 
     return ( 
         <>
-        {Object.entries(myIns).map((x, idx) => {
+        {myIns.map((x, idx) => {
             return <SingleMeaIngDiv className="glass" key="i">
             <label name={idx}>{idx + 1}</label>
              <input 
                type="text" 
-               name={x[0]}   
-               value={x[1]}
+               name={x}   
+               value={x}
                onChange={handleChange}
              />
              <button onClick={(e) => deleteInstruction(e, idx)}>Delete Instruction</button>
@@ -60,4 +53,4 @@ const UserInstructionsArray = ({formValues, setFormValues}) => {
      );
 }
  
-export default UserInstructionsArray;
+export default UserInstructionsArray2;
