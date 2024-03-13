@@ -1,15 +1,14 @@
 import ImageUploading from 'react-images-uploading';
 import { useState } from 'react';
 
-const UserEditPhotos = ({formValues, setFormValues, maxNumber}) => {
+const UserEditPhotos = ({ maxNumber, images, setImages}) => {
     const [img, setImg] = useState();
-    const [images, setImages] = useState(formValues.images);
+    const [newImages, setNewImages] = useState(images);
       const onChange = (imageList, addUpdateIndex) => {
+      setNewImages(imageList);
       setImages(imageList);
-      setFormValues({...formValues, images: img});
-        console.log('Final Form for images', formValues)
       };
-    
+    console.log('INside photos', images, 'new Images',  newImages, 'img', img)
     return ( 
         <>
         {/* Images  */}
@@ -29,7 +28,6 @@ const UserEditPhotos = ({formValues, setFormValues, maxNumber}) => {
             isDragging,
             dragProps,
           }) => {
-           // console.log('Img list', imageList)
             setImg(imageList);
             return (
                 (
@@ -47,8 +45,6 @@ const UserEditPhotos = ({formValues, setFormValues, maxNumber}) => {
                       </div>
                       <div className='items'>
                       {imageList.map((image, index) => {
-                        console.log('Image list', imageList)
-                        console.log('Image', image)
                         return (
                             <div key={index} className="image-item">
                               <img src={image['data_url']} alt="" width="100" />

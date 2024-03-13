@@ -1,20 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SingleMeaIngDiv, BottomIngDiv } from "../../createRecipe/userRecipe.styles";
 
-const UserInstructionsArray2 = ({instructions, setInstructions}) => {
+const UserInstructionsEdit = ({instructions, setInstructions}) => {
+
+    const objInstructions = Object.assign({}, instructions);
     const maxSteps = 15;
     const [ing, setIng] = useState('');
     const [count, setCount] = useState(0);
-    const [myIns, setMyIns] = useState(instructions);
+    const [myIns, setMyIns] = useState(objInstructions);
+
+    useEffect(() => {
+      const objIns = Object.assign({},
+        instructions);
+        setMyIns(objIns);
+    }, [instructions])
+    
     const handleChange = (e) => {
-        setMyIns([...myIns, ing])
-        setInstructions([...instructions, myIns])
+        const {name, value} = e.target;
+        setMyIns({...myIns, [name]: value});
+        const mainHomeInstructions = Object.values(myIns);
+        setInstructions(mainHomeInstructions)
     }
     
     const addCard = (e) => {
       e.preventDefault();
         if(maxSteps > count){
-            setMyIns([...myIns, ing]);
+          const objIns = Object.assign({},   instructions);
+            setMyIns(objIns);
+            setInstructions([...instructions, ing]);
             setIng('');
             setCount(count + 1);
         } else {
@@ -24,7 +37,7 @@ const UserInstructionsArray2 = ({instructions, setInstructions}) => {
   
     const deleteInstruction = (e, deleteI) => {
       e.preventDefault();
-      const newInstructions = myIns.filter((x, i) => {
+      const newInstructions = Object.values(myIns).filter((x, i) => {
         return i !== deleteI
       });
       setMyIns(newInstructions)
@@ -33,12 +46,12 @@ const UserInstructionsArray2 = ({instructions, setInstructions}) => {
 
     return ( 
         <>
-        {myIns.map((x, idx) => {
-            return <SingleMeaIngDiv className="glass" key="i">
+        {Object.values(myIns).map((x, idx) => {
+            return <SingleMeaIngDiv className="glass" key={idx}>
             <label name={idx}>{idx + 1}</label>
              <input 
                type="text" 
-               name={x}   
+               name={idx}   
                value={x}
                onChange={handleChange}
              />
@@ -46,11 +59,14 @@ const UserInstructionsArray2 = ({instructions, setInstructions}) => {
             </SingleMeaIngDiv>
         })}
          <BottomIngDiv>
-       <input type="text" value={ing} onChange={(e) => setIng(e.target.value)} />
+       <input 
+       type="text" 
+       value={ing} 
+       onChange={(e) => setIng(e.target.value)} />
         <button onClick={addCard}>Add Instruction</button>
        </BottomIngDiv>
         </>
      );
 }
  
-export default UserInstructionsArray2;
+export default UserInstructionsEdit;

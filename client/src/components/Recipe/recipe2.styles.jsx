@@ -14,9 +14,11 @@ export const SideContainer = styled.div`
     margin-top: 1em;
     .recipePhoto{
         margin-top: 0.2em;
-        height: 150px;
         width: 250px;
         border-radius: 5px;
+        height: 100%;
+        max-height: 150px;
+        min-height: 150px;
     }
 `;
 

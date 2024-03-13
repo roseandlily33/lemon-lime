@@ -11,15 +11,14 @@ import RecipeName from '../createRecipe/recipeFormElements/userRecipeName.compon
 import CookTime from '../createRecipe/recipeFormElements/userCookTime.component';
 import PrepTime from '../createRecipe/recipeFormElements/userPrepTime.component';
 import SubCategory from '../createRecipe/recipeFormElements/userSubCategory.component';
-import UserInstructionsArray from './editFormElements/userArrInstructions.component';
-import UserIngredientsArray from './editFormElements/userArrIngredients';
+import UserEditPhotos from './editFormElements/userPhotosEdit';
+import UserInstructionsEdit from './editFormElements/userInstructionsEdit.component';
+import UserIngredientsEdit from './editFormElements/UserIngredientsEdit.component';
 //Styles
 import { CreateRecipeForm, TopForm, MiddleForm, LeftDiv, RightDiv, PhotosSection} from '../createRecipe/userRecipe.styles';
 import { ButtonDiv } from './edit.styles';
 import Loader from '../../../components/Loader/loader.component';
 import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
-import UserEditPhotos from './editFormElements/userPhotosEdit';
-import UserInstructionsArray2 from '../editRecipe/editFormElements/userArr2.component';
 
 const EditRecipe = () => {
     const {user} = useAuth0();
@@ -28,7 +27,11 @@ const EditRecipe = () => {
     const [formValues, setFormValues] = useState();
     const maxNumber = 4;
     const [instructions, setInstructions]= useState();
-   
+    const [measurements, setMeasurements] = useState();
+    const [ingredients, setIngredients] = useState();
+    const [images, setImages] = useState();
+    console.log('Outside images', images)
+    
     if(!user){
         navigate('/');
     }
@@ -37,7 +40,10 @@ const EditRecipe = () => {
         const fetchSingle = async() => {
             const res = await httpGetFullRecipeWithDetailsEditPage(id);
             setFormValues(res);
-            setInstructions(res.instructions)
+            setInstructions(res.instructions);
+            setMeasurements(res.measurements);
+            setIngredients(res.ingredients);
+            setImages(res.images);
         }
         fetchSingle();
     }, [id]);
@@ -50,18 +56,18 @@ const EditRecipe = () => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
-        let newInstructions = Object.values(formValues.instructions); 
-        let newIngredients = Object.values(formValues.ingredients); 
-        let newMeasurements = Object.values(formValues.measurements);
         let newRecipeName = formValues.recipeName.toLowerCase();
         let totalSending = Object.assign(formValues, {
-          instructions: newInstructions,
-          ingredients: newIngredients,
-          measurements: newMeasurements,
+          instructions: instructions,
+          ingredients: ingredients,
+          measurements: measurements,
           totalTime: totalTime,
-          recipeName: newRecipeName
-        })
+          recipeName: newRecipeName,
+          images: images
+        });
+        console.log('Total Sending to the server', totalSending);
        const response = await httpEditUserRecipe(id, totalSending);
+       console.log('Resoonse frond the server', response);
        const success = response.ok;
        if (success) {
         alert('Success')
@@ -91,23 +97,20 @@ const EditRecipe = () => {
     <hr/>
     <h2>Ingredients</h2>
     <MiddleForm>
-        {/* {formValues.measurements && <UserArrayMeasurements formValues={formValues} handleChange={handleChange} setFormValues={setFormValues}/>} */}
-        {formValues.ingredients && <UserIngredientsArray formValues={formValues} setFormValues={setFormValues} />}
+      <UserIngredientsEdit measurements={measurements} setMeasurements={setMeasurements} ingredients={ingredients} setIngredients={setIngredients} />
     </MiddleForm>
     <hr />
     <h2>Instructions</h2>
     <MiddleForm>
     {formValues.instructions && 
-    <UserInstructionsArray2 instructions={instructions} setInstructions={setInstructions} formValues={formValues} setFormValues={setFormValues}/>
-    // <UserInstructionsArray formValues={formValues} setFormValues={setFormValues} />
-    
+    <UserInstructionsEdit instructions={instructions} setInstructions={setInstructions} formValues={formValues} setFormValues={setFormValues}/>
     }
     </MiddleForm>
     <PhotosSection>
     <h2>Images <span style={{fontSize: '1rem', fontStyle: 'italic'}}>JPG Only,
       max of 4 images <br />
       Image size displayed here is the actual size </span></h2>
-      <UserEditPhotos formValues={formValues} setFormValues={setFormValues} maxNumber={maxNumber}/>
+      <UserEditPhotos images={images} setImages={setImages} maxNumber={maxNumber}/>
     </PhotosSection>
     <ButtonDiv>
     <button onClick={handleSubmit}>Update Recipe</button>
