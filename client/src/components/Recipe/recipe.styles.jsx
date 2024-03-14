@@ -10,6 +10,10 @@ export const RecipeCont = styled.div`
     align-items: center;
     border-radius: 5px;
     margin-block: 0.7em;
+    @media screen and (max-width: 500px){
+        gap: 1em;
+        flex-wrap: wrap;
+    }
 
     h4{
         margin-top: 0.1em;
@@ -27,12 +31,27 @@ export const RecipeCont = styled.div`
 export const TopLabel = styled.div`
         display: flex;
         align-items: center;   
+        @media screen and (max-width: 500px){
+        gap: 1em;
+        flex-wrap: wrap;
+        width: 100%;
+    }
 `;
 
 export const LeftContainer = styled.div`
     width: 50%;
+    @media screen and (max-width: 500px){
+        gap: 1em;
+        width: 100%;
+        flex-wrap: wrap;
+    }
 `;
 
 export const RightContainer = styled.div`
     width: 50%;
+    @media screen and (max-width: 500px){
+        gap: 1em;
+        width: 100%;
+        display: flex;  
+    }
 `;

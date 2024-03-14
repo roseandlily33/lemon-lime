@@ -41,7 +41,7 @@ const UserEditPhotos = ({ maxNumber, images, setImages}) => {
                         Click or Drop here
                       </button>
                       &nbsp;
-                      <button onClick={onImageRemoveAll}>Remove all images</button>
+                      <button className="secondaryButton" onClick={onImageRemoveAll}>Remove all images</button>
                       </div>
                       <div className='items'>
                       {imageList.map((image, index) => {
@@ -54,7 +54,7 @@ const UserEditPhotos = ({ maxNumber, images, setImages}) => {
                                     onImageUpdate(index)
                                 }
                                 }>Update</button>
-                                <button onClick={(e) => {
+                                <button className="secondaryButton" onClick={(e) => {
                                     e.preventDefault();
                                     onImageRemove(index)
                                 }

@@ -26,7 +26,6 @@ export const SingleCommentDiv = styled.div`
     }
     @media screen and (max-width: 900px){
         flex-wrap: wrap;
-        border: 2px solid orange;
         width: 90%;
     }
 

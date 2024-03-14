@@ -15,8 +15,8 @@ import UserEditPhotos from './editFormElements/userPhotosEdit';
 import UserInstructionsEdit from './editFormElements/userInstructionsEdit.component';
 import UserIngredientsEdit from './editFormElements/UserIngredientsEdit.component';
 //Styles
-import { CreateRecipeForm, TopForm, MiddleForm, LeftDiv, RightDiv, PhotosSection} from '../createRecipe/userRecipe.styles';
-import { ButtonDiv } from './edit.styles';
+import { CreateRecipeForm} from '../createRecipe/userRecipe.styles';
+import { ButtonDiv, TopFormEdit, LeftDivEdit, RightDivEdit, MiddleFormEdit,  PhotosSectionEdit } from './edit.styles';
 import Loader from '../../../components/Loader/loader.component';
 import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
 
@@ -82,35 +82,36 @@ const EditRecipe = () => {
      :
      <CreateRecipeForm>
     <h1>Edit Recipe</h1>
-     <TopForm> 
-    <LeftDiv>
+     <TopFormEdit> 
+    <LeftDivEdit>
     <RecipeName formValues={formValues} handleChange={handleChange}/>
     <PrepTime formValues={formValues} handleChange={handleChange} />
     <CookTime formValues={formValues} handleChange={handleChange} />
     <SubCategory formValues={formValues} handleChange={handleChange} />
-    </LeftDiv>
-    <RightDiv>
+    </LeftDivEdit>
+    <RightDivEdit>
       <img src={CookingIllustration} alt="Cooking Illustration" className="cooking-image"/>
-      </RightDiv>
-    </TopForm>
+      </RightDivEdit>
+    </TopFormEdit>
     <hr/>
     <h2>Ingredients</h2>
-    <MiddleForm>
+    <MiddleFormEdit>
       <UserIngredientsEdit measurements={measurements} setMeasurements={setMeasurements} ingredients={ingredients} setIngredients={setIngredients} />
-    </MiddleForm>
+    </MiddleFormEdit>
     <hr />
-    <h2>Instructions</h2>
-    <MiddleForm>
+    <h2 style={{marginBottom: '0.7rem'}}>Instructions</h2>
+    <MiddleFormEdit>
     {formValues.instructions && 
     <UserInstructionsEdit instructions={instructions} setInstructions={setInstructions} formValues={formValues} setFormValues={setFormValues}/>
     }
-    </MiddleForm>
-    <PhotosSection>
+    </MiddleFormEdit>
+    <hr />
+    <PhotosSectionEdit>
     <h2>Images <span style={{fontSize: '1rem', fontStyle: 'italic'}}>JPG Only,
       max of 4 images <br />
       Image size displayed here is the actual size </span></h2>
       <UserEditPhotos images={images} setImages={setImages} maxNumber={maxNumber}/>
-    </PhotosSection>
+    </PhotosSectionEdit>
     <ButtonDiv>
     <button onClick={handleSubmit}>Update Recipe</button>
     <DeleteRecipe id={id} />

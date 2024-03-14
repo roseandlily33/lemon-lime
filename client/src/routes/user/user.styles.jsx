@@ -6,9 +6,7 @@ export const UserContainer = styled.div`
     text-align: center;
     display: flex;
     flex-direction: column;
-    @media screen and (max-width: 900px){
 
-    }
 `;
 export const UserRecipesContainer = styled.div`
     width: 100%;
@@ -20,7 +18,6 @@ export const UserRecipesContainer = styled.div`
     flex-wrap: wrap;
     @media screen and (max-width: 900px){
         flex-wrap: wrap;
-        border: 2px solid orange;
         align-items: center;
         justify-content: center;
     }
@@ -36,7 +33,6 @@ export const UserOptionsContainer = styled.div`
         flex-wrap: wrap;
         flex-direction: column;
         gap: 0.4em;
-        border: 2px solid orange;
     }
     h1{
         color: ${({theme}) => theme.colors.green};

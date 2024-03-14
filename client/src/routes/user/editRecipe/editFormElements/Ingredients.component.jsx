@@ -1,10 +1,10 @@
+import { IngredientsDivEdit } from "../edit.styles";
 
 const EditIngredients = ({handleChangeIng, deleteIngredient, objIngredinets}) => {
     return ( 
-
         <>
          {Object.values(objIngredinets)?.map((x, idx)=> {
-         return  <div key={idx}>
+         return  <IngredientsDivEdit key={idx}>
          <label name={idx}></label>
           <input 
           type="text" 
@@ -12,11 +12,9 @@ const EditIngredients = ({handleChangeIng, deleteIngredient, objIngredinets}) =>
           value={x}
           onChange={handleChangeIng} 
           />
-         <button onClick={(e) => deleteIngredient(e, idx)}>Remove Ingredient</button>
-         </div>
+         <button className="secondaryButton" onClick={(e) => deleteIngredient(e, idx)}>Remove Ingredient</button>
+         </IngredientsDivEdit>
        })}
-        
-
         </>
      );
 }

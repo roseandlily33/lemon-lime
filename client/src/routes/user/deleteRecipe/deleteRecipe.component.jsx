@@ -29,7 +29,7 @@ const DeleteRecipe = ({id}) => {
         <button onClick={() => deleteRecipe(id)}></button>
     </Modal>
     )} */}
-    <button onClick={() => {deleteRecipe(id)}}>Delete Recipe</button> 
+    <button className="secondaryButton" onClick={() => {deleteRecipe(id)}}>Delete Recipe</button> 
     </>);
 }
  

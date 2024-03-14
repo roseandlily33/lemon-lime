@@ -1,11 +1,11 @@
-import { SingleMeaIngDiv } from "../../createRecipe/userRecipe.styles";
+import { SingleMeaIngDivEdit } from '../edit.styles';
 
 const MeasurementsEdit = ({objMeasurements, handleChangeMea}) => {
     return ( 
         <>
          {
              Object.values(objMeasurements)?.map((x,idx) => {
-                 return <SingleMeaIngDiv className="glass" key={idx}> 
+                 return <SingleMeaIngDivEdit className="glass" key={idx}> 
              <h3>{idx + 1}</h3>
            <label name={idx}></label>
            <select name={x[0]} defaultValue={x} onChange={handleChangeMea}>
@@ -38,7 +38,7 @@ const MeasurementsEdit = ({objMeasurements, handleChangeMea}) => {
            <option value={x['3 3/4 Cup']}>3 3/4 Cup</option>
            <option value={x['4 Cups']}>4 Cups</option>
          </select>
-             </SingleMeaIngDiv>
+             </SingleMeaIngDivEdit>
              })
          }
         </>

@@ -1,6 +1,5 @@
 import { useState} from "react";
-import { SingleMeaIngDiv, BottomIngDiv } from "../../createRecipe/userRecipe.styles";
-
+import {SingleMeaIngDivEdit, BottomIngDivEdit, InstructionsEdit} from '../edit.styles';
 const UserInstructionsEdit = ({instructions, setInstructions}) => {
 
     const objInstructions = Object.assign({}, instructions);
@@ -43,8 +42,9 @@ const UserInstructionsEdit = ({instructions, setInstructions}) => {
 
     return ( 
         <>
+        <InstructionsEdit className="glass">
         {Object.values(objInstructions).map((x, idx) => {
-            return <SingleMeaIngDiv className="glass" key={idx}>
+            return <div  key={idx}>
             <label name={idx}>{idx + 1}</label>
              <input 
                type="text" 
@@ -52,10 +52,13 @@ const UserInstructionsEdit = ({instructions, setInstructions}) => {
                value={x}
                onChange={handleChange}
              />
-             <button onClick={(e) => deleteInstruction(e, idx)}>Delete Instruction</button>
-            </SingleMeaIngDiv>
+            {/* <div className="mobileRight"> */}
+            <button className="secondaryButton" onClick={(e) => deleteInstruction(e, idx)}>Delete Instruction</button>
+            {/* </div> */}
+            </div>
         })}
-         <BottomIngDiv>
+        </InstructionsEdit>
+         <BottomIngDivEdit>
             <input 
             type="text" 
             value={ing} 
@@ -63,7 +66,7 @@ const UserInstructionsEdit = ({instructions, setInstructions}) => {
               <button onClick={(e) => {
                 addCard(e, ing)
               }}>Add Instruction</button>
-            </BottomIngDiv>
+            </BottomIngDivEdit>
         </>
      );
 }

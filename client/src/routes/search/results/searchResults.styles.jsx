@@ -10,7 +10,6 @@ export const SearchResultsContainer = styled.div`
     margin-block: 1em;
     @media screen and (max-width: 900px){
         flex-wrap: wrap;
-        border: 2px solid orange;
         justify-content: center;
      
     }
