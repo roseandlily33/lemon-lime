@@ -11,7 +11,6 @@ const RecipeComments = ({id}) => {
        const fetchComments = async() => {
         const res = await httpGetAllCommentsForRecipe(id);
         setComments(res);
-        console.log('All the comments', res);
        }
        fetchComments();
     }, [id]);

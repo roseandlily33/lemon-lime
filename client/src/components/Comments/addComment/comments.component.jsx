@@ -22,13 +22,11 @@ const Comment = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log('Submititng result')
         let totalComment = Object.assign(formState,{
             rating: starRating,
             author: user.sub,
             recipe: id
         });
-        console.log('TOTAL', totalComment);
         let res = await httpAddComment(totalComment);
         if(res.ok){
             alert('Comment has been created')

@@ -6,7 +6,6 @@ import { httpDeleteFavoriteRecipe } from '../../hooks/userRequests';
 const DeleteHeart = ({id}) => {
     const {user} = useAuth0();
     const deleteFavorite = async(id) => {
-        console.log('Deleting recipe', id)
        let res = await httpDeleteFavoriteRecipe(user.sub, id);
        if(res.ok){
         alert('Recipe has been removed from your favorites')
