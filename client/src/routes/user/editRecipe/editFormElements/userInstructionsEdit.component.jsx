@@ -32,9 +32,10 @@ const UserInstructionsEdit = ({instructions, setInstructions}) => {
 
     return ( 
         <>
+       
         <InstructionsEdit className="glass">
-        {instructions.map(({id, ins}, idx) => (
-            <EachInstruction idx={idx} id={id} ins={ins} deleteIngredient={deleteIngredient} setInstructions={setInstructions} instructions={instructions} />
+        {instructions.map((ins, idx) => (
+            <EachInstruction idx={idx} id={ins.id} ins={ins.ins} deleteIngredient={deleteIngredient} setInstructions={setInstructions} instructions={instructions} />
         ))}
         </InstructionsEdit>
          <BottomIngDivEdit>

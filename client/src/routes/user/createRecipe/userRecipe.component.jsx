@@ -32,12 +32,6 @@ const CreateRecipe = () => {
       const addNewIngredient = (ing) => {
         setIngredients([...ingredients, ing])
       }
-      
-      // const [measurements, setMeasurements] = useState([]);
-      // const addNewMeasurement = (mea) => {
-      //   console.log('Adding measurement in', mea)
-      //     setMeasurements([...measurements, mea]);
-      // }
      
       const [instructions, setInstructions] = useState([])
       const addNewInstruction = (ins) => {
@@ -58,7 +52,6 @@ const CreateRecipe = () => {
         let totalSending = Object.assign(formValues, {
           instructions: instructions,
           ingredients: ingredients,
-          // measurements: measurements,
           totalTime: totalTime,
           recipeName: newRecipeName,
           images: images
@@ -79,7 +72,6 @@ const CreateRecipe = () => {
       });
         setIngredients([]);
         setInstructions([]);
-       // setMeasurements([]);
       };
     return (
     <>

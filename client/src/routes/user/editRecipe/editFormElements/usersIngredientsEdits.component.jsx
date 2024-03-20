@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { BottomIngDivEdit, InstructionsEdit, TopIngDivEdit, SingleMeaIngDivEdit } from "../edit.styles";
 import EachMeasurement from "./EachMeasurements.component";
 
-const UserIngredientEdit = ({measurements, setMeasurements, ingredients, setIngredients}) => {
+const UserIngredientEdit = ({ingredients, setIngredients}) => {
 
     const maxSteps = 15;
     const [ing, setIng] = useState('');
@@ -15,7 +15,7 @@ const UserIngredientEdit = ({measurements, setMeasurements, ingredients, setIngr
     const addCard = (e, ing) => {
         e.preventDefault();
           if(maxSteps > count){
-             const newIng = {id: uuidv4(), ing: ing};
+             const newIng = {id: uuidv4(), ing: ing, mea: mea};
              console.log('The new Ing', newIng)
               setIngredients([...ingredients, newIng]);
               setIng('');
@@ -39,8 +39,8 @@ const UserIngredientEdit = ({measurements, setMeasurements, ingredients, setIngr
          <TopIngDivEdit>
          <SingleMeaIngDivEdit className="glass">
           <div className="outerLeft">  
-           {measurements?.map((x,idx) => {
-               return <EachMeasurement x={x} idx={idx}/>
+           {ingredients.map(({id, mea},idx) => {
+               return <EachMeasurement id={id} mea={mea} idx={idx} />
              }) 
          }
          </div>

@@ -12,6 +12,7 @@ import Carousel from "./singleRecipeCarousel.component";
 const SingleRecipe = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
+    console.log('Single Recipe', singleRecipe)
     const [usersName, setUsersName] = useState();
     useEffect(() => {
       const fetchSingle = async() => {
@@ -49,16 +50,16 @@ const SingleRecipe = () => {
   
         <IngredientsDiv>
         <ul>
-          {singleRecipe?.measurements.map((item, index) => {
-            return <div style={{display: 'flex'}}>
+          {singleRecipe.ingredients.map(({id, ing,mea}, index) => {
+            return <div style={{display: 'flex'}} key={id}>
             <li style={{paddingRight: '1em', color: 'green', listStyleType: 'none'}}>{index + 1}</li>
-            <li style={{listStyleType: 'none'}}>{item}</li>
+            <li style={{listStyleType: 'none'}}>{mea}</li>
             </div>
           })}
         </ul>
         <ul>
-        {singleRecipe?.ingredients.map(item => {
-            return <li style={{listStyleType: 'none'}}>{item}</li>
+        {singleRecipe.ingredients?.map(({id, ing}) => {
+            return <li key={id} style={{listStyleType: 'none'}}>{ing}</li>
         })
         }
         </ul>  
@@ -70,7 +71,7 @@ const SingleRecipe = () => {
         <h2>Instructions</h2>
         <ol>
         {singleRecipe?.instructions.map((item) => {
-        return <li>{item}</li>
+        return <li>{item.ins}</li>
         })}
         </ol>
         </Bottom>

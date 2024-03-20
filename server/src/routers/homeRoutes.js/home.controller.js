@@ -18,7 +18,7 @@ async function httpGetAllRecipes(req, res){
    console.log('GETTING ALL THE RECIPES')
    try{
     let allRecipes = await Recipe.find({}, {
-        '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'measurements': 0
+        '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 
     }).sort({createdAt: -1}).limit(6);
     return res.status(200).json(allRecipes)
    } catch(err){
@@ -31,7 +31,7 @@ async function httpGetPopularRecipes(req, res){
     console.log('GETTING ALL THE POPULAR RECIPES')
     try{
         let faveRecipes = await Recipe.find({}, {
-            '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'measurements': 0
+            '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 
         }).sort({favorites: -1}).limit(6);
          return res.status(200).json(faveRecipes);
     }catch(err){

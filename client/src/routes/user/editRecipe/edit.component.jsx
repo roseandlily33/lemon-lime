@@ -27,7 +27,6 @@ const EditRecipe = () => {
     const [formValues, setFormValues] = useState();
     const maxNumber = 4;
     const [instructions, setInstructions]= useState();
-    const [measurements, setMeasurements] = useState();
     const [ingredients, setIngredients] = useState();
     const [images, setImages] = useState();
 
@@ -40,7 +39,6 @@ const EditRecipe = () => {
             const res = await httpGetFullRecipeWithDetailsEditPage(id);
             setFormValues(res);
             setInstructions(res.instructions);
-            setMeasurements(res.measurements);
             setIngredients(res.ingredients);
             setImages(res.images);
         }
@@ -59,7 +57,6 @@ const EditRecipe = () => {
         let totalSending = Object.assign(formValues, {
           instructions: instructions,
           ingredients: ingredients,
-          measurements: measurements,
           totalTime: totalTime,
           recipeName: newRecipeName,
           images: images
@@ -96,7 +93,7 @@ const EditRecipe = () => {
     <hr/>
     <h2>Ingredients</h2>
     <MiddleFormEdit>
-      <UserIngredientEdit measurements={measurements} setMeasurements={setMeasurements} ingredients={ingredients} setIngredients={setIngredients} />
+      <UserIngredientEdit ingredients={ingredients} setIngredients={setIngredients} />
     </MiddleFormEdit>
     <hr />
     <h2 style={{marginBottom: '0.7rem'}}>Instructions</h2>

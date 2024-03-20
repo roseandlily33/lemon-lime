@@ -34,14 +34,15 @@ const UserInstructions = ({instructions, addNewInstruction, setInstructions}) =>
         <TopIngDiv>
           {instructions ? 
           <>
-          {instructions.map(({id, ins}, i) => {
-              return <SingleMeaIngDiv className="glass" key={id}>
-                <div>
-                <h4>{i + 1}</h4>
-                <p>{ins}</p>
+          {instructions.map((ins, idx) => {
+            console.log('Instructions', ins , idx)
+              return <SingleMeaIngDiv className="glass">
+                <div key={ins.id}>
+                <h4>{ins.id + 1}</h4>
+                <p>{ins.ins}</p>
                 </div>
                 <div>
-                <button onClick={(e) => deleteInstruction(e, i)}>Delete Instruction</button>
+                <button onClick={(e) => deleteInstruction(e, ins.id)}>Delete Instruction</button>
                 </div>
               </SingleMeaIngDiv>
             })
