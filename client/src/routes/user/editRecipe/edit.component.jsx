@@ -30,6 +30,8 @@ const EditRecipe = () => {
     const [measurements, setMeasurements] = useState();
     const [ingredients, setIngredients] = useState();
     const [images, setImages] = useState();
+
+   
     
     if(!user){
         navigate('/');
@@ -75,6 +77,12 @@ const EditRecipe = () => {
           alert('Failure')
          }
       };
+      const setMyInstructions = (ins) => {
+        console.log('Deleting', ins)
+        setInstructions(prev => prev.filter(({id}) => {
+          return ins !== id
+        }))
+      }
 
     return ( <>
     {!formValues ?
@@ -102,7 +110,7 @@ const EditRecipe = () => {
     <h2 style={{marginBottom: '0.7rem'}}>Instructions</h2>
     <MiddleFormEdit>
     {formValues.instructions && 
-    <UserInstructionsEdit instructions={instructions} setInstructions={setInstructions} formValues={formValues} setFormValues={setFormValues}/>
+    <UserInstructionsEdit instructions={instructions} setInstructions={setInstructions} setMyInstructions={setMyInstructions} />
     }
     </MiddleFormEdit>
     <hr />

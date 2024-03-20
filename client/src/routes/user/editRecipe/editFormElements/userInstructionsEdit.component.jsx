@@ -1,28 +1,19 @@
 import { useState} from "react";
 import {SingleMeaIngDivEdit, BottomIngDivEdit, InstructionsEdit} from '../edit.styles';
-const UserInstructionsEdit = ({instructions, setInstructions}) => {
+import EachInstruction from "./EachInstruction.component";
+import { v4 as uuidv4 } from 'uuid';
 
-    const objInstructions = Object.assign({}, instructions);
+const UserInstructionsEdit = ({instructions, setInstructions, setMyInstructions}) => {
+
     const maxSteps = 15;
     const [ing, setIng] = useState('');
     const [count, setCount] = useState(instructions.length);
-    const [myIns, setMyIns] = useState(objInstructions);
-
- 
-    const handleChange = (e) => {
-      e.preventDefault()
-        const {name, value} = e.target;
-        setMyIns({...myIns, [name]: value});
-        const mainHomeInstructions = Object.values(myIns);
-        setInstructions(mainHomeInstructions);
-    }
     
     const addCard = (e, ing) => {
       e.preventDefault();
         if(maxSteps > count){
-          const objIns = Object.assign({}, instructions);
-            setMyIns(objIns);
-            setInstructions([...instructions, ing]);
+           const newIns = {id: uuidv4(), ins: ing};
+            setInstructions([...instructions, newIns]);
             setIng('');
             setCount(count + 1);
         } else {
@@ -30,33 +21,21 @@ const UserInstructionsEdit = ({instructions, setInstructions}) => {
         }
     }
   
-    const deleteInstruction = (e, deleteI) => {
+    const deleteInstruction = (e, idx)=> {
       e.preventDefault();
-      const newInstructions = Object.values(myIns).filter((x, i) => {
-        return i !== deleteI
+      const newArray = instructions.filter(({id}) => {
+        return idx !== id
       });
-      const newInstructionsObj = Object.assign({}, newInstructions);
-      setMyIns(newInstructionsObj)
-      setInstructions(newInstructions)
+      setInstructions(newArray);
     }
 
+    console.log('Instructions total', instructions)
     return ( 
         <>
         <InstructionsEdit className="glass">
-        {Object.values(objInstructions).map((x, idx) => {
-            return <div  key={idx}>
-            <label name={idx}>{idx + 1}</label>
-             <input 
-               type="text" 
-               name={idx}   
-               value={x}
-               onChange={handleChange}
-             />
-            {/* <div className="mobileRight"> */}
-            <button className="secondaryButton" onClick={(e) => deleteInstruction(e, idx)}>Delete Instruction</button>
-            {/* </div> */}
-            </div>
-        })}
+        {instructions.map(({id, ins}, idx) => (
+            <EachInstruction idx={idx} id={id} ins={ins} deleteInstruction={deleteInstruction} setInstructions={setInstructions} instructions={instructions} />
+        ))}
         </InstructionsEdit>
          <BottomIngDivEdit>
             <input 

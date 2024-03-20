@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TopIngDiv, BottomIngDiv, SingleMeaIngDiv } from "../userRecipe.styles";
+import { v4 as uuidv4 } from 'uuid';
 
 const IngredientsAndMeasurements = ({ measurements, addNewMeasurement, ingredients, addNewIngredient, setIngredients, setMeasurements}) => {
 
@@ -11,7 +12,8 @@ const IngredientsAndMeasurements = ({ measurements, addNewMeasurement, ingredien
     const addCard = (e) => {
       e.preventDefault();
         if(maxSteps > count){
-            addNewIngredient(ing);
+            const newIng = {id: uuidv4(), ing: ing};
+            addNewIngredient(newIng);
             addNewMeasurement(measurement);
             setIng('');
             setCount(count + 1);
@@ -33,6 +35,8 @@ const IngredientsAndMeasurements = ({ measurements, addNewMeasurement, ingredien
         setMeasurements(removed);
         setIngredients(removed2);
     }
+
+    console.log('INGREDIENTS', ingredients)
     return (  
         <>
         {measurements ? 
@@ -43,7 +47,7 @@ const IngredientsAndMeasurements = ({ measurements, addNewMeasurement, ingredien
                     <div>
                     <h4>{i + 1}</h4>
                     <p>{m}</p>
-                    <p>{ingredients.at(i)}</p>
+                    <p>{ingredients[i].ing}</p>
                     </div>
                     <div>
                     <button onClick={(e) => removeIngredient(e, i)}>Remove Ingredient</button>

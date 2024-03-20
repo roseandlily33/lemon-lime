@@ -72,6 +72,7 @@ const UserIngredientsEdit = ({measurements, ingredients, setMeasurements, setIng
 
     return ( 
         < >
+        <h1>Opt 2</h1>
         {measurements ? 
          <TopIngDivEdit>
           {/* <MeasurementsEdit objMeasurements={objMeasurements} handleChangeMea={handleChangeMea}/>

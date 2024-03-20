@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { SingleMeaIngDiv, MiddleForm, TopIngDiv, BottomIngDiv } from '../userRecipe.styles';
+import { v4 as uuidv4 } from 'uuid';
 
 const UserInstructions = ({instructions, addNewInstruction, setInstructions}) => {
 
   const maxSteps = 15;
-  const [ing, setIng] = useState('');
+  const [ins, setIns] = useState('');
   const [count, setCount] = useState(0);
 
   const addCard = (e) => {
     e.preventDefault();
       if(maxSteps > count){
-          addNewInstruction(ing);
-          setIng('');
+          const newIns = {id: uuidv4(), ins: ins};
+
+          addNewInstruction(newIns);
+          setIns('');
           setCount(count + 1);
       } else {
           alert('Cannot add more cards');
@@ -32,8 +35,8 @@ const UserInstructions = ({instructions, addNewInstruction, setInstructions}) =>
         <TopIngDiv>
           {instructions ? 
           <>
-          {instructions.map((ins, i) => {
-              return <SingleMeaIngDiv className="glass" key="i">
+          {instructions.map(({id, ins}, i) => {
+              return <SingleMeaIngDiv className="glass" key={id}>
                 <div>
                 <h4>{i + 1}</h4>
                 <p>{ins}</p>
@@ -50,7 +53,7 @@ const UserInstructions = ({instructions, addNewInstruction, setInstructions}) =>
           }
         </TopIngDiv>
        <BottomIngDiv>
-       <input type="text" value={ing} onChange={(e) => setIng(e.target.value)} />
+       <input type="text" value={ins} onChange={(e) => setIns(e.target.value)} />
         <button onClick={addCard}>Add Card</button>
        </BottomIngDiv>
        </MiddleForm>
