@@ -3,7 +3,8 @@ import {SingleMeaIngDivEdit, BottomIngDivEdit, InstructionsEdit} from '../edit.s
 import EachInstruction from "./EachInstruction.component";
 import { v4 as uuidv4 } from 'uuid';
 
-const UserInstructionsEdit = ({instructions, setInstructions, setMyInstructions}) => {
+
+const UserInstructionsEdit = ({instructions, setInstructions}) => {
 
     const maxSteps = 15;
     const [ing, setIng] = useState('');
@@ -21,7 +22,7 @@ const UserInstructionsEdit = ({instructions, setInstructions, setMyInstructions}
         }
     }
   
-    const deleteInstruction = (e, idx)=> {
+    const deleteIngredient = (e, idx)=> {
       e.preventDefault();
       const newArray = instructions.filter(({id}) => {
         return idx !== id
@@ -29,12 +30,11 @@ const UserInstructionsEdit = ({instructions, setInstructions, setMyInstructions}
       setInstructions(newArray);
     }
 
-    console.log('Instructions total', instructions)
     return ( 
         <>
         <InstructionsEdit className="glass">
         {instructions.map(({id, ins}, idx) => (
-            <EachInstruction idx={idx} id={id} ins={ins} deleteInstruction={deleteInstruction} setInstructions={setInstructions} instructions={instructions} />
+            <EachInstruction idx={idx} id={id} ins={ins} deleteIngredient={deleteIngredient} setInstructions={setInstructions} instructions={instructions} />
         ))}
         </InstructionsEdit>
          <BottomIngDivEdit>

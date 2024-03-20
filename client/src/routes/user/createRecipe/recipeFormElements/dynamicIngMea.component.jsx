@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TopIngDiv, BottomIngDiv, SingleMeaIngDiv } from "../userRecipe.styles";
 import { v4 as uuidv4 } from 'uuid';
 
-const IngredientsAndMeasurements = ({ measurements, addNewMeasurement, ingredients, addNewIngredient, setIngredients, setMeasurements}) => {
+const IngredientsAndMeasurements = ({ ingredients, addNewIngredient, setIngredients}) => {
 
     const maxSteps = 15;
     const [ing, setIng] = useState('');
@@ -12,9 +12,8 @@ const IngredientsAndMeasurements = ({ measurements, addNewMeasurement, ingredien
     const addCard = (e) => {
       e.preventDefault();
         if(maxSteps > count){
-            const newIng = {id: uuidv4(), ing: ing};
+            const newIng = {id: uuidv4(), ing: ing, mea: measurement};
             addNewIngredient(newIng);
-            addNewMeasurement(measurement);
             setIng('');
             setCount(count + 1);
         } else {
@@ -23,43 +22,31 @@ const IngredientsAndMeasurements = ({ measurements, addNewMeasurement, ingredien
     }
     const removeIngredient = (e, index) => {
         e.preventDefault();
-        console.log('Removing at index', index);
-        let removed = measurements.filter((_, i) => {
-           return i !== index;
-        });
-        console.log('Removed array measurements', removed);
-        let removed2 = ingredients.filter((_, i) => {
-            return i !== index;
+        let removed2 = ingredients.filter(({id}) => {
+            return id !== index;
          });
-         console.log('Removed array ingredients', removed2);
-        setMeasurements(removed);
         setIngredients(removed2);
     }
 
-    console.log('INGREDIENTS', ingredients)
     return (  
         <>
-        {measurements ? 
         <TopIngDiv>
-          {measurements.map((m, i) => {
+          {ingredients.map(({id, ing, mea}, i) => {
             return ( 
                 <SingleMeaIngDiv className="glass" key={i}>
-                    <div>
+                    <div key={id}>
                     <h4>{i + 1}</h4>
-                    <p>{m}</p>
-                    <p>{ingredients[i].ing}</p>
+                    <p>{mea}</p>
+                    <p>{ing}</p>
                     </div>
                     <div>
-                    <button onClick={(e) => removeIngredient(e, i)}>Remove Ingredient</button>
+                    <button onClick={(e) => removeIngredient(e, id)}>Remove Ingredient</button>
                     </div>
                 </SingleMeaIngDiv>
             )
           })}
           
         </TopIngDiv>
-        : 
-        <h4>Add Some ingredients</h4>
-        }
         <BottomIngDiv>
         <select name={measurement} onChange={(e) => setMea(e.target.value)}>
           <option value={'1/8 tsp'}>1/8 tsp</option>

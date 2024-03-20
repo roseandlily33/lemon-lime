@@ -33,11 +33,11 @@ const CreateRecipe = () => {
         setIngredients([...ingredients, ing])
       }
       
-      const [measurements, setMeasurements] = useState([]);
-      const addNewMeasurement = (mea) => {
-        console.log('Adding measurement in', mea)
-          setMeasurements([...measurements, mea]);
-      }
+      // const [measurements, setMeasurements] = useState([]);
+      // const addNewMeasurement = (mea) => {
+      //   console.log('Adding measurement in', mea)
+      //     setMeasurements([...measurements, mea]);
+      // }
      
       const [instructions, setInstructions] = useState([])
       const addNewInstruction = (ins) => {
@@ -58,7 +58,7 @@ const CreateRecipe = () => {
         let totalSending = Object.assign(formValues, {
           instructions: instructions,
           ingredients: ingredients,
-          measurements: measurements,
+          // measurements: measurements,
           totalTime: totalTime,
           recipeName: newRecipeName,
           images: images
@@ -79,7 +79,7 @@ const CreateRecipe = () => {
       });
         setIngredients([]);
         setInstructions([]);
-        setMeasurements([]);
+       // setMeasurements([]);
       };
     return (
     <>
@@ -104,7 +104,7 @@ const CreateRecipe = () => {
       <h2>Ingredients</h2>
       <MiddleForm>
          {/* Measurements and Ingredients */}
-        <IngredientsAndMeasurements ingredients={ingredients} addNewIngredient={addNewIngredient} measurements={measurements} addNewMeasurement={addNewMeasurement} setIngredients={setIngredients} setMeasurements={setMeasurements}/>
+        <IngredientsAndMeasurements ingredients={ingredients} addNewIngredient={addNewIngredient}  setIngredients={setIngredients} />
       </MiddleForm>
       <hr />
       <h2>Instructions</h2>

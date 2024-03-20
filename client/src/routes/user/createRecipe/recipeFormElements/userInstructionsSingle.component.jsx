@@ -12,7 +12,6 @@ const UserInstructions = ({instructions, addNewInstruction, setInstructions}) =>
     e.preventDefault();
       if(maxSteps > count){
           const newIns = {id: uuidv4(), ins: ins};
-
           addNewInstruction(newIns);
           setIns('');
           setCount(count + 1);

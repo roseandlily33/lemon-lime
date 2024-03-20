@@ -13,7 +13,7 @@ import PrepTime from '../createRecipe/recipeFormElements/userPrepTime.component'
 import SubCategory from '../createRecipe/recipeFormElements/userSubCategory.component';
 import UserEditPhotos from './editFormElements/userPhotosEdit';
 import UserInstructionsEdit from './editFormElements/userInstructionsEdit.component';
-import UserIngredientsEdit from './editFormElements/UserIngredientsEdit.component';
+import UserIngredientEdit from './editFormElements/usersIngredientsEdits.component';
 //Styles
 import { CreateRecipeForm} from '../createRecipe/userRecipe.styles';
 import { ButtonDiv, TopFormEdit, LeftDivEdit, RightDivEdit, MiddleFormEdit,  PhotosSectionEdit } from './edit.styles';
@@ -31,8 +31,6 @@ const EditRecipe = () => {
     const [ingredients, setIngredients] = useState();
     const [images, setImages] = useState();
 
-   
-    
     if(!user){
         navigate('/');
     }
@@ -77,12 +75,6 @@ const EditRecipe = () => {
           alert('Failure')
          }
       };
-      const setMyInstructions = (ins) => {
-        console.log('Deleting', ins)
-        setInstructions(prev => prev.filter(({id}) => {
-          return ins !== id
-        }))
-      }
 
     return ( <>
     {!formValues ?
@@ -104,13 +96,13 @@ const EditRecipe = () => {
     <hr/>
     <h2>Ingredients</h2>
     <MiddleFormEdit>
-      <UserIngredientsEdit measurements={measurements} setMeasurements={setMeasurements} ingredients={ingredients} setIngredients={setIngredients} />
+      <UserIngredientEdit measurements={measurements} setMeasurements={setMeasurements} ingredients={ingredients} setIngredients={setIngredients} />
     </MiddleFormEdit>
     <hr />
     <h2 style={{marginBottom: '0.7rem'}}>Instructions</h2>
     <MiddleFormEdit>
     {formValues.instructions && 
-    <UserInstructionsEdit instructions={instructions} setInstructions={setInstructions} setMyInstructions={setMyInstructions} />
+    <UserInstructionsEdit instructions={instructions} setInstructions={setInstructions} />
     }
     </MiddleFormEdit>
     <hr />
