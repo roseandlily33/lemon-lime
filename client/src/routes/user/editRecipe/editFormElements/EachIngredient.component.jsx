@@ -9,13 +9,14 @@ const EachIngredient = ({ing, id, idx, deleteIngredient, setIngredients, ingredi
 
     const setMyIngredients = (e) => {
         e.preventDefault();
-        let ins = [...ingredients];
+        let ing = [...ingredients];
         let item = {
             ...ingredients[idx],
-            ins: ingState
+            ing: ingState
         }
-        ins[idx] = item;
-        setIngredients(ins);
+        ing[idx] = item;
+        setIngredients(ing);
+        console.log('Set ingredients', ing, ingredients);
     }
 
     return ( 
@@ -37,7 +38,9 @@ const EachIngredient = ({ing, id, idx, deleteIngredient, setIngredients, ingredi
                 setUpdated(true)
              }}>{updated ? 'Update Complete' : 'Update'}</button>
 
-            <button className="secondaryButton" id={id} onClick={(e) => deleteIngredient(e, id)}>Delete Ingredient</button>
+            <button className="secondaryButton" id={id} onClick={(e) => {
+                e.preventDefault();
+                deleteIngredient(e, id)}}>Delete Ingredient</button>
         </div>
      );
 }

@@ -27,6 +27,7 @@ const UserIngredientEdit = ({ingredients, setIngredients}) => {
 
     const deleteIngredient = (e, idx)=> {
         e.preventDefault();
+        console.log('Deleting ingredient', idx)
         const newArray = ingredients.filter(({id}) => {
           return idx !== id
         });
@@ -46,7 +47,7 @@ const UserIngredientEdit = ({ingredients, setIngredients}) => {
          </div>
          <div className="outerRight">
          {ingredients.map(({id, ing}, idx) => (
-            <EachIngredient idx={idx} id={id} ing={ing} deleteIngredients={deleteIngredient} setIngredients={setIngredients} ingredients={ingredients} />
+            <EachIngredient idx={idx} id={id} ing={ing} deleteIngredient={deleteIngredient} setIngredients={setIngredients} ingredients={ingredients} />
         ))}
        </div>
       </SingleMeaIngDivEdit>

@@ -35,10 +35,9 @@ const UserInstructions = ({instructions, addNewInstruction, setInstructions}) =>
           {instructions ? 
           <>
           {instructions.map((ins, idx) => {
-            console.log('Instructions', ins , idx)
               return <SingleMeaIngDiv className="glass">
                 <div key={ins.id}>
-                <h4>{ins.id + 1}</h4>
+                <h4>{idx+ 1}</h4>
                 <p>{ins.ins}</p>
                 </div>
                 <div>
