@@ -8,10 +8,12 @@ const SingleComment = ({comments}) => {
        {
         comments.map((c) => {
             return <SingleCommentDiv key={c._id}>
-                <h4>{c.title}</h4>
+                <div>
+                <h4 style={{fontWeight: 'bold'}}>{c.title}</h4>
                 <h4>{c.comment}</h4>
                 <h4>{formatStars(c.rating)}</h4>
                 <h4>{formatDate(c.createdAt)}</h4>
+                </div>
                 <DeleteComment id={c._id}/>
 
             </SingleCommentDiv>

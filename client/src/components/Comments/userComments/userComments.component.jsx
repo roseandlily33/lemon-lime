@@ -20,12 +20,14 @@ const UserComments = () => {
 
     return ( 
         <UserCommentsContainer>
+            <div >
             <h1>User Comments</h1>
+            </div>
             {!comments ? <Loader />
             :
-            <>
+            <div className='comments'>
             <SingleComment comments={comments} />
-            </>
+            </div>
             }
         </UserCommentsContainer>
      );

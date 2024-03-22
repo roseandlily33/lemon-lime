@@ -31,6 +31,8 @@ export const RecipeCont = styled.div`
 export const TopLabel = styled.div`
         display: flex;
         align-items: center;   
+        flex-wrap: wrap;
+        max-width: 100%;
         @media screen and (max-width: 500px){
         gap: 1em;
         flex-wrap: wrap;
@@ -40,6 +42,7 @@ export const TopLabel = styled.div`
 
 export const LeftContainer = styled.div`
     width: 50%;
+    max-width: 50%;
     @media screen and (max-width: 500px){
         gap: 1em;
         width: 100%;
@@ -49,6 +52,10 @@ export const LeftContainer = styled.div`
 
 export const RightContainer = styled.div`
     width: 50%;
+    max-width: 50%;
+    img{
+        max-width: 100%;
+    }
     @media screen and (max-width: 500px){
         gap: 1em;
         width: 100%;

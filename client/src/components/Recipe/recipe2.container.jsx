@@ -9,9 +9,10 @@ const RecipeContainer2 = ({recipe}) => {
    
     return ( 
         <SideContainer key={recipe._id}>
-           <div>
+           <div className="topDiv">
            <TopContainer>
-           <NavLink style={{color:'orange', textDecoration: 'none', fontSize: '1.5em', fontWeight: 'bold', textTransform: 'uppercase'}} to={url}>{recipe.recipeName}</NavLink>
+           <NavLink style={{color:'orange', textDecoration: 'none', fontSize: '1.5em', fontWeight: 'bold', 
+           textTransform: 'uppercase'}} to={url}>{recipe.recipeName}</NavLink>
            <Heart recipe={recipe}/>
            </TopContainer>
             <h4>{formatDate(recipe.createdAt)}</h4>
