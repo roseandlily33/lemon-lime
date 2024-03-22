@@ -41,6 +41,7 @@ h3 {
 }
 h4{
   font-size: 1.266rem;
+  font-weight: normal;
 }
 h5{
     font-size: 1.125rem;
@@ -138,9 +139,10 @@ input{
 
 }
 textarea{
- border: 2px solid var(--yellow);
+ border: 2px solid var(--lightGreen);
  padding: 0.5em;
- border-radius: 2px;
+ border-radius: 5px;
+ resize: none;
 }
 input:focus{
     border:1.5px solid var(--lightGreen);
@@ -152,9 +154,7 @@ select{
     border-radius: 5px;
     padding: 0.5em; 
 }
-textarea{
-    resize: none;
-}
+
 .glass{
   /* From https://css.glass */
 background: rgba(255, 255, 255, 0.38);

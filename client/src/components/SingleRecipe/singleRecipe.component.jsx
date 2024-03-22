@@ -3,7 +3,7 @@ import { httpGetFullRecipeWithDetails } from "../../hooks/recipeRequests";
 import { useParams } from "react-router-dom";
 import { formatDate } from "../../formattingUtils/date";
 import Lemon from '../../images/lemons.jpg';
-import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom, IngredientsDiv }from './singleRecipe.styles';
+import {SingleRecipeContainer, TopDiv, LeftSide, RightSide, Bottom, IngredientsDiv, InstructionsDiv }from './singleRecipe.styles';
 import Comment from "../Comments/addComment/comments.component";
 import Loader from "../Loader/loader.component";
 import RecipeComments from "../Comments/recipeComments/recipeComment.component";
@@ -45,40 +45,41 @@ const SingleRecipe = () => {
         <h4>Sub Category: {singleRecipe.subCategory}</h4>
         <h4>Favorites: {singleRecipe.favorites}</h4>
         </>
-        <>
-        <h2>Ingredients</h2>
-  
-        <IngredientsDiv>
-        <ul>
-          {singleRecipe.ingredients.map(({id, ing,mea}, index) => {
-            return <div style={{display: 'flex'}} key={id}>
-            <li style={{paddingRight: '1em', color: 'green', listStyleType: 'none'}}>{index + 1}</li>
-            <li style={{listStyleType: 'none'}}>{mea}</li>
-            </div>
-          })}
-        </ul>
-        <ul>
-        {singleRecipe.ingredients?.map(({id, ing}) => {
-            return <li key={id} style={{listStyleType: 'none'}}>{ing}</li>
-        })
-        }
-        </ul>  
-        </IngredientsDiv>
-        </>
        </RightSide>
      </TopDiv>
      <Bottom>
-        <h2>Instructions</h2>
+   <h2>Ingredients</h2>
+  <IngredientsDiv className="glass">
+  <ul>
+    {singleRecipe.ingredients?.map(({id,mea}, index) => {
+      return <div style={{display: 'flex'}} key={id}>
+      <li style={{paddingRight: '1.5em', color: 'green', listStyleType: 'none'}}>{index + 1}</li>
+      <li style={{listStyleType: 'none'}}>{mea}</li>
+      </div>
+    })}
+  </ul>
+  <ul>
+  {singleRecipe.ingredients?.map(({id, ing}) => {
+      return <li key={id} style={{listStyleType: 'none'}}>{ing}</li>
+  })
+  }
+  </ul>  
+  </IngredientsDiv>
+  <h2>Instructions</h2>
+  <InstructionsDiv className="glass">
         <ol>
-        {singleRecipe?.instructions.map((item) => {
-        return <li>{item.ins}</li>
+        {singleRecipe?.instructions.map(({id, ins}, index) => {
+        return <div style={{display: 'flex'}} key={id}>
+        <li style={{paddingRight: '1.5em', color: 'green', listStyleType: 'none'}}>{index + 1}</li>
+        <li style={{listStyleType: 'none'}}>{ins}</li>
+        </div>
         })}
         </ol>
+  </InstructionsDiv>
         </Bottom>
        </>
        }
        </SingleRecipeContainer>
-       
        <Comment/>
        <RecipeComments id={id} />
         </>

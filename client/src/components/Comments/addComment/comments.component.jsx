@@ -43,7 +43,7 @@ const Comment = () => {
     return ( 
         <CommentContainer>
         <hr />
-        <h3 style={{textAlign: 'center', marginTop: '1em'}}>Leave a review</h3>
+        <h3 style={{marginBlock: '0.5em', marginLeft: '0.6em'}}>Leave a review</h3>
         {isAuthenticated ? 
          <CommentForm onSubmit={handleSubmit}>
         {/* Title */}

@@ -6,7 +6,6 @@ export const SingleRecipeContainer  = styled.section`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
     h1{
        color: ${({theme}) => theme.colors.orange};
        font-weight: bold;
@@ -42,7 +41,7 @@ export const RightSide = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 0.5em;
+    gap: 0.7em;
     padding: 0.5em;
     ul{
         background-color: ${({theme}) => theme.colors.white};
@@ -52,21 +51,7 @@ export const RightSide = styled.div`
 
 export const Bottom = styled.div`
 width: 100%;
-padding: 0.5em;
-
-h3{
-    text-align: center;
-    color: ${({theme}) => theme.colors.yellow};
-}
-ol{
-    background-color: ${({theme}) => theme.colors.white};
-    border-radius: 5px;
-    padding: 0.2em;
-    border: 2px solid ${({theme}) => theme.colors.green};
-}
-li{
-    margin-top: 0.5em;
-}
+padding-top: 1em;
 @media screen and (max-width: 900px){
         flex-wrap: wrap;
         border: 2px solid orange;
@@ -76,11 +61,13 @@ li{
 export const IngredientsDiv = styled.div`
     display: flex;
     flex-direction: row;
-    background-color: ${({theme}) => theme.colors.white};
+    /* background-color: ${({theme}) => theme.colors.white}; */
+
     gap: 1em;
     padding: 0.2em;
     border: 2px solid ${({theme}) => theme.colors.green};
     border-radius: 5px;
+    margin-block: 0.5em;
     
     ul {
         list-style-type: none;
@@ -90,3 +77,19 @@ export const IngredientsDiv = styled.div`
         margin-top: 0.5em;
     }
 `;
+
+export const InstructionsDiv = styled.div`
+
+    gap: 1em;
+    padding: 0.2em;
+    border: 2px solid ${({theme}) => theme.colors.green};
+    border-radius: 5px;
+    margin-block: 0.5em;
+    ul {
+        list-style-type: none;
+        padding: 0.2em;   
+    }
+    li{
+        margin-top: 0.5em;
+    }
+`

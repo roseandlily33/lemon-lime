@@ -14,7 +14,6 @@ export const RecipeCont = styled.div`
         gap: 1em;
         flex-wrap: wrap;
     }
-
     h4{
         margin-top: 0.1em;
     }
@@ -43,6 +42,10 @@ export const TopLabel = styled.div`
 export const LeftContainer = styled.div`
     width: 50%;
     max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+
     @media screen and (max-width: 500px){
         gap: 1em;
         width: 100%;
