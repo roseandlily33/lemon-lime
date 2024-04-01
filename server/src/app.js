@@ -56,10 +56,10 @@ app.use('/', router);
 //     res.sendFile(path.join(__dirname, '..','public', 'index.html'));
 // });
 if(process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '/client/dist')))
+    //app.use(express.static(path.join(__dirname, '/client/dist')))
     app.get('*', (req,res) => {
     res.send("Router is working")
-      res.sendFile(path.join(__dirname, '/client/dist', 'index.html'))
+      res.sendFile(path.join(__dirname, 'build', 'index.html'))
     })
   }
 
