@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from "react";
 import { httpGetAllRecipes, httpGetPopularRecipes } from "./recipeRequests";
 
-function useRecipes(){
+async function useRecipes(){
     const [allRecipes, setAllRecipes] = useState([]);
     const [popularRecipes, setPopularRecipes] = useState([]);
 
@@ -9,6 +9,7 @@ function useRecipes(){
         const allRecipes = await httpGetAllRecipes();
         setAllRecipes(allRecipes);
     }, []);
+
     useEffect(() => {
         getAllRecipes()
     }, [getAllRecipes]);
@@ -17,6 +18,7 @@ function useRecipes(){
         const allRecipes = await httpGetPopularRecipes()
         setPopularRecipes(allRecipes);
     }, []);
+    
     useEffect(() => {
         getPopularRecipes()
     }, [getPopularRecipes]);

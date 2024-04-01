@@ -33,39 +33,7 @@ const theme = {
   }
 }
 function App() {
-  const {
-    allRecipes,
-    popularRecipes
-  } = useRecipes();
 
-  //const [user, setUser] = useState();
-  //let cookies = localStorage.getItem('jwt');
-  // console.log('TOP LEVEL COOKIES', cookies);
-  // console.log('TOP LEVEL User', user);
-  // useEffect(() => {
-  //     const verifyCookie = async () => {
-  //       console.log('Cookies', cookies.token);
-  //       if (!cookies.token) {
-  //         console.log('No cookies', cookies)
-  //         //navigate("/signin");
-  //       } 
-  //       let myCookies = localStorage.getItem('jwt');
-  //        const { data } = await axios.post(
-  //         "http://localhost:8000/home",
-  //         {...myCookies},
-  //         { withCredentials: true }
-  //       );
-  //       console.log('Returned data from home page', data);
-  //       const { status, user } = data;
-  //       console.log('Status', status, 'User', user);
-  //       setUser(user);
-        
-  //     };
-  //     verifyCookie();
-  //   },[cookies]);
-   //<UserContext.Provider value={{user, setUser}}>
-   //cookies={cookies}  user={user}
-//</UserContext.Provider>
   return (
     <div className="App">
     <ThemeProvider theme={theme}>
@@ -73,7 +41,7 @@ function App() {
       <NavBar  />
        <Routes>
         <Route path='/' element={<BasePage />}>
-          <Route index element={<HomePage allRecipes={allRecipes} popularRecipes={popularRecipes}/>} />
+          <Route index element={<HomePage />} />
             <Route path="recipe">
             <Route path=':id' element={<SingleRecipe />} />
             </Route>
