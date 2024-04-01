@@ -50,10 +50,17 @@ app.use('/', router);
 //     }
 //  })
 
-app.use('/*', (req, res) => {
-    console.log('Router is working')
+// app.use('/*', (req, res) => {
+//     console.log('Router is working')
+    
+//     res.sendFile(path.join(__dirname, '..','public', 'index.html'));
+// });
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/client/dist')))
+    app.get('*', (req,res) => {
     res.send("Router is working")
-    res.sendFile(path.join(__dirname, '..','public', 'index.html'));
-});
+      res.sendFile(path.join(__dirname, '/client/dist', 'index.html'))
+    })
+  }
 
 module.exports = app;
