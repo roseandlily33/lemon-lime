@@ -1,6 +1,6 @@
 const http = require('http');
-const app = require('./app');
-const {connectToMongoose} = require('./utils/connection');
+const app = require('./src/app');
+const {connectToMongoose} = require('./src/utils/connection');
 
 const PORT = process.env.PORT || 8000;
 
@@ -12,5 +12,5 @@ async function startServer (){
         console.log('Listening on port', PORT)
     });
 }
-//Hello
+
 startServer();

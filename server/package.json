@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "backend for lemon lime",
   "main": "server.js",
+  "engines": {
+  "node": "20.x"
+},
   "scripts": {
     "test": "jest --detectOpenHandles",
     "test-watch": "jest --watch",
