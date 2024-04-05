@@ -5,15 +5,14 @@ export const UserCommentsContainer = styled.section`
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding-inline: 1em;
+    margin-left: 1em;
     .comments{
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        
         overflow-y: scroll;
     }
 `;
@@ -25,22 +24,26 @@ export const SingleCommentDiv = styled.div`
     height: 30%;
     display: flex;
     flex-wrap: wrap;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     flex-direction: column;
     gap: 0.4em;
     margin: 1em;
     padding: 1em;
-    border: 2px solid ${({theme}) => theme.colors.green};
     border-radius: 5px;
-    div{
-        width: 90%;
-    }
     h4{
+     padding-bottom: 0.3em;
+     font-weight: bold;
+     width: 100%;
+     border-bottom: 1px solid ${({theme}) => theme.colors.grey};
+    }
+    p{
+        padding-top: 0.3em;
         padding-bottom: 0.3em;
     }
     button{
         width: 150px;
-        margin-left: 60%;
-        margin-right: 80%;
+        margin-left: 70%;
+        margin-right: 90%;
     }
     @media screen and (max-width: 900px){
         flex-wrap: wrap;

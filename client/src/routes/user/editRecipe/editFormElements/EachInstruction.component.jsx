@@ -22,7 +22,7 @@ const EachInstruction = ({ins, id, idx, deleteInstruction, setInstructions, inst
 
     return ( 
         <div key={id}>
-            <label for={insState}></label>
+            <label for={insState}>{idx + 1}</label>
              <input 
                id={id}
                type="text" 

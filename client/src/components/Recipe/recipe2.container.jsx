@@ -11,12 +11,11 @@ const RecipeContainer2 = ({recipe}) => {
         <SideContainer key={recipe._id}>
            <div className="topDiv">
            <TopContainer>
-           <NavLink style={{textDecoration: 'none', fontSize: '1.4rem', fontWeight: 'bold', 
-           textTransform: 'uppercase'}} className="link" to={url}>{recipe.recipeName}</NavLink>
+           <NavLink style={{textDecoration: 'none', fontSize: '1.4rem', textTransform: 'capitalize'}} className="link" to={url}>{recipe.recipeName}</NavLink>
            <Heart recipe={recipe}/>
            </TopContainer>
-            <p style={{color: 'hsl(41, 9%, 35%)'}}>{formatDate(recipe.createdAt)}</p>
-            <p style={{color: 'hsl(41, 9%, 35%)'}}>Favorites: {recipe.favorites}</p>
+            <p>{formatDate(recipe.createdAt)}</p>
+            <p>Favorites: {recipe.favorites}</p>
            </div>
            {recipe.images[0] ? <img src={recipe.images[0].data_url} alt="userPhoto" className="recipePhoto"/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
         </SideContainer>

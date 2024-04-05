@@ -39,11 +39,11 @@ const SingleRecipe = () => {
       
         <span style={{color: 'hsl(42.857142857142854, 8.641975308641971%, 31.76470588235294%)'}}>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
         <>
-        <p style={{color: 'hsl(41, 9%, 35%)'}}>Cook Time: {singleRecipe.cookTime}</p>
-        <p style={{color: 'hsl(41, 9%, 35%)'}}>Prep Time: {singleRecipe.prepTime}</p>
-        <p style={{color: 'hsl(41, 9%, 35%)'}}>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</p>
-        <p style={{color: 'hsl(41, 9%, 35%)'}}>Sub Category: {singleRecipe.subCategory}</p>
-        <p style={{color: 'hsl(41, 9%, 35%)'}}>Favorites: {singleRecipe.favorites}</p>
+        <p>Cook Time: {singleRecipe.cookTime}</p>
+        <p>Prep Time: {singleRecipe.prepTime}</p>
+        <p>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</p>
+        <p>Sub Category: {singleRecipe.subCategory}</p>
+        <p>Favorites: {singleRecipe.favorites}</p>
         </>
        </RightSide>
      </TopDiv>

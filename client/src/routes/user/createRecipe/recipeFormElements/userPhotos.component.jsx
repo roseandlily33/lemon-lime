@@ -30,7 +30,7 @@ const UserPhotos = ({images, onChange, maxNumber}) => {
                 Click or Drop here
               </button>
               &nbsp;
-              <button onClick={onImageRemoveAll}>Remove all images</button>
+              <button className="secondaryButton" onClick={onImageRemoveAll}>Remove all images</button>
               </div>
               <div className='items'>
               {imageList.map((image, index) => (

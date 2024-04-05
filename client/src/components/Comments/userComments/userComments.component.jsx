@@ -20,8 +20,8 @@ const UserComments = () => {
 
     return ( 
         <UserCommentsContainer>
-            <div >
-            <h1>User Comments</h1>
+            <div>
+            <h2 style={{marginLeft: '1em', marginBlock: '1em'}}>User Comments</h2>
             </div>
             {!comments ? <Loader />
             :
