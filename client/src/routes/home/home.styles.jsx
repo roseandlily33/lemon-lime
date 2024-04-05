@@ -13,9 +13,9 @@ export const MainDiv = styled.main`
         justify-content: center;
     }
     h1{
-        text-align: center;
-        color: ${({theme}) => theme.colors.green};
+        color: ${({theme}) => theme.colors.darkGrey};
         font-weight: bold;
+        font-size: 1.6rem;
     }
 `;
 
@@ -39,9 +39,9 @@ export const RightMainDiv = styled.div`
     width: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
     overflow-y: scroll;
     padding: 1em;
+
     @media screen and (max-width: 900px){
         width: 100%;
         border: 2px solid orange;

@@ -12,13 +12,13 @@ const RecipeContainer = ({recipe}) => {
         <RecipeCont key={recipe._id}>
             <LeftContainer>
            <TopLabel>
-            <NavLink style={{color:'orange', textDecoration: 'none', fontSize: '1.516em', fontWeight: 'bold', textTransform: 'uppercase'}} to={url}>{recipe.recipeName}</NavLink>
+            <NavLink className="link" style={{textDecoration: 'none', fontSize: '1.516em', fontWeight: 'bold', textTransform: 'uppercase'}} to={url}>{recipe.recipeName}</NavLink>
             <Heart recipe={recipe}/>
             </TopLabel>
-            <h4>{formatDate(recipe.createdAt)}</h4>
-            <h4>Total Time: {recipe.totalTime.hours}:{recipe.totalTime.minutes}</h4>
-            <h4>Favorites: {recipe.favorites}</h4>
-            <h4>{recipe.subCategory}</h4>
+            <p style={{color: 'hsl(41, 9%, 35%)'}}>{formatDate(recipe.createdAt)}</p>
+            <p style={{color: 'hsl(41, 9%, 35%)'}}>Total Time: {recipe.totalTime.hours}:{recipe.totalTime.minutes}</p>
+            <p style={{color: 'hsl(41, 9%, 35%)'}}>Favorites: {recipe.favorites}</p>
+            <p style={{color: 'hsl(41, 9%, 35%)'}}>{recipe.subCategory}</p>
            </LeftContainer>
            <RightContainer>
             {recipe.images[0] ? <img src={recipe.images[0].data_url} alt="userPhoto" className="recipePhoto"/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}

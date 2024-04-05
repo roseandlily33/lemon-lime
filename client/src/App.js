@@ -21,15 +21,20 @@ import UserComments from './components/Comments/userComments/userComments.compon
 export const UserContext = createContext(null);
 const theme = {
   colors: {
-      white:' #F8F9F8',
-      beige: '#C9B6A1',
-      yellow: '#E8B634',
-      lightYellow: '#FFE27C',
-      green: '#758650',
-      lightGreen: '#B5C267',
+      white: 'hsl(40, 23%, 97%)',
+      offWhite: 'hsl(43, 13%, 90%)',
+      yellow: 'hsl(42, 87%, 55%)',
+      mediumYellow: 'hsl(48, 94%, 68%)',
+      lightYellow: ' hsl(48, 100%, 88%)',
+      green: 'hsl(83, 74%, 27%)',
+      lightGreen: 'hsl(83, 64%, 42%)',
+      mediumGreen: 'hsl(83, 70%, 34%)',
       orange: "#E3A547",
-      grey: '#DEDEDE',
-      border: '3px solid var(--yellow)'
+      border: '3px solid var(--yellow)',
+      grey: 'hsl(40, 15%, 80%)',
+      grey2: 'hsl(39, 11%, 69%)',
+      grey3: 'hsl(41, 8%, 61%)',
+      darkGrey: 'hsl(0, 0%, 38%)'
   }
 }
 function App() {

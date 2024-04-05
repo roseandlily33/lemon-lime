@@ -12,10 +12,10 @@ export const SideContainer = styled.div`
     height: auto;
     width: 300px;
     max-width: 300px;
-   // max-height: 50%;
     padding: 1em;
     border-radius: 5px;
     margin-top: 1em;
+     font-size: 1rem;
     .recipePhoto{
         margin-top: 0.2em;
         width: 250px;
@@ -30,7 +30,6 @@ export const SideContainer = styled.div`
         display: flex;
         flex-direction: column;
         gap: 0.3em;
-
     }
 `;
 

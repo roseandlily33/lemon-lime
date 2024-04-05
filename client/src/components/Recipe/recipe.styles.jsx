@@ -16,6 +16,7 @@ export const RecipeCont = styled.div`
     }
     h4{
         margin-top: 0.1em;
+       
     }
     .recipePhoto{
         height: 100%;
@@ -32,10 +33,12 @@ export const TopLabel = styled.div`
         align-items: center;   
         flex-wrap: wrap;
         max-width: 100%;
+        font-size: 1rem;
         @media screen and (max-width: 500px){
         gap: 1em;
         flex-wrap: wrap;
         width: 100%;
+        
     }
 `;
 

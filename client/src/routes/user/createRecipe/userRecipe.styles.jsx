@@ -12,7 +12,7 @@ margin-bottom: 1em;
  h1{
     margin-bottom: 0.5em;
     color: ${({theme}) => theme.colors.green};
-    text-decoration: underline;
+
  }
  hr{
     margin-bottom: 1em;
@@ -50,7 +50,13 @@ export const RightDiv = styled.div`
 
 export const SingleInputDiv = styled.div`
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 1.5em;
+    width: 80%;
+    border-bottom: 1px solid ${({theme}) => theme.colors.grey};
+    margin-bottom: 0.2rem;
+    padding-bottom: 0.5rem;
 `;
 
 export const MiddleForm = styled.div`
