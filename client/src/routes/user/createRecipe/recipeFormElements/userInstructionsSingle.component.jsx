@@ -41,7 +41,11 @@ const UserInstructions = ({instructions, addNewInstruction, setInstructions}) =>
                 <p>{ins.ins}</p>
                 </div>
                 <div>
-                <button onClick={(e) => deleteInstruction(e, ins.id)}>Delete Instruction</button>
+                <button onClick={(e) => deleteInstruction(e, ins.id)}>
+                  
+<svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 24 24" class="icon-trash"><path class="primary" d="M5 5h14l-.89 15.12a2 2 0 0 1-2 1.88H7.9a2 2 0 0 1-2-1.88L5 5zm5 5a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1z"/><path class="secondary" d="M8.59 4l1.7-1.7A1 1 0 0 1 11 2h2a1 1 0 0 1 .7.3L15.42 4H19a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h3.59z"/></svg>
+
+                  </button>
                 </div>
               </SingleMeaIngDiv>
             })
@@ -52,8 +56,11 @@ const UserInstructions = ({instructions, addNewInstruction, setInstructions}) =>
           }
         </TopIngDiv>
        <BottomIngDiv>
-       <input type="text" value={ins} onChange={(e) => setIns(e.target.value)} />
-        <button onClick={addCard}>Add Card</button>
+       <input type="text" value={ins} placeholder='Add an instruction' onChange={(e) => setIns(e.target.value)} />
+        <button style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} onClick={addCard}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="30" width="30" class="icon-add"><path class="secondary" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
+          Add Instruction
+          </button>
        </BottomIngDiv>
        </MiddleForm>
     </>

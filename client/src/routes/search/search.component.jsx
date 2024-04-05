@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SearchIcon from '../../images/icons/search-icon/icons8-search-48.png';
+import SearchIcon from '../../images/icons/search.svg';
 import { ResultsDiv, StyledDiv, SearchContainer } from "./search.styles";
 import SearchResults from './results/searchResults.component';
 import RecentlySearched from './recent/recent.component';
