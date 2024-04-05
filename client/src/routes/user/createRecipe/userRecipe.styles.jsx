@@ -12,7 +12,6 @@ margin-bottom: 1em;
  h1{
     margin-bottom: 0.5em;
     color: ${({theme}) => theme.colors.green};
-
  }
  hr{
     margin-bottom: 1em;

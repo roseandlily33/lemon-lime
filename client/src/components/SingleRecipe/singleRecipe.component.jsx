@@ -36,20 +36,20 @@ const SingleRecipe = () => {
        </LeftSide>
         <RightSide>
         <h1>{singleRecipe.recipeName}</h1>
-        <hr />
-        <span>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
+      
+        <span style={{color: 'hsl(42.857142857142854, 8.641975308641971%, 31.76470588235294%)'}}>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
         <>
-        <h4>Cook Time: {singleRecipe.cookTime}</h4>
-        <h4>Prep Time: {singleRecipe.prepTime}</h4>
-        <h4>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</h4>
-        <h4>Sub Category: {singleRecipe.subCategory}</h4>
-        <h4>Favorites: {singleRecipe.favorites}</h4>
+        <p style={{color: 'hsl(41, 9%, 35%)'}}>Cook Time: {singleRecipe.cookTime}</p>
+        <p style={{color: 'hsl(41, 9%, 35%)'}}>Prep Time: {singleRecipe.prepTime}</p>
+        <p style={{color: 'hsl(41, 9%, 35%)'}}>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</p>
+        <p style={{color: 'hsl(41, 9%, 35%)'}}>Sub Category: {singleRecipe.subCategory}</p>
+        <p style={{color: 'hsl(41, 9%, 35%)'}}>Favorites: {singleRecipe.favorites}</p>
         </>
        </RightSide>
      </TopDiv>
      <Bottom>
    <h2>Ingredients</h2>
-  <IngredientsDiv className="glass">
+  <IngredientsDiv>
   <ul>
     {singleRecipe.ingredients?.map(({id,mea}, index) => {
       return <div style={{display: 'flex'}} key={id}>
@@ -66,7 +66,7 @@ const SingleRecipe = () => {
   </ul>  
   </IngredientsDiv>
   <h2>Instructions</h2>
-  <InstructionsDiv className="glass">
+  <InstructionsDiv>
         <ol>
         {singleRecipe?.instructions.map(({id, ins}, index) => {
         return <div style={{display: 'flex'}} key={id}>

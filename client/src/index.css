@@ -14,8 +14,8 @@
     --yellow: hsl(42, 87%, 55%);
     --lightestYellow: hsl(48, 100%, 88%);
     --mediumYellow: hsl(48, 94%, 68%);
-    --green: hsl(83, 74%, 27%);
-    --lightGreen: hsl(83, 64%, 42%);
+    --green: #616f42;
+    --lightGreen: #aab761;
     --mediumGreen:hsl(83, 70%, 34%);
     --orange: hsl(36, 74%, 58%);
     --border: 5px solid var(--yellow);
