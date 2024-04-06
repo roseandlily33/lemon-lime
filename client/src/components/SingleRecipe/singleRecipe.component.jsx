@@ -36,7 +36,6 @@ const SingleRecipe = () => {
        </LeftSide>
         <RightSide>
         <h1>{singleRecipe.recipeName}</h1>
-      
         <span style={{color: 'hsl(42.857142857142854, 8.641975308641971%, 31.76470588235294%)'}}>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
         <>
         <p>Cook Time: {singleRecipe.cookTime}</p>
@@ -48,29 +47,35 @@ const SingleRecipe = () => {
        </RightSide>
      </TopDiv>
      <Bottom>
-   <h2>Ingredients</h2>
+
   <IngredientsDiv>
-  <ul>
+  <h3>Ingredients</h3>
+
+  <ul className="outside">
+    <div className="ing1">
     {singleRecipe.ingredients?.map(({id,mea}, index) => {
-      return <div style={{display: 'flex'}} key={id}>
-      <li style={{paddingRight: '1.5em', color: 'green', listStyleType: 'none'}}>{index + 1}</li>
-      <li style={{listStyleType: 'none'}}>{mea}</li>
+      return <div className="insideIng1">
+      <li key={id} style={{color: 'green', paddingRight: '0.7em', listStyleType: 'none'}}>{index + 1}</li>
+      <li key={mea} style={{listStyleType: 'none'}}>{mea}</li>
       </div>
     })}
-  </ul>
-  <ul>
+    </div>
+    <div className="ing2" >
   {singleRecipe.ingredients?.map(({id, ing}) => {
       return <li key={id} style={{listStyleType: 'none'}}>{ing}</li>
   })
   }
+   </div>
   </ul>  
   </IngredientsDiv>
-  <h2>Instructions</h2>
+
   <InstructionsDiv>
+      <h3>Instructions</h3>
+
         <ol>
         {singleRecipe?.instructions.map(({id, ins}, index) => {
         return <div style={{display: 'flex'}} key={id}>
-        <li style={{paddingRight: '1.5em', color: 'green', listStyleType: 'none'}}>{index + 1}</li>
+        <li style={{listStyleType: 'none', paddingRight: '0.7em', color: 'green'}}>{index + 1}</li>
         <li style={{listStyleType: 'none'}}>{ins}</li>
         </div>
         })}
@@ -80,7 +85,9 @@ const SingleRecipe = () => {
        </>
        }
        </SingleRecipeContainer>
+       <hr />
        <Comment/>
+       <hr />
        <RecipeComments id={id} />
         </>
       );

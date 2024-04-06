@@ -41,8 +41,9 @@ const Comment = () => {
     }
     
     return ( 
+        
         <CommentContainer>
-        <hr />
+        
         <h3 style={{marginBlock: '0.5em', marginLeft: '0.6em'}}>Leave a review</h3>
         {isAuthenticated ? 
          <CommentForm onSubmit={handleSubmit}>
@@ -64,11 +65,14 @@ const Comment = () => {
         {/* Comment */}
         <FormElement>
         <label>Review:</label>
-        <textarea rows="6" cols="50" name="comment" value={formState.comment} onChange={handleChange}></textarea>
+        <textarea rows="6" cols="30" name="comment" value={formState.comment} onChange={handleChange}></textarea>
         </FormElement>
-        <input className="button" type="submit" />
+        <input style={{width: '150px'}} className="button" type="submit" />
          </CommentForm>
-    : <h3>Login to post a comment</h3>
+    : 
+    <FormElement>
+        <h3>Login to post a comment</h3>
+    </FormElement>
     }
         </CommentContainer>
      );

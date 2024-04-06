@@ -13,10 +13,13 @@ import IngredientsAndMeasurements from "./recipeFormElements/dynamicIngMea.compo
 import UserPhotos from "./recipeFormElements/userPhotos.component";
 import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
 import { RightDiv, LeftDiv } from "./userRecipe.styles";
+import ErrorModal from "../../../components/Modal/errorModal/ErrorModel.component";
+
 
 const CreateRecipe = () => {
   const navigate = useNavigate();
     const {user} = useAuth0();
+    const [isOpen, setIsOpen] = useState(false);
     //All forms values excpet Instructions,Ingredient, Measurements, Photos
     const [formValues, setFormValues] = useState({
         recipeName: '',
@@ -35,7 +38,6 @@ const CreateRecipe = () => {
      
       const [instructions, setInstructions] = useState([])
       const addNewInstruction = (ins) => {
-        console.log('Adding instruciton in', ins);
         setInstructions([...instructions, ins])
       }
       //For the photos
@@ -44,7 +46,7 @@ const CreateRecipe = () => {
       const onChange = (imageList, addUpdateIndex) => {
       setImages(imageList);
       };
-
+      let successStatus;
       const handleSubmit = async (e) => {
         e.preventDefault();
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
@@ -59,10 +61,13 @@ const CreateRecipe = () => {
       const response = await httpCreateRecipe(user, totalSending);
       const success = response.ok;
        if (success) {
-        alert('Success');
-        navigate('/user/home');
+        successStatus = "Recipe has been created"
+       // alert('Success');
+       // navigate('/user/home');
+  
         } else {
-          alert('Failure')
+         // alert('Failure')';
+          successStatus = "Recipe has not been created, please try again"
          }
         setFormValues({
           recipeName: '',
@@ -73,6 +78,9 @@ const CreateRecipe = () => {
         setIngredients([]);
         setInstructions([]);
       };
+
+      <button onClick={() => setIsOpen(true)}>Open Modal</button>
+     
     return (
     <>
     <CreateRecipeForm onSubmit={handleSubmit}>
@@ -119,6 +127,12 @@ const CreateRecipe = () => {
       <UserPhotos images={images} onChange={onChange} maxNumber={maxNumber}/>
       </PhotosSection>
       <input className="button" style={{width: '150px'}} type="submit" />
+      {isOpen && (
+    <ErrorModal onClose={() => setIsOpen(false)}>
+      <h2>{successStatus}</h2>
+
+    </ErrorModal>
+  )}
     </CreateRecipeForm>
  </>
 );

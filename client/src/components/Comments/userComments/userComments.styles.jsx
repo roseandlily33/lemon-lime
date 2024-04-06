@@ -7,6 +7,7 @@ export const UserCommentsContainer = styled.section`
     flex-direction: column;
     padding-inline: 1em;
     margin-left: 1em;
+    
     .comments{
         width: 100%;
         height: 100%;
@@ -14,6 +15,7 @@ export const UserCommentsContainer = styled.section`
         flex-direction: column;
         
         overflow-y: scroll;
+        border: 1px solid green;
     }
 `;
 

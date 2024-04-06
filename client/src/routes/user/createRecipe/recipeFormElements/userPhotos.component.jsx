@@ -38,7 +38,7 @@ const UserPhotos = ({images, onChange, maxNumber}) => {
                   <img src={image['data_url']} alt="" width="100" />
                   <div className="image-options">
                     <button onClick={() => onImageUpdate(index)}>Update</button>
-                    <button onClick={() => onImageRemove(index)}>Remove</button>
+                    <button className="secondaryButton" onClick={() => onImageRemove(index)}>Remove</button>
                   </div>
                 </div>
               ))}

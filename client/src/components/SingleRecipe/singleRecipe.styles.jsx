@@ -7,16 +7,12 @@ export const SingleRecipeContainer  = styled.section`
     flex-direction: row;
     flex-wrap: wrap;
     h1{
-       color: ${({theme}) => theme.colors.orange};
+       color: ${({theme}) => theme.colors.yellow};
        font-weight: bold;
-       text-transform: uppercase;
+       text-transform: capitalize;
        padding-bottom: 0.3rem;
        border-bottom: 1px solid ${({theme}) => theme.colors.grey3};
-    }
-    h2{
-        font-weight: bold;
-        padding-block: 0.6rem;
-        color: ${({theme}) => theme.colors.darkGrey};
+       
     }
     @media screen and (max-width: 900px){
         border: 2px solid orange;
@@ -27,6 +23,7 @@ export const TopDiv = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
+    gap: 2em;
     @media screen and (max-width: 900px){
         flex-wrap: wrap-reverse;
         border: 2px solid orange;
@@ -55,8 +52,19 @@ export const RightSide = styled.div`
 
 export const Bottom = styled.div`
 width: 100%;
-padding-top: 1em;
-border: 1px solid green;
+display: flex;
+height: auto;
+gap: 2em;
+margin-top: 1em;
+border-radius: 5px;
+    h3{
+        font-weight: bold;
+        padding-block: 0.3rem;
+        padding-inline: 0.4em;
+        color: ${({theme}) => theme.colors.darkGrey};
+        border-bottom: 1px solid ${({theme}) => theme.colors.yellow};
+    }
+
 @media screen and (max-width: 900px){
         flex-wrap: wrap;
         border: 2px solid orange;
@@ -64,37 +72,38 @@ border: 1px solid green;
 `;
 
 export const IngredientsDiv = styled.div`
-    display: flex;
-    flex-direction: row;
-    border: 1px solid red;
-    background-color: ${({theme}) => theme.colors.white};
+width: 30%;
+border-radius: 5px;
+box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 
-    gap: 1em;
-    padding: 0.2em;
-    border-radius: 5px;
-    margin-block: 0.5em;
-    
-    ul {
-        list-style-type: none;
-        padding: 0.4em;   
-    }
-    li{
-        margin-top: 1em;
-    }
+background-color: ${({theme}) => theme.colors.white};
+.outside{
+    display: flex;
+    width: 100%;
+    margin:0.5em;
+}
+
+.insideIng1{
+    display: flex;
+}
+.insideIng1 li{
+    padding-top: 0.4em;
+}
+.ing2 li{
+    padding-left: 1em;
+    padding-top: 0.4em;
+}
 `;
 
 export const InstructionsDiv = styled.div`
-border: 1px solid orange;
-    gap: 1em;
-    padding: 0.4em;
-    border-radius: 5px;
-    margin-block: 0.5em;
-    background-color: ${({theme}) => theme.colors.white};
-    ul {
-        list-style-type: none;
-        padding: 0.4em;   
-    }
-    li{
-        margin-top: 1em;
-    }
+width: 70%;
+border-radius: 5px;
+background-color: ${({theme}) => theme.colors.white};
+box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+ol{
+    margin:0.5em;
+}
+li{
+  padding-top: 0.4em;
+ }
 `

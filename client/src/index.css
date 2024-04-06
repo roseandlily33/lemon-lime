@@ -145,10 +145,13 @@ input{
 
 }
 textarea{
- border: 2px solid var(--lightGreen);
- padding: 0.5em;
+border: none;
+ background-color: var(--offWhite);
+ padding: 1em;
  border-radius: 5px;
+ padding: 0.5em;
  resize: none;
+ font-family: 'Inter', sans-serif;
 }
 input:focus{
     border:1.5px solid var(--lightGreen);
@@ -192,9 +195,4 @@ border: 1px solid rgba(255, 255, 255, 0.57);
 
 .secondary:hover{
   fill: var(--lightGreen);
-}
-
-.deleteButton{
-
-
 }

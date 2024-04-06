@@ -4,7 +4,7 @@ export const MainDiv = styled.main`
     display: flex;
     flex-direction: row;
     width: 95%;
-    height: 90%;
+    height: 100vh;
     gap: 1em;
     @media screen and (max-width: 900px){
         flex-wrap: wrap;
@@ -21,7 +21,7 @@ export const MainDiv = styled.main`
 
 export const LeftMainDiv = styled.div`
     width: 60%;
-    max-height: 70%;
+    max-height: 90%;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -35,7 +35,7 @@ export const LeftMainDiv = styled.div`
 
 export const RightMainDiv = styled.div`
     min-width: 30%;
-    max-height: 50%;
+    max-height: 90%;
     width: auto;
     display: flex;
     flex-direction: column;
