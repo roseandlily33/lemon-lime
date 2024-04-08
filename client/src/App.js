@@ -17,8 +17,12 @@ import UserBase from './routes/user/userBase.component.jsx';
 import BasePage from './routes/base/base.component';
 import NotFound from './routes/notFound/notFound.component.jsx';
 import UserComments from './components/Comments/userComments/userComments.component.jsx';
+import {useAuth0} from '@auth0/auth0-react';
+import { fetchUserRecipes } from './redux/userSlice';
+import { fetchUserComments } from './redux/userCommentsSlice.js';
+import { store } from './redux/store.js';
 
-export const UserContext = createContext(null);
+
 const theme = {
   colors: {
       white: 'hsl(40, 23%, 97%)',
@@ -37,8 +41,14 @@ const theme = {
       darkGrey: 'hsl(0, 0%, 38%)'
   }
 }
-function App() {
 
+function App() {
+  const {user, isAuthenticated} = useAuth0(); 
+  if(isAuthenticated){
+    store.dispatch(fetchUserRecipes(user.sub));
+    store.dispatch(fetchUserComments(user.sub));
+  }
+  
   return (
     <div className="App">
     <ThemeProvider theme={theme}>

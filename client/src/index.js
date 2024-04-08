@@ -9,8 +9,8 @@ import {Provider} from 'react-redux';
 import { store } from './redux/store';
 import { fetchPopular } from './redux/recipeSlice';
 import { fetchRecent } from './redux/recipeSlice';
-//Import anything to run first 
-//store.dispatch(fetch)
+
+
 store.dispatch(fetchPopular());
 store.dispatch(fetchRecent());
 
