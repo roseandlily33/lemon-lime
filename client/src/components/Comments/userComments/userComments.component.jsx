@@ -7,9 +7,7 @@ import Loader from '../../Loader/loader.component';
 
 const UserComments = () => {
     const {user} = useAuth0();
-    
     const [comments, setComments] = useState();
-
     useEffect(() => {
         const fetchComments = async() => {
             const res = await httpGetUserComments(user.sub);
