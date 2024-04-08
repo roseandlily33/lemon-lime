@@ -73,7 +73,7 @@ const SingleRecipe = () => {
       <h3>Instructions</h3>
 
         <ol>
-        {singleRecipe?.instructions.map(({id, ins}, index) => {
+        {singleRecipe?.instructions?.map(({id, ins}, index) => {
         return <div style={{display: 'flex'}} key={id}>
         <li style={{listStyleType: 'none', paddingRight: '0.7em', color: 'green'}}>{index + 1}</li>
         <li style={{listStyleType: 'none'}}>{ins}</li>

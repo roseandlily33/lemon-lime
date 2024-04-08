@@ -24,10 +24,6 @@ const recipesSchema = new mongoose.Schema({
         type: Schema.Types.Mixed,
         required: true
     }],
-    // measurements: [{
-    //     type: Schema.Types.Mixed,
-    //     required: true
-    // }],
     instructions: [{
         type: Schema.Types.Mixed,
         required: true

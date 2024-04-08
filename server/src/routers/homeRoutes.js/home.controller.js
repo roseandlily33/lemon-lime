@@ -19,7 +19,7 @@ async function httpGetAllRecipes(req, res){
    try{
     let allRecipes = await Recipe.find({}, {
         '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 
-    }).sort({createdAt: -1}).limit(6);
+    }).sort({createdAt: -1}).allowDiskUse(true).limit(4);
     return res.status(200).json(allRecipes)
    } catch(err){
     console.log('ERERR',err);
@@ -32,7 +32,7 @@ async function httpGetPopularRecipes(req, res){
     try{
         let faveRecipes = await Recipe.find({}, {
             '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 
-        }).sort({favorites: -1}).limit(6);
+        }).sort({favorites: -1}).allowDiskUse(true).limit(4);
          return res.status(200).json(faveRecipes);
     }catch(err){
         console.log('ERERR',err);

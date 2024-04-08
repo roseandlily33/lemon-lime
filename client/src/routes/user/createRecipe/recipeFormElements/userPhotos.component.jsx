@@ -1,4 +1,6 @@
 import ImageUploading from 'react-images-uploading';
+import Resizer from "react-image-file-resizer";
+
 const UserPhotos = ({images, onChange, maxNumber}) => {
     return ( 
         <>

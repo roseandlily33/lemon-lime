@@ -1,8 +1,7 @@
-//import { useState } from "react";
-import { ModalContainer } from "../modal.styles";
+import { ModalContainer } from "./modal.styles";
 
-const ErrorModal = ({children, onClose}) => {
-
+const Modal = ({children, onClose}) => {
+    console.log('MODAL', children)
     return (  
         <ModalContainer >
            <div className="modal slit-in-vertical">
@@ -13,4 +12,4 @@ const ErrorModal = ({children, onClose}) => {
     );
 }
  
-export default ErrorModal;
+export default Modal;

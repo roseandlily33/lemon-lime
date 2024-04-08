@@ -40,13 +40,13 @@ const UserIngredientEdit = ({ingredients, setIngredients}) => {
          <TopIngDivEdit>
          <SingleMeaIngDivEdit className="glass">
           <div className="outerLeft">  
-           {ingredients.map(({id, mea},idx) => {
+           {ingredients?.map(({id, mea},idx) => {
                return <EachMeasurement id={id} mea={mea} idx={idx} />
              }) 
          }
          </div>
          <div className="outerRight">
-         {ingredients.map(({id, ing}, idx) => (
+         {ingredients?.map(({id, ing}, idx) => (
             <EachIngredient idx={idx} id={id} ing={ing} deleteIngredient={deleteIngredient} setIngredients={setIngredients} ingredients={ingredients} />
         ))}
        </div>

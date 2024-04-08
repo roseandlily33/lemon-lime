@@ -2,15 +2,16 @@ const Recipe = require('../../models/recipes.mongo');
 //const jwt = require("jsonwebtoken");
 const User = require('../../models/user.mongo');
 
+
+
 //User creates a recipe 
 async function httpCreateRecipe(req, res){
     try{
       let {sub, nickname, email} = req.body.user;
       let foundUser = await User.findOne({email: email})
       if(foundUser){
-      //  console.log('FOUND USER', foundUser,'ids',foundUser.id, foundUser._id);
           const recipe = await Recipe.create({...req.body.recipe, author: foundUser.id });
-       //   console.log('Recipe created', recipe, 'ids', recipe.id, recipe._id);
+          console.log('Recipe created', recipe, 'ids', recipe.id, recipe._id);
           let finished = await User.findOneAndUpdate({
             _id: foundUser.id}, {
               $addToSet: {recipes: recipe.id}

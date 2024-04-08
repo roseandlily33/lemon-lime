@@ -13,13 +13,14 @@ import IngredientsAndMeasurements from "./recipeFormElements/dynamicIngMea.compo
 import UserPhotos from "./recipeFormElements/userPhotos.component";
 import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
 import { RightDiv, LeftDiv } from "./userRecipe.styles";
-import ErrorModal from "../../../components/Modal/errorModal/ErrorModel.component";
+import Modal from "../../../components/Modal/Model.component";
 
 
 const CreateRecipe = () => {
   const navigate = useNavigate();
     const {user} = useAuth0();
     const [isOpen, setIsOpen] = useState(false);
+    const [successStatus, setSuccessState] = useState('')
     //All forms values excpet Instructions,Ingredient, Measurements, Photos
     const [formValues, setFormValues] = useState({
         recipeName: '',
@@ -46,7 +47,6 @@ const CreateRecipe = () => {
       const onChange = (imageList, addUpdateIndex) => {
       setImages(imageList);
       };
-      let successStatus;
       const handleSubmit = async (e) => {
         e.preventDefault();
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
@@ -60,26 +60,25 @@ const CreateRecipe = () => {
         });
       const response = await httpCreateRecipe(user, totalSending);
       const success = response.ok;
-       if (success) {
-        successStatus = "Recipe has been created"
-       // alert('Success');
-       // navigate('/user/home');
-  
-        } else {
-         // alert('Failure')';
-          successStatus = "Recipe has not been created, please try again"
-         }
-        setFormValues({
-          recipeName: '',
-          prepTime: 10,
-          cookTime: 10,
-          subCategory: 'Breakfast'
-      });
+       if (success) {       
+        setSuccessState('You have created a recipe');
+       setIsOpen(true)
+       setFormValues({
+        recipeName: '',
+        prepTime: 10,
+        cookTime: 10,
+        subCategory: 'Breakfast'
+        });
         setIngredients([]);
         setInstructions([]);
+        } else {
+          setSuccessState('Recipe has not been created')
+          setIsOpen(true)
+         }
+        
       };
 
-      <button onClick={() => setIsOpen(true)}>Open Modal</button>
+      // <button onClick={() => setIsOpen(true)}>Open Modal</button>
      
     return (
     <>
@@ -128,10 +127,10 @@ const CreateRecipe = () => {
       </PhotosSection>
       <input className="button" style={{width: '150px'}} type="submit" />
       {isOpen && (
-    <ErrorModal onClose={() => setIsOpen(false)}>
-      <h2>{successStatus}</h2>
-
-    </ErrorModal>
+    <Modal onClose={() => setIsOpen(false)}>
+      <h3>{successStatus}</h3>
+      <button onClick={() => navigate('/user/home')}>Go Home</button>
+    </Modal>
   )}
     </CreateRecipeForm>
  </>
