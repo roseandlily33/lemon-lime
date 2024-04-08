@@ -1,20 +1,10 @@
-import {httpGetUserComments} from '../../../hooks/userRequests';
-import { UserCommentsContainer, SingleCommentDiv } from './userComments.styles';
-import { useEffect, useState } from 'react';
-import {useAuth0} from '@auth0/auth0-react';
+import { UserCommentsContainer} from './userComments.styles';
 import SingleComment from './singleComment.component';
 import Loader from '../../Loader/loader.component';
+import { useSelector } from 'react-redux';
 
 const UserComments = () => {
-    const {user} = useAuth0();
-    const [comments, setComments] = useState();
-    useEffect(() => {
-        const fetchComments = async() => {
-            const res = await httpGetUserComments(user.sub);
-            setComments(res.comments); 
-        }
-        fetchComments();
-    }, [user])
+    const {comments} = useSelector(state => state.userComments.userComments);
 
     return ( 
         <UserCommentsContainer>

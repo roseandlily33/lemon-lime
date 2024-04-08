@@ -5,13 +5,16 @@ import {useNavigate} from 'react-router-dom';
 import RecipeContainer3 from "../../components/Recipe/recipe3.component";
 import { httpGetUserRecipes } from "../../hooks/userRequests";
 import Loader from "../../components/Loader/loader.component";
-
+import { useDispatch } from "react-redux";
+import { fetchUserComments } from "../../redux/userCommentsSlice";
 const UserHome = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [recipes, setRecipes] = useState();
   const {user, isAuthenticated} = useAuth0();
 
     useEffect(() => {
+      dispatch(fetchUserComments(user.sub));
       const getRecipes = async() => {
         if(user.sub){
           const response = await httpGetUserRecipes(user.sub);
@@ -19,7 +22,7 @@ const UserHome = () => {
         } 
        }
       getRecipes();
-    }, [user]);
+    }, [user, dispatch]);
 
     const createRecipe = () => {
       navigate('/user/create')

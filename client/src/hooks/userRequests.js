@@ -150,17 +150,17 @@ async function httpDeleteFavoriteRecipe(userId, recipeId){
 // }
 
 //Gets the users comments 
-async function httpGetUserComments(id){
-  try{
-    const response = await fetch(`${API_URL}/user/comments/${id}`);
-    let allUserComments = await response.json();
-    return allUserComments;
-  }catch(err){
-    return {
-      ok: false,
-    };
-  }
-}
+// async function httpGetUserComments(id){
+//   try{
+//     const response = await fetch(`${API_URL}/user/comments/${id}`);
+//     let allUserComments = await response.json();
+//     return allUserComments;
+//   }catch(err){
+//     return {
+//       ok: false,
+//     };
+//   }
+// }
 
 
 
@@ -170,7 +170,7 @@ export {
     httpDeleteRecipe,
     httpEditUserRecipe,
     httpGetUserRecipes,
-    httpGetUserComments,
+    //httpGetUserComments,
     httpGetUsersFavoriteRecipes,
     httpDeleteFavoriteRecipe,
     httpGetFavoritesForMainPage

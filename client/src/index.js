@@ -8,9 +8,11 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import {Provider} from 'react-redux';
 import { store } from './redux/store';
 import { fetchPopular } from './redux/recipeSlice';
+import { fetchRecent } from './redux/recipeSlice';
 //Import anything to run first 
 //store.dispatch(fetch)
-store.dispatch(fetchPopular())
+store.dispatch(fetchPopular());
+store.dispatch(fetchRecent());
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -1,11 +1,11 @@
 const API_URL = 'http://localhost:8000';
 
 //Gets all the recipes for the main page
-async function httpGetAllRecipes(){
-    const response = await fetch(`${API_URL}/home/recipes`);
-    let allRecipes = await response.json();
-    return allRecipes;
-}
+// async function httpGetAllRecipes(){
+//     const response = await fetch(`${API_URL}/home/recipes`);
+//     let allRecipes = await response.json();
+//     return allRecipes;
+// }
 //Gets all the popular recipes for the main page
 // async function httpGetPopularRecipes(){
 //     const response = await fetch(`${API_URL}/home/popular`);
@@ -33,7 +33,7 @@ async function httpSearchRecipes(searchText){
 }
 
 export {
-    httpGetAllRecipes,
+    //httpGetAllRecipes,
     httpGetFullRecipeWithDetails,
     httpGetFullRecipeWithDetailsEditPage,
    // httpGetPopularRecipes,
