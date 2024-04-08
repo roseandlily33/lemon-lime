@@ -1,33 +1,33 @@
-import { useCallback, useState, useEffect } from "react";
-import { httpGetAllRecipes, httpGetPopularRecipes } from "./recipeRequests";
+// import { useCallback, useState, useEffect } from "react";
+// import { httpGetAllRecipes, httpGetPopularRecipes } from "./recipeRequests";
 
-async function useRecipes(){
-    const [allRecipes, setAllRecipes] = useState([]);
-    const [popularRecipes, setPopularRecipes] = useState([]);
+// async function useRecipes(){
+//     const [allRecipes, setAllRecipes] = useState([]);
+//     const [popularRecipes, setPopularRecipes] = useState([]);
 
-    const getAllRecipes = useCallback(async() => {
-        const allRecipes = await httpGetAllRecipes();
-        setAllRecipes(allRecipes);
-    }, []);
+//     const getAllRecipes = useCallback(async() => {
+//         const allRecipes = await httpGetAllRecipes();
+//         setAllRecipes(allRecipes);
+//     }, []);
 
-    useEffect(() => {
-        getAllRecipes()
-    }, [getAllRecipes]);
+//     useEffect(() => {
+//         getAllRecipes()
+//     }, [getAllRecipes]);
 
-    const getPopularRecipes = useCallback(async() => {
-        const allRecipes = await httpGetPopularRecipes()
-        setPopularRecipes(allRecipes);
-    }, []);
+//     const getPopularRecipes = useCallback(async() => {
+//         const allRecipes = await httpGetPopularRecipes()
+//         setPopularRecipes(allRecipes);
+//     }, []);
     
-    useEffect(() => {
-        getPopularRecipes()
-    }, [getPopularRecipes]);
+//     useEffect(() => {
+//         getPopularRecipes()
+//     }, [getPopularRecipes]);
     
-    return {
-        allRecipes,
-        popularRecipes
-    }
-}
+//     return {
+//         allRecipes,
+//         popularRecipes
+//     }
+// }
 
 
-export default useRecipes; 
+// export default useRecipes; 

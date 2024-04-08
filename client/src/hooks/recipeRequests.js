@@ -7,11 +7,11 @@ async function httpGetAllRecipes(){
     return allRecipes;
 }
 //Gets all the popular recipes for the main page
-async function httpGetPopularRecipes(){
-    const response = await fetch(`${API_URL}/home/popular`);
-    let allRecipes = await response.json();
-    return allRecipes;
-}
+// async function httpGetPopularRecipes(){
+//     const response = await fetch(`${API_URL}/home/popular`);
+//     let allRecipes = await response.json();
+//     return allRecipes;
+// }
 //Gets the full recipe with details for a view page
 async function httpGetFullRecipeWithDetails(id){
     const response = await fetch(`${API_URL}/home/${id}`);
@@ -36,6 +36,6 @@ export {
     httpGetAllRecipes,
     httpGetFullRecipeWithDetails,
     httpGetFullRecipeWithDetailsEditPage,
-    httpGetPopularRecipes,
+   // httpGetPopularRecipes,
     httpSearchRecipes
 }
