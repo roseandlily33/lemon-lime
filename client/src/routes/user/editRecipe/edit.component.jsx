@@ -6,6 +6,7 @@ import { getTotalTime } from '../../../formattingUtils/totalTime';
 import {useAuth0} from '@auth0/auth0-react';
 import {useNavigate} from 'react-router-dom';
 import DeleteRecipe from '../deleteRecipe/deleteRecipe.component';
+import Modal from '../../../components/Modal/Model.component';
 // Form Fields:
 import RecipeName from '../createRecipe/recipeFormElements/userRecipeName.component';
 import CookTime from '../createRecipe/recipeFormElements/userCookTime.component';
@@ -20,6 +21,7 @@ import { ButtonDiv, TopFormEdit, LeftDivEdit, RightDivEdit, MiddleFormEdit,  Pho
 import Loader from '../../../components/Loader/loader.component';
 import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
 
+
 const EditRecipe = () => {
     const {user} = useAuth0();
     const navigate = useNavigate();
@@ -29,6 +31,8 @@ const EditRecipe = () => {
     const [instructions, setInstructions]= useState();
     const [ingredients, setIngredients] = useState();
     const [images, setImages] = useState();
+    const [isOpen, setIsOpen] = useState(false);
+    const [success, setSuccess] = useState('');
 
     if(!user){
         navigate('/');
@@ -65,11 +69,12 @@ const EditRecipe = () => {
        const response = await httpEditUserRecipe(id, totalSending);
        console.log('Resoonse frond the server', response);
        const success = response.ok;
+       setIsOpen(true);
        if (success) {
-        alert('Success')
-        navigate('/user/home')
+         setSuccess('Recipe has been updated')
+        
         } else {
-          alert('Failure')
+          setSuccess('Recipe has not been updated, please try again later')
          }
       };
 
@@ -117,6 +122,12 @@ const EditRecipe = () => {
       <UserEditPhotos images={images} setImages={setImages} maxNumber={maxNumber}/>
     </PhotosSectionEdit>
     <ButtonDiv>
+    {isOpen && (
+    <Modal onClose={() => setIsOpen(false)}>
+      <h3>{success}</h3>
+      <button onClick={() => navigate('/user/home')}>Go Home</button>
+    </Modal>
+  )}
     <button style={{width: '150px'}} onClick={handleSubmit}>Update Recipe</button>
     <DeleteRecipe id={id} />
     </ButtonDiv>

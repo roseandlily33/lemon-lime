@@ -25,7 +25,6 @@ const DeleteRecipe = ({id}) => {
     }
 
     return ( <>
-    <button onClick={(e) => {e.preventDefault(); setIsOpen(true); console.log('IS OPEN 2', isOpen)}}>Open Modal</button>
      {isOpen && (
     <Modal onClose={() => setIsOpen(false)}>
       <h3>{success}</h3>

@@ -1,9 +1,10 @@
 import { CommentContainer, CommentForm, FormElement } from "./comments.styles";
 import { useState } from "react";
-import {Form, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useAuth0} from '@auth0/auth0-react';
 import {httpAddComment} from '../../../hooks/commentRequests';
 import Rating from "../../Rating/rating.component";
+
 
 const Comment = () => {
     const {id} = useParams();
@@ -13,11 +14,11 @@ const Comment = () => {
         comment: '',
     });
     const[starRating, setStarRating] = useState(1);
+    const[success, setSuccess] = useState('');
 
     const handleChange = (e) => {
         const {name, value} = e.target;
-        setFormState({...formState, [name]: value});
-        
+        setFormState({...formState, [name]: value});    
     }
 
     const handleSubmit = async(e) => {
@@ -28,22 +29,24 @@ const Comment = () => {
             recipe: id
         });
         let res = await httpAddComment(totalComment);
+        
         if(res.ok){
-            alert('Comment has been created')
+            setSuccess('Comment has been created')
         } else {
-            alert('Comment has not been created');
+            setSuccess('Comment has not been created')
         }
         setFormState({
             title: '',
             comment: '',
         })
-        setStarRating(1)
+        setStarRating(1);
+        setTimeout(() => {
+            window.location.reload();
+        }, 3000);
     }
     
     return ( 
-        
         <CommentContainer>
-        
         <h3 style={{marginBlock: '0.5em', marginLeft: '0.6em'}}>Leave a review</h3>
         {isAuthenticated ? 
          <CommentForm onSubmit={handleSubmit}>
@@ -67,6 +70,7 @@ const Comment = () => {
         <label>Review:</label>
         <textarea rows="6" cols="30" name="comment" value={formState.comment} onChange={handleChange}></textarea>
         </FormElement>
+        <p>{success}</p>
         <input style={{width: '150px'}} className="button" type="submit" />
          </CommentForm>
     : 
