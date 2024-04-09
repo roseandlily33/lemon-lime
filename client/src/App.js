@@ -47,6 +47,7 @@ function App() {
   if(isAuthenticated){
     store.dispatch(fetchUserRecipes(user.sub));
     store.dispatch(fetchUserComments(user.sub));
+    console.log('STORE', store.getState())
   }
   
   return (

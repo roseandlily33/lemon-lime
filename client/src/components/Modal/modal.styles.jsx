@@ -5,10 +5,9 @@ export const ModalContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items:center;
-    width: 100vw;
-    min-height: 100vh;
+    width: 90%;
+    height: 90%;
     z-index: 20;
-   // background-color: hsla(0, 0%, 100%, 0.6);
   .modal {
     background-color: ${({theme}) => theme.colors.white};
     padding: 9rem;
@@ -21,7 +20,8 @@ export const ModalContainer = styled.div`
     position: absolute;
     border: none;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    top: -30%;
+    top: 0;
+    margin: 0 auto;
   }
 
 /* ----------------------------------------------

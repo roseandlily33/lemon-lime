@@ -14,10 +14,12 @@ import UserPhotos from "./recipeFormElements/userPhotos.component";
 import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
 import { RightDiv, LeftDiv } from "./userRecipe.styles";
 import Modal from "../../../components/Modal/Model.component";
-
+import {useDispatch} from 'react-redux';
+import { fetchUserRecipes } from "../../../redux/userSlice";
 
 const CreateRecipe = () => {
-  const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {user} = useAuth0();
     const [isOpen, setIsOpen] = useState(false);
     const [successStatus, setSuccessState] = useState('')
@@ -75,10 +77,8 @@ const CreateRecipe = () => {
           setSuccessState('Recipe has not been created')
           setIsOpen(true)
          }
-        
+        dispatch(fetchUserRecipes(user.sub));
       };
-
-      // <button onClick={() => setIsOpen(true)}>Open Modal</button>
      
     return (
     <>

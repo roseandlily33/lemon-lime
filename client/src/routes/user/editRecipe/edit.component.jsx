@@ -20,6 +20,8 @@ import { CreateRecipeForm} from '../createRecipe/userRecipe.styles';
 import { ButtonDiv, TopFormEdit, LeftDivEdit, RightDivEdit, MiddleFormEdit,  PhotosSectionEdit } from './edit.styles';
 import Loader from '../../../components/Loader/loader.component';
 import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
+import {useDispatch} from 'react-redux';
+import { fetchUserRecipes } from "../../../redux/userSlice";
 
 
 const EditRecipe = () => {
@@ -33,6 +35,7 @@ const EditRecipe = () => {
     const [images, setImages] = useState();
     const [isOpen, setIsOpen] = useState(false);
     const [success, setSuccess] = useState('');
+    const dispatch = useDispatch();
 
     if(!user){
         navigate('/');
@@ -72,10 +75,10 @@ const EditRecipe = () => {
        setIsOpen(true);
        if (success) {
          setSuccess('Recipe has been updated')
-        
         } else {
           setSuccess('Recipe has not been updated, please try again later')
-         }
+        }
+         dispatch(fetchUserRecipes(user.sub));
       };
 
     return ( <>

@@ -3,10 +3,13 @@ import {useAuth0} from '@auth0/auth0-react';
 import {useNavigate} from 'react-router-dom';
 import Modal from '../../../components/Modal/Model.component';
 import { useState } from 'react';
+import {useDispatch} from 'react-redux';
+import { fetchUserRecipes } from "../../../redux/userSlice";
 
 const DeleteRecipe = ({id}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [success, setSuccess] = useState('');
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
     const {user} = useAuth0();
@@ -22,6 +25,7 @@ const DeleteRecipe = ({id}) => {
         } else {
            setSuccess('Recipe has not been deleted, please try again later')
         }
+        dispatch(fetchUserRecipes(user.sub));
     }
 
     return ( <>
