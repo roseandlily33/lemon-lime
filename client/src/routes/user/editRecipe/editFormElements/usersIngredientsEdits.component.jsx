@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EachIngredient from "./EachIngredient.component";
 import { v4 as uuidv4 } from 'uuid';
-import { BottomIngDivEdit, InstructionsEdit, TopIngDivEdit, SingleMeaIngDivEdit } from "../edit.styles";
+import { BottomIngDivEdit,  TopIngDivEdit, SingleMeaIngDivEdit } from "../edit.styles";
 import EachMeasurement from "./EachMeasurements.component";
 
 const UserIngredientEdit = ({ingredients, setIngredients}) => {
@@ -10,7 +10,6 @@ const UserIngredientEdit = ({ingredients, setIngredients}) => {
     const [ing, setIng] = useState('');
     const [mea, setMea] = useState();
     const [count, setCount] = useState(ingredients.length);
-
 
     const addCard = (e, ing) => {
         e.preventDefault();
@@ -90,9 +89,8 @@ const UserIngredientEdit = ({ingredients, setIngredients}) => {
                 onChange={(e) => 
                   setIng(e.target.value)}
          />
-         <button style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} onClick={(e) => addCard(e, ing)}>
+         <button className="buttonWithIcon" onClick={(e) => addCard(e, ing)}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="30" width="30" class="icon-add"><path class="secondary" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
-         
          Add Ingredient</button>
          </BottomIngDivEdit>
          </>  

@@ -11,7 +11,7 @@ import UserHome from './routes/user/user.component';
 import SearchPage from './routes/search/search.component';
 import AuthComponent from './routes/authentication/auth.component';
 import Footer from './routes/footer/footer.component';
-import SingleRecipe from './components/SingleRecipe/singleRecipe.component';
+import SingleRecipeComponent from './components/SingleRecipe/singleRecipe.component';
 import CreateRecipe from './routes/user/createRecipe/userRecipe.component';
 import UserBase from './routes/user/userBase.component.jsx';
 import BasePage from './routes/base/base.component';
@@ -27,13 +27,13 @@ const theme = {
   colors: {
       white: 'hsl(40, 23%, 97%)',
       offWhite: 'hsl(43, 13%, 90%)',
-      yellow: 'hsl(42, 87%, 55%)',
+      yellow: 'hsl(48, 86%, 55%)',
       mediumYellow: 'hsl(48, 94%, 68%)',
-      lightYellow: ' hsl(48, 100%, 88%)',
-      green: '#616f42',
-      lightGreen: '#aab761',
+      lightYellow: 'hsl(48, 100%, 77%)',
+      green: 'hsl(79, 25%, 35%)',
+      lightGreen: 'hsl(69, 37%, 55%)',
       mediumGreen: 'hsl(83, 70%, 34%)',
-      orange: "#E3A547",
+      orange: "#E3A445",
       border: '3px solid var(--yellow)',
       grey: 'hsl(40, 15%, 80%)',
       grey2: 'hsl(39, 11%, 69%)',
@@ -59,7 +59,7 @@ function App() {
         <Route path='/' element={<BasePage />}>
           <Route index element={<HomePage />} />
             <Route path="recipe">
-            <Route path=':id' element={<SingleRecipe />} />
+            <Route path=':id' element={<SingleRecipeComponent />} />
             </Route>
             <Route path='user' element={<UserBase />}>
               <Route index path="home" element={<UserHome />} />

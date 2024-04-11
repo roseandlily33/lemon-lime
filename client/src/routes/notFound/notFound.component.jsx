@@ -1,6 +1,6 @@
 
 const NotFound = () => {
-    return ( <h1>Sorry this page is not available</h1> );
+    return ( <h2>Sorry this page is not available</h2> );
 }
  
 export default NotFound;

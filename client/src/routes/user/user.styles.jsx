@@ -9,7 +9,6 @@ export const UserContainer = styled.div`
 `;
 export const UserRecipesContainer = styled.div`
     width: 100%;
-
     display: flex;
     flex-direction: row;
     gap: 1em;

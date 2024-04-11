@@ -49,6 +49,6 @@ async function httpAddComment(comment){
 
   export {
     httpAddComment,
-    httpGetAllCommentsForRecipe,
+   httpGetAllCommentsForRecipe,
     httpDeleteComment,
   }

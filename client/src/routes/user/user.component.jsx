@@ -26,7 +26,7 @@ const UserHome = () => {
           {!recipes ? <Loader />:
           <>
           <UserOptionsContainer>
-          <h1>Welcome {user.nickname}</h1>
+          <h2>Welcome {user.nickname}</h2>
           <button onClick={createRecipe}>Create a recipe</button>
           <button onClick={editComments}>Edit Comments</button>
           </UserOptionsContainer>

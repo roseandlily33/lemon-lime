@@ -27,4 +27,4 @@ export const ButtonRecipeContainer = styled.div`
     display: flex;
     flex-direction: row;
     gap:0.5em;
-`
+`;

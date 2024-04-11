@@ -34,7 +34,7 @@ async function httpSearchRecipes(searchText){
 
 export {
     //httpGetAllRecipes,
-    httpGetFullRecipeWithDetails,
+   httpGetFullRecipeWithDetails,
     httpGetFullRecipeWithDetailsEditPage,
    // httpGetPopularRecipes,
     httpSearchRecipes

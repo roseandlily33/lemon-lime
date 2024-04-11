@@ -11,7 +11,7 @@ const RecipeContainer2 = ({recipe}) => {
         <SideContainer key={recipe._id}>
            <div className="topDiv">
            <TopContainer>
-           <NavLink style={{textDecoration: 'none', fontSize: '1.4rem', textTransform: 'capitalize'}} className="link" to={url}>{recipe.recipeName}</NavLink>
+           <NavLink className="link" to={url}>{recipe.recipeName}</NavLink>
            <Heart recipe={recipe}/>
            </TopContainer>
             <p>{formatDate(recipe.createdAt)}</p>

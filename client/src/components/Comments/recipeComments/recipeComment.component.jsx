@@ -15,7 +15,6 @@ const RecipeComments = ({id}) => {
        fetchComments();
     }, [id]);
 
-
     return ( 
         <RecipeCommentsDiv>
         {!comments ? <Loader />

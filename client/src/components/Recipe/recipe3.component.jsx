@@ -12,12 +12,12 @@ const RecipeContainer3 = ({recipe}) => {
 
     return ( 
         <SideContainer key={recipe._id}>
-            <NavLink className="link" style={{textDecoration: 'none', fontSize: '1.5em', textTransform: 'capitalize'}} to={recipeUrl}>{recipe.recipeName}</NavLink>
-            <p style={{color: 'hsl(41, 9%, 35%)'}}>{formatDate(recipe.createdAt)}</p>
-            <p style={{color: 'hsl(41, 9%, 35%)'}}>Favorites: {recipe.favorites}</p>
+            <NavLink className="link" to={recipeUrl}>{recipe.recipeName}</NavLink>
+            <p>{formatDate(recipe.createdAt)}</p>
+            <p>Favorites: {recipe.favorites}</p>
             {recipe.images[0] ? <img src={recipe.images[0].data_url} alt="userPhoto" className="recipePhoto"/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
             <ButtonRecipeContainer>
-            <button style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'}} onClick={() => navigate(editUrl)}>
+            <button className="buttonWithIcon" onClick={() => navigate(editUrl)}>
                 Edit
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="20" width="30" class="icon-edit"><path class="primary" d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"/><rect width="20" height="2" x="2" y="20" class="secondary" rx="1"/></svg>
             

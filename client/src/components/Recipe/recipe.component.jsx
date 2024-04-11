@@ -12,7 +12,7 @@ const RecipeContainer = ({recipe}) => {
         <RecipeCont key={recipe._id}>
             <LeftContainer>
            <TopLabel>
-            <NavLink className="link" style={{textDecoration: 'none', fontSize: '1.516em', textTransform: 'capitalize'}} to={url}>{recipe.recipeName}</NavLink>
+            <NavLink className="link" to={url}>{recipe.recipeName}</NavLink>
             <Heart recipe={recipe}/>
             </TopLabel>
             <p>{formatDate(recipe.createdAt)}</p>

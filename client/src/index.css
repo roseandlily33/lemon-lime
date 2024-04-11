@@ -5,19 +5,19 @@
     box-sizing: border-box;
 }
 :root{
-    --white: hsl(40, 23%, 97%);
+    --white: hsl(40, 20%, 97%);
     --offWhite: hsl(43, 13%, 90%);
     --grey1: hsl(40, 15%, 80%);
     --grey2: hsl(39, 11%, 69%);
     --grey3: hsl(41, 8%, 61%);
     --darkGrey: hsl(0, 0%, 81%);
-    --yellow: hsl(42, 87%, 55%);
-    --lightestYellow: hsl(48, 100%, 88%);
+    --yellow: hsl(48, 86%, 55%);
+    --lightestYellow: hsl(48, 100%, 77%);
     --mediumYellow: hsl(48, 94%, 68%);
-    --green: #616f42;
-    --lightGreen: #aab761;
+    --green: hsl(79, 25%, 35%);
+    --lightGreen: hsl(69, 37%, 55%);
     --mediumGreen:hsl(83, 70%, 34%);
-    --orange: hsl(36, 74%, 58%);
+    --orange: hsl(36, 74%, 58%)
     --border: 5px solid var(--yellow);
 }
 body{
@@ -50,6 +50,9 @@ h6{
 }
 li, ul, ol, p{
   font-size: 1.1rem;
+}
+li{
+  list-style-type: none;
 }
 p{
   color: hsl(41, 9%, 35%);
@@ -136,6 +139,16 @@ button, .button {
   width: 100%;
   background: var(--orange);
 }
+
+.buttonWithIcon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+
 input{
  border: none;
  background-color: var(--offWhite);
@@ -176,10 +189,13 @@ backdrop-filter: blur(3.3px);
 border: 1px solid rgba(255, 255, 255, 0.57);
 }
 .link{
-  color: var(--yellow);
+  color: var(--green);
+  text-transform: capitalize;
+  font-size: 1.516em;
+  text-decoration: none;
 }
 .link:hover{
-  color: var(--green);
+  color: var(--yellow);
 }
 
 .primary {

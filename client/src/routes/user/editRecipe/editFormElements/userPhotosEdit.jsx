@@ -18,6 +18,7 @@ const UserEditPhotos = ({ maxNumber, images, setImages}) => {
           onChange={onChange}
           maxNumber={maxNumber}
           dataURLKey="data_url"
+          x={x}
         >
           {({
             imageList,

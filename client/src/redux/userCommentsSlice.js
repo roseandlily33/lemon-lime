@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
     userComments: [],
     isLoading: false,
+    isRecipeLoading: false,
     error: null
 };
 
@@ -13,10 +14,11 @@ export const fetchUserComments = createAsyncThunk(
     async (id) => {
         const res = await fetch(`${URL}/user/comments/${id}`);
         const data = await res.json();
-        console.log('COMMENTS', data);
         return data;
     }
 );
+
+
 
 export const userCommentsSlice = createSlice({
     name: 'userComments',

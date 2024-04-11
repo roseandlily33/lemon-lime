@@ -8,8 +8,11 @@ import Comment from "../Comments/addComment/comments.component";
 import Loader from "../Loader/loader.component";
 import RecipeComments from "../Comments/recipeComments/recipeComment.component";
 import Carousel from "./singleRecipeCarousel.component";
+// import { useDispatch, useSelector} from "react-redux";
+// import { fetchRecipeComments, fetchSingleRecipe } from "../../redux/singleRecipeSlice";
 
-const SingleRecipe = () => {
+
+const SingleRecipeComponent = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
     console.log('Single Recipe', singleRecipe)
@@ -24,6 +27,7 @@ const SingleRecipe = () => {
   }, [id]);
 
     return(
+
       <>
       <SingleRecipeContainer>
       {!singleRecipe ?
@@ -36,7 +40,7 @@ const SingleRecipe = () => {
        </LeftSide>
         <RightSide>
         <h1>{singleRecipe.recipeName}</h1>
-        <span style={{color: 'hsl(42.857142857142854, 8.641975308641971%, 31.76470588235294%)'}}>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
+        <span>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
         <>
         <p>Cook Time: {singleRecipe.cookTime}</p>
         <p>Prep Time: {singleRecipe.prepTime}</p>
@@ -50,19 +54,18 @@ const SingleRecipe = () => {
 
   <IngredientsDiv>
   <h3>Ingredients</h3>
-
   <ul className="outside">
     <div className="ing1">
     {singleRecipe.ingredients?.map(({id,mea}, index) => {
       return <div className="insideIng1">
-      <li key={id} style={{color: 'green', paddingRight: '0.7em', listStyleType: 'none'}}>{index + 1}</li>
-      <li key={mea} style={{listStyleType: 'none'}}>{mea}</li>
+      <li key={id} style={{color: '#6C9251', paddingRight: '0.7em'}}>{index + 1}</li>
+      <li key={mea}>{mea}</li>
       </div>
     })}
     </div>
     <div className="ing2" >
   {singleRecipe.ingredients?.map(({id, ing}) => {
-      return <li key={id} style={{listStyleType: 'none'}}>{ing}</li>
+      return <li key={id}>{ing}</li>
   })
   }
    </div>
@@ -71,12 +74,11 @@ const SingleRecipe = () => {
 
   <InstructionsDiv>
       <h3>Instructions</h3>
-
         <ol>
         {singleRecipe?.instructions?.map(({id, ins}, index) => {
         return <div style={{display: 'flex'}} key={id}>
-        <li style={{listStyleType: 'none', paddingRight: '0.7em', color: 'green'}}>{index + 1}</li>
-        <li style={{listStyleType: 'none'}}>{ins}</li>
+        <li style={{paddingRight: '0.7em', color: '#6C9251'}}>{index + 1}</li>
+        <li>{ins}</li>
         </div>
         })}
         </ol>
@@ -93,4 +95,4 @@ const SingleRecipe = () => {
       );
 }
  
-export default SingleRecipe;
+export default SingleRecipeComponent;

@@ -11,7 +11,10 @@ const UserComments = () => {
             <div>
             <h2 style={{marginLeft: '1em', marginBlock: '1em'}}>User Comments</h2>
             </div>
-            {!comments ? <Loader />
+            {!comments ? 
+            <div className='comments'>
+                 <h3 style={{textAlign: 'center'}}>You have no comments</h3>
+            </div>
             :
             <div className='comments'>
             <SingleComment comments={comments} />
