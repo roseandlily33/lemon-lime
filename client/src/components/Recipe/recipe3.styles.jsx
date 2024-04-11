@@ -18,7 +18,7 @@ export const SideContainer = styled.div`
         width: 250px;
         max-width: 250px;
         max-height: 150px;
-        border-radius: 2px;
+        border-radius: 5px;
     }
 
 `;

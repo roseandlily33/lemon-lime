@@ -39,7 +39,7 @@ const SingleRecipeComponent = () => {
         {singleRecipe.images[0] ? <Carousel images={singleRecipe.images} /> : <img src={Lemon} alt="lemons" className="recipePhoto"/>}
        </LeftSide>
         <RightSide>
-        <h1>{singleRecipe.recipeName}</h1>
+        <h2>{singleRecipe.recipeName}</h2>
         <span>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
         <>
         <p>Cook Time: {singleRecipe.cookTime}</p>

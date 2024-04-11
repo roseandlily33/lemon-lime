@@ -6,13 +6,12 @@ export const SingleRecipeContainer  = styled.section`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    h1{
-       color: ${({theme}) => theme.colors.yellow};
+    h2{
+       color: ${({theme}) => theme.colors.green};
        font-weight: bold;
        text-transform: capitalize;
        padding-bottom: 0.3rem;
        border-bottom: 1px solid ${({theme}) => theme.colors.grey3};
-       
     }
     @media screen and (max-width: 900px){
         border: 2px solid orange;
@@ -59,10 +58,13 @@ margin-top: 1em;
 border-radius: 5px;
     h3{
         font-weight: bold;
-        padding-block: 0.3rem;
-        padding-inline: 0.4em;
+        padding-inline: 0.6rem;
         color: ${({theme}) => theme.colors.darkGrey};
-        border-bottom: 1px solid ${({theme}) => theme.colors.yellow};
+        padding-block: 1rem;
+        background-color: ${({theme}) => theme.colors.offWhite};
+        border-bottom: 1px solid ${({theme}) => theme.colors.orange};
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
     }
 
 @media screen and (max-width: 900px){

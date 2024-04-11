@@ -11,9 +11,11 @@ export const UserRecipesContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 1em;
-    padding: 1em;
+  
     flex-wrap: wrap;
+    border: 1px solid green;
     @media screen and (max-width: 900px){
         flex-wrap: wrap;
         align-items: center;
@@ -28,13 +30,21 @@ export const UserOptionsContainer = styled.div`
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: center;
+    //border: 1px solid orange;
     @media screen and (max-width: 900px){
         flex-wrap: wrap;
         flex-direction: column;
         gap: 0.4em;
     }
-    h1{
+    h2{
         color: ${({theme}) => theme.colors.green};
+
+    }
+    img{
+        width: 100vw;
+        height: 50vh;
+        z-index: -1;
+        position: relative;
 
     }
 `;

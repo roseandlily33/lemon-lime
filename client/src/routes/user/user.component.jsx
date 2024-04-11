@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import RecipeContainer3 from "../../components/Recipe/recipe3.component";
 import Loader from "../../components/Loader/loader.component";
 import { useSelector } from "react-redux";
+import Background from '../../images/Background3.jpg';
 
 const UserHome = () => {
   const {user, isAuthenticated} = useAuth0();
@@ -26,6 +27,7 @@ const UserHome = () => {
           {!recipes ? <Loader />:
           <>
           <UserOptionsContainer>
+          <img src={Background} alt="lemons background" />
           <h2>Welcome {user.nickname}</h2>
           <button onClick={createRecipe}>Create a recipe</button>
           <button onClick={editComments}>Edit Comments</button>

@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 :root{
-    --white: hsl(40, 20%, 97%);
+    --white: #f9f8f6;
     --offWhite: hsl(43, 13%, 90%);
     --grey1: hsl(40, 15%, 80%);
     --grey2: hsl(39, 11%, 69%);
@@ -17,7 +17,7 @@
     --green: hsl(79, 25%, 35%);
     --lightGreen: hsl(69, 37%, 55%);
     --mediumGreen:hsl(83, 70%, 34%);
-    --orange: hsl(36, 74%, 58%)
+    --orange: hsl(36, 74%, 58%);
     --border: 5px solid var(--yellow);
 }
 body{
@@ -68,7 +68,6 @@ span{
 button, .button {
     min-width: 130px;
     height: 40px;
-    color: var(--white);
     padding: 5px 10px;
     font-weight: bold;
     cursor: pointer;
@@ -80,11 +79,11 @@ button, .button {
     z-index: 0;
     background:  hsl(30, 17%, 98%);
     overflow: hidden;
-    border: 2px solid var(--lightGreen);
+    border: 2px solid var(--mediumGreen);
     color: var(--green);
   }
   button:hover, .button:hover {
-    color: VAR(--white);
+    color: var(--white);
     box-shadow: var(--grey3) 0px 2px 4px 0px, var(--grey1) 0px 2px 16px 0px;
   }
   button:hover:after, .button:hover:after {
@@ -195,7 +194,7 @@ border: 1px solid rgba(255, 255, 255, 0.57);
   text-decoration: none;
 }
 .link:hover{
-  color: var(--yellow);
+  color: var(--orange);
 }
 
 .primary {
