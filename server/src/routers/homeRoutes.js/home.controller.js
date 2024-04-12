@@ -15,11 +15,10 @@ async function httpGetMain(req, res){
 }
 //Gets all of the recipes for the main page the newest 6
 async function httpGetAllRecipes(req, res){
-   console.log('GETTING ALL THE RECIPES')
    try{
     let allRecipes = await Recipe.find({}, {
         '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 
-    }).sort({createdAt: -1}).allowDiskUse(true).limit(4);
+    }).sort({createdAt: -1}).allowDiskUse(true).limit(8);
     return res.status(200).json(allRecipes)
    } catch(err){
     console.log('ERERR',err);
@@ -28,11 +27,10 @@ async function httpGetAllRecipes(req, res){
 };
 //Gets the most popular recipes the top 6
 async function httpGetPopularRecipes(req, res){
-    console.log('GETTING ALL THE POPULAR RECIPES')
     try{
         let faveRecipes = await Recipe.find({}, {
             '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 
-        }).sort({favorites: -1}).allowDiskUse(true).limit(4);
+        }).sort({favorites: -1}).allowDiskUse(true).limit(8);
          return res.status(200).json(faveRecipes);
     }catch(err){
         console.log('ERERR',err);

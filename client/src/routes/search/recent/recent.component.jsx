@@ -1,11 +1,11 @@
-import { RecentContainer, RecentOption } from "./recent.styles";
-const RecentlySearched = ({recent}) => {
+import { RecentContainer } from "./recent.styles";
+const RecentlySearched = ({recent, seachForOldSearch}) => {
 
     return ( 
         <RecentContainer>
-        <h3>Recently Searched: </h3>
+        <h4>Recently Searched: </h4>
         <div style={{display: 'flex', gap: '1em'}}>
-        {recent.map((r) => <RecentOption>{r}</RecentOption>)}
+        {recent.map((r) => <p onClick={() => seachForOldSearch(r)}>{r}</p>)}
         </div>
         </RecentContainer>
      );

@@ -11,11 +11,19 @@ export const SearchContainer = styled.section`
 
 export const StyledDiv = styled.div`
     display: flex;
-    gap: 1em;
-    margin-top: 1em;
-    width: 50%;
-    input{
-        width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 1rem;
+    padding-left: 1rem;
+    gap: 2em;
+    width: 90%;
+    height: 30%;
+    background-color: ${({theme}) => theme.colors.white};    
+    border-radius: 5px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    div{
+        display: flex;
+        gap: 2em;
     }
 `;
 
@@ -24,7 +32,6 @@ export const ResultsDiv = styled.div`
     width: 100vw; 
     margin: 1em;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     margin-top: 1em;
-
 `;
