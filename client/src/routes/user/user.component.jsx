@@ -11,7 +11,6 @@ const UserHome = () => {
   const navigate = useNavigate();
   
   const recipes = useSelector(state => state.user.userRecipes);
-  console.log('USERS RECIPES', recipes)
     const createRecipe = () => {
       navigate('/user/create')
     }
@@ -23,21 +22,27 @@ const UserHome = () => {
         <UserContainer>
          {isAuthenticated ?
          <>
-          <UserRecipesContainer>
           {!recipes ? <Loader />:
           <>
           <UserOptionsContainer>
+            <div className="imgDiv">
           <img src={Background} alt="lemons background" />
+          </div>
+          <div className="userDiv">
           <h2>Welcome {user.nickname}</h2>
+          <div className="buttonDiv">
           <button onClick={createRecipe}>Create a recipe</button>
           <button onClick={editComments}>Edit Comments</button>
+          </div>
+          </div>
           </UserOptionsContainer>
+          <UserRecipesContainer>
           {recipes.map((r) => {
             return <RecipeContainer3 recipe={r}/>
           })}
-           </>
+           </UserRecipesContainer>
+          </>
           }
-          </UserRecipesContainer>
          </> :
          <h2>Login To View Your Recipes</h2>
         }
