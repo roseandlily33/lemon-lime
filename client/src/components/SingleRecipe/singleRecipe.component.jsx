@@ -8,6 +8,7 @@ import Comment from "../Comments/addComment/comments.component";
 import Loader from "../Loader/loader.component";
 import RecipeComments from "../Comments/recipeComments/recipeComment.component";
 import Carousel from "./singleRecipeCarousel.component";
+import Heart from '../Heart/heart.component';
 // import { useDispatch, useSelector} from "react-redux";
 // import { fetchRecipeComments, fetchSingleRecipe } from "../../redux/singleRecipeSlice";
 
@@ -40,6 +41,7 @@ const SingleRecipeComponent = () => {
        </LeftSide>
         <RightSide>
         <h2>{singleRecipe.recipeName}</h2>
+        <Heart recipe={singleRecipe._id}/>
         <span>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
         <>
         <p>Cook Time: {singleRecipe.cookTime}</p>

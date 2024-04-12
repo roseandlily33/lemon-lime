@@ -19,6 +19,10 @@
     --mediumGreen:hsl(83, 70%, 34%);
     --orange: hsl(36, 74%, 58%);
     --border: 5px solid var(--yellow);
+    --errorRed: hsl(354, 85%, 44%);
+    --peachyPink: hsl(0, 71%, 66%);
+    --lightPeachyPink: hsl(0, 100%, 95%);
+    --darkerPeachyPink: hsl(0, 100%, 80%);
 }
 body{
     background-color: var(--white);
@@ -196,18 +200,42 @@ border: 1px solid rgba(255, 255, 255, 0.57);
 .link:hover{
   color: var(--orange);
 }
-
+/* For the main icons */
 .primary {
   fill:  var(--yellow);
 }
 .primary:hover{
   fill: var(--mediumYellow);
 }
-
 .secondary {
   fill: var(--green); 
 }
-
 .secondary:hover{
   fill: var(--lightGreen);
+}
+/* For the unfavorited heart */
+.primaryHeart{
+  fill: var(--offWhite);
+}
+.primaryHeart:hover{
+  fill: var(--grey1);
+}
+.secondaryHeart{
+  fill: var(--grey2);
+}
+.secondaryHeart:hover{
+  fill: var(--grey3);
+}
+/* For the favorited heart */
+.primaryHeartFaved{
+  fill: var(--lightPeachyPink);
+}
+.primaryHeartFaved:hover{
+  fill: var(--peachyPink);
+}
+.secondaryHeartFaved{
+  fill: var(--peachyPink);
+}
+.secondaryHeartFaved:hover{
+  fill: var(--grey1);
 }

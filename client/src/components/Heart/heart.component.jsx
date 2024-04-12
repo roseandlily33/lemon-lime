@@ -3,44 +3,56 @@ import AddHeart from "./addFave.component";
 import { httpGetFavoritesForMainPage } from "../../hooks/userRequests";
 import { useState, useEffect } from "react";
 import {useAuth0} from '@auth0/auth0-react';
+import {useSelector, useDispatch} from 'react-redux';
+import { httpAddFavoriteRecipe } from "../../hooks/userRequests";
+import { httpDeleteFavoriteRecipe } from "../../hooks/userRequests";
+import { fetchFavorites } from "../../redux/favoritesSlice";
 
-
+//Recipe = the id 
 const Heart = ({recipe}) => {
-    // const {user} = useAuth0();
-    // const [usersFave, setUsersFave] = useState();
-    // const [foundRecipe, setFoundRecipe] = useState();
+    const {user} = useAuth0();
+    const dispatch = useDispatch();
+    const favorites = useSelector(state => state.favorites.favorites);
+    const [found, setFound] = useState(false);
 
+    useEffect(() => {
+        const found = favorites.filter((ele) => {
+            return ele._id === recipe;
+        });
+        setFound(found);
+    }, [recipe, favorites])
+    const addFavorite = async(userId, recipeId) => {
+        const adding = await httpAddFavoriteRecipe(userId, recipeId);
+        dispatch(fetchFavorites(user.sub));
+        console.log('Recipe added', adding);
+       // setFound(true)
+    }
+    const deleteFavorite = async(userId, recipeId) => {
+        const deleting = await httpDeleteFavoriteRecipe(userId, recipeId);
+        dispatch(fetchFavorites(user.sub));
+        console.log('Deleting', deleting);
+        //setFound(false);
+    }
 
-    // useEffect(() => {
-    //     const GetFavorites = async() => {
-    //         try{
-    //             let recipes = await httpGetFavoritesForMainPage(user.sub);
-    //             setUsersFave(recipes.favorites);
-    //     //                 Let cache = {}
-    //     // Function memoFuncition(n){
-    //     // if(n in cache){ return cache[n];}
-    //     // Else { cache[n] = 5 + 80; return cache[n]}}
-    //             let foundRecipe = await usersFave.find((f) => {
-    //                 return f._id === recipe._id
-    //             });
-    //             setFoundRecipe(foundRecipe);
-    //         } catch(err){
-    //            // alert('Error on getting faves');
-    //            console.log('Err', err)
-    //         }
-    //         // finally{
-    //         //    if(usersFave){
-               
-    //         //    }
-    //         // }
-    //     }
-    //     GetFavorites();
-    // }, [user, recipe._id, usersFave]);
     return ( 
-        // <>
-        // {foundRecipe ? <DeleteHeart id={recipe._id} /> : <AddHeart id={recipe._id} /> }
-        // </>
-        <></>
+        <>
+        {
+            found ?
+            <>
+            <svg onClick={() => deleteFavorite(user.sub, recipe)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" class="icon-heart">
+            <circle cx="12" cy="12" r="10" class="primaryHeartFaved"/>
+            <path class="secondaryHeartFaved" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/>
+             </svg>
+            </>
+            :
+            <>
+            <svg onClick={() => addFavorite(user.sub, recipe)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" class="icon-heart">
+            <circle cx="12" cy="12" r="10" class="primaryHeart"/>
+            <path class="secondaryHeart" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/>
+            </svg>
+            </>
+        }
+        </>
      );
 }
  

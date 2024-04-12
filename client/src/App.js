@@ -18,6 +18,7 @@ import BasePage from './routes/base/base.component';
 import NotFound from './routes/notFound/notFound.component.jsx';
 import UserComments from './components/Comments/userComments/userComments.component.jsx';
 import {useAuth0} from '@auth0/auth0-react';
+import { fetchFavorites } from './redux/favoritesSlice.js';
 import { fetchUserRecipes } from './redux/userSlice';
 import { fetchUserComments } from './redux/userCommentsSlice.js';
 import { store } from './redux/store.js';
@@ -38,7 +39,9 @@ const theme = {
       grey: 'hsl(40, 15%, 80%)',
       grey2: 'hsl(39, 11%, 69%)',
       grey3: 'hsl(41, 8%, 61%)',
-      darkGrey: 'hsl(0, 0%, 38%)'
+      darkGrey: 'hsl(0, 0%, 38%)',
+      errorRed: 'hsl(354, 85%, 44%)',
+      peachyPink: 'hsl(360, 83%, 62%)'
   }
 }
 
@@ -47,6 +50,7 @@ function App() {
   if(isAuthenticated){
     store.dispatch(fetchUserRecipes(user.sub));
     store.dispatch(fetchUserComments(user.sub));
+    store.dispatch(fetchFavorites(user.sub));
     console.log('STORE', store.getState())
   }
   

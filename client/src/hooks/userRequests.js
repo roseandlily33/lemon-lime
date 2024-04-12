@@ -87,11 +87,11 @@ async function httpGetUsersFavoriteRecipes(userId){
   return allFavorites;
 }
 
-async function httpGetFavoritesForMainPage(userId){
-  const response = await fetch(`${API_URL}/user/main/favorites/${userId}`);
-  let allFavorites = await response.json();
-  return allFavorites;
-}
+// async function httpGetFavoritesForMainPage(userId){
+//   const response = await fetch(`${API_URL}/user/main/favorites/${userId}`);
+//   let allFavorites = await response.json();
+//   return allFavorites;
+// }
 
 // Delete a favorited recipe for a user
 async function httpDeleteFavoriteRecipe(userId, recipeId){
@@ -173,5 +173,5 @@ export {
     //httpGetUserComments,
     httpGetUsersFavoriteRecipes,
     httpDeleteFavoriteRecipe,
-    httpGetFavoritesForMainPage
+   // httpGetFavoritesForMainPage
 }

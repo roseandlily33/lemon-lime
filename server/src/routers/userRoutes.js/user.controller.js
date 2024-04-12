@@ -119,6 +119,7 @@ async function httpGetUsersFavoriteRecipes(req, res){
     let userFavorites = await User.findOne({authId: req.params.userId}, {
       'comments': 0, 'email': 0, 'recipes': 0, '__v': 0, 'name': 0
     }).populate('favorites');
+    console.log('Users Favorites', userFavorites);
     res.status(200).json(userFavorites);
   } catch(err){
     return res.status(404).json({msg: 'Could not find favorite recipes'})
