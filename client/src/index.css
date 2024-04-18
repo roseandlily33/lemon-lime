@@ -18,6 +18,7 @@
     --lightGreen: hsl(69, 37%, 55%);
     --mediumGreen:hsl(83, 70%, 34%);
     --orange: hsl(36, 74%, 58%);
+    --darkOrange: hsl(29, 80%, 44%);
     --border: 5px solid var(--yellow);
     --errorRed: hsl(354, 85%, 44%);
     --peachyPink: hsl(0, 71%, 66%);
@@ -198,7 +199,7 @@ border: 1px solid rgba(255, 255, 255, 0.57);
   text-decoration: none;
 }
 .link:hover{
-  color: var(--orange);
+  color: var(--darkOrange);
 }
 /* For the main icons */
 .primary {

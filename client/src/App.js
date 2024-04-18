@@ -35,6 +35,7 @@ const theme = {
       lightGreen: 'hsl(69, 37%, 55%)',
       mediumGreen: 'hsl(83, 70%, 34%)',
       orange: "#E3A445",
+      darkOrange: 'hsl(29, 80%, 44%)',
       border: '3px solid var(--yellow)',
       grey: 'hsl(40, 15%, 80%)',
       grey2: 'hsl(39, 11%, 69%)',

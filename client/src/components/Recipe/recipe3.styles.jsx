@@ -20,6 +20,9 @@ export const SideContainer = styled.div`
         max-height: 150px;
         border-radius: 5px;
     }
+    &:hover{
+        box-shadow: ${({theme}) => theme.colors.offWhite} 0px 2px 4px 0px, ${({theme}) => theme.colors.orange} 0px 2px 16px 0px;
+    }
 
 `;
 

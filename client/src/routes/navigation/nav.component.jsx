@@ -52,7 +52,10 @@ const NavBar = () => {
               }
               </> 
               : 
+              <>
+              <NavLink to='search'><img src={search} title="search" alt="search" height="20" width="20"/></NavLink>
               <button onClick={() => loginWithRedirect()}>Login</button>
+              </>
               }
 
             </RightNav>

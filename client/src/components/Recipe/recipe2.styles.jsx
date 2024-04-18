@@ -32,6 +32,9 @@ export const SideContainer = styled.div`
         flex-direction: column;
         gap: 0.3em;
     }
+    &:hover{
+        box-shadow: ${({theme}) => theme.colors.offWhite} 0px 2px 4px 0px, ${({theme}) => theme.colors.orange} 0px 2px 16px 0px;
+    }
 `;
 
 export const TopContainer = styled.div`
