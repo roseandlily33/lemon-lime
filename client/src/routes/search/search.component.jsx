@@ -35,7 +35,6 @@ const SearchPage = () => {
         setAlert('');
         let searching = await await httpSearchRecipes(recipe);
         setResults(searching);
-
     }
 
     if(!results){

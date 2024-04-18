@@ -30,8 +30,11 @@ export const StyledDiv = styled.div`
 export const ResultsDiv = styled.div`
     height: 100vh;
     width: 100vw; 
+    border: 1px solid green;
     margin: 1em;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     margin-top: 1em;
+    align-items: start;
 `;

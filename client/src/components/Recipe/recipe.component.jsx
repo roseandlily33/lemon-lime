@@ -3,14 +3,15 @@ import {formatDate} from '../../formattingUtils/date';
 import {NavLink} from 'react-router-dom'; 
 import Lemons from '../../images/lemons.jpg';
 import Heart from "../Heart/heart.component";
+import { useNavigate } from "react-router-dom";
 
 const RecipeContainer = ({recipe}) => {
-
+    const navigate = useNavigate();
     const url = `recipe/${recipe._id}`;
 
     return ( 
-        <RecipeCont key={recipe._id}>
-            <LeftContainer>
+        <RecipeCont key={recipe._id} onClick={() => navigate(url)}>
+          <LeftContainer>
            <TopLabel>
             <NavLink className="link" to={url}>{recipe.recipeName}</NavLink>
             <Heart recipe={recipe}/>

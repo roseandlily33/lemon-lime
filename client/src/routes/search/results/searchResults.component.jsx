@@ -4,11 +4,13 @@ import { SearchResultsContainer } from "./searchResults.styles";
 const SearchResults  = ({results }) => {
 
     return ( 
-        <SearchResultsContainer>
+      <>
+        {/* <SearchResultsContainer> */}
         {results?.map((recipe) => {
           return  <RecipeContainer2 recipe={recipe} />
         })}
-        </SearchResultsContainer>
+        {/* </SearchResultsContainer> */}
+        </>
     );
 }
  
