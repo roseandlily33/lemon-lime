@@ -22,7 +22,7 @@ const SingleRecipeComponent = () => {
       const fetchSingle = async() => {
           const res = await httpGetFullRecipeWithDetails(id);
           setSingleRecipe(res.foundRecipe[0]);
-          setUsersName(res.authorOfRecipe.name);
+          //setUsersName(res.authorOfRecipe.name);
       }
       fetchSingle();
   }, [id]);
@@ -40,9 +40,9 @@ const SingleRecipeComponent = () => {
         {singleRecipe.images[0] ? <Carousel images={singleRecipe.images} /> : <img src={Lemon} alt="lemons" className="recipePhoto"/>}
        </LeftSide>
         <RightSide>
-        <h2>{singleRecipe.recipeName}</h2>
+        <h2>{singleRecipe?.recipeName}</h2>
         <Heart recipe={singleRecipe._id}/>
-        <span>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
+        {/* <span>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span> */}
         <>
         <p>Cook Time: {singleRecipe.cookTime}</p>
         <p>Prep Time: {singleRecipe.prepTime}</p>

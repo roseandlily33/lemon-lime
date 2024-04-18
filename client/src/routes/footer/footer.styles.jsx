@@ -7,4 +7,8 @@ export const FooterContainer = styled.footer`
     align-items: center;
     height: 100px;
     flex-wrap: wrap;
+    z-index: 10;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
 `;

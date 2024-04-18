@@ -14,13 +14,12 @@ const Heart = ({recipe}) => {
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favorites.favorites);
     const [found, setFound] = useState(false);
-
-    useEffect(() => {
-        const found = favorites.filter((ele) => {
-            return ele._id === recipe;
-        });
-        setFound(found);
-    }, [recipe, favorites])
+   console.log('Favorites', favorites.recipe)
+    if(favorites.recipe === true){
+        console.log('in the check')
+        console.log('Favorited Options', recipe, favorites[recipe]);
+        setFound(true);
+    }
     const addFavorite = async(userId, recipeId) => {
         const adding = await httpAddFavoriteRecipe(userId, recipeId);
         dispatch(fetchFavorites(user.sub));

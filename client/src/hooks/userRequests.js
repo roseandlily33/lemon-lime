@@ -50,7 +50,7 @@ async function httpDeleteRecipe(id){
       method: 'delete',
       headers: {
         "Content-Type": "application/json",
-      },
+      }
     })
   } catch(err){
     return {

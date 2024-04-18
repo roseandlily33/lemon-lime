@@ -25,10 +25,15 @@ const userSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Recipe'
     }],
-    favorites: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Recipe'
-    }],
+    // favorites: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Recipe'
+    // }],
+    favorites: {
+        type: Map,
+        of: String,
+        default: {}
+    },
     comments: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'

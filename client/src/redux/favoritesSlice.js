@@ -33,8 +33,8 @@ export const favoritesSlice = createSlice({
         })
         .addCase(fetchFavorites.fulfilled, (state, action) => {
             state.status = 'success';
-            console.log('Fetchied Faves', action.payload.favorites)
-            state.favorites = action.payload.favorites;
+            //console.log('Fetchied Faves', action.payload.favorites)
+            state.favorites = action.payload;
         })
         .addCase(fetchFavorites.rejected, (state, action) => {
             state.status = 'failed';

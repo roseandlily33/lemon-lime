@@ -6,7 +6,8 @@ import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 const FavoritesPage = () => {
-    const {favorites} = useSelector(state => state.favorites.favorites);
+    //Create a state for the full recipes 
+    const favorites = useSelector(state => state.favorites.favorite);
     console.log('Users Favorites', favorites)
     const navigate = useNavigate();
     const {user, isAuthenticated} = useAuth0();

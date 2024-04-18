@@ -10,6 +10,7 @@ export const SideContainer = styled.div`
     background-color: ${({theme}) => theme.colors.white};
     min-width: 300px;
     height: auto;
+    max-height: 350px;
     width: 300px;
     max-width: 300px;
     padding: 1em;
