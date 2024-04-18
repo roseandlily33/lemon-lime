@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {CreateRecipeForm, TopForm, MiddleForm, PhotosSection} from './userRecipe.styles';
 import { getTotalTime } from "../../../formattingUtils/totalTime";
 import UserInstructions from "./recipeFormElements/userInstructionsSingle.component";
@@ -16,13 +16,17 @@ import { RightDiv, LeftDiv } from "./userRecipe.styles";
 import Modal from "../../../components/Modal/Model.component";
 import {useDispatch} from 'react-redux';
 import { fetchUserRecipes } from "../../../redux/userSlice";
+//import Resizer from "react-image-file-resizer";
+import Compress from 'compress.js';
+
 
 const CreateRecipe = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {user} = useAuth0();
     const [isOpen, setIsOpen] = useState(false);
-    const [successStatus, setSuccessState] = useState('')
+    const [successStatus, setSuccessState] = useState('');
+    const compress = new Compress()
     //All forms values excpet Instructions,Ingredient, Measurements, Photos
     const [formValues, setFormValues] = useState({
         recipeName: '',
@@ -45,14 +49,27 @@ const CreateRecipe = () => {
       }
       //For the photos
       const [images, setImages] = useState([]);
-      const maxNumber = 4;
+      const maxNumber = 3;
       const onChange = (imageList, addUpdateIndex) => {
-      setImages(imageList);
-      };
+        setImages(imageList);
+      }
+
       const handleSubmit = async (e) => {
         e.preventDefault();
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
         let newRecipeName = formValues.recipeName.toLowerCase();
+        // console.log('Compressing these images', images, images.blob());
+        // let compressedImages = compress.compress(images, {
+        //   size: 4, // the max size in MB, defaults to 2MB
+        //   quality: .75, // the quality of the image, max is 1,
+        //   maxWidth: 1920, // the max width of the output image, defaults to 1920px
+        //   maxHeight: 1920, // the max height of the output image, defaults to 1920px
+        //   resize: true, // defaults to true, set false if you do not want to resize the image width and height
+        //   rotate: false, // See the rotation section below
+        // }).then((data) => {
+        //   console.log('Compressed data', data)
+        //   setImages(data);
+        // })
         let totalSending = Object.assign(formValues, {
           instructions: instructions,
           ingredients: ingredients,
@@ -60,6 +77,7 @@ const CreateRecipe = () => {
           recipeName: newRecipeName,
           images: images
         });
+        console.log('Total Sending', totalSending, totalSending.images)
       const response = await httpCreateRecipe(user, totalSending);
       const success = response.ok;
        if (success) {       
@@ -119,11 +137,12 @@ const CreateRecipe = () => {
       <span style={{fontSize: '0.9rem', fontStyle: 'italic'}}>
 <svg xmlns="http://www.w3.org/2000/svg" height="15" width="15" viewBox="0 0 24 24" class="icon-asterisk"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M11 10.62V7a1 1 0 0 1 2 0v3.62l3.45-1.12a1 1 0 0 1 .61 1.9l-3.44 1.13 2.13 2.93a1 1 0 0 1-1.62 1.17L12 13.7l-2.13 2.93a1 1 0 1 1-1.62-1.17l2.13-2.93-3.44-1.12a1 1 0 1 1 .61-1.9L11 10.61z"/></svg>
       
-       JPG Only,max of 4 images <br />
+       JPG Only, max of 3 images, file size must be under 2 MB<br />
 <svg xmlns="http://www.w3.org/2000/svg" height="15" width="15" viewBox="0 0 24 24" class="icon-asterisk"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M11 10.62V7a1 1 0 0 1 2 0v3.62l3.45-1.12a1 1 0 0 1 .61 1.9l-3.44 1.13 2.13 2.93a1 1 0 0 1-1.62 1.17L12 13.7l-2.13 2.93a1 1 0 1 1-1.62-1.17l2.13-2.93-3.44-1.12a1 1 0 1 1 .61-1.9L11 10.61z"/></svg>
 
-      Image size displayed here is the actual size </span></h2>
+      Image size displayed here is the size they will be presented as</span></h2>
       <UserPhotos images={images} onChange={onChange} maxNumber={maxNumber}/>
+      {/* <SinglePhoto images={images} onChange={onChange} maxNumber={maxNumber}/> */}
       </PhotosSection>
       <input className="button" style={{width: '150px'}} type="submit" />
       {isOpen && (
