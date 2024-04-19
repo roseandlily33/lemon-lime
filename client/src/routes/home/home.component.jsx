@@ -7,10 +7,13 @@ import { MainDiv, BottomDiv, LeftMainDiv, RightMainDiv, HeroImage } from "./home
 import { useSelector } from "react-redux";
 import MainPicture from '../../images/Background2.jpg';
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader/loader.component";
 
 const HomePage = () => {
     const popularRecipes = useSelector(state => state.recipes.popularRecipes);
     const newestRecipes = useSelector(state => state.recipes.newestRecipes);
+    const loading = useSelector(state => state.recipes.isLoading);
+    const loading2 = useSelector(state => state.recipes.isLoading2);
     const navigate = useNavigate();
     return (
         <MainDiv>
@@ -29,18 +32,28 @@ const HomePage = () => {
         <LeftMainDiv>
             <h2>New Recipes</h2>
             {
-                newestRecipes?.map((recipe) => {
-                    return <RecipeContainer recipe={recipe} /> 
-                })
+                loading ? <Loader /> :
+                <>
+                {
+                    newestRecipes?.map((recipe) => {
+                        return <RecipeContainer recipe={recipe} /> 
+                    })
+                }
+                </>
             }
         </LeftMainDiv>
         <RightMainDiv>
             <h2>Popular Recipes</h2>
-            {
+           {
+            loading2 ? <Loader />: 
+            <>
+             {
                 popularRecipes?.map((recipe) => {
                     return <RecipeContainer2 recipe={recipe} /> 
                 })
             }
+            </>
+           }
         </RightMainDiv>
         </BottomDiv>
         </MainDiv>

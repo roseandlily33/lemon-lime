@@ -4,7 +4,7 @@ const initialState = {
     newestRecipes: [],
     popularRecipes: [],
     isLoading: false,
-    status: '',
+    isLoading2: false,
     error: null
 };
 const URL = 'http://localhost:8000';
@@ -39,14 +39,14 @@ export const recipeSlice = createSlice({
         builder
         //For Popular Recipes
         .addCase(fetchPopular.pending, (state, action) => {
-            state.status = 'loading';   
+            state.isLoading2 = true;   
         })
         .addCase(fetchPopular.fulfilled, (state, action) => {
-            state.status = 'success';
+            state.isLoading2 = false;
             state.popularRecipes = action.payload;
         })
         .addCase(fetchPopular.rejected, (state, action) => {
-            state.status = 'failed';
+            state.isLoading2 = false;
             state.error = action.error.message;
         })
         //For Newest Recipes
