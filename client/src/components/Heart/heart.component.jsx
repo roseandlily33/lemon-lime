@@ -1,9 +1,7 @@
-import DeleteHeart from "./deleteFave.component";
-import AddHeart from "./addFave.component";
-import { httpGetFavoritesForMainPage } from "../../hooks/userRequests";
+//import { httpGetFavoritesForMainPage } from "../../hooks/userRequests";
 import { useState, useEffect } from "react";
 import {useAuth0} from '@auth0/auth0-react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import { httpAddFavoriteRecipe } from "../../hooks/userRequests";
 import { httpDeleteFavoriteRecipe } from "../../hooks/userRequests";
 //import { fetchFavorites } from "../../redux/favoritesSlice";
@@ -11,10 +9,10 @@ import { httpDeleteFavoriteRecipe } from "../../hooks/userRequests";
 //Recipe = the id 
 const Heart = ({recipe}) => {
     const {user} = useAuth0();
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     const favorites = useSelector(state => state.user.userFavorites);
     const [found, setFound] = useState(false);
-   console.log('Favorites', favorites)
+
    useEffect(() => {
     if(favorites[recipe] === 'true'){
         setFound(true);

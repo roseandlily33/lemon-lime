@@ -11,6 +11,7 @@ const UserHome = () => {
   const navigate = useNavigate();
   
   const recipes = useSelector(state => state.user.userRecipes);
+  const loading = useSelector(state => state.user.isLoading);
     const createRecipe = () => {
       navigate('/user/create')
     }
@@ -22,7 +23,7 @@ const UserHome = () => {
         <UserContainer>
          {isAuthenticated ?
          <>
-          {!recipes ? <Loader />:
+          {loading ? <Loader />:
           <>
           <UserOptionsContainer>
             <div className="imgDiv">

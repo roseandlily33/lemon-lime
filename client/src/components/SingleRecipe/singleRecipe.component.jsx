@@ -9,28 +9,22 @@ import Loader from "../Loader/loader.component";
 import RecipeComments from "../Comments/recipeComments/recipeComment.component";
 import Carousel from "./singleRecipeCarousel.component";
 import Heart from '../Heart/heart.component';
-//import { useDispatch, useSelector} from "react-redux";
-// import { fetchRecipeComments, fetchSingleRecipe } from "../../redux/singleRecipeSlice";
-
 
 const SingleRecipeComponent = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
-   // const {favorites} = useSelector(state => state.favoritesSlice);
-    //console.log('Single Recipe Faves', favorites)
     const [usersName, setUsersName] = useState();
+
     useEffect(() => {
       const fetchSingle = async() => {
-          console.log('Fetching this recipe', id);
           const res = await httpGetFullRecipeWithDetails(id);
           setSingleRecipe(res.foundRecipe[0]);
-          //setUsersName(res.authorOfRecipe.name);
+          setUsersName(res.authorOfRecipe.name);
       }
       fetchSingle();
   }, [id]);
 
     return(
-
       <>
       <SingleRecipeContainer>
       {!singleRecipe ?
@@ -43,8 +37,10 @@ const SingleRecipeComponent = () => {
        </LeftSide>
         <RightSide>
         <h2>{singleRecipe?.recipeName}</h2>
+        <div style={{display: 'flex', alignItems: 'center', gap: '2em'}}>
+        <span>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
         <Heart recipe={singleRecipe._id}/>
-        {/* <span>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span> */}
+        </div>
         <>
         <p>Cook Time: {singleRecipe.cookTime}</p>
         <p>Prep Time: {singleRecipe.prepTime}</p>
