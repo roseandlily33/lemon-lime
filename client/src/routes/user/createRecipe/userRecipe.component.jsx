@@ -17,8 +17,7 @@ import Modal from "../../../components/Modal/Model.component";
 import {useDispatch} from 'react-redux';
 import { fetchUserRecipes } from "../../../redux/userSlice";
 //import Resizer from "react-image-file-resizer";
-import Compress from 'compress.js';
-
+//import Compress from 'compress.js';
 
 const CreateRecipe = () => {
     const dispatch = useDispatch();
@@ -26,7 +25,7 @@ const CreateRecipe = () => {
     const {user} = useAuth0();
     const [isOpen, setIsOpen] = useState(false);
     const [successStatus, setSuccessState] = useState('');
-    const compress = new Compress()
+    //const compress = new Compress()
     //All forms values excpet Instructions,Ingredient, Measurements, Photos
     const [formValues, setFormValues] = useState({
         recipeName: '',
@@ -51,6 +50,7 @@ const CreateRecipe = () => {
       const [images, setImages] = useState([]);
       const maxNumber = 3;
       const onChange = (imageList, addUpdateIndex) => {
+        console.log('Add update index', imageList[0]);
         setImages(imageList);
       }
 

@@ -9,17 +9,19 @@ import Loader from "../Loader/loader.component";
 import RecipeComments from "../Comments/recipeComments/recipeComment.component";
 import Carousel from "./singleRecipeCarousel.component";
 import Heart from '../Heart/heart.component';
-// import { useDispatch, useSelector} from "react-redux";
+//import { useDispatch, useSelector} from "react-redux";
 // import { fetchRecipeComments, fetchSingleRecipe } from "../../redux/singleRecipeSlice";
 
 
 const SingleRecipeComponent = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
-    console.log('Single Recipe', singleRecipe)
+   // const {favorites} = useSelector(state => state.favoritesSlice);
+    //console.log('Single Recipe Faves', favorites)
     const [usersName, setUsersName] = useState();
     useEffect(() => {
       const fetchSingle = async() => {
+          console.log('Fetching this recipe', id);
           const res = await httpGetFullRecipeWithDetails(id);
           setSingleRecipe(res.foundRecipe[0]);
           //setUsersName(res.authorOfRecipe.name);

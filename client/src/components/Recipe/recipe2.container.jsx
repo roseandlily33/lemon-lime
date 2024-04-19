@@ -2,7 +2,7 @@ import { SideContainer, TopContainer } from "./recipe2.styles";
 import {formatDate} from '../../formattingUtils/date';
 import {NavLink} from 'react-router-dom'; 
 import Lemons from '../../images/lemons.jpg';
-import Heart from "../Heart/heart.component";
+//import Heart from "../Heart/heart.component";
 import { useNavigate } from "react-router-dom";
 
 const RecipeContainer2 = ({recipe}) => {
@@ -14,7 +14,7 @@ const RecipeContainer2 = ({recipe}) => {
            <div className="topDiv">
            <TopContainer>
            <NavLink className="link" to={url}>{recipe.recipeName}</NavLink>
-           <Heart recipe={recipe}/>
+           {/* <Heart recipe={recipe}/> */}
            </TopContainer>
             <p>{formatDate(recipe.createdAt)}</p>
             <p>Favorites: {recipe.favorites}</p>

@@ -11,7 +11,7 @@ const RecipeContainer3 = ({recipe}) => {
     const editUrl = `/user/edit/${recipe._id}`;
 
     return ( 
-        <SideContainer key={recipe._id} onClick={() => navigate(recipeUrl)}>
+        <SideContainer key={recipe._id}>
             <NavLink className="link" to={recipeUrl}>{recipe.recipeName}</NavLink>
             <p>{formatDate(recipe.createdAt)}</p>
             <p>Favorites: {recipe.favorites}</p>

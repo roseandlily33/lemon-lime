@@ -35,7 +35,7 @@ export const userSlice = createSlice({
             state.isLoading = false;
             state.userRecipes = action.payload.recipes;
             state.userComments = action.payload.comments;
-            state.favorites = action.payload.favorites;
+            state.userFavorites = action.payload.favorites;
         })
         .addCase(fetchUserRecipes.rejected, (state, action) => {
             state.isLoading = false;

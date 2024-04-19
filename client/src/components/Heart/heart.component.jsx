@@ -6,29 +6,31 @@ import {useAuth0} from '@auth0/auth0-react';
 import {useSelector, useDispatch} from 'react-redux';
 import { httpAddFavoriteRecipe } from "../../hooks/userRequests";
 import { httpDeleteFavoriteRecipe } from "../../hooks/userRequests";
-import { fetchFavorites } from "../../redux/favoritesSlice";
+//import { fetchFavorites } from "../../redux/favoritesSlice";
 
 //Recipe = the id 
 const Heart = ({recipe}) => {
     const {user} = useAuth0();
     const dispatch = useDispatch();
-    const favorites = useSelector(state => state.favorites.favorites);
+    const favorites = useSelector(state => state.user.userFavorites);
     const [found, setFound] = useState(false);
-   console.log('Favorites', favorites.recipe)
-    if(favorites.recipe === true){
-        console.log('in the check')
-        console.log('Favorited Options', recipe, favorites[recipe]);
+   console.log('Favorites', favorites)
+   useEffect(() => {
+    if(favorites[recipe] === 'true'){
         setFound(true);
+    } else {
+        setFound(false);
     }
+   }, [recipe, favorites])
     const addFavorite = async(userId, recipeId) => {
         const adding = await httpAddFavoriteRecipe(userId, recipeId);
-        dispatch(fetchFavorites(user.sub));
+       // dispatch(fetchFavorites(user.sub));
         console.log('Recipe added', adding);
        // setFound(true)
     }
     const deleteFavorite = async(userId, recipeId) => {
         const deleting = await httpDeleteFavoriteRecipe(userId, recipeId);
-        dispatch(fetchFavorites(user.sub));
+       // dispatch(fetchFavorites(user.sub));
         console.log('Deleting', deleting);
         //setFound(false);
     }

@@ -123,9 +123,9 @@ async function httpGetUsersFavoriteRecipes(req, res){
       'comments': 0, 'email': 0, 'recipes': 0, '__v': 0, 'name': 0
     });
     console.log('Users Faves', userFavorites, userFavorites.favorites)
-    let faveIds = Object.keys(userFavorites.favorites);
-    console.log('FaveIds', faveIds)
-    let faves = await Recipe.find({_id: {$in: faveIds}}).toArray();
+    // let faveIds = Object.keys(userFavorites.favorites);
+    // console.log('FaveIds', faveIds)
+    // let faves = await Recipe.find({_id: {$in: faveIds}}).toArray();
     console.log('Users Favorites', faves);
     res.status(200).json(faves);
   } catch(err){
@@ -151,12 +151,10 @@ async function httpAddFavoriteRecipe(req, res){
     let recipeId = req.body.recipeId;
     console.log('Recipe ID', recipeId)
     await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: 1}});
-    let user = await User.findOneAndUpdate({authId: userId}, {
-      $set: {favorites: {[`${recipeId}`]: true}}
+    await User.findOneAndUpdate({authId: userId}, {
+     // $set: {favorites: {[`${recipeId}`]: true}}
+     $set: {["favorites." + recipeId]: true}
     });
-    //user.favorites.set(recipeId, true);
-    console.log('Added fave', user)
-    //{$addToSet: {favorites: newFavourite.id}}
     res.status(201).json({msg: 'Added the new recipe'})
   } catch(err){
     console.log('ERROR', err)

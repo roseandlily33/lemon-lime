@@ -2,7 +2,7 @@ import { RecipeCont, TopLabel, LeftContainer, RightContainer } from "./recipe.st
 import {formatDate} from '../../formattingUtils/date';
 import {NavLink} from 'react-router-dom'; 
 import Lemons from '../../images/lemons.jpg';
-import Heart from "../Heart/heart.component";
+//import Heart from "../Heart/heart.component";
 import { useNavigate } from "react-router-dom";
 
 const RecipeContainer = ({recipe}) => {
@@ -14,7 +14,6 @@ const RecipeContainer = ({recipe}) => {
           <LeftContainer>
            <TopLabel>
             <NavLink className="link" to={url}>{recipe.recipeName}</NavLink>
-            <Heart recipe={recipe}/>
             </TopLabel>
             <p>{formatDate(recipe.createdAt)}</p>
             <p>Total Time: {recipe.totalTime.hours}:{recipe.totalTime.minutes}</p>
