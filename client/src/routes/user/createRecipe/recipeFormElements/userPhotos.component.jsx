@@ -13,7 +13,7 @@ const UserPhotos = ({images, onChange, maxNumber}) => {
     } else {
       setImageError('')
     }
-    setTotalSize(total)
+    setTotalSize(total);
   }, [images])
     return ( 
         <>

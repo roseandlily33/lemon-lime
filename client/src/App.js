@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import { createContext} from 'react';
-import useRecipes from './hooks/mainPageRecipes.js';
+//import { createContext} from 'react';
+//import useRecipes from './hooks/mainPageRecipes.js';
 import {ThemeProvider} from 'styled-components';
 //Pages:
 import HomePage from "./routes/home/home.component";
@@ -9,7 +9,7 @@ import FavoritesPage from './routes/favorites/favorites.component';
 import EditRecipe from './routes/user/editRecipe/edit.component.jsx';
 import UserHome from './routes/user/user.component';
 import SearchPage from './routes/search/search.component';
-import AuthComponent from './routes/authentication/auth.component';
+//import AuthComponent from './routes/authentication/auth.component';
 import Footer from './routes/footer/footer.component';
 import SingleRecipeComponent from './components/SingleRecipe/singleRecipe.component';
 import CreateRecipe from './routes/user/createRecipe/userRecipe.component';
@@ -22,7 +22,7 @@ import {useAuth0} from '@auth0/auth0-react';
 import { fetchUserRecipes } from './redux/userSlice';
 import { fetchUserComments } from './redux/userCommentsSlice.js';
 import { store } from './redux/store.js';
-
+//import {Cloudinary} from "@cloudinary/url-gen";
 
 const theme = {
   colors: {
@@ -45,7 +45,7 @@ const theme = {
       peachyPink: 'hsl(360, 83%, 62%)'
   }
 }
-
+ 
 function App() {
   const {user, isAuthenticated} = useAuth0(); 
   if(isAuthenticated){
@@ -54,7 +54,7 @@ function App() {
     //store.dispatch(fetchFavorites(user.sub));
     console.log('STORE', store.getState())
   }
-  
+
   return (
     <div className="App">
     <ThemeProvider theme={theme}>
@@ -74,7 +74,7 @@ function App() {
           </Route>
           <Route path='favorites' element={<FavoritesPage />}/>
           <Route path='search' element={<SearchPage />} />
-          <Route path='signin' element={<AuthComponent />} />
+          {/* <Route path='signin' element={<AuthComponent />} /> */}
           </Route>
           <Route path='*' element={<NotFound />} />
      </Routes>

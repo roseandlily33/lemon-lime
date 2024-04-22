@@ -1,18 +1,47 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Modal from "../../../../components/Modal/Model.component";
+import { useNavigate } from "react-router-dom";
 
-const SinglePhoto = ({images, onChange, maxNumber}) => {
-    const onImageRemove = (e) => {
-        e.preventDefault();
-        console.log('Event', e)
-    }
+const SinglePhoto = ({images, addNewImage, addNewPhotos}) => {
+    const[isOpen, setIsOpen] = useState(false);
+    //const[displayImages, setDisplayImages] = useState();
+    const navigate = useNavigate();
+    const cloudinaryRef = useRef();
+    const widgetRef = useRef();
+
+    useEffect(() => {
+      cloudinaryRef.current = window.cloudinary;
+      widgetRef.current = cloudinaryRef.current.createUploadWidget({
+        cloudName: 'dql7lqwmr',
+        uploadPreset: 'lemon_lime_preset'
+      }, function(error, result){
+        if(result.event === 'success'){
+          let newImage = {publicId: result.info.public_id};
+          let newImageURL = result.info.url;
+          //console.log('Result Success for', newImage);
+          addNewImage(newImage);
+          addNewPhotos(newImageURL)
+          //console.log('After images update', images);
+        } else if(error){
+          setIsOpen(true);
+        } 
+      });
+    }, [images, addNewImage, addNewPhotos])
+    
     return (
         <>
-        <button>Click or Drop here</button>
+        {isOpen && (
+         <Modal onClose={() => setIsOpen(false)}>
+           <h3>An error has occured trying to submit your pictures</h3>
+           <button onClick={() => navigate('/user/home')}>Go Home</button>
+         </Modal>
+       )}
         <div key={1} className="image-item">
-        {images? <img src={images['data_url']} alt="" width="100" /> : null}
         <div className="image-options">
-          {/* <button onClick={() => onImageUpdate(image)}>Update</button> */}
-          <button className="secondaryButton" onClick={(e) => onImageRemove(e)}>Remove</button>
+          <button onClick={(e) => {
+            e.preventDefault();
+            widgetRef.current.open();
+          }} style={{marginBlock: '1em'}}>Upload Images</button>
         </div>
       </div>
       </>

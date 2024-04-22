@@ -1,6 +1,5 @@
 import { UserCommentsContainer} from './userComments.styles';
 import SingleComment from './singleComment.component';
-import Loader from '../../Loader/loader.component';
 import { useSelector } from 'react-redux';
 
 const UserComments = () => {

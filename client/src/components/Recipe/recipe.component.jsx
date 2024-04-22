@@ -2,10 +2,11 @@ import { RecipeCont, TopLabel, LeftContainer, RightContainer } from "./recipe.st
 import {formatDate} from '../../formattingUtils/date';
 import {NavLink} from 'react-router-dom'; 
 import Lemons from '../../images/lemons.jpg';
-//import Heart from "../Heart/heart.component";
 import { useNavigate } from "react-router-dom";
+import CloudImage from "../../Photos/photo.component";
 
 const RecipeContainer = ({recipe}) => {
+    console.log('Recipe Image', recipe)
     const navigate = useNavigate();
     const url = `recipe/${recipe._id}`;
 
@@ -21,7 +22,7 @@ const RecipeContainer = ({recipe}) => {
             <p>{recipe.subCategory}</p>
            </LeftContainer>
            <RightContainer>
-            {recipe.images[0] ? <img src={recipe.images[0].data_url} alt="userPhoto" className="recipePhoto"/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
+            {recipe.images[0] ? <CloudImage publicId={recipe.images[0].publicId}/>: <img src={Lemons} alt="lemons" className="recipePhoto"/>}
             </RightContainer>
         </RecipeCont>
      );
