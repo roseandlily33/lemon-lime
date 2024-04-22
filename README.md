@@ -15,9 +15,9 @@ Front End:
 - UUID 
 - Hamburger Menu 
 - Framer-Motion
-- React-Images-Uploading
 - Styled Components
 - Possibly Redux 
+- Cloudinary (For Images)
 
 Back End:
 - MongoDB

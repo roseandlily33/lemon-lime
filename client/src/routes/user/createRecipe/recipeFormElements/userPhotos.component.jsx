@@ -1,69 +1,51 @@
-import ImageUploading from 'react-images-uploading';
-import { useState, useEffect } from 'react';
-const UserPhotos = ({images, onChange, maxNumber}) => {
-  const [totalSize, setTotalSize] = useState(0);
-  const [imageError, setImageError] = useState('');
-  useEffect(() => {
-    let total = 0
-    images.map((img) => {
-      return total += img.file.size
-    })
-    if(total > 6000000){
-      setImageError('File Size is too big')
-    } else {
-      setImageError('')
-    }
-    setTotalSize(total);
-  }, [images])
-    return ( 
-        <>
-        {/* Images  */}
-        <ImageUploading
-          multiple
-          value={images}
-          onChange={onChange}
-          maxNumber={maxNumber}
-          dataURLKey="data_url"
-        >
-          {({
-            imageList,
-            onImageUpload,
-            onImageRemoveAll,
-            onImageUpdate,
-            onImageRemove,
-            isDragging,
-            dragProps,
-          }) => (
+import { useEffect, useRef, useState } from "react";
+import Modal from "../../../../components/Modal/Model.component";
+import { useNavigate } from "react-router-dom";
 
-            <div className="options">
-              <div className='buttonContainer'>
-                <h3 style={{color: 'hsl(354, 85%, 44%)'}}>{imageError}</h3>
-                <button 
-                style={isDragging ? { color: 'orange' } : undefined}
-                onClick={onImageUpload}
-                {...dragProps}
-              >
-                Click or Drop here
-              </button>
-              &nbsp;
-              <button className="secondaryButton" onClick={onImageRemoveAll}>Remove all images</button>
-              </div>
-              <div className='items'>
-              {imageList.map((image, index) => (
-                   <div key={index} className="image-item">
-                   <img src={image['data_url']} alt="" width="100" />
-                   <div className="image-options">
-                     <button onClick={() => onImageUpdate(index)}>Update</button>
-                     <button className="secondaryButton" onClick={() => onImageRemove(index)}>Remove</button>
-                   </div>
-                 </div>
-              ))}
-              </div>
-            </div>
-          )}
-        </ImageUploading>
-        </>
-     );
+const SinglePhoto = ({images, addNewImage, addNewPhotos}) => {
+    const[isOpen, setIsOpen] = useState(false);
+    //const[displayImages, setDisplayImages] = useState();
+    const navigate = useNavigate();
+    const cloudinaryRef = useRef();
+    const widgetRef = useRef();
+
+    useEffect(() => {
+      cloudinaryRef.current = window.cloudinary;
+      widgetRef.current = cloudinaryRef.current.createUploadWidget({
+        cloudName: 'dql7lqwmr',
+        uploadPreset: 'lemon_lime_preset'
+      }, function(error, result){
+        if(result.event === 'success'){
+          let newImage = {publicId: result.info.public_id};
+          let newImageURL = result.info.url;
+          //console.log('Result Success for', newImage);
+          addNewImage(newImage);
+          addNewPhotos(newImageURL)
+          //console.log('After images update', images);
+        } else if(error){
+          setIsOpen(true);
+        } 
+      });
+    }, [images, addNewImage, addNewPhotos])
+    
+    return (
+        <>
+        {isOpen && (
+         <Modal onClose={() => setIsOpen(false)}>
+           <h3>An error has occured trying to submit your pictures</h3>
+           <button onClick={() => navigate('/user/home')}>Go Home</button>
+         </Modal>
+       )}
+        <div key={1} className="image-item">
+        <div className="image-options">
+          <button onClick={(e) => {
+            e.preventDefault();
+            widgetRef.current.open();
+          }} style={{marginBlock: '1em'}}>Upload Images</button>
+        </div>
+      </div>
+      </>
+      );
 }
  
-export default UserPhotos;
+export default SinglePhoto;

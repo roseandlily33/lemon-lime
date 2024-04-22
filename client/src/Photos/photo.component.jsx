@@ -5,11 +5,6 @@ import { format, quality } from '@cloudinary/url-gen/actions/delivery';
 import { AdvancedImage, placeholder, lazyload } from '@cloudinary/react';
 import { byRadius } from '@cloudinary/url-gen/actions/roundCorners';
 
-// const cld = new Cloudinary({
-//   cloud: {
-//     cloudName: REACT_APP_CLOUDNAME,
-//   },
-// });
 const cloud = new Cloudinary({cloud: {cloudName: 'dql7lqwmr'}});
 
 const CloudImage = ({ publicId }) => {

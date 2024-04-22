@@ -2,6 +2,7 @@ import { useState } from "react";
 import { TopIngDiv, BottomIngDiv, SingleMeaIngDiv } from "../userRecipe.styles";
 import { v4 as uuidv4 } from 'uuid';
 
+//Ingredients and measurements for create page
 const IngredientsAndMeasurements = ({ ingredients, addNewIngredient, setIngredients}) => {
 
     const maxSteps = 15;

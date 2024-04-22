@@ -3,7 +3,7 @@ import {formatDate} from '../../formattingUtils/date';
 import {NavLink} from 'react-router-dom'; 
 import Lemons from '../../images/lemons.jpg';
 import {useNavigate} from 'react-router-dom';
-
+import CloudImage from "../../Photos/photo.component";
 
 const RecipeContainer3 = ({recipe}) => {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ const RecipeContainer3 = ({recipe}) => {
             <NavLink className="link" to={recipeUrl}>{recipe.recipeName}</NavLink>
             <p>{formatDate(recipe.createdAt)}</p>
             <p>Favorites: {recipe.favorites}</p>
-            {recipe.images[0] ? <img src={recipe.images[0].data_url} alt="userPhoto" className="recipePhoto"/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
+            {recipe.images[0] ? <CloudImage publicId={recipe.images[0].publicId}/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
             <ButtonRecipeContainer>
             <button className="buttonWithIcon" onClick={() => navigate(editUrl)}>
                 Edit

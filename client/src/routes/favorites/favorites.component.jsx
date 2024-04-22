@@ -4,7 +4,7 @@ import RecipeContainer2 from "../../components/Recipe/recipe2.container";
 //import { httpGetUsersFavoriteRecipes } from "../../hooks/userRequests";
 // import {useNavigate} from 'react-router-dom';
 // import {useSelector} from 'react-redux';
-import SinglePhoto from "../user/createRecipe/recipeFormElements/onePhoto";
+
 
 const FavoritesPage = () => {
     //Create a state for the full recipes 
@@ -32,7 +32,7 @@ const FavoritesPage = () => {
             {/* {favorites?.map((recipe) => {
                 return <RecipeContainer2 recipe={recipe} />
             })} */}
-            <SinglePhoto />
+  
             </FavoritesRecipesDiv>
         </FavoritesContainerMain>
      );

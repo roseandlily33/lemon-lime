@@ -16,7 +16,7 @@ import { RightDiv, LeftDiv } from "./userRecipe.styles";
 import Modal from "../../../components/Modal/Model.component";
 import {useDispatch} from 'react-redux';
 import { fetchUserRecipes } from "../../../redux/userSlice";
-import SinglePhoto from './recipeFormElements/onePhoto';
+import SinglePhoto from './recipeFormElements/userPhotos.component';
 import EachPhoto from "./recipeFormElements/eachPhotos";
 //import Resizer from "react-image-file-resizer";
 //import Compress from 'compress.js';

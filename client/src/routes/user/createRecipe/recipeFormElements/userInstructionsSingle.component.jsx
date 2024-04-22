@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { SingleMeaIngDiv, MiddleForm, TopIngDiv, BottomIngDiv } from '../userRecipe.styles';
 import { v4 as uuidv4 } from 'uuid';
 
+//Instructions for create recipe
 const UserInstructions = ({instructions, addNewInstruction, setInstructions}) => {
 
   const maxSteps = 15;

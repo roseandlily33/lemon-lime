@@ -2,8 +2,8 @@ import { SideContainer, TopContainer } from "./recipe2.styles";
 import {formatDate} from '../../formattingUtils/date';
 import {NavLink} from 'react-router-dom'; 
 import Lemons from '../../images/lemons.jpg';
-//import Heart from "../Heart/heart.component";
 import { useNavigate } from "react-router-dom";
+import CloudImage from "../../Photos/photo.component";
 
 const RecipeContainer2 = ({recipe}) => {
    const navigate = useNavigate();
@@ -19,7 +19,7 @@ const RecipeContainer2 = ({recipe}) => {
             <p>{formatDate(recipe.createdAt)}</p>
             <p>Favorites: {recipe.favorites}</p>
            </div>
-           {recipe.images[0] ? <img src={recipe.images[0].data_url} alt="userPhoto" className="recipePhoto"/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
+           {recipe.images[0] ? <CloudImage publicId={recipe.images[0].publicId}/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
         </SideContainer>
      );
 }

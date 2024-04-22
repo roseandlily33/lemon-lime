@@ -1,4 +1,5 @@
 
+//Displays Each photo for the create page 
 const EachPhoto = ({photos}) => {
     return (
         <>
