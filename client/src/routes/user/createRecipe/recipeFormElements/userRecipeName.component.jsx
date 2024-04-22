@@ -1,5 +1,6 @@
 import { SingleInputDiv } from "../userRecipe.styles";
 
+//Recipe name for creating a recipe
 const RecipeName = ({formValues, handleChange}) => {
     return ( 
         <SingleInputDiv>

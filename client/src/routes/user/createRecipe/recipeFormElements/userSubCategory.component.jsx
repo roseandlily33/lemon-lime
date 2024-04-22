@@ -1,4 +1,6 @@
 import { SingleInputDiv } from "../userRecipe.styles";
+
+//The subcategory for creating a recipe
 const SubCategory = ({formValues, handleChange}) => {
     return ( 
         <SingleInputDiv>
