@@ -2,9 +2,9 @@
 //Displays Each photo for the create page 
 const EachPhoto = ({photos}) => {
     return (
-        <>
-            {photos?.map(url => <img src={url} alt="images uploaded" />)}
-        </>
+        <div style={{display: 'flex', gap: '1rem', marginTop: '1rem'}}>
+            {photos?.map(url => <img style={{borderRadius: '5px'}} src={url} alt="images uploaded" />)}
+        </div>
       );
 }
  

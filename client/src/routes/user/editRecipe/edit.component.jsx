@@ -23,6 +23,8 @@ import Loader from '../../../components/Loader/loader.component';
 import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
 import {useDispatch} from 'react-redux';
 import { fetchUserRecipes } from "../../../redux/userSlice";
+import { Cloudinary } from '@cloudinary/url-gen';
+import SinglePhoto from '../createRecipe/recipeFormElements/userPhotos.component';
 
 const EditRecipe = () => {
 
@@ -56,11 +58,20 @@ const EditRecipe = () => {
 
     useEffect(() => {
         const fetchSingle = async() => {
+        const cloud = new Cloudinary({cloud: {cloudName: 'dql7lqwmr'}});
+
             const res = await httpGetFullRecipeWithDetailsEditPage(id);
             setFormValues(res);
             setInstructions(res.instructions);
             setIngredients(res.ingredients);
             setImages(res.images);
+            if(res.images){
+              images.map(img => {
+                const myImage = cloud
+               .image(img.publicId).toURL();
+               return addNewPhotos(myImage);
+      });
+            }
         }
         fetchSingle();
     }, [id]);
@@ -142,7 +153,7 @@ const EditRecipe = () => {
     <span style={{fontSize: '0.9rem', fontStyle: 'italic'}}>
     <svg xmlns="http://www.w3.org/2000/svg" height="15" width="15" viewBox="0 0 24 24" class="icon-asterisk"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M11 10.62V7a1 1 0 0 1 2 0v3.62l3.45-1.12a1 1 0 0 1 .61 1.9l-3.44 1.13 2.13 2.93a1 1 0 0 1-1.62 1.17L12 13.7l-2.13 2.93a1 1 0 1 1-1.62-1.17l2.13-2.93-3.44-1.12a1 1 0 1 1 .61-1.9L11 10.61z"/></svg>
       Image size displayed here is the actual size </span></h2>
-      <EditPhotos images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos} />
+      <SinglePhoto images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos} />
       <EachPhoto photos={photos} />
 
       {/* <UserEditPhotos images={images} setImages={setImages} maxNumber={maxNumber}/> */}
