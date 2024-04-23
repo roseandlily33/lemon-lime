@@ -27,6 +27,7 @@ const CreateRecipe = () => {
     const {user} = useAuth0();
     const [isOpen, setIsOpen] = useState(false);
     const [successStatus, setSuccessState] = useState('');
+    const [error, setError] = useState('');
     //const compress = new Compress()
     //All forms values excpet Instructions,Ingredient, Measurements, Photos
     const [formValues, setFormValues] = useState({
@@ -65,9 +66,17 @@ const CreateRecipe = () => {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
+        if(images.length > 4){
+          setError('Only 4 images can be uploaded')
+        } else if (!ingredients.length){
+          setError('There must be at least 1 ingredient')
+        } else if(!instructions.length){
+          setError('There must be at least 1 instruction')
+        } else if (!formValues.recipeName){
+          setError('There must be a recipe name')
+        }
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
         let newRecipeName = formValues.recipeName.toLowerCase();
-        console.log('Images sending', images);
         let totalSending = Object.assign(formValues, {
           instructions: instructions,
           ingredients: ingredients,
@@ -75,7 +84,6 @@ const CreateRecipe = () => {
           recipeName: newRecipeName,
           images: images
         });
-        console.log('Total Sending', totalSending, totalSending.images)
       const response = await httpCreateRecipe(user, totalSending);
       const success = response.ok;
        if (success) {       
@@ -139,6 +147,7 @@ const CreateRecipe = () => {
       <SinglePhoto images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos}/>
       <EachPhoto photos={photos} />
       </PhotosSection>
+      <p className="error">{error}</p>
       <input className="button" style={{width: '150px', marginBlock: '1em'}} type="submit" />
       {isOpen && (
       <Modal onClose={() => setIsOpen(false)}>

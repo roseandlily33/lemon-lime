@@ -1,15 +1,14 @@
-import { useState } from "react";
+//import { useState } from "react";
 
 const EachMeasurement = ({mea, id, idx}) => {
-    console.log('Each measurement', mea, id, idx)
-const handleChangeMea = (e) => {
-
-}
+// const handleChangeMea = (e) => {
+// }
+//onChange={handleChangeMea}
     return ( 
         <>
         <div className="left" key={id}> 
            <label style={{fontSize: '1.4rem', paddingRight: '1em'}} name={id}>{idx + 1}</label>
-           <select name={mea} defaultValue={mea} onChange={handleChangeMea}>
+           <select name={mea} defaultValue={mea} >
            <option value={['1/8 tsp']}>1/8 tsp</option>
            <option value={['1/4 tsp']}>1/4 tsp</option>
            <option value={['1/2 tsp']}>1/2 tsp</option>

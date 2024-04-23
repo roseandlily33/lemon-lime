@@ -12,9 +12,10 @@ import RecipeName from '../createRecipe/recipeFormElements/userRecipeName.compon
 import CookTime from '../createRecipe/recipeFormElements/userCookTime.component';
 import PrepTime from '../createRecipe/recipeFormElements/userPrepTime.component';
 import SubCategory from '../createRecipe/recipeFormElements/userSubCategory.component';
-import UserEditPhotos from './editFormElements/userPhotosEdit';
 import UserInstructionsEdit from './editFormElements/userInstructionsEdit.component';
 import UserIngredientEdit from './editFormElements/usersIngredientsEdits.component';
+import EachPhoto from '../createRecipe/recipeFormElements/eachPhotos';
+import EditPhotos from './editFormElements/editPhotos.component';
 //Styles
 import { CreateRecipeForm} from '../createRecipe/userRecipe.styles';
 import { ButtonDiv, TopFormEdit, LeftDivEdit, RightDivEdit, MiddleFormEdit,  PhotosSectionEdit } from './edit.styles';
@@ -23,23 +24,35 @@ import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
 import {useDispatch} from 'react-redux';
 import { fetchUserRecipes } from "../../../redux/userSlice";
 
-
 const EditRecipe = () => {
+
     const {user} = useAuth0();
     const navigate = useNavigate();
     const {id} = useParams();
     const [formValues, setFormValues] = useState();
-    const maxNumber = 4;
     const [instructions, setInstructions]= useState();
     const [ingredients, setIngredients] = useState();
     const [images, setImages] = useState();
     const [isOpen, setIsOpen] = useState(false);
     const [success, setSuccess] = useState('');
+    const [error, setError] = useState('');
     const dispatch = useDispatch();
-
+    console.log('Images', images)
     if(!user){
         navigate('/');
     }
+
+    const addNewImage = (img) => {
+       setImages(prev => [...prev, img]);
+     }
+     //For Displaying the photos
+     const [photos, setPhotos] = useState([]);
+     const addNewPhotos = (photo) => {
+      console.log('Adding a new photo', photo)
+       setPhotos(prev => [...prev, photo])
+       console.log('After set photos', photos)
+     }
+     console.log('All URL photos', photos)
 
     useEffect(() => {
         const fetchSingle = async() => {
@@ -59,6 +72,17 @@ const EditRecipe = () => {
    
       const handleSubmit = async (e) => {
         e.preventDefault();
+        if(images.length > 4){
+          setError('Only 4 images can be uploaded')
+        } else if (!ingredients.length){
+          setError('There must be at least 1 ingredient')
+        } else if(!instructions.length){
+          setError('There must be at least 1 instruction')
+        } else if (!formValues.recipeName){
+          setError('There must be a recipe name')
+        }
+
+
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
         let newRecipeName = formValues.recipeName.toLowerCase();
         let totalSending = Object.assign(formValues, {
@@ -118,8 +142,12 @@ const EditRecipe = () => {
     <span style={{fontSize: '0.9rem', fontStyle: 'italic'}}>
     <svg xmlns="http://www.w3.org/2000/svg" height="15" width="15" viewBox="0 0 24 24" class="icon-asterisk"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M11 10.62V7a1 1 0 0 1 2 0v3.62l3.45-1.12a1 1 0 0 1 .61 1.9l-3.44 1.13 2.13 2.93a1 1 0 0 1-1.62 1.17L12 13.7l-2.13 2.93a1 1 0 1 1-1.62-1.17l2.13-2.93-3.44-1.12a1 1 0 1 1 .61-1.9L11 10.61z"/></svg>
       Image size displayed here is the actual size </span></h2>
+      <EditPhotos images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos} />
+      <EachPhoto photos={photos} />
+
       {/* <UserEditPhotos images={images} setImages={setImages} maxNumber={maxNumber}/> */}
     </PhotosSectionEdit>
+    <p className='error'>{error}</p>
     <ButtonDiv>
     {isOpen && (
     <Modal onClose={() => setIsOpen(false)}>

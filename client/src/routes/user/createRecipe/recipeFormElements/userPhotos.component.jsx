@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const SinglePhoto = ({images, addNewImage, addNewPhotos}) => {
     const[isOpen, setIsOpen] = useState(false);
-    //const[displayImages, setDisplayImages] = useState();
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
@@ -25,6 +25,9 @@ const SinglePhoto = ({images, addNewImage, addNewPhotos}) => {
         } else if(error){
           setIsOpen(true);
         } 
+        if(images.length > 5){
+          setError('No more than 4 images can be uploaded')
+        }
       });
     }, [images, addNewImage, addNewPhotos])
     
@@ -37,6 +40,7 @@ const SinglePhoto = ({images, addNewImage, addNewPhotos}) => {
          </Modal>
        )}
         <div key={1} className="image-item">
+          <p className="error">{error}</p>
         <div className="image-options">
           <button onClick={(e) => {
             e.preventDefault();

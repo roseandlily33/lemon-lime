@@ -240,3 +240,7 @@ border: 1px solid rgba(255, 255, 255, 0.57);
 .secondaryHeartFaved:hover{
   fill: var(--grey1);
 }
+.error{
+  color: var(--errorRed);
+  font-weight: 700;
+}

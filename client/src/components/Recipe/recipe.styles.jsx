@@ -64,6 +64,7 @@ export const RightContainer = styled.div`
     max-width: 50%;
     img{
         max-width: 100%;
+        float: right;
     }
     @media screen and (max-width: 500px){
         gap: 1em;
