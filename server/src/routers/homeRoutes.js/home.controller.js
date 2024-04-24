@@ -122,22 +122,23 @@ async function httpGetFullRecipeWithDetails(req, res){
 
 //Searches for a recipe based on criteria given - finished
  async function httpSearchRecipes(req, res){
-    console.log('HTTP SEARCHING RECIPES', req.params.searchText, req.params.subCategory);
+    // console.log('HTTP SEARCHING RECIPES', req.params.searchText, req.params.subCategory);
     try{
         const searchingFor = req.params.searchText.toLowerCase();
         const subCat = req.params.subCategory;
         let foundRecipes;
         if(subCat === 'All'){
-           foundRecipes = await Recipe.find({recipeName: {$regex: searchingFor}});
-           console.log('Option 1', foundRecipes)
+           foundRecipes = await Recipe.find({recipeName: {$regex: searchingFor}}, {
+            '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
+        });
         } else {
-           foundRecipes = await Recipe.find({$and : [{recipeName: {$regex: searchingFor}}, {subCategory: subCat}]});
-           console.log('Option 2', foundRecipes)
+           foundRecipes = await Recipe.find({$and : [{recipeName: {$regex: searchingFor}}, {subCategory: subCat}]}, {
+            '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
+        });
         }
-        console.log('Found these recipes', foundRecipes);
         return res.status(200).json(foundRecipes);
     } catch(err){
-      return  res.status(400).json({msg: "Cannot search for recipes"})
+        return res.status(400).json({msg: "Cannot search for recipes"})
     }
  }
 
