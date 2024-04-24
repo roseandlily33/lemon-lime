@@ -84,6 +84,7 @@ async function httpAddFavoriteRecipe(userId, recipeId){
 async function httpGetUsersFavoriteRecipes(userId){
   const response = await fetch(`${API_URL}/user/favorites/${userId}`);
   let allFavorites = await response.json();
+  console.log('Returned http all favorites', allFavorites)
   return allFavorites;
 }
 

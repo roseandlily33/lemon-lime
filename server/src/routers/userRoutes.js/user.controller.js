@@ -67,17 +67,16 @@ async function httpDeleteRecipe(req, res){
   }
 }
 
-//Deletes a favorite recipe for a user ?????
+//Deletes a favorite recipe for a user -finished
 async function httpDeleteFavoriteRecipe(req, res){
   try{
     let userId = req.body.userId;
     let recipeId = req.body.recipeId;
-    let found = await User.findOne({$and : [{authId: userId}, {favorites: {$in: recipeId}}]});
-    console.log('Found Delete Favoruites', found);
+    let found = await User.findOne({$and : [{authId: userId}, {["favorites." + recipeId]: {$exists: true}}]});
     if(found){
-      let oldFavourite = await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: -1}});
-      await User.findOneAndUpdate({authId: userId}, {
-        $pull: {favorites: oldFavourite.id}
+       await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: -1}});
+       await User.findOneAndUpdate({authId: userId}, {
+        $unset: {["favorites." + recipeId]: ''}
       });
     } else {
       return;
@@ -115,12 +114,19 @@ async function httpGetUserComments(req,res){
 
 //Gets the users favorite recipes =????????
 async function httpGetUsersFavoriteRecipes(req, res){
-  console.log('Gettings users fave recipes', req.params.userId)
+ // console.log('Getting the users fave recipes')
   try{
-    let userId = req.params.userId
-    let found = await User.findOne({_id: userId}).populate("favorites");
-    console.log('Found getting Favoruites user', found);
-    return res.status(200).json(found);
+    let userId = req.params.userId;
+    let foundUserFaves = await User.findOne({authId: userId}, {favorites: true});
+    //console.log(' 1 Found getting Favoruites user', foundUserFaves);
+    let favorites = foundUserFaves.favorites;
+    let faveIds = Array.from(foundUserFaves.favorites.keys());
+    //console.log('2 Fave Ids', faveIds, Array.isArray(faveIds))
+    const favoriteRecipes = await Recipe.find({_id: {$in: faveIds}} , {
+      '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
+  });
+    //console.log('3 All the found favorites', favoriteRecipes)
+    return res.status(200).json({favorites, favoriteRecipes});
   } catch(err){
     return res.status(404).json({msg: 'Could not find favorite recipes'})
   }
@@ -128,22 +134,23 @@ async function httpGetUsersFavoriteRecipes(req, res){
 
 //Adds a recipe to the users favorites ???
 async function httpAddFavoriteRecipe(req, res){
+  console.log('ADDING A NEW FAVORITE ')
   try{ 
     let userId = req.body.userId;
     let recipeId = req.body.recipeId;
-    //console.log('Recipe ID', recipeId);
-    let found = await User.findOne({$and : [{authId: userId}, {favorites: {$in: recipeId}}]});
+    let found = await User.findOne({$and : [{authId: userId}, {
+      ["favorites." + recipeId]: {$exists: true}
+    }]});
     if(found){
       return;
     } else {
-      await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: 1}});
-      await User.findOneAndUpdate({authId: userId}, {
+     await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: 1}});
+     await User.findOneAndUpdate({authId: userId}, {
        $set: {["favorites." + recipeId]: true}
       });
     }
     return res.status(201).json({msg: 'Added the new recipe'})
   } catch(err){
-    //console.log('ERROR', err)
     return res.status(404).json({msg: 'Could not add a favorite recipe'})
   }
 }

@@ -18,11 +18,10 @@ import BasePage from './routes/base/base.component';
 import NotFound from './routes/notFound/notFound.component.jsx';
 import UserComments from './components/Comments/userComments/userComments.component.jsx';
 import {useAuth0} from '@auth0/auth0-react';
-///import { fetchFavorites } from './redux/favoritesSlice.js';
+import { fetchFavorites } from './redux/favoritesSlice.js';
 import { fetchUserRecipes } from './redux/userSlice';
 import { fetchUserComments } from './redux/userCommentsSlice.js';
 import { store } from './redux/store.js';
-//import {Cloudinary} from "@cloudinary/url-gen";
 
 const theme = {
   colors: {
@@ -51,7 +50,7 @@ function App() {
   if(isAuthenticated){
     store.dispatch(fetchUserRecipes(user.sub));
     store.dispatch(fetchUserComments(user.sub));
-    //store.dispatch(fetchFavorites(user.sub));
+    store.dispatch(fetchFavorites(user.sub));
     console.log('STORE', store.getState())
   }
 

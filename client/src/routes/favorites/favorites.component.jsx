@@ -1,38 +1,31 @@
 import { FavoritesContainerMain, FavoritesRecipesDiv  } from "./favorites.styles";
 import RecipeContainer2 from "../../components/Recipe/recipe2.container";
-//import {useAuth0} from '@auth0/auth0-react';
-//import { httpGetUsersFavoriteRecipes } from "../../hooks/userRequests";
-// import {useNavigate} from 'react-router-dom';
-// import {useSelector} from 'react-redux';
-
+import {useAuth0} from '@auth0/auth0-react';
+import {useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import Loader from "../../components/Loader/loader.component";
 
 const FavoritesPage = () => {
-    //Create a state for the full recipes 
-    // const favorites = useSelector(state => state.favorites.favorite);
-    // console.log('Users Favorites', favorites)
-    // const navigate = useNavigate();
-    // const { isAuthenticated} = useAuth0();
+    const {isAuthenticated} = useAuth0();
+    const navigate = useNavigate();
+    const favorites = useSelector(state => state.favorites.favorites);
+    const faveRecipes = useSelector(state => state.favorites.favoriteRecipes)
 
-    // useEffect(() => {
-    //     const GetFaveRecipes = async() => {
-    //         let recipes = await httpGetUsersFavoriteRecipes(user.sub);
-    //         setFavoriteRecipes(recipes.favorites);
-    //     }    
-    //     GetFaveRecipes();
-    // }, [user]);
-
-    // if(!isAuthenticated){
-    //     navigate('/');
-    // }
+    if(!isAuthenticated){
+        navigate('/');
+    }
 
     return ( 
         <FavoritesContainerMain>
             <h2>Your Favorite Recipes</h2>
             <FavoritesRecipesDiv>
-            {/* {favorites?.map((recipe) => {
+           {!favorites ? <Loader /> :
+            <>
+             {faveRecipes?.map((recipe) => {
                 return <RecipeContainer2 recipe={recipe} />
-            })} */}
-  
+            })}
+            </>
+           }
             </FavoritesRecipesDiv>
         </FavoritesContainerMain>
      );

@@ -53,7 +53,7 @@ const SearchPage = () => {
     <StyledDiv>
     <h2>Search for a recipe</h2>
     <div>
-         <select style={{width: '100px'}} name="subCategory" defaultValue={subCategory} onChange={handleChange}>
+         <select style={{width: '20%'}} name="subCategory" defaultValue={subCategory} onChange={handleChange}>
           <option default value={"All"}>All</option>
           <option value={"Breakfast"}>Breakfast</option>
           <option value={"Lunch"}>Lunch</option>

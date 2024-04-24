@@ -4,13 +4,13 @@ import recipeSlice from './recipeSlice';
 import userSlice from './userSlice';
 import userCommentsSlice from './userCommentsSlice';
 //import singleRecipeSlice from '../components/SingleRecipe/singleRecipe.component';
-//import favoritesSlice from './favoritesSlice';
+import favoritesSlice from './favoritesSlice';
 export const store = configureStore({
     reducer: {
         recipes: recipeSlice,
         userComments: userCommentsSlice,
         user: userSlice,
-        //favorites: favoritesSlice
+        favorites: favoritesSlice
         //singleRecipe: singleRecipeSlice
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),

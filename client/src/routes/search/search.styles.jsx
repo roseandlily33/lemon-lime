@@ -24,6 +24,7 @@ export const StyledDiv = styled.div`
     div{
         display: flex;
         gap: 2em;
+        width: 80%;
     }
 `;
 
