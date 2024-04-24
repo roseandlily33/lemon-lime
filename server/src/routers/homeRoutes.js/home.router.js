@@ -1,24 +1,20 @@
 const express = require('express');
 const homeRouter = express.Router();
+
 const {
-    httpGetAllRecipes,
+    httpGetNewestRecipes,
     httpGetPopularRecipes,
     httpGetFullRecipeWithDetails, 
-    httpLoginUser, 
-    httpCreateUser,
-    httpGetMain,
+    //httpLoginUser, 
+    //httpCreateUser,
     httpSearchRecipes
 } = require('./home.controller');
 
-//const {userVerification } = require('../../utils/authentication');
-
-// /
-homeRouter.get('/', httpGetMain);
-homeRouter.get('/recipes', httpGetAllRecipes);
+homeRouter.get('/recipes', httpGetNewestRecipes);
 homeRouter.get('/popular', httpGetPopularRecipes);
 homeRouter.get('/:id', httpGetFullRecipeWithDetails);
-homeRouter.get('/search/:searchText', httpSearchRecipes);
-homeRouter.post('/login', httpLoginUser);
-homeRouter.post('/create', httpCreateUser);
+homeRouter.get('/search/:searchText/:subCategory', httpSearchRecipes);
+//homeRouter.post('/login', httpLoginUser);
+//homeRouter.post('/create', httpCreateUser);
 
 module.exports = homeRouter;

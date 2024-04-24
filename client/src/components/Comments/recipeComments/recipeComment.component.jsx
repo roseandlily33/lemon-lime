@@ -5,15 +5,15 @@ import { RecipeCommentsDiv, SingleCommentDiv, SingleTop } from "./recipeComments
 import { formatDate } from "../../../formattingUtils/date";
 import { formatStars } from "../../../formattingUtils/stars";
 
-const RecipeComments = ({id}) => {
-    const [comments, setComments] = useState();
-    useEffect(() => {
-       const fetchComments = async() => {
-        const res = await httpGetAllCommentsForRecipe(id);
-        setComments(res);
-       }
-       fetchComments();
-    }, [id]);
+const RecipeComments = ({id, comments}) => {
+    // const [comments, setComments] = useState();
+    // useEffect(() => {
+    //    const fetchComments = async() => {
+    //     const res = await httpGetAllCommentsForRecipe(id);
+    //     setComments(res);
+    //    }
+    //    fetchComments();
+    // }, [id]);
 
     return ( 
         <RecipeCommentsDiv>

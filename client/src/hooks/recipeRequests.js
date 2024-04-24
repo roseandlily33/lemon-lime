@@ -25,8 +25,8 @@ async function httpGetFullRecipeWithDetailsEditPage(id){
   return oneRecipe[0];
 }
 
-async function httpSearchRecipes(searchText){
-   let recipes =  await fetch(`${API_URL}/home/search/${searchText}`);
+async function httpSearchRecipes(searchText, subCategory){
+   let recipes =  await fetch(`${API_URL}/home/search/${searchText}/${subCategory}`);
    let foundRecipes = await recipes.json();
    console.log('HTTP FOUND THESE RECIPES', foundRecipes);
    return foundRecipes;

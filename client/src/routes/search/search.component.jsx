@@ -11,6 +11,7 @@ const SearchPage = () => {
     const [recent, setRecent] = useState([]);
     const [results, setResults] = useState();
     const [alert, setAlert] = useState('');
+    const [subCategory, setSubCategory] = useState('All');
 
     if(recent.length > 5){
         recent.shift();
@@ -22,7 +23,8 @@ const SearchPage = () => {
             setResults(popularRecipes);
             return;
         }
-        let foundRecipes = await httpSearchRecipes(searching.trim());
+        let foundRecipes = await httpSearchRecipes(searching.trim(), subCategory);
+        console.log('Found these recipes', foundRecipes);
         if(foundRecipes.length === 0){
             setAlert('No Recipes Found');
             setResults(popularRecipes);
@@ -33,7 +35,8 @@ const SearchPage = () => {
 
     const seachForOldSearch = async(recipe) => {
         setAlert('');
-        let searching = await await httpSearchRecipes(recipe);
+        setSubCategory('All');
+        let searching = await await httpSearchRecipes(recipe, '');
         setResults(searching);
     }
 
@@ -41,10 +44,23 @@ const SearchPage = () => {
         setResults(popularRecipes)
     }
 
+    const handleChange = (e) => {
+        const subCat = e.target.value;
+        setSubCategory(subCat);
+    }
+
     return ( <SearchContainer>
     <StyledDiv>
     <h2>Search for a recipe</h2>
     <div>
+         <select style={{width: '100px'}} name="subCategory" defaultValue={subCategory} onChange={handleChange}>
+          <option default value={"All"}>All</option>
+          <option value={"Breakfast"}>Breakfast</option>
+          <option value={"Lunch"}>Lunch</option>
+          <option value={"Dinner"}>Dinner</option>
+          <option value={"Dessert"}>Dessert</option>
+          <option value={"Drinks"}>Drinks</option>
+        </select>
     <input type="text" placeholder='ice cream cake' name="searching" value={searching} onChange={(e) => setSearching(e.target.value)} required/>
     <button className='buttonWithIcon' onClick={searchForRecipe}>
     Search

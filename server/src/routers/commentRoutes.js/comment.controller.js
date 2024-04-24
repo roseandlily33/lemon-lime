@@ -2,7 +2,7 @@ const Comment = require('../../models/comments.mongo');
 const User = require('../../models/user.mongo');
 const Recipe = require('../../models/recipes.mongo');
 
-//Adds a comment under a post
+//Adds a comment under a post - should be good
 async function httpAddComment(req, res){
     try{
         let authorId =  await User.findOne({authId : req.body.author});
@@ -17,7 +17,7 @@ async function httpAddComment(req, res){
         }, {
             $addToSet: {comments: newComment.id}
         })
-        res.status(201).json(newComment);
+        return res.status(201).json(newComment);
     } catch(err){
         console.log('Errr' ,err)
         return res.status(404).json({msg: "Unable to add a comment"})
@@ -30,29 +30,27 @@ async function httpDeleteComment(req, res){
     try{
     const id = req.params.id;
     let deletedComment = await Comment.findOneAndDelete({_id: id});
-   // await User.findOneAndDelete({comment: deletedComment});
-   console.log('Deleted Comment', deletedComment);
-    res.status(200).json(deletedComment);
+    //This needs to be verified 
+    await User.findOneAndUpdate({_id: id}, {$pull: {comments: deletedComment}})
+    console.log('Deleted Comment', deletedComment);
+        return res.status(200).json(deletedComment);
     } catch(err){
-        return res.status(404).json({msg: "Unable to add a comment"})
+        return res.status(404).json({msg: "Unable to delete a comment"})
     }
 }
 
-//Gets all the comments for a specfic post
-async function httpGetAllCommentsForRecipe(req, res){
-    console.log('Getting all comments for a post')
+
+async function httpEditRecipe(req, res){
     try{
-        console.log('Comments for ', req.params.id);
-        const allComments = await Comment.find({recipe: req.params.id}).sort({createdAt: -1});
-        console.log('All the comments', allComments);
-        res.status(200).json(allComments);
+        console.log('Editing a recipe');
+        res.status(201).json({msg: 'Edited the recipe'})
     } catch(err){
-        return res.status(404).json({msg: "Unable to add a comment"})
+        return res.status(404).json({msg: "Unable to edit a comment"})
     }
 }
 
 module.exports = {
     httpAddComment,
     httpDeleteComment,
-    httpGetAllCommentsForRecipe
+    httpEditRecipe
 }

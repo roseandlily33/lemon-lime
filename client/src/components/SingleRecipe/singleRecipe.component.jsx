@@ -14,12 +14,15 @@ const SingleRecipeComponent = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
     const [usersName, setUsersName] = useState();
+    const [comments, setComments] = useState();
 
     useEffect(() => {
       const fetchSingle = async() => {
           const res = await httpGetFullRecipeWithDetails(id);
+          console.log('Response from fetch single', res)
           setSingleRecipe(res.foundRecipe[0]);
           setUsersName(res.authorOfRecipe.name);
+          setComments(res.allComments);
       }
       fetchSingle();
   }, [id]);
@@ -90,7 +93,7 @@ const SingleRecipeComponent = () => {
        <hr />
        <Comment/>
        <hr />
-       <RecipeComments id={id} />
+       <RecipeComments id={id} comments={comments} />
         </>
       );
 }
