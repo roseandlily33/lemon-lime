@@ -27,9 +27,18 @@ export const HeroImage = styled.div`
   
     }
     .overlay {
-        background-color: rgba(0,0,0,0.8); 
+        background-color: rgba(0,0,0,0.9); 
+    }
+    @keyframes slideInFromLeft {
+    0% {
+    transform: translateX(-100%);
+    }
+    100% {
+    transform: translateX(0);
+    }
     }
     .text{
+        animation: 1s ease-out 0s 1 slideInFromLeft;
         position: absolute;
         top: 22%;
         left: 5%;
