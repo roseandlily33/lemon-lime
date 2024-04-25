@@ -2,9 +2,10 @@ import Rating from "../../Rating/rating.component";
 import { CommentForm, FormElement  } from "../addComment/comments.styles";
 import { useState } from "react";
 import { CommentDiv } from "../userComments/userComments.styles";
+import { httpEditComment } from "../../../hooks/commentRequests";
 
-const EditComment = ({comment}) => {
-    console.log('Edit Comment', comment);
+const EditComment = ({comment, setEditing}) => {
+   // console.log('Edit Comment', comment);
     const [success, setSuccess] = useState('');
     const[starRating, setStarRating] = useState(comment.rating);
     const [formState, setFormState] = useState({
@@ -15,8 +16,21 @@ const EditComment = ({comment}) => {
         const {name, value} = e.target;
         setFormState({...formState, [name]: value});    
     }
-    const handleSubmit = () => {
-
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        let totalComment = Object.assign(formState,{
+            rating: starRating,
+           // author: comment.author,
+           // recipe: comment.recipe
+        });
+        let res = await httpEditComment(comment._id, totalComment);
+        
+        if(res.ok){
+            setSuccess('Comment has been edited')
+        } else {
+            setSuccess('Comment has not been edited')
+        }
+       // setEditing(false);
     }
     console.log('Current state of form', starRating, formState)
     return ( 
@@ -45,7 +59,7 @@ const EditComment = ({comment}) => {
         <label>Review:</label>
         <textarea rows="6" cols="30" style={{width: '50%'}} name="comment" value={formState.comment} onChange={handleChange}></textarea>
         </FormElement>
-        <p>{success}</p>
+        <p style={{color: 'hsl(0, 71%, 66%)'}}>{success}</p>
         <input style={{width: '150px'}} className="button" type="submit" />
          </CommentForm>
         </CommentDiv>

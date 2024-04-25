@@ -3,13 +3,13 @@ const {
    httpAddComment,
    httpDeleteComment,
  //  httpGetAllCommentsForRecipe,
-   httpEditRecipe
+   httpEditComment
 } = require('./comment.controller');
 
 // comments
 //commentRouter.get('/:id', httpGetAllCommentsForRecipe);
 commentRouter.post('/add', httpAddComment);
 commentRouter.delete('/:id', httpDeleteComment);
-commentRouter.put('/:id', httpEditRecipe)
+commentRouter.put('/:id', httpEditComment)
 
 module.exports = commentRouter;

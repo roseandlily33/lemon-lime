@@ -44,11 +44,29 @@ async function httpAddComment(comment){
       };
     }
   }
+  //Edit a comment from the user
+  async function httpEditComment(id, comment){
+    console.log('Sending', comment);
+    try{
+      return await fetch(`${API_URL}/comments/${id}`, {
+        method: 'put',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(comment)
+      })
+    } catch(err){
+      return {
+        ok: false,
+      };
+    }
+  }
 
   
 
   export {
     httpAddComment,
-   httpGetAllCommentsForRecipe,
+    httpGetAllCommentsForRecipe,
     httpDeleteComment,
+    httpEditComment
   }

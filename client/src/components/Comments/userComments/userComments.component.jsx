@@ -5,12 +5,10 @@ import { useState } from 'react';
 import CommentsImage from '../../../images/undraw_reviews_lp8w.svg';
 import EditComment from '../editComment/editComment.component';
 
-
 const UserComments = () => {
     const {comments} = useSelector(state => state.userComments.userComments);
     const [editing, setEditing] = useState(false);
     const [editComment, setEditComment] = useState();
-    console.log('Editing value', editing)
 
     return ( 
         <UserCommentsContainer>
@@ -27,7 +25,7 @@ const UserComments = () => {
             {
                 editing ? 
                 <>
-                <EditComment comment={editComment}/>
+                <EditComment comment={editComment} setEditing={setEditing}/>
                 </>
                 :
                 <img src={CommentsImage} alt="comments illustration" />

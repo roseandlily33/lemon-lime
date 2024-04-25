@@ -12,6 +12,7 @@ async function httpAddComment(req, res){
               $addToSet: {comments: newComment.id}
             }
         );
+        
         await Recipe.findOneAndUpdate({
             _id: newComment.recipe
         }, {
@@ -40,10 +41,12 @@ async function httpDeleteComment(req, res){
 }
 
 
-async function httpEditRecipe(req, res){
+async function httpEditComment(req, res){
     try{
-        console.log('Editing a recipe');
-        res.status(201).json({msg: 'Edited the recipe'})
+        let commentId = req.params.id
+        let body = req.body
+        const comment = await Comment.findOneAndUpdate({_id: commentId}, body, {upsert: true} )
+        return res.status(201).json({msg: 'Edited the recipe'})
     } catch(err){
         return res.status(404).json({msg: "Unable to edit a comment"})
     }
@@ -52,5 +55,5 @@ async function httpEditRecipe(req, res){
 module.exports = {
     httpAddComment,
     httpDeleteComment,
-    httpEditRecipe
+    httpEditComment
 }
