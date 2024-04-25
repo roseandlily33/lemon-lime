@@ -4,10 +4,10 @@ import { useState } from "react";
 import { CommentDiv } from "../userComments/userComments.styles";
 import { httpEditComment } from "../../../hooks/commentRequests";
 
-const EditComment = ({comment, setEditing}) => {
-   // console.log('Edit Comment', comment);
+const EditComment = ({comment}) => {
+
     const [success, setSuccess] = useState('');
-    const[starRating, setStarRating] = useState(comment.rating);
+    const [starRating, setStarRating] = useState(comment.rating);
     const [formState, setFormState] = useState({
         title: comment.title,
         comment: comment.comment
@@ -20,8 +20,6 @@ const EditComment = ({comment, setEditing}) => {
         e.preventDefault();
         let totalComment = Object.assign(formState,{
             rating: starRating,
-           // author: comment.author,
-           // recipe: comment.recipe
         });
         let res = await httpEditComment(comment._id, totalComment);
         
@@ -30,9 +28,8 @@ const EditComment = ({comment, setEditing}) => {
         } else {
             setSuccess('Comment has not been edited')
         }
-       // setEditing(false);
     }
-    console.log('Current state of form', starRating, formState)
+
     return ( 
         <>
         <h3>Edit Comment</h3>

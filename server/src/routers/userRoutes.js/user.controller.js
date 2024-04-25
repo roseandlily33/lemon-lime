@@ -105,27 +105,26 @@ async function httpGetEditRecipe(req, res){
 //Gets the users comments - Finished
 async function httpGetUserComments(req,res){
   try{
+    //let userId = req.params.id;
     const commentsForUser = await User.findOne({authId: req.params.id}, {'email': 0, 'recipes': 0, '__v': 0, 'favorites': 0 }).populate('comments');
+   // const recipes = await Recipe.find({})
     return res.status(200).json(commentsForUser);
   } catch(err){
     return res.status(404).json({msg: 'Could not find comments'})
   }
 }
 
-//Gets the users favorite recipes =????????
+//Gets the users favorite recipes - Finished
 async function httpGetUsersFavoriteRecipes(req, res){
  // console.log('Getting the users fave recipes')
   try{
     let userId = req.params.userId;
     let foundUserFaves = await User.findOne({authId: userId}, {favorites: true});
-    //console.log(' 1 Found getting Favoruites user', foundUserFaves);
     let favorites = foundUserFaves.favorites;
     let faveIds = Array.from(foundUserFaves.favorites.keys());
-    //console.log('2 Fave Ids', faveIds, Array.isArray(faveIds))
     const favoriteRecipes = await Recipe.find({_id: {$in: faveIds}} , {
       '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
   });
-    //console.log('3 All the found favorites', favoriteRecipes)
     return res.status(200).json({favorites, favoriteRecipes});
   } catch(err){
     return res.status(404).json({msg: 'Could not find favorite recipes'})

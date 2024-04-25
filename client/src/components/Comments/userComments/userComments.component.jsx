@@ -25,7 +25,7 @@ const UserComments = () => {
             {
                 editing ? 
                 <>
-                <EditComment comment={editComment} setEditing={setEditing}/>
+                <EditComment comment={editComment}/>
                 </>
                 :
                 <img src={CommentsImage} alt="comments illustration" />

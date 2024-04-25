@@ -25,27 +25,25 @@ async function httpAddComment(req, res){
     }
 }
 
-//Delete a comment from a post
+//Delete a comment from a post - Finished
 async function httpDeleteComment(req, res){
-    console.log('Deleting a comment')
     try{
-    const id = req.params.id;
-    let deletedComment = await Comment.findOneAndDelete({_id: id});
-    //This needs to be verified 
-    await User.findOneAndUpdate({_id: id}, {$pull: {comments: deletedComment}})
-    console.log('Deleted Comment', deletedComment);
+        const id = req.params.id; 
+        let deletedComment = await Comment.findOneAndDelete({_id: id});
+        await User.findOneAndUpdate({_id: deletedComment.author}, {$pull: {comments: deletedComment._id}});
+        await Recipe.findOneAndUpdate({_id: deletedComment.recipe}, {$pull: {comments: deletedComment._id}})
         return res.status(200).json(deletedComment);
     } catch(err){
         return res.status(404).json({msg: "Unable to delete a comment"})
     }
 }
 
-
+//Edits the comment for a user - Finished
 async function httpEditComment(req, res){
     try{
         let commentId = req.params.id
         let body = req.body
-        const comment = await Comment.findOneAndUpdate({_id: commentId}, body, {upsert: true} )
+        await Comment.findOneAndUpdate({_id: commentId}, body, {upsert: true} )
         return res.status(201).json({msg: 'Edited the recipe'})
     } catch(err){
         return res.status(404).json({msg: "Unable to edit a comment"})
