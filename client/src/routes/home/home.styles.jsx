@@ -71,6 +71,8 @@ export const LeftMainDiv = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
     margin-right: 1em;
     padding: 1em;
     @media screen and (max-width: 900px){
@@ -86,6 +88,8 @@ export const RightMainDiv = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
     padding: 1em;
 
     @media screen and (max-width: 900px){

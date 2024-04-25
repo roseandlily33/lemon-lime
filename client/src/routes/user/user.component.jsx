@@ -30,10 +30,12 @@ const UserHome = () => {
           <img src={Background} alt="lemons background" />
           </div>
           <div className="userDiv">
+            <div>
           <h2>Welcome {user.nickname}</h2>
           <div className="buttonDiv">
           <button onClick={createRecipe}>Create a recipe</button>
           <button onClick={editComments}>Edit Comments</button>
+          </div>
           </div>
           </div>
           </UserOptionsContainer>

@@ -11,29 +11,9 @@ export const UserOptionsContainer = styled.div`
     position: absolute;
     z-index: 4;
     display: flex;
-    @media screen and (max-width: 850px){
-        .userDiv{
-            height: 30%;
-            flex-wrap : wrap;   
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            margin-top: 35%;
-        }
-    }
-    @media screen and (max-width: 600px){
-        .userDiv{
-            margin-top: 10%;;
-        }
-    }
-    @media screen and (max-width: 400px){
-        .userDiv{
-            margin-top: 5%;;
-        }
-    }
     h2{
         color: ${({theme}) => theme.colors.green};
+        padding-bottom: 1rem;
     }
     .imgDiv{
         width: 100vw;
@@ -49,30 +29,31 @@ export const UserOptionsContainer = styled.div`
     }
     .userDiv{
         width: 100%;
+        height: 100%;
         display: flex;
-        justify-content: space-between;
         align-items: end;
-        margin-inline: 3rem;
-        padding-bottom: 2rem;
-        
+        padding: 1em;
+        justify-content: space-between;
+        background-color: hsla(0, 0%, 100%, 0.2);
     }
     .buttonDiv button{
         margin-right: 1rem;
-    }
+    }  
 `;
 export const UserRecipesContainer = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    margin-inline: 1rem;
     gap: 1rem;
     z-index: 4;
     overflow-x: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
     position: relative;
     text-align: center;
     top: 40%;
     align-items: center;
     padding-block: 0.5rem;
-    @media screen and (max-width: 950px){
-       
-    }
+    scrollbar-width: thin;
+    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
 `;
 

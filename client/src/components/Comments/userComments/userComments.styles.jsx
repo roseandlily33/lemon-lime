@@ -13,6 +13,8 @@ export const UserCommentsContainer = styled.section`
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
+        scrollbar-width: thin;
+    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
     }
 `;
 
