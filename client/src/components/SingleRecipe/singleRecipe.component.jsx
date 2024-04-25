@@ -9,17 +9,18 @@ import Loader from "../Loader/loader.component";
 import RecipeComments from "../Comments/recipeComments/recipeComment.component";
 import Carousel from "./singleRecipeCarousel.component";
 import Heart from '../Heart/heart.component';
+import { NavLink } from "react-router-dom";
 
 const SingleRecipeComponent = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
     const [usersName, setUsersName] = useState();
     const [comments, setComments] = useState();
-
+    
     useEffect(() => {
       const fetchSingle = async() => {
           const res = await httpGetFullRecipeWithDetails(id);
-          console.log('Response from fetch single', res)
+          console.log('Single recipes', res)
           setSingleRecipe(res.foundRecipe[0]);
           setUsersName(res.authorOfRecipe.name);
           setComments(res.allComments);
@@ -41,7 +42,9 @@ const SingleRecipeComponent = () => {
         <RightSide>
         <h2>{singleRecipe?.recipeName}</h2>
         <div style={{display: 'flex', alignItems: 'center', gap: '2em'}}>
-        <span>Created by: {usersName} on {formatDate(singleRecipe.createdAt)}</span>
+        <span>Created by:
+          <NavLink to={`/user/${singleRecipe.author}`}>{usersName}</NavLink>
+            on {formatDate(singleRecipe.createdAt)}</span>
         <Heart recipe={singleRecipe._id}/>
         </div>
         <>

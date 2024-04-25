@@ -1,6 +1,4 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-//import { createContext} from 'react';
-//import useRecipes from './hooks/mainPageRecipes.js';
 import {ThemeProvider} from 'styled-components';
 //Pages:
 import HomePage from "./routes/home/home.component";
@@ -9,13 +7,13 @@ import FavoritesPage from './routes/favorites/favorites.component';
 import EditRecipe from './routes/user/editRecipe/edit.component.jsx';
 import UserHome from './routes/user/user.component';
 import SearchPage from './routes/search/search.component';
-//import AuthComponent from './routes/authentication/auth.component';
 import Footer from './routes/footer/footer.component';
 import SingleRecipeComponent from './components/SingleRecipe/singleRecipe.component';
 import CreateRecipe from './routes/user/createRecipe/userRecipe.component';
 import UserBase from './routes/user/userBase.component.jsx';
 import BasePage from './routes/base/base.component';
 import NotFound from './routes/notFound/notFound.component.jsx';
+import VisitorPage from './routes/visitProfile/visitor.component.jsx';
 import UserComments from './components/Comments/userComments/userComments.component.jsx';
 import {useAuth0} from '@auth0/auth0-react';
 import { fetchFavorites } from './redux/favoritesSlice.js';
@@ -63,6 +61,7 @@ function App() {
        <Routes>
         <Route path='/' element={<BasePage />}>
           <Route index element={<HomePage />} />
+          <Route path="user/:id" element={<VisitorPage />} />
             <Route path="recipe">
             <Route path=':id' element={<SingleRecipeComponent />} />
             </Route>
