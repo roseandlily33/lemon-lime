@@ -70,7 +70,7 @@ function App() {
               <Route index path="home" element={<UserHome />} />
               <Route path='create' element={<CreateRecipe />}/>
               <Route path="edit/:id" element={<EditRecipe />}/>
-              <Route path="/user/comments" element={<UserComments/>}/>
+              <Route path="comments" element={<UserComments/>} />
           </Route>
           <Route path='favorites' element={<FavoritesPage />}/>
           <Route path='search' element={<SearchPage />} />

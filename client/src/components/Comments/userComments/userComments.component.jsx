@@ -1,24 +1,40 @@
-import { UserCommentsContainer} from './userComments.styles';
+import { UserCommentsContainer, OuterDiv, RightCommentsDiv, LeftCommentsDiv} from './userComments.styles';
 import SingleComment from './singleComment.component';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import CommentsImage from '../../../images/undraw_reviews_lp8w.svg';
+import EditComment from '../editComment/editComment.component';
+
 
 const UserComments = () => {
     const {comments} = useSelector(state => state.userComments.userComments);
+    const [editing, setEditing] = useState(false);
+    const [editComment, setEditComment] = useState();
+    console.log('Editing value', editing)
 
     return ( 
         <UserCommentsContainer>
-            <div>
-            <h2 style={{marginLeft: '1em', marginBlock: '1em'}}>User Comments</h2>
-            </div>
+            <h2>Your Comments {editing}</h2>
+           <OuterDiv>
+            <LeftCommentsDiv>
             {!comments ? 
-            <div className='comments'>
                  <h3 style={{textAlign: 'center'}}>You have no comments</h3>
-            </div>
             :
-            <div className='comments'>
-            <SingleComment comments={comments} />
-            </div>
+            <SingleComment comments={comments} setEditing={setEditing} setEditComment={setEditComment}/>
             }
+            </LeftCommentsDiv>
+            <RightCommentsDiv>
+            {
+                editing ? 
+                <>
+                <EditComment comment={editComment}/>
+                </>
+                :
+                <img src={CommentsImage} alt="comments illustration" />
+            }
+            </RightCommentsDiv>
+            </OuterDiv>
+            
         </UserCommentsContainer>
      );
 }
