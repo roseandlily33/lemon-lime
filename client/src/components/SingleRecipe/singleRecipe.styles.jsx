@@ -6,6 +6,7 @@ export const SingleRecipeContainer  = styled.section`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 1rem;
     h2{
        color: ${({theme}) => theme.colors.green};
        font-weight: bold;
@@ -14,7 +15,10 @@ export const SingleRecipeContainer  = styled.section`
        border-bottom: 1px solid ${({theme}) => theme.colors.grey3};
     }
     @media screen and (max-width: 900px){
-        border: 2px solid orange;
+      //  border: 2px solid orange;
+    }
+    @media screen and (max-width: 500px){
+       // border: 1px solid red;
     }
 `;
 
@@ -25,7 +29,11 @@ export const TopDiv = styled.div`
     gap: 2em;
     @media screen and (max-width: 900px){
         flex-wrap: wrap-reverse;
-        border: 2px solid orange;
+       // border: 2px solid orange;
+       
+    }
+    @media screen and (max-width: 500px){
+       // border: 1px solid blue;
     }
 `;
 
@@ -47,6 +55,9 @@ export const RightSide = styled.div`
         background-color: ${({theme}) => theme.colors.white};
         border-radius: 5px;
     }
+    @media screen and (max-width: 500px){
+       // border: 1px solid green;
+    }
 `;
 
 export const Bottom = styled.div`
@@ -59,17 +70,20 @@ border-radius: 5px;
     h3{
         font-weight: bold;
         padding-inline: 0.6rem;
-        color: ${({theme}) => theme.colors.darkGrey};
+        color: ${({theme}) => theme.colors.grey1};
         padding-block: 1rem;
-        background-color: ${({theme}) => theme.colors.offWhite};
-        border-bottom: 1px solid ${({theme}) => theme.colors.orange};
+        background-color: ${({theme}) => theme.colors.lightYellow};
+        border-bottom: 1px solid ${({theme}) => theme.colors.white};
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
     }
 
-@media screen and (max-width: 900px){
+    @media screen and (max-width: 900px){
         flex-wrap: wrap;
-        border: 2px solid orange;
+      //  border: 2px solid orange;
+    }
+    @media screen and (max-width: 500px){
+      //  border: 1px solid purple;
     }
 `;
 
@@ -95,6 +109,12 @@ background-color: ${({theme}) => theme.colors.white};
     padding-left: 1em;
     padding-top: 0.4em;
 }
+
+@media screen and (max-width: 500px){
+   // border: 1px solid blue;
+    width: 100%;
+
+}
 `;
 
 export const InstructionsDiv = styled.div`
@@ -107,5 +127,11 @@ ol{
 }
 li{
   padding-top: 0.4em;
+ }
+
+ @media screen and (max-width: 500px){
+    border: 1px solid yellow;
+    width: 100%;
+
  }
 `

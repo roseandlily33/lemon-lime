@@ -22,7 +22,7 @@
     --border: 5px solid var(--yellow);
     --errorRed: hsl(354, 85%, 44%);
     --peachyPink: hsl(0, 71%, 66%);
-    --lightPeachyPink: hsl(0, 100%, 95%);
+    --lightPeachyPink: #ffe5e5;
     --darkerPeachyPink: hsl(0, 100%, 80%);
 }
 body{

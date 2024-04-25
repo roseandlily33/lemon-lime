@@ -41,7 +41,8 @@ const theme = {
       grey3: 'hsl(41, 8%, 61%)',
       darkGrey: 'hsl(0, 0%, 38%)',
       errorRed: 'hsl(354, 85%, 44%)',
-      peachyPink: 'hsl(360, 83%, 62%)'
+      peachyPink: 'hsl(360, 83%, 62%)',
+      lightPeachyPink: '#ffe5e5'
   }
 }
  

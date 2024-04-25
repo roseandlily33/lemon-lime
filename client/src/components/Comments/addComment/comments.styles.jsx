@@ -14,6 +14,11 @@ export const CommentContainer = styled.div`
         padding: 0;
         margin: 0;
     }
+    @media screen and (max-width: 500px){
+        width: 95%;
+        padding: 1rem;
+        margin-top: 2rem;
+    }
 `;
 
 export const CommentForm = styled.form`

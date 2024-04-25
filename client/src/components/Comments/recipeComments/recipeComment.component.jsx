@@ -23,9 +23,11 @@ const RecipeComments = ({id, comments}) => {
         {comments.map((c) => {
           return <SingleCommentDiv>
             <SingleTop>
-            <h3>{c.title}</h3>
-            <h3>{formatStars(c.rating)}</h3>
-            <h4>{formatDate(c.createdAt)}</h4>
+            <h4>{c.title}</h4>
+            <div className="underTitleDiv">
+            <p>{formatStars(c.rating)}</p>
+            <p>{formatDate(c.createdAt)}</p>
+            </div>
             </SingleTop>
             <hr />
             <p>{c.comment}</p>
