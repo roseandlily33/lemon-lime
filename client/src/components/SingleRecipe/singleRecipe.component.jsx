@@ -42,8 +42,8 @@ const SingleRecipeComponent = () => {
         <RightSide>
         <h2>{singleRecipe?.recipeName}</h2>
         <div style={{display: 'flex', alignItems: 'center', gap: '2em'}}>
-        <span>Created by:
-          <NavLink to={`/user/${singleRecipe.author}`}>{usersName}</NavLink>
+        <span>Created by: 
+          <NavLink to={`/user/${singleRecipe.author}`}> {usersName} </NavLink>
             on {formatDate(singleRecipe.createdAt)}</span>
         <Heart recipe={singleRecipe._id}/>
         </div>

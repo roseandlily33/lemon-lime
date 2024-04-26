@@ -36,7 +36,14 @@ async function httpCreateRecipe(req, res){
 async function httpGetUserRecipes(req, res){
     try{
       let userId = req.params.id;
-      let fetchedRecipes = await User.find({authId: userId}).populate("recipes").sort({createdAt: -1});
+      //console.log('User ID', userId);
+      let fetchedRecipes;
+      if(userId.slice(0,4) === 'auth'){
+         fetchedRecipes = await User.find({authId: userId}).populate("recipes").sort({createdAt: -1});
+      } else {
+        fetchedRecipes = await User.find({_id: userId}).populate("recipes").sort({createdAt: -1});
+      }
+      //console.log('FOUND RECIPES FOR USER', fetchedRecipes);
       return res.status(200).json(fetchedRecipes);
     } catch (err){
       return res.status(404).json({msg: "Could not get the recipe"})

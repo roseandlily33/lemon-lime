@@ -1,11 +1,12 @@
 const API_URL = 'http://localhost:8000';
 
 //Gets all of the users recipes
-// async function httpGetUserRecipes(id){
-//     const response = await fetch(`${API_URL}/user/${id}`);
-//     let allRecipes = await response.json();
-//     return allRecipes[0];
-// }
+async function httpGetUserRecipes(id){
+    const response = await fetch(`${API_URL}/user/${id}`);
+    let allRecipes = await response.json();
+    console.log('HTTP RETURNWD USER RECIPES', allRecipes)
+    return allRecipes[0];
+}
 //Allows the user to create a recipe
 async function httpCreateRecipe(user, recipe){
     try {
@@ -170,7 +171,7 @@ export {
     httpCreateRecipe,
     httpDeleteRecipe,
     httpEditUserRecipe,
-    //httpGetUserRecipes,
+    httpGetUserRecipes,
     //httpGetUserComments,
     httpGetUsersFavoriteRecipes,
     httpDeleteFavoriteRecipe,

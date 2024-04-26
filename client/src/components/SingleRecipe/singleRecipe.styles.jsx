@@ -72,7 +72,7 @@ border-radius: 5px;
         padding-inline: 0.6rem;
         color: ${({theme}) => theme.colors.grey1};
         padding-block: 1rem;
-        background-color: ${({theme}) => theme.colors.lightYellow};
+        background-color: ${({theme}) => theme.colors.offWhite};
         border-bottom: 1px solid ${({theme}) => theme.colors.white};
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;

@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 import CloudImage from "../../Photos/photo.component";
 
 const RecipeContainer = ({recipe}) => {
-    console.log('Recipe Image', recipe)
     const navigate = useNavigate();
-    const url = `recipe/${recipe._id}`;
+    const url = `/recipe/${recipe._id}`;
 
     return ( 
         <RecipeCont key={recipe._id} onClick={() => navigate(url)}>
