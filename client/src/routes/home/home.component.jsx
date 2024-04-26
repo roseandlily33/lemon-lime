@@ -5,7 +5,7 @@ import { MainDiv, BottomDiv, LeftMainDiv, RightMainDiv, HeroImage } from "./home
 //import { useCallback, useState, useEffect, useMemo } from "react";
 // import { httpGetAllRecipes, httpGetPopularRecipes } from "../../hooks/recipeRequests";
 import { useSelector } from "react-redux";
-import MainPicture from '../../images/Background2.jpg';
+import MainPicture from '../../images/Background3.jpg';
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/loader.component";
 
@@ -24,7 +24,7 @@ const HomePage = () => {
             <div className="text">
                 <h2>Discover your new</h2>
                 <br />
-                <h2 style={{color: 'hsl(29.122807017543863, 78.80184331797234%, 42.549019607843135%)'}}>Favorite Recipes</h2>
+                <h2 style={{color: 'hsl(83, 70%, 34%)'}}>Favorite Recipes</h2>
                 <button onClick={() => navigate('search')}>Find Recipes</button>
             </div>
         </HeroImage>
