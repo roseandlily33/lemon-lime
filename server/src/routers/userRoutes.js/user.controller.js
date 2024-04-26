@@ -126,7 +126,12 @@ async function httpGetUsersFavoriteRecipes(req, res){
  // console.log('Getting the users fave recipes')
   try{
     let userId = req.params.userId;
-    let foundUserFaves = await User.findOne({authId: userId}, {favorites: true});
+    let foundUserFaves;
+    if(userId.slice(0,4) === 'auth'){
+       foundUserFaves = await User.findOne({authId: userId}, {favorites: true});
+    } else {
+       foundUserFaves = await User.findOne({_id: userId}, {favorites: true});
+    }
     let favorites = foundUserFaves.favorites;
     let faveIds = Array.from(foundUserFaves.favorites.keys());
     const favoriteRecipes = await Recipe.find({_id: {$in: faveIds}} , {

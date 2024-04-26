@@ -57,7 +57,7 @@ export const UserRecipesContainer = styled.div`
     text-align: center;
     top: 40%;
     align-items: center;
-    justify-content: center;
+    //justify-content: center;
     padding-block: 0.5rem;
 `;
 
@@ -70,7 +70,7 @@ export const UserOptions = styled.div`
     top: 37%;
     padding-block: 1rem;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     div{
         height: 120px;
         width: 300px;

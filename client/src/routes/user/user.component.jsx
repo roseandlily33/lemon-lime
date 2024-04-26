@@ -49,14 +49,14 @@ const UserHome = () => {
           <UserOptions>
            
             {buttonItems.map((button) => {
-            return <div key={button.id} onClick={() => switchFunction(button.action)} style={{ backgroundColor:`${button.color}`}}>
+            return <div key={button.id} onClick={() => switchFunction(button.action)} style={{ backgroundColor:`${button.color}`}} className="boxShadowHover">
               <h3 style={{color: '#77340D'}} onClick={() => switchFunction(button.action)}>{button.title}</h3>
             </div>
            })}
        
           </UserOptions>
           
-          <UserRecipesContainer>
+          <UserRecipesContainer className="scrollBar">
           {recipes.map((r) => {
             return <RecipeContainer3 recipe={r}/>
           })}
