@@ -120,7 +120,7 @@ const EditRecipe = () => {
     {!formValues ?
          <Loader />
      :
-     <CreateRecipeForm>
+     <CreateRecipeForm className="boxShadow">
     <h1>Edit Recipe</h1>
      <TopFormEdit> 
     <LeftDivEdit>

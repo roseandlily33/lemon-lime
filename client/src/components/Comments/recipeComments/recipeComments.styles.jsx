@@ -8,17 +8,12 @@ export const RecipeCommentsDiv = styled.div`
     align-items: center;
     gap: 1rem;
     height: 30vh;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
-
 `;
 export const SingleCommentDiv = styled.div`
     padding: 1em;
     margin: 1.5em;
     background-color: ${({theme}) => theme.colors.white};
     border: none;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     width: 60%;
     border-radius: 5px;
     p{

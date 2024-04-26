@@ -4,7 +4,7 @@ import { SearchResultsDiv } from "./searchResults.styles";
 const SearchResults  = ({results }) => {
 
     return ( 
-      <SearchResultsDiv>
+      <SearchResultsDiv className="scrollBar">
         {results?.map((recipe) => {
           return  <RecipeContainer2 recipe={recipe} />
         })}

@@ -8,7 +8,7 @@ const SingleComment = ({comments, setEditing, setEditComment}) => {
         <>
        {
         comments.map((c) => {
-            return <SingleCommentDiv key={c._id}>
+            return <SingleCommentDiv key={c._id} className="boxShadow">
                 <h4 style={{fontWeight: 'bold'}}>{c.title}</h4>
                 <div style={{display: 'flex', gap: '1rem'}}>
                 <p>{formatStars(c.rating)}</p>

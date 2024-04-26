@@ -23,7 +23,6 @@ export const UsersInfo = styled.div`
     background-color: ${({theme}) => theme.colors.white};
     margin-bottom: 1rem;
     border-radius: 5px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     h2{
         font-size: 1.8rem;
         color: ${({theme}) => theme.colors.peachyPink};
@@ -59,13 +58,8 @@ export const UserOptions = styled.div`
 export const UsersRecipes = styled.div`
     height: 80%;
     overflow-y: scroll;
-    scrollbar-width: thin;
-    background-color: ${({theme}) => theme.colors.white};
-    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
 `;
 export const UserRecipeContainer = styled.div`
-   // margin: 1rem;
-   // border: 10px solid hsl(0, 100%, 80%);
    display: flex;
    flex-direction: column;
    gap: 0.5rem;

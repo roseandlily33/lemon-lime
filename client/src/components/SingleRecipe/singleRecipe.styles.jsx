@@ -90,8 +90,6 @@ border-radius: 5px;
 export const IngredientsDiv = styled.div`
 width: 30%;
 border-radius: 5px;
-box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-
 background-color: ${({theme}) => theme.colors.white};
 .outside{
     display: flex;
@@ -121,7 +119,6 @@ export const InstructionsDiv = styled.div`
 width: 70%;
 border-radius: 5px;
 background-color: ${({theme}) => theme.colors.white};
-box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 ol{
     margin:0.5em;
 }

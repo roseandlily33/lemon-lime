@@ -6,7 +6,6 @@ export const SideContainer = styled.div`
     align-items: center;
     justify-content: center;
     gap: 0.4em;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     background-color: ${({theme}) => theme.colors.white};
     min-width: 300px;
     height: auto;
@@ -31,9 +30,6 @@ export const SideContainer = styled.div`
         display: flex;
         flex-direction: column;
         gap: 0.3em;
-    }
-    &:hover{
-        box-shadow: ${({theme}) => theme.colors.offWhite} 0px 2px 4px 0px, ${({theme}) => theme.colors.orange} 0px 2px 16px 0px;
     }
 `;
 

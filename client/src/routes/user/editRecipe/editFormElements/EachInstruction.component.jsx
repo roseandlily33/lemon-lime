@@ -21,7 +21,7 @@ const EachInstruction = ({ins, id, idx, deleteInstruction, setInstructions, inst
     }
 
     return ( 
-        <div key={id}>
+        <div key={id} className="boxShadow">
             <label for={insState}>{idx + 1}</label>
              <input 
                id={id}

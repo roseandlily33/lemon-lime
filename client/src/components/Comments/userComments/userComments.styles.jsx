@@ -31,13 +31,9 @@ export const LeftCommentsDiv = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
 `;
 
 export const SingleCommentDiv = styled.div`
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     background-color: ${({theme}) => theme.colors.white};
     border-radius: 5px;
     padding: 1rem;
@@ -49,7 +45,6 @@ export const SingleCommentDiv = styled.div`
 export const CommentDiv = styled.div`
     display: flex;
     flex-direction: column;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     background-color: ${({theme}) => theme.colors.white};
     border-radius: 5px;
     padding: 1em;

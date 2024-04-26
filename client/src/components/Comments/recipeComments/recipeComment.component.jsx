@@ -21,7 +21,7 @@ const RecipeComments = ({id, comments}) => {
         : 
         <>
         {comments.map((c) => {
-          return <SingleCommentDiv>
+          return <SingleCommentDiv className="boxShadow">
             <SingleTop>
             <h4>{c.title}</h4>
             <div className="underTitleDiv">

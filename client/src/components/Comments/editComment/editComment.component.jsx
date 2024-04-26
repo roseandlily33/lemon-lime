@@ -33,7 +33,7 @@ const EditComment = ({comment}) => {
     return ( 
         <>
         <h3>Edit Comment</h3>
-        <CommentDiv>
+        <CommentDiv  className="boxShadow">
          <CommentForm onSubmit={handleSubmit}>
         {/* Title */}
         <FormElement>

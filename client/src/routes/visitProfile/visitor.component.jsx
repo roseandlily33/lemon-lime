@@ -27,7 +27,7 @@ const VisitorPage = () => {
                 <img src={Background} alt="Grapefruits, lemons, limes" />
             </LeftContainer>
             <RightContainer>
-            <UsersInfo>
+            <UsersInfo className="boxShadow">
             <img src={Profile} alt="User Profile Avatar"/>
             <h2>{username}</h2> 
             </UsersInfo>

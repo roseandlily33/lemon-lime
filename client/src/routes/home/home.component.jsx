@@ -1,9 +1,6 @@
 import RecipeContainer from "../../components/Recipe/recipe.component";
 import RecipeContainer2 from "../../components/Recipe/recipe2.container";
 import { MainDiv, BottomDiv, LeftMainDiv, RightMainDiv, HeroImage } from "./home.styles";
-//import useRecipes from "../../hooks/mainPageRecipes";
-//import { useCallback, useState, useEffect, useMemo } from "react";
-// import { httpGetAllRecipes, httpGetPopularRecipes } from "../../hooks/recipeRequests";
 import { useSelector } from "react-redux";
 import MainPicture from '../../images/Background3.jpg';
 import { useNavigate } from "react-router-dom";
@@ -29,7 +26,7 @@ const HomePage = () => {
             </div>
         </HeroImage>
        <BottomDiv>
-        <LeftMainDiv>
+        <LeftMainDiv className="scrollBar">
             <h2>New Recipes</h2>
             {
                 loading ? <Loader /> :
@@ -42,7 +39,7 @@ const HomePage = () => {
                 </>
             }
         </LeftMainDiv>
-        <RightMainDiv>
+        <RightMainDiv className="scrollBar">
             <h2>Popular Recipes</h2>
            {
             loading2 ? <Loader />: 

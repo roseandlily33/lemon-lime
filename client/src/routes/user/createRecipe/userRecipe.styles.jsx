@@ -4,7 +4,6 @@ export const CreateRecipeForm = styled.form`
 display: flex;
 flex-direction: column;
 width: 95%;
-box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 background-color: ${({theme}) => theme.colors.white};
 padding: 1em;
 border-radius: 5px;

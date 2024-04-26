@@ -34,7 +34,7 @@ const IngredientsAndMeasurements = ({ ingredients, addNewIngredient, setIngredie
         <TopIngDiv>
           {ingredients.map(({id, ing, mea}, i) => {
             return ( 
-                <SingleMeaIngDiv className="glass" key={i}>
+                <SingleMeaIngDiv className="boxShadow" key={i}>
                     <div key={id}>
                     <h4>{i + 1}</h4>
                     <p>{mea}</p>

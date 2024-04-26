@@ -39,7 +39,7 @@ const SingleRecipeComponent = () => {
         <LeftSide>
         {singleRecipe.images[0] ? <Carousel images={singleRecipe.images} /> : <img src={Lemon} alt="lemons" className="recipePhoto"/>}
        </LeftSide>
-        <RightSide>
+        <RightSide >
         <h2>{singleRecipe?.recipeName}</h2>
         <div style={{display: 'flex', alignItems: 'center', gap: '2em'}}>
         <span>Created by: 
@@ -58,7 +58,7 @@ const SingleRecipeComponent = () => {
      </TopDiv>
      <Bottom>
 
-  <IngredientsDiv>
+  <IngredientsDiv className="boxShadow">
   <h3>Ingredients</h3>
   <ul className="outside">
     <div className="ing1">
@@ -78,7 +78,7 @@ const SingleRecipeComponent = () => {
   </ul>  
   </IngredientsDiv>
 
-  <InstructionsDiv>
+  <InstructionsDiv className="boxShadow">
       <h3>Instructions</h3>
         <ol>
         {singleRecipe?.instructions?.map(({id, ins}, index) => {

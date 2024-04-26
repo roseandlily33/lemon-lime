@@ -10,7 +10,7 @@ const RecipeContainer = ({recipe}) => {
     const url = `/recipe/${recipe._id}`;
 
     return ( 
-        <RecipeCont key={recipe._id} onClick={() => navigate(url)}>
+        <RecipeCont key={recipe._id} onClick={() => navigate(url)} className="boxShadowHover">
           <LeftContainer>
            <TopLabel>
             <NavLink className="link" to={url}>{recipe.recipeName}</NavLink>

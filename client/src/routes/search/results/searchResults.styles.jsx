@@ -8,6 +8,5 @@ export const SearchResultsDiv = styled.div`
    justify-content: center;
    height: 80%;
    overflow-y: scroll;
-  // border: 1px solid orange;
-  
+
 `;

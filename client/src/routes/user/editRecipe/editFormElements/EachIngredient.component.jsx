@@ -20,7 +20,7 @@ const EachIngredient = ({ing, id, idx, deleteIngredient, setIngredients, ingredi
     }
 
     return ( 
-        <div  className="right" key={id}>
+        <div className="right boxShadow" key={id}>
             
             <label for={ingState}></label>
 

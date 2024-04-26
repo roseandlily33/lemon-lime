@@ -4,7 +4,7 @@ const EditIngredients = ({handleChangeIng, deleteIngredient, objIngredinets}) =>
     return ( 
         <>
          {Object.values(objIngredinets)?.map((x, idx)=> {
-         return  <IngredientsDivEdit key={idx}>
+         return  <IngredientsDivEdit key={idx} className="boxShadow">
          <label name={idx}></label>
           <input 
           type="text" 

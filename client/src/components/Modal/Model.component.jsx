@@ -3,7 +3,7 @@ import { ModalContainer } from "./modal.styles";
 const Modal = ({children, onClose}) => {
 
     return (  
-        <ModalContainer >
+        <ModalContainer className="boxShadow">
            <div className="modal slit-in-vertical">
             {children}
            <button onClick={onClose}>Close</button>

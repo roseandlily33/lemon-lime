@@ -10,7 +10,6 @@ export const AuthPage = styled.section`
 `;
 
 export const AuthForm = styled.div`
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     background-color: ${({theme}) => theme.colors.white};
     border-radius: 5px;
     height: 80%;

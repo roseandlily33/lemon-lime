@@ -46,7 +46,7 @@ const Comment = () => {
     }
     
     return ( 
-        <CommentContainer>
+        <CommentContainer className="boxShadow">
         <h3 style={{marginBlock: '0.5em', marginLeft: '0.6em', color: 'hsl(79, 25%, 35%)'}}>Leave a review</h3>
         {isAuthenticated ? 
          <CommentForm onSubmit={handleSubmit}>

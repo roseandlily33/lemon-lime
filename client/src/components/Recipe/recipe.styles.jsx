@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const RecipeCont = styled.div`
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     background-color: ${({theme}) => theme.colors.white};
     height: auto;
     gap: 1em;
@@ -25,9 +24,6 @@ export const RecipeCont = styled.div`
         width: 250px;
         border-radius: 5px;
         float: right;
-    }
-    &:hover{
-        box-shadow: ${({theme}) => theme.colors.offWhite} 0px 2px 4px 0px, ${({theme}) => theme.colors.orange} 0px 2px 16px 0px;
     }
 `;
 

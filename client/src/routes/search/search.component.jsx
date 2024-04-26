@@ -50,7 +50,7 @@ const SearchPage = () => {
     }
 
     return ( <SearchContainer>
-    <StyledDiv>
+    <StyledDiv className="boxShadow">
     <h2>Explore Recipes</h2>
     <div>
          <select style={{width: '10%'}} name="subCategory" defaultValue={subCategory} onChange={handleChange}>

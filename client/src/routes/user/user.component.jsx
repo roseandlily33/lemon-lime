@@ -12,10 +12,10 @@ const UserHome = () => {
   const navigate = useNavigate();
   const buttonItems = [
     
-    {id: 1, title: 'Create A Recipe', color: '#FFEFE6', action: 'createRecipe'},
-    {id: 2, title: 'Edit Comments', color: '#FFD3BA', action: 'editComments'}, 
-    {id: 3, title: 'Not in use', color: '#FAB38B', action: ''},
-    {id: 4, title: 'Not in use', color: '#EF8E58', action: ''}
+    {id: 1, title: 'Create A Recipe', color: 'hsla(21.599999999999994, 100%, 95.09803921568627%, 0.8)', action: 'createRecipe'},
+    {id: 2, title: 'Edit Comments', color: 'hsla(21.739130434782602, 100%, 86.47058823529412%, 0.6)', action: 'editComments'}, 
+    {id: 3, title: 'Not in use', color: 'hsla(21.62162162162162, 91.73553719008265%, 76.27450980392156%, 0.6)', action: ''},
+    {id: 4, title: 'Not in use', color: 'hsla(21.456953642384107, 82.5136612021858%, 64.11764705882352%, 0.6)', action: ''}
   ];
   
   const recipes = useSelector(state => state.user.userRecipes);
@@ -49,8 +49,8 @@ const UserHome = () => {
           <UserOptions>
            
             {buttonItems.map((button) => {
-            return <div key={button.id} style={{ backgroundColor:`${button.color}`}}>
-              <h3 onClick={() => switchFunction(button.action)}>{button.title}</h3>
+            return <div key={button.id} onClick={() => switchFunction(button.action)} style={{ backgroundColor:`${button.color}`}}>
+              <h3 style={{color: '#77340D'}} onClick={() => switchFunction(button.action)}>{button.title}</h3>
             </div>
            })}
        

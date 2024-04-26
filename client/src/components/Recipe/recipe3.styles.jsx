@@ -5,7 +5,6 @@ export const SideContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 0.4em;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     background-color: ${({theme}) => theme.colors.white};
     max-height: 500px;
     max-width: 300px;
@@ -20,10 +19,6 @@ export const SideContainer = styled.div`
         max-height: 150px;
         border-radius: 5px;
     }
-    &:hover{
-        box-shadow: ${({theme}) => theme.colors.offWhite} 0px 2px 4px 0px, ${({theme}) => theme.colors.orange} 0px 2px 16px 0px;
-    }
-
 `;
 
 export const ButtonRecipeContainer = styled.div`

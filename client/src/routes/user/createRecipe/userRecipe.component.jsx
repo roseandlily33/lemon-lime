@@ -106,7 +106,7 @@ const CreateRecipe = () => {
      
     return (
     <>
-    <CreateRecipeForm onSubmit={handleSubmit}>
+    <CreateRecipeForm onSubmit={handleSubmit} className="boxShadow">
       <h1>Create a recipe</h1>
       <TopForm>
       <LeftDiv>

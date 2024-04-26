@@ -53,9 +53,6 @@ export const UserRecipesContainer = styled.div`
     margin-inline: 1rem;
     gap: 1rem;
     z-index: 4;
-    overflow-x: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
     position: relative;
     text-align: center;
     top: 40%;
@@ -74,9 +71,6 @@ export const UserOptions = styled.div`
     padding-block: 1rem;
     align-items: center;
     justify-content: space-evenly;
-    overflow-x: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
     div{
         height: 120px;
         width: 300px;
@@ -84,13 +78,5 @@ export const UserOptions = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: ${({theme}) => theme.colors.offWhite} 0px 2px 4px 0px, ${({theme}) => theme.colors.grey2} 0px 2px 16px 0px;
     }
-    div:hover{
-        box-shadow: ${({theme}) => theme.colors.offWhite} 0px 2px 4px 0px, ${({theme}) => theme.colors.peachyPink} 0px 2px 16px 0px;
-        h2{
-            color: blue;
-        }
-    }
-
 `;

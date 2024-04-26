@@ -15,19 +15,18 @@ export const MainDiv = styled.main`
 
 export const HeroImage = styled.div`
     width: 100%;
-    height: 50%;
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
     img{
         max-width: 100%;
-        height: auto;
-        opacity: 0.8;
-  
+        opacity: 0.8;   
+        height: 100%;
     }
     .overlay {
-        background-color: rgba(0,0,0,0.9); 
+        background-color: rgba(0,0,0,0.8); 
     }
     @keyframes slideInFromLeft {
     0% {
@@ -40,7 +39,7 @@ export const HeroImage = styled.div`
     .text{
         animation: 1s ease-out 0s 1 slideInFromLeft;
         position: absolute;
-        top: 22%;
+        top: 15%;
         left: 5%;
         color: ${({theme}) => theme.colors.white};
     }
@@ -54,6 +53,10 @@ export const HeroImage = styled.div`
        color: ${({theme}) => theme.colors.white};
        background-color: ${({theme}) => theme.colors.orange};
        border: ${({theme}) => theme.colors.white};
+       width: 30%;
+       height: 60px;
+       margin-top: 1rem;
+       font-size: 1.2rem;
     }
     button:hover{
         background-color: ${({theme}) => theme.colors.peachyPink};;
@@ -70,9 +73,6 @@ export const LeftMainDiv = styled.div`
     max-height: 90%;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
     margin-right: 1em;
     padding: 1em;
     @media screen and (max-width: 900px){
@@ -87,11 +87,7 @@ export const RightMainDiv = styled.div`
     width: auto;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: ${({theme}) => theme.colors.green} ${({theme}) => theme.colors.orange};
     padding: 1em;
-
     @media screen and (max-width: 900px){
         width: 100%;
         border: 2px solid orange;

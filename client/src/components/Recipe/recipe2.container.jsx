@@ -10,7 +10,7 @@ const RecipeContainer2 = ({recipe}) => {
     const url = `/recipe/${recipe._id}`;
    
     return ( 
-        <SideContainer key={recipe._id} onClick={() => navigate(url)}>
+        <SideContainer key={recipe._id} onClick={() => navigate(url)} className="boxShadowHover">
            <div className="topDiv">
            <TopContainer>
            <NavLink className="link" to={url}>{recipe.recipeName}</NavLink>

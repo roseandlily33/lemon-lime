@@ -37,7 +37,7 @@ const UserIngredientEdit = ({ingredients, setIngredients}) => {
     return ( 
         <>
          <TopIngDivEdit>
-         <SingleMeaIngDivEdit className="glass">
+         <SingleMeaIngDivEdit className="boxShadow">
           <div className="outerLeft">  
            {ingredients?.map(({id, mea},idx) => {
                return <EachMeasurement id={id} mea={mea} idx={idx} />

@@ -31,12 +31,12 @@ const UserInstructions = ({instructions, addNewInstruction, setInstructions}) =>
 
     return (
     <>
-       <MiddleForm>
+       <MiddleForm >
         <TopIngDiv>
           {instructions ? 
           <>
           {instructions.map((ins, idx) => {
-              return <SingleMeaIngDiv className="glass">
+              return <SingleMeaIngDiv className="boxShadow">
                 <div key={ins.id}>
                 <h4>{idx+ 1}</h4>
                 <p>{ins.ins}</p>

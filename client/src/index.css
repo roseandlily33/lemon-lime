@@ -11,23 +11,23 @@
     --grey2: hsl(39, 11%, 69%);
     --grey3: hsl(41, 8%, 61%);
     --darkGrey: hsl(0, 0%, 81%);
-    --yellow: hsl(48, 86%, 55%);
+    --yellow: hsl(44, 82%, 60%);
     --lightestYellow: hsl(48, 100%, 77%);
     --mediumYellow: hsl(48, 94%, 68%);
-    --green: hsl(79, 25%, 35%);
-    --lightGreen: hsl(69, 37%, 55%);
-    --mediumGreen:hsl(83, 70%, 34%);
-    --orange: hsl(36, 74%, 58%);
-    --darkOrange: hsl(29, 80%, 44%);
+    --green: hsl(80, 25%, 35%);
+    --lightGreen: #BCC456;
+    --mediumGreen:#A1AA2D;
+    --orange: #E3A445;
+    --darkOrange: #E08600;
     --border: 5px solid var(--yellow);
     --errorRed: hsl(354, 85%, 44%);
-    --peachyPink: hsl(0, 71%, 66%);
-    --lightPeachyPink: #ffe5e5;
-    --darkerPeachyPink: hsl(0, 100%, 80%);
+    --peachyPink: #D0415A;
+    --lightPeachyPink: #CE8491;
+    --mediumPeachyPink: #CF6174;
 }
 body{
     background-color: var(--white);
-    color: hsl(0, 0%, 38%);
+    color: hsl(0, 1%, 30%);
     font-family: 'Inter', sans-serif;
     background-image: url('./images/Background.png');
     font-size: 16px;
@@ -243,4 +243,19 @@ border: 1px solid rgba(255, 255, 255, 0.57);
 .error{
   color: var(--errorRed);
   font-weight: 700;
+}
+.boxShadowHover{
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+.boxShadowHover:hover{
+  box-shadow: var(--grey1) 0px 2px 4px 0px, var(--darkOrange) 0px 2px 16px 0px;
+}
+.boxShadow{
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.scrollBar{
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green) var(--orange);
 }
