@@ -11,7 +11,7 @@ const NavBar = () => {
   const isMobile = window.innerWidth < 900;
 
     return (
-        <Navbar>
+        <Navbar className='boxShadow'>
             <NavLink to="/"><img src={Logo} alt="lemon lime logo" title="home" /></NavLink>
             <RightNav>
               {/* Checks if it is a mobile devices depending on screen size */}
