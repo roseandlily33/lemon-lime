@@ -11,7 +11,7 @@ export const ButtonDiv = styled.div`
     }
 `;
 
-export const TopFormEdit = styled.div`
+export const TopFormEdit = styled.section`
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 1em;
@@ -66,7 +66,7 @@ export const SingleInputDivEdit = styled.div`
     }
 `;
 
-export const MiddleFormEdit = styled.div`
+export const MiddleFormEdit = styled.section`
     display: flex;
     flex-direction: column;
     @media screen and (max-width: 500px){

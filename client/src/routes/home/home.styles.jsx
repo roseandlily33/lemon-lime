@@ -13,7 +13,7 @@ export const MainDiv = styled.main`
     }
 `;
 
-export const HeroImage = styled.div`
+export const HeroImage = styled.section`
     width: 100%;
     height: 100%;
     background-position: center;
@@ -62,13 +62,13 @@ export const HeroImage = styled.div`
         background-color: ${({theme}) => theme.colors.peachyPink};;
     }
 `;
-export const BottomDiv = styled.div`
+export const BottomDiv = styled.section`
     display: flex;
     justify-content: center;
     width: 95%;
     height: 60%;
 `;
-export const LeftMainDiv = styled.div`
+export const LeftMainDiv = styled.aside`
     width: 60%;
     max-height: 90%;
     display: flex;
@@ -81,7 +81,7 @@ export const LeftMainDiv = styled.div`
     }
 `;
 
-export const RightMainDiv = styled.div`
+export const RightMainDiv = styled.aside`
     min-width: 30%;
     max-height: 90%;
     width: auto;

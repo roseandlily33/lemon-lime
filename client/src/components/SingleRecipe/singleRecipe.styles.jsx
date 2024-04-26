@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SingleRecipeContainer  = styled.section`
+export const SingleRecipeContainer  = styled.main`
     height: auto;
     width: 95%;
     display: flex;
@@ -22,7 +22,7 @@ export const SingleRecipeContainer  = styled.section`
     }
 `;
 
-export const TopDiv = styled.div`
+export const TopDiv = styled.section`
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -37,7 +37,7 @@ export const TopDiv = styled.div`
     }
 `;
 
-export const LeftSide = styled.div`
+export const LeftSide = styled.aside`
     img{
         height: 300px;
         width: 400px;
@@ -45,7 +45,7 @@ export const LeftSide = styled.div`
     }
 `;
 
-export const RightSide = styled.div`
+export const RightSide = styled.aside`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -60,7 +60,7 @@ export const RightSide = styled.div`
     }
 `;
 
-export const Bottom = styled.div`
+export const Bottom = styled.section`
 width: 100%;
 display: flex;
 height: auto;

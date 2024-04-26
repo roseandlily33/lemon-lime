@@ -6,13 +6,14 @@ import {httpAddComment} from '../../../hooks/commentRequests';
 import Rating from "../../Rating/rating.component";
 
 
-const Comment = () => {
+const Comment = ({singleRecipe}) => {
     const {id} = useParams();
     const { user, isAuthenticated} = useAuth0();
     const [formState, setFormState] = useState({
         title: '',
         comment: '',
     });
+   //console.log('USER', user, 'SINGLE RECIPE', singleRecipe)
     const[starRating, setStarRating] = useState(1);
     const[success, setSuccess] = useState('');
 
@@ -26,7 +27,9 @@ const Comment = () => {
         let totalComment = Object.assign(formState,{
             rating: starRating,
             author: user.sub,
-            recipe: id
+            recipe: id,
+            authorName: user.nickname,
+            recipeName: singleRecipe.recipeName
         });
         let res = await httpAddComment(totalComment);
         

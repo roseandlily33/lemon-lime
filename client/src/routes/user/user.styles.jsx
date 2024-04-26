@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const UserContainer = styled.div`
+export const UserContainer = styled.main`
     height: 100vh;
     width: 100vw;
    // background-color: ${({theme}) => theme.colors.offWhite};
 `;
 
-export const UserOptionsContainer = styled.div`
+export const UserOptionsContainer = styled.section`
     height: 40%;
     width: 100%;
     position: absolute;
@@ -47,7 +47,7 @@ export const UserOptionsContainer = styled.div`
     }
    
 `;
-export const UserRecipesContainer = styled.div`
+export const UserRecipesContainer = styled.section`
 //border: 1px solid blue;
     display: flex;
     margin-inline: 1rem;
@@ -61,7 +61,7 @@ export const UserRecipesContainer = styled.div`
     padding-block: 0.5rem;
 `;
 
-export const UserOptions = styled.div`
+export const UserOptions = styled.aside`
     display: flex;
     margin-inline: 1rem;
     gap: 1rem;

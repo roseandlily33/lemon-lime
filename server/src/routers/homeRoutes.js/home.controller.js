@@ -31,6 +31,7 @@ async function httpGetPopularRecipes(req, res){
 
 //Gets the full recipe with details - finished
 async function httpGetFullRecipeWithDetails(req, res){
+    console.log('Getting full recipe with details')
     try{
         let requestId = req.params.id;
     if(!requestId){
@@ -41,6 +42,7 @@ async function httpGetFullRecipeWithDetails(req, res){
     }, {'__v': 0});
     let authorOfRecipe = await User.findOne({_id: foundRecipe[0].author});
     let allComments = await Comment.find({recipe: requestId}).sort({createdAt: -1});
+    console.log('Comments and useres', allComments)
     return res.status(200).json({foundRecipe, authorOfRecipe, allComments});
     } catch(err){
         return res.status(400).json(err);

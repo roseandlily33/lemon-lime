@@ -32,9 +32,17 @@ const commentsSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    authorName: {
+        type: String,
+        required: true
+    },
     recipe: {
         type: Schema.Types.ObjectId,
         ref: 'Recipe'
+    },
+    recipeName: {
+        type: String,
+        required: true
     }
 });
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RecentContainer = styled.div`
+export const RecentContainer = styled.section`
     display: flex;
     align-items: center;
     flex-wrap: wrap;

@@ -94,7 +94,7 @@ const SingleRecipeComponent = () => {
        }
        </SingleRecipeContainer>
        <hr />
-       <Comment/>
+       <Comment singleRecipe={singleRecipe}/>
        <hr />
        <RecipeComments id={id} comments={comments} />
         </>

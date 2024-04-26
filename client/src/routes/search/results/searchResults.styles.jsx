@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SearchResultsDiv = styled.div`
+export const SearchResultsDiv = styled.section`
    margin-inline: 2rem;
    display: flex;
    gap: 1rem;

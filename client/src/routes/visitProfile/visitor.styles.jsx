@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-export const VisitorContainer = styled.section`
+export const VisitorContainer = styled.main`
     display: flex;
     height: 100vh;
     width: 100vw;   
 `;
-export const LeftContainer = styled.div`
+export const LeftContainer = styled.aside`
     img{
         height: 100vh;
     }
 `
-export const RightContainer = styled.div`
+export const RightContainer = styled.section`
     width: 100%;
     margin: 1rem; 
     background-color: ${({theme}) => theme.colors.white};

@@ -17,7 +17,7 @@ margin-bottom: 1em;
  }
 `;
 
-export const TopForm = styled.div`
+export const TopForm = styled.section`
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 1em;
@@ -57,7 +57,7 @@ export const SingleInputDiv = styled.div`
     padding-bottom: 0.5rem;
 `;
 
-export const MiddleForm = styled.div`
+export const MiddleForm = styled.section`
     display: flex;
     flex-direction: column;
 `;

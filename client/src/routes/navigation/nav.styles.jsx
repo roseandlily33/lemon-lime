@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Navbar = styled.nav`
+export const Navbar = styled.header`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -15,7 +15,7 @@ export const Navbar = styled.nav`
     }
 `;
 
-export const RightNav = styled.div`
+export const RightNav = styled.nav`
     display: flex;
     flex-direction: row;
     align-items: center;

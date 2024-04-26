@@ -27,6 +27,7 @@ const RecipeComments = ({id, comments}) => {
             <div className="underTitleDiv">
             <p>{formatStars(c.rating)}</p>
             <p>{formatDate(c.createdAt)}</p>
+            <p>{c?.authorName}</p>
             </div>
             </SingleTop>
             <hr />

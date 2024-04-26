@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SearchContainer = styled.section`
+export const SearchContainer = styled.main`
     height: 100vh;
     width: 100vw;  
     display: flex;
@@ -10,7 +10,7 @@ export const SearchContainer = styled.section`
     align-items: center;
 `;
 
-export const StyledDiv = styled.div`
+export const StyledDiv = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,7 +44,7 @@ export const StyledDiv = styled.div`
     }
 `;
 
-export const ResultsDiv = styled.div`
+export const ResultsDiv = styled.aside`
     height: 100vh;
     width: 100vw; 
 `;

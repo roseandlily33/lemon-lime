@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FavoritesContainerMain = styled.section`
+export const FavoritesContainerMain = styled.main`
     width: 100vw;
     height: 100vh;    
     margin-top: 2rem;
@@ -10,7 +10,7 @@ export const FavoritesContainerMain = styled.section`
     }
 `;
 
-export const FavoritesRecipesDiv = styled.div`
+export const FavoritesRecipesDiv = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
