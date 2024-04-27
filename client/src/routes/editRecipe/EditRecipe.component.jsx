@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 import { fetchUserRecipes } from "../../redux/userSlice";
 //Cloudinary
 import { Cloudinary } from "@cloudinary/url-gen";
-import SinglePhoto from "../user/createRecipe/recipeFormElements/userPhotos.component";
+//import SinglePhoto from "../user/createRecipe/recipeFormElements/userPhotos.component";
 
 
 const EditRecipe = () => {

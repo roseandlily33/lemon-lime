@@ -1,8 +1,8 @@
 // Needed Imports
 import { useState } from "react";
-import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
+import CookingIllustration from '../../images/undraw_cooking_p7m1.svg';
 import {useAuth0} from '@auth0/auth0-react';
-import { getTotalTime } from "../../../formattingUtils/totalTime";
+import { getTotalTime } from "../../formattingUtils/totalTime";
 import {useNavigate} from 'react-router-dom';
 import { httpCreateRecipe } from "../../hooks/userRequests";
 
@@ -32,6 +32,7 @@ const CreateRecipeForm = () => {
         cookTime: 10,
         subCategory: "Breakfast"
     });
+    console.log('TOP LEVEL FORM VALUES', formValues);
     //Handle Change for the Top Level form state
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -42,11 +43,13 @@ const CreateRecipeForm = () => {
       const addNewIngredient = (ing) => {
         setIngredients([...ingredients, ing])
     };
+    console.log('INGREDIENTS', ingredients);
     //Instructions
     const [instructions, setInstructions] = useState([])
     const addNewInstruction = (ins) => {
       setInstructions([...instructions, ins])
     };
+    console.log('INSTRUCTIONS', instructions);
     //For the photos
     const [images, setImages] = useState([]);
     const addNewImage = (img) => {
@@ -65,13 +68,13 @@ const CreateRecipeForm = () => {
     return (  
         <>
         <h2>Create Recipe</h2>
-        <TopCreate formValues={formValues} handleChange={handleChange} />
-        <img src={CookingIllustration} alt="Cooking Illustration" className="cooking-image"/>
+        {/* <TopCreate formValues={formValues} handleChange={handleChange} /> */}
+        {/* <img src={CookingIllustration} alt="Cooking Illustration" className="cooking-image"/> */}
         <MiddleCreate 
         instructions={instructions} setInstructions={setInstructions} addNewInstruction={addNewInstruction}
         ingredients={ingredients} addNewIngredient={addNewIngredient}  setIngredients={setIngredients}
         />
-        <BottomCreate images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos} photos={photos}/>
+        {/* <BottomCreate images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos} photos={photos}/> */}
         <>
         <p className="error">{error}</p>
       <input className="button" style={{width: '150px', marginBlock: '1em'}} type="submit" />

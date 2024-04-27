@@ -5,8 +5,8 @@ const BottomEdit = ({images, addNewImage, addNewPhotos, photos}) => {
     return ( 
         <>
         <h2>Bottom</h2>
-        <ImagesEdit images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos}/>
-        <EachPhotoEdit photos={photos}/>
+        {/* <ImagesEdit images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos}/>
+        <EachPhotoEdit photos={photos}/> */}
         </>
      );
 }

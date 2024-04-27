@@ -1,6 +1,10 @@
 
 const IngredientsCreate = ({ingredients, addNewIngredient, setIngredients}) => {
-    return (  );
+    return ( 
+        <>
+        <h2>Ingredients Create</h2>
+        </>
+     );
 }
  
 export default IngredientsCreate;

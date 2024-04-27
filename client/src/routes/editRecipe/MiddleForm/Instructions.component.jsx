@@ -28,9 +28,12 @@ const InstructionsEdit = ({instructions, setInstructions}) => {
     });
     setInstructions(newArray);
   }
+  const changeOrder = () => {
+
+  }
     return (
         <>
-        <h2> Instructinos edit</h2>
+        <h2>Instructions edit</h2>
         <h2>Each instruction is mapped here</h2>
         {instructions.map((ins, idx) => (
             <EachInstruction idx={idx} id={ins.id} ins={ins.ins} deleteIngredient={deleteIngredient} setInstructions={setInstructions} instructions={instructions} />
@@ -49,6 +52,7 @@ const InstructionsEdit = ({instructions, setInstructions}) => {
               Add Instruction
               </button>
         </div>
+        
         </>
       );
 }
