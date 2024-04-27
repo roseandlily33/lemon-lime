@@ -1,5 +1,5 @@
 
-const ImagesEdit = ({images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos} photos={photos}}) => {
+const ImagesEdit = ({images, addNewImage,addNewPhotos,photos}) => {
     return ( <>
     <h2>Edit Photos</h2>
 

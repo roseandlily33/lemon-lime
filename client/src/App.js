@@ -9,7 +9,7 @@ import UserHome from './routes/user/user.component';
 import SearchPage from './routes/search/search.component';
 import Footer from './routes/footer/footer.component';
 import SingleRecipeComponent from './components/SingleRecipe/singleRecipe.component';
-import CreateRecipe from './routes/user/createRecipe/userRecipe.component';
+import CreateRecipeForm from './routes/createRecipe/CreateRecipe.component.jsx';
 import UserBase from './routes/user/userBase.component.jsx';
 import BasePage from './routes/base/base.component';
 import NotFound from './routes/notFound/notFound.component.jsx';
@@ -67,7 +67,7 @@ function App() {
             </Route>
             <Route path='user' element={<UserBase />}>
               <Route index path="home" element={<UserHome />} />
-              <Route path='create' element={<CreateRecipe />}/>
+              <Route path='create' element={<CreateRecipeForm />}/>
               <Route path="edit/:id" element={<EditRecipe />}/>
               <Route path="comments" element={<UserComments/>} />
           </Route>

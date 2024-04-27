@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import Modal from "../../../../components/Modal/Model.component";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../../components/Modal/Model.component";
 
-const SinglePhoto = ({images, addNewImage, addNewPhotos}) => {
+const PhotosCreate = ({images, addNewImage, addNewPhotos}) => {
+
     const[isOpen, setIsOpen] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -30,9 +31,10 @@ const SinglePhoto = ({images, addNewImage, addNewPhotos}) => {
         }
       });
     }, [images, addNewImage, addNewPhotos])
-    
-    return (
+
+    return ( 
         <>
+        <h2>Photos Create</h2>
         {isOpen && (
          <Modal onClose={() => setIsOpen(false)}>
            <h3>An error has occured trying to submit your pictures</h3>
@@ -48,8 +50,8 @@ const SinglePhoto = ({images, addNewImage, addNewPhotos}) => {
           }} style={{marginBlock: '1em'}}>Upload Images</button>
         </div>
       </div>
-      </>
-      );
+        </>
+     );
 }
  
-export default SinglePhoto;
+export default PhotosCreate;
