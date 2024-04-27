@@ -1,10 +1,8 @@
-import { SingleInputDiv } from "../userRecipe.styles";
 
-//Select the cook time
-const CookTime = ({formValues, handleChange}) => {
-    return ( 
-        <SingleInputDiv >
-        <label for={formValues.cookTime}>Cook Time: <span>in minutes</span></label>
+const CookTimeEdit = ({formValues, handleChange}) => {
+    return (
+    <>
+    <label for={formValues.cookTime}>Cook Time: <span>in minutes</span></label>
         <select name="cookTime" defaultValue={formValues.cookTime} onChange={handleChange}>
           <option value={formValues.cookTime[5]}>5</option>
           <option value={formValues.cookTime[10]}>10</option>
@@ -21,8 +19,7 @@ const CookTime = ({formValues, handleChange}) => {
           <option value={formValues.cookTime[65]}>65</option>
           <option value={formValues.cookTime[70]}>70</option>
         </select>
-        </SingleInputDiv>
-     );
+    </>);
 }
  
-export default CookTime;
+export default CookTimeEdit;

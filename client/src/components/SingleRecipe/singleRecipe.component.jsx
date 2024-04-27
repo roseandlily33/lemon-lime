@@ -30,7 +30,7 @@ const SingleRecipeComponent = () => {
 
     return(
       <>
-      <SingleRecipeContainer>
+      <SingleRecipeContainer className="boxShadow">
       {!singleRecipe ?
        <Loader />
        : 
@@ -43,7 +43,7 @@ const SingleRecipeComponent = () => {
         <h2>{singleRecipe?.recipeName}</h2>
         <div style={{display: 'flex', alignItems: 'center', gap: '2em'}}>
         <span>Created by: 
-          <NavLink to={`/user/${singleRecipe.author}`}> {usersName} </NavLink>
+          <NavLink className="userLink" to={`/user/${singleRecipe.author}`}> {usersName} </NavLink>
             on {formatDate(singleRecipe.createdAt)}</span>
         <Heart recipe={singleRecipe._id}/>
         </div>
@@ -58,7 +58,7 @@ const SingleRecipeComponent = () => {
      </TopDiv>
      <Bottom>
 
-  <IngredientsDiv className="boxShadow">
+  <IngredientsDiv>
   <h3>Ingredients</h3>
   <ul className="outside">
     <div className="ing1">
@@ -78,7 +78,7 @@ const SingleRecipeComponent = () => {
   </ul>  
   </IngredientsDiv>
 
-  <InstructionsDiv className="boxShadow">
+  <InstructionsDiv >
       <h3>Instructions</h3>
         <ol>
         {singleRecipe?.instructions?.map(({id, ins}, index) => {
@@ -92,11 +92,12 @@ const SingleRecipeComponent = () => {
         </Bottom>
        </>
        }
-       </SingleRecipeContainer>
+       
        <hr />
        <Comment singleRecipe={singleRecipe}/>
        <hr />
        <RecipeComments id={id} comments={comments} />
+       </SingleRecipeContainer>
         </>
       );
 }

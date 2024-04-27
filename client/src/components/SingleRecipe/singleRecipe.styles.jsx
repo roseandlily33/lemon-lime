@@ -2,18 +2,14 @@ import styled from 'styled-components';
 
 export const SingleRecipeContainer  = styled.main`
     height: auto;
-    width: 95%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 1rem;
-    h2{
-       color: ${({theme}) => theme.colors.green};
-       font-weight: bold;
-       text-transform: capitalize;
-       padding-bottom: 0.3rem;
-       border-bottom: 1px solid ${({theme}) => theme.colors.grey3};
-    }
+    margin-top: 2rem;
+    background-color: ${({theme}) => theme.colors.white};
+    border-radius: 5px;
+    padding: 1rem;
     @media screen and (max-width: 900px){
       //  border: 2px solid orange;
     }
@@ -51,9 +47,21 @@ export const RightSide = styled.aside`
     width: 100%;
     gap: 0.7em;
     padding: 0.5em;
-    ul{
-        background-color: ${({theme}) => theme.colors.white};
-        border-radius: 5px;
+    h2{
+       color: ${({theme}) => theme.colors.green};
+       font-weight: bold;
+       text-transform: capitalize;
+       padding-bottom: 0.3rem;
+       font-size: 1.8rem;
+       border-bottom: 1px solid ${({theme}) => theme.colors.grey2};
+    }
+    .userLink{
+        text-decoration: none;
+        color: ${({theme}) => theme.colors.peachyPink};
+        font-weight: 700;
+    }
+    p, span{
+        font-size: 1.2rem;
     }
     @media screen and (max-width: 500px){
        // border: 1px solid green;
@@ -65,17 +73,16 @@ width: 100%;
 display: flex;
 height: auto;
 gap: 2em;
-margin-top: 1em;
+margin-block: 2em;
 border-radius: 5px;
     h3{
         font-weight: bold;
         padding-inline: 0.6rem;
-        color: ${({theme}) => theme.colors.grey1};
+        color: ${({theme}) => theme.colors.green};
         padding-block: 1rem;
         background-color: ${({theme}) => theme.colors.offWhite};
         border-bottom: 1px solid ${({theme}) => theme.colors.white};
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        
     }
 
     @media screen and (max-width: 900px){
@@ -90,15 +97,17 @@ border-radius: 5px;
 export const IngredientsDiv = styled.div`
 width: 30%;
 border-radius: 5px;
-background-color: ${({theme}) => theme.colors.white};
+border: 2px solid ${({theme}) => theme.colors.offWhite};
 .outside{
     display: flex;
-    width: 100%;
-    margin:0.5em;
+    width: 90%;
+    margin: 0.5rem;
 }
 
 .insideIng1{
     display: flex;
+    margin-bottom: 1rem;
+
 }
 .insideIng1 li{
     padding-top: 0.4em;
@@ -106,10 +115,11 @@ background-color: ${({theme}) => theme.colors.white};
 .ing2 li{
     padding-left: 1em;
     padding-top: 0.4em;
+    margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 500px){
-   // border: 1px solid blue;
+    border: 1px solid blue;
     width: 100%;
 
 }
@@ -118,17 +128,17 @@ background-color: ${({theme}) => theme.colors.white};
 export const InstructionsDiv = styled.div`
 width: 70%;
 border-radius: 5px;
-background-color: ${({theme}) => theme.colors.white};
+border: 2px solid ${({theme}) => theme.colors.offWhite};
 ol{
     margin:0.5em;
 }
 li{
   padding-top: 0.4em;
+  margin-bottom: 1rem;
  }
 
  @media screen and (max-width: 500px){
     border: 1px solid yellow;
     width: 100%;
-
  }
 `

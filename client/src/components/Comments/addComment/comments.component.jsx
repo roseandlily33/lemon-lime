@@ -13,7 +13,7 @@ const Comment = ({singleRecipe}) => {
         title: '',
         comment: '',
     });
-   //console.log('USER', user, 'SINGLE RECIPE', singleRecipe)
+
     const[starRating, setStarRating] = useState(1);
     const[success, setSuccess] = useState('');
 
@@ -43,14 +43,11 @@ const Comment = ({singleRecipe}) => {
             comment: '',
         })
         setStarRating(1);
-        setTimeout(() => {
-            window.location.reload();
-        }, 3000);
     }
     
     return ( 
-        <CommentContainer className="boxShadow">
-        <h3 style={{marginBlock: '0.5em', marginLeft: '0.6em', color: 'hsl(79, 25%, 35%)'}}>Leave a review</h3>
+        <CommentContainer>
+        <h3>Leave a review</h3>
         {isAuthenticated ? 
          <CommentForm onSubmit={handleSubmit}>
         {/* Title */}

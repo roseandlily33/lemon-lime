@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+//import { useState, useEffect } from "react";
 import Loader from "../../Loader/loader.component";
-import { httpGetAllCommentsForRecipe } from "../../../hooks/commentRequests";
+//import { httpGetAllCommentsForRecipe } from "../../../hooks/commentRequests";
 import { RecipeCommentsDiv, SingleCommentDiv, SingleTop } from "./recipeComments.styles";
 import { formatDate } from "../../../formattingUtils/date";
 import { formatStars } from "../../../formattingUtils/stars";
@@ -16,12 +16,12 @@ const RecipeComments = ({id, comments}) => {
     // }, [id]);
 
     return ( 
-        <RecipeCommentsDiv>
+        <RecipeCommentsDiv className="scrollBar">
         {!comments ? <Loader />
         : 
         <>
         {comments.map((c) => {
-          return <SingleCommentDiv className="boxShadow">
+          return <SingleCommentDiv>
             <SingleTop>
             <h4>{c.title}</h4>
             <div className="underTitleDiv">

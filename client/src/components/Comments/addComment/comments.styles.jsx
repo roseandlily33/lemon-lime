@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 
 export const CommentContainer = styled.div`
-    width: 95vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 3em;
-    background-color: ${({theme}) => theme.colors.white};
+    background-color: ${({theme}) => theme.colors.offWhite};
     border-radius: 5px;
     padding: 1em;
-    @media screen and (max-width: 900px){
+    border: 2px solid ${({theme}) => theme.colors.offWhite};
+    h3{
+        background-color: ${({theme}) => theme.colors.offWhite};
         width: 100%;
         padding: 0;
         margin: 0;
+        color: ${({theme}) => theme.colors.green};
     }
     @media screen and (max-width: 500px){
         width: 95%;
@@ -25,9 +28,18 @@ export const CommentForm = styled.form`
      display: flex;
      flex-direction: column;
      gap: 0.3em;
-     width: 70vw;
+     width: 100%;
+     margin-block: 1rem;
+     padding-block: 1rem;
+     border-radius: 5px;
+     background-color: ${({theme}) => theme.colors.white};
      .button{
         width: 50%;
+     }
+     input, textarea{
+        width: 80%;
+        background-color: ${({theme}) => theme.colors.white};
+        border: 2px solid ${({theme}) => theme.colors.yellow};
      }
      @media screen and (max-width: 900px){
         width: 100%;

@@ -1,19 +1,17 @@
 import styled from 'styled-components';
 
 export const RecipeCommentsDiv = styled.div`
-    width: 100vw;
+    width: 90vw;
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1rem;
     height: 30vh;
 `;
 export const SingleCommentDiv = styled.div`
-    padding: 1em;
-    margin: 1.5em;
+    padding: 1rem;
     background-color: ${({theme}) => theme.colors.white};
-    border: none;
+    border: 2px solid  ${({theme}) => theme.colors.offWhite};
     width: 60%;
     border-radius: 5px;
     p{

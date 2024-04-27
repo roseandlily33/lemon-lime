@@ -1,17 +1,17 @@
-import {useParams} from 'react-router-dom';
-import { useState, useEffect } from 'react'; 
-import { httpEditUserRecipe } from '../../../hooks/userRequests';
-import { httpGetFullRecipeWithDetailsEditPage } from '../../../hooks/recipeRequests';
-import { getTotalTime } from '../../../formattingUtils/totalTime';
-import {useAuth0} from '@auth0/auth0-react';
-import {useNavigate} from 'react-router-dom';
+//import {useParams} from 'react-router-dom';
+//import { useState, useEffect } from 'react'; 
+//import { httpEditUserRecipe } from '../../../hooks/userRequests';
+//import { httpGetFullRecipeWithDetailsEditPage } from '../../../hooks/recipeRequests';
+//import { getTotalTime } from '../../../formattingUtils/totalTime';
+// import {useAuth0} from '@auth0/auth0-react';
+// import {useNavigate} from 'react-router-dom';
 import DeleteRecipe from '../deleteRecipe/deleteRecipe.component';
-import Modal from '../../../components/Modal/Model.component';
+//import Modal from '../../../components/Modal/Model.component';
 // Form Fields:
-import RecipeName from '../createRecipe/recipeFormElements/userRecipeName.component';
-import CookTime from '../createRecipe/recipeFormElements/userCookTime.component';
-import PrepTime from '../createRecipe/recipeFormElements/userPrepTime.component';
-import SubCategory from '../createRecipe/recipeFormElements/userSubCategory.component';
+//import RecipeName from '../createRecipe/recipeFormElements/userRecipeName.component';
+//import CookTime from '../createRecipe/recipeFormElements/userCookTime.component';
+//import PrepTime from '../createRecipe/recipeFormElements/userPrepTime.component';
+//import SubCategory from '../createRecipe/recipeFormElements/userSubCategory.component';
 import UserInstructionsEdit from './editFormElements/userInstructionsEdit.component';
 import UserIngredientEdit from './editFormElements/usersIngredientsEdits.component';
 import EachPhoto from '../createRecipe/recipeFormElements/eachPhotos';
@@ -19,12 +19,12 @@ import EditPhotos from './editFormElements/editPhotos.component';
 //Styles
 import { CreateRecipeForm} from '../createRecipe/userRecipe.styles';
 import { ButtonDiv, TopFormEdit, LeftDivEdit, RightDivEdit, MiddleFormEdit,  PhotosSectionEdit } from './edit.styles';
-import Loader from '../../../components/Loader/loader.component';
-import CookingIllustration from '../../../images/undraw_cooking_p7m1.svg';
-import {useDispatch} from 'react-redux';
-import { fetchUserRecipes } from "../../../redux/userSlice";
-import { Cloudinary } from '@cloudinary/url-gen';
-import SinglePhoto from '../createRecipe/recipeFormElements/userPhotos.component';
+//import Loader from '../../../components/Loader/loader.component';
+//import CookingIllustration from '../../../images/';
+//import {useDispatch} from 'react-redux';
+//import { fetchUserRecipes } from "../../../redux/userSlice";
+//import { Cloudinary } from '@cloudinary/url-gen';
+//import SinglePhoto from '../createRecipe/recipeFormElements/userPhotos.component';
 
 const EditRecipe = () => {
 
@@ -39,7 +39,7 @@ const EditRecipe = () => {
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
     const dispatch = useDispatch();
-    console.log('Images', images)
+   
     if(!user){
         navigate('/');
     }

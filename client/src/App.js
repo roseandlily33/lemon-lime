@@ -4,7 +4,7 @@ import {ThemeProvider} from 'styled-components';
 import HomePage from "./routes/home/home.component";
 import NavBar from "./routes/navigation/nav.component";
 import FavoritesPage from './routes/favorites/favorites.component';
-import EditRecipe from './routes/user/editRecipe/edit.component.jsx';
+import EditRecipe from './routes/editRecipe/EditRecipe.component.jsx';
 import UserHome from './routes/user/user.component';
 import SearchPage from './routes/search/search.component';
 import Footer from './routes/footer/footer.component';

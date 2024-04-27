@@ -1,9 +1,7 @@
-import { SingleInputDiv } from "../userRecipe.styles";
 
-//The subcategory for creating a recipe
-const SubCategory = ({formValues, handleChange}) => {
+const SubcategoryEdit = ({formValues, handleChange}) => {
     return ( 
-        <SingleInputDiv>
+        <>
         <label for={formValues.subCategory}>Choose SubCategory:</label>
          <select style={{width: '100px'}} name="subCategory" defaultValue={formValues.subCategory} onChange={handleChange}>
           <option value={formValues.subCategory["Breakfast"]}>Breakfast</option>
@@ -12,8 +10,8 @@ const SubCategory = ({formValues, handleChange}) => {
           <option value={formValues.subCategory["Dessert"]}>Dessert</option>
           <option value={formValues.subCategory["Drinks"]}>Drinks</option>
         </select>
-        </SingleInputDiv>
+        </>
      );
 }
  
-export default SubCategory;
+export default SubcategoryEdit;
