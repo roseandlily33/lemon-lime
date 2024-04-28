@@ -29,32 +29,37 @@ body{
     background-color: var(--white);
     color: hsl(0, 1%, 30%);
     font-family: 'Inter', sans-serif;
-    background-image: url('./images/Background.png');
+    background-image: url('./images/Option2.svg');
     font-size: 16px;
     background-repeat: no-repeat;
     background-size: cover;
 }
 h1{
- font-size: 1.802rem;
+  font-size: 2.986rem;
+ /* font-size: 1.802rem; */
 }
 h2{
-  font-size: 1.602rem;
+  font-size: 2.488rem
+  /* font-size: 1.602rem; */
 }
 h3 {
- font-size: 1.424rem;
+  font-size: 2.074rem;
+ /* font-size: 1.424rem; */
 }
 h4{
-  font-size: 1.266rem;
+  font-size: 1.728rem;
+  /* font-size: 1.266rem; */
   font-weight: normal;
 }
 h5{
-    font-size: 1.125rem;
+  font-size: 1.44rem;
+    /* font-size: 1.125rem; */
 }
 h6{
-    font-size: 1rem;
+    font-size: 1.33rem;
 }
 li, ul, ol, p{
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 li{
   list-style-type: none;
@@ -245,16 +250,13 @@ border: 1px solid rgba(255, 255, 255, 0.57);
   font-weight: 700;
 }
 .boxShadowHover{
-  /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 .boxShadowHover:hover{
-  box-shadow: var(--orange) 0px 2px 4px 0px, var(--darkOrange) 0px 2px 16px 3px;
-  /* box-shadow: var(--orange) 0px 14px 28px, var(--darkOrange) 0px 10px 10px; */
+  box-shadow: var(--green) 0px 2px 4px 0px, var(--lightGreen) 0px 2px 16px 3px;
 }
 .boxShadow{
-  /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .scrollBar{

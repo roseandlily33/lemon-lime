@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const MainDiv = styled.main`
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100vh;
     gap: 1em;
     @media screen and (max-width: 900px){
@@ -65,15 +66,18 @@ export const HeroImage = styled.section`
 export const BottomDiv = styled.section`
     display: flex;
     justify-content: center;
-    width: 95%;
+    border: 1px solid orange;
+    width: 100%;
     height: 60%;
+    gap: 2rem;
 `;
 export const LeftMainDiv = styled.aside`
-    width: 60%;
+    width: 50%;
     max-height: 90%;
     display: flex;
     flex-direction: column;
     margin-right: 1em;
+    border: 1px solid green;
     padding: 1em;
     @media screen and (max-width: 900px){
         border: 2px solid orange;
@@ -84,9 +88,9 @@ export const LeftMainDiv = styled.aside`
 export const RightMainDiv = styled.aside`
     min-width: 30%;
     max-height: 90%;
-    width: auto;
     display: flex;
     flex-direction: column;
+
     padding: 1em;
     @media screen and (max-width: 900px){
         width: 100%;

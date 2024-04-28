@@ -47,7 +47,7 @@ const Comment = ({singleRecipe}) => {
     
     return ( 
         <CommentContainer>
-        <h3>Leave a review</h3>
+        <h4>Leave a review</h4>
         {isAuthenticated ? 
          <CommentForm onSubmit={handleSubmit}>
         {/* Title */}
@@ -75,7 +75,7 @@ const Comment = ({singleRecipe}) => {
          </CommentForm>
     : 
     <FormElement>
-        <h3>Login to post a comment</h3>
+        <p>Login to post a comment</p>
     </FormElement>
     }
         </CommentContainer>

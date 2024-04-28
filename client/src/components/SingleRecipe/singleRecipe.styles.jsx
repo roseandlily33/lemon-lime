@@ -52,7 +52,6 @@ export const RightSide = styled.aside`
        font-weight: bold;
        text-transform: capitalize;
        padding-bottom: 0.3rem;
-       font-size: 1.8rem;
        border-bottom: 1px solid ${({theme}) => theme.colors.grey2};
     }
     .userLink{
@@ -60,9 +59,7 @@ export const RightSide = styled.aside`
         color: ${({theme}) => theme.colors.peachyPink};
         font-weight: 700;
     }
-    p, span{
-        font-size: 1.2rem;
-    }
+
     @media screen and (max-width: 500px){
        // border: 1px solid green;
     }
@@ -75,7 +72,7 @@ height: auto;
 gap: 2em;
 margin-block: 2em;
 border-radius: 5px;
-    h3{
+    h4{
         font-weight: bold;
         padding-inline: 0.6rem;
         color: ${({theme}) => theme.colors.green};

@@ -18,7 +18,7 @@ const Rating = ({name, value, onChange}) => {
     
     return (   
         <RatingDiv>
-        <h4>Current Rating: {currentRating}</h4> 
+        <p>Current Rating: {currentRating}</p> 
         {[...Array(5)].map((_, idx) => {
             const ratingValue = idx + 1;
             return <p key={idx} className={ratingValue <= (hoveredRating || currentRating) ? 'selected': ''} 

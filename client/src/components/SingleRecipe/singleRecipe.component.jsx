@@ -59,7 +59,7 @@ const SingleRecipeComponent = () => {
      <Bottom>
 
   <IngredientsDiv>
-  <h3>Ingredients</h3>
+  <h4>Ingredients</h4>
   <ul className="outside">
     <div className="ing1">
     {singleRecipe.ingredients?.map(({id,mea}, index) => {
@@ -79,7 +79,7 @@ const SingleRecipeComponent = () => {
   </IngredientsDiv>
 
   <InstructionsDiv >
-      <h3>Instructions</h3>
+      <h4>Instructions</h4>
         <ol>
         {singleRecipe?.instructions?.map(({id, ins}, index) => {
         return <div style={{display: 'flex'}} key={id}>
