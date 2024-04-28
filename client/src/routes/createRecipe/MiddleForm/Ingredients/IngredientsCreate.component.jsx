@@ -6,15 +6,14 @@ import { MiddleContainer, InputDiv } from "../../RecipeForm.styles";
 
 const IngredientsCreate = ({ingredients, addNewIngredient, setIngredients}) => {
 
-    const maxSteps = 15;
     const [ing, setIng] = useState('');
     const [mea, setMea] = useState();
-    const [count, setCount] = useState(ingredients.length);
+    const [count, setCount] = useState(ingredients?.length);
     const [error, setError] = useState('');
 
     const addCard = (e) => {
         e.preventDefault();
-          if(maxSteps > count){
+          if(count <= 15){
              const newIng = {id: uuidv4(), ing: ing, mea: mea};
               addNewIngredient(newIng);
               setIng('');
@@ -37,10 +36,10 @@ const IngredientsCreate = ({ingredients, addNewIngredient, setIngredients}) => {
 
     return ( 
         <MiddleContainer>
-          <h3>Ingredients <span>max 15</span></h3>
+          <h3>Ingredients <span>max 15</span>{count}</h3>
           <hr />
         <>
-        {ingredients.length ? 
+        {ingredients?.length > 0 ? 
         <>
         {ingredients?.map(({id, ing, mea}, idx) => (
            <EachIngredientCreate idx={idx} id={id} ing={ing} mea={mea} deleteIngredient={deleteIngredient} setIngredients={setIngredients} ingredients={ingredients} />
@@ -51,7 +50,7 @@ const IngredientsCreate = ({ingredients, addNewIngredient, setIngredients}) => {
         </>
         
      <InputDiv>
-      <p>{error}</p>
+      <p className="error">{error}</p>
         <Measurement mea={mea} setMea={setMea} />
         <input 
                type="text"  

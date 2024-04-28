@@ -147,7 +147,6 @@ export const EachI = styled.div`
         justify-content: flex-start;
         align-items: center;
         gap: 1rem;  
-        border: 1px solid orange; 
     }
     .right{
       //  border: 1px solid green;

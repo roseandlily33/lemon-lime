@@ -1,12 +1,11 @@
-import IngredientsEdit from "./Ingredients.component";
-import InstructionsEdit from "./Instructions.component";
+import IngredientsCreate from "../../createRecipe/MiddleForm/Ingredients/IngredientsCreate.component";
+import InstructionsCreate from "../../createRecipe/MiddleForm/Instructions/InstructionsCreate.component";
 
-const MiddleEdit = ({ingredients, setIngredients, instructions, setInstructions}) => {
+const MiddleEdit = ({ingredients, setIngredients, addNewIngredient ,instructions, setInstructions, addNewInstruction}) => {
     return (
         <> 
-         <h2>Edit</h2>
-         {/* <IngredientsEdit ingredients={ingredients} setIngredients={setIngredients}/>
-         <InstructionsEdit instructions={instructions} setInstructions={setInstructions}/> */}
+         <IngredientsCreate ingredients={ingredients} addNewIngredient={addNewIngredient}  setIngredients={setIngredients} /> 
+         <InstructionsCreate instructions={instructions} setInstructions={setInstructions} addNewInstruction={addNewInstruction} /> 
         </>
      );
 }

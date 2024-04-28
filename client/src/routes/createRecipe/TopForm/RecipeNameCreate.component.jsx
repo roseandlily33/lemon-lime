@@ -6,7 +6,7 @@ const RecipeNameCreate = ({formValues, handleChange}) => {
          <input 
           type="text" 
           name="recipeName"
-          value={formValues.recipeName}
+          value={formValues?.recipeName}
           onChange={handleChange}
           placeholder="Ice Cream Cake"
         />

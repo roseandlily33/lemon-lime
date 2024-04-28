@@ -7,14 +7,14 @@ const InstructionsCreate = ({instructions, setInstructions, addNewInstruction}) 
  
     const maxSteps = 15;
     const [ins, setIns] = useState('');
-    const [count, setCount] = useState(instructions.length);
+    const [count, setCount] = useState(instructions?.length);
     const [error, setError] = useState('');
     // const [one, setOne] = useState(0);
     // const [two, setTwo] = useState(0);
   
     const addCard = (e) => {
       e.preventDefault();
-      if(!ins.length){
+      if(!ins?.length){
         return;
       }
         if(maxSteps > count){
@@ -76,7 +76,7 @@ const InstructionsCreate = ({instructions, setInstructions, addNewInstruction}) 
             }}>Change Recipes</button>
         </OptionsContainer> */}
         <>
-        {instructions.length ? 
+        {instructions?.length > 0 ? 
           <>
           {instructions.map((ins, idx) => <EachInstructionCreate deleteInstruction={deleteInstruction} instr={ins} idx={idx} instructions={instructions} setInstructions={setInstructions} />)}
           </>

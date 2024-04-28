@@ -2,6 +2,7 @@
 import { useState } from "react";
 import CookingIllustration from '../../images/undraw_cooking_p7m1.svg';
 import {useNavigate} from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 // Styles
 import { OuterForm, RecipeForm, TopForm, MiddleForm, BottomForm, LeftDiv, RightDiv  } from "./RecipeForm.styles";
 // Components
@@ -12,10 +13,15 @@ import CreateRecipeSubmit from "./CreateRecipeSubmit.component";
 import Modal from "../../components/Modal/Model.component";
 
 const CreateRecipeForm = () => {
+    const {user} = useAuth0();
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const [successStatus, setSuccessState] = useState('');
     const [error, setError] = useState('');
+
+    if(!user){
+      navigate('/');
+    }
 
     //Top Level form state
     const [formValues, setFormValues] = useState({
@@ -29,12 +35,14 @@ const CreateRecipeForm = () => {
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormValues({...formValues, [name]: value})
-    }
+    };
+    
     //Ingredients
       const [ingredients, setIngredients] = useState([]);
       const addNewIngredient = (ing) => {
         setIngredients([...ingredients, ing])
-    };
+      };
+
     //Instructions
     const [instructions, setInstructions] = useState([])
     const addNewInstruction = (ins) => {

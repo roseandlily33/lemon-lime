@@ -1,15 +1,14 @@
-import CookTimeEdit from "./CookTimeEdit.component";
-import PrepTimeEdit from "./PrepTime.component";
-import EditRecipeName from "./RecipeNameEdit.component";
-import SubcategoryEdit from "./SubcategoryEdit.component";
+import RecipeNameCreate from "../../createRecipe/TopForm/RecipeNameCreate.component";
+import CookTimeCreate from "../../createRecipe/TopForm/CookTimeCreate.component";
+import PrepTimeCreate from "../../createRecipe/TopForm/PrepTimeCreate.component";
+import SubcategoryCreate from "../../createRecipe/TopForm/SubcategoryCreate.component";
 
 const TopEdit = ({formValues, handleChange}) => {
     return (<>
-     <h2>Top</h2> 
-     <EditRecipeName formValues={formValues} handleChange={handleChange}/>
-     <CookTimeEdit formValues={formValues} handleChange={handleChange} />
-     <PrepTimeEdit  formValues={formValues} handleChange={handleChange}/>
-     <SubcategoryEdit  formValues={formValues} handleChange={handleChange} />
+        <RecipeNameCreate formValues={formValues} handleChange={handleChange} />
+        <CookTimeCreate formValues={formValues} handleChange={handleChange} />
+        <PrepTimeCreate formValues={formValues} handleChange={handleChange} />
+        <SubcategoryCreate formValues={formValues} handleChange={handleChange} /> 
     </>);
 }
  

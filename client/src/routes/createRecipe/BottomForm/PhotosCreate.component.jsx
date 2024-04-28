@@ -24,7 +24,7 @@ const PhotosCreate = ({images, addNewImage, addNewPhotos}) => {
         } else if(error){
           setIsOpen(true);
         } 
-        if(images.length > 5){
+        if(images?.length > 5){
           setError('No more than 4 images can be uploaded')
         }
       });

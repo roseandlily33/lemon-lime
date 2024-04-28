@@ -1,12 +1,11 @@
-import ImagesEdit from "./ImagesEdit.component";
-import EachPhotoEdit from "./EachPhotoEdit.component";
+import PhotosCreate from "../../createRecipe/BottomForm/PhotosCreate.component";
+import EachPhotoCreate from "../../createRecipe/BottomForm/EachPhoto.component";
 
 const BottomEdit = ({images, addNewImage, addNewPhotos, photos}) => {
     return ( 
         <>
-        <h2>Bottom</h2>
-        {/* <ImagesEdit images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos}/>
-        <EachPhotoEdit photos={photos}/> */}
+       <PhotosCreate images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos} />
+       <EachPhotoCreate  photos={photos}/> 
         </>
      );
 }

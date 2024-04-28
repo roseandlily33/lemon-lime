@@ -1,17 +1,12 @@
 import { getTotalTime } from "../../formattingUtils/totalTime";
 import { useDispatch } from "react-redux";
+import { httpEditUserRecipe } from "../../hooks/userRequests";
 import { fetchUserRecipes } from "../../redux/userSlice";
-import { httpCreateRecipe } from "../../hooks/userRequests";
-import { useAuth0 } from "@auth0/auth0-react";
 
-const CreateRecipeSubmit = ({formValues, images,
-    instructions, ingredients, setIsOpen, setSuccessState,
-    setError}) => {
+const EditRecipeSubmit = ({user, setIsOpen, formValues, images, instructions, ingredients, id, setError, setSuccess}) => {
     const dispatch = useDispatch();
-    const {user} = useAuth0();
     const handleSubmit = async (e) => {
         e.preventDefault();
-       // console.log('CREATING RECIPE WITH THESE', formValues, images, ingredients, instructions);
         if(images?.length > 4){
           setError('Only 4 images can be uploaded')
         } else if (!ingredients?.length){
@@ -21,6 +16,7 @@ const CreateRecipeSubmit = ({formValues, images,
         } else if (!formValues?.recipeName){
           setError('There must be a recipe name')
         }
+
         let totalTime = await getTotalTime(formValues.cookTime, formValues.prepTime);
         let newRecipeName = formValues.recipeName.toLowerCase();
         let totalSending = Object.assign(formValues, {
@@ -30,21 +26,24 @@ const CreateRecipeSubmit = ({formValues, images,
           recipeName: newRecipeName,
           images: images
         });
-      const response = await httpCreateRecipe(user, totalSending);
-      const success = response.ok;
-       if (success) {       
-       setSuccessState('You have created a recipe');
-       setIsOpen(true)
-      } else {
-          setSuccessState('Recipe has not been created')
-          setIsOpen(true)
-         }
-        dispatch(fetchUserRecipes(user.sub));
+
+       const response = await httpEditUserRecipe(id, totalSending);
+
+       const success = response.ok;
+       setIsOpen(true);
+       if (success) {
+         setSuccess('Recipe has been updated')
+        } else {
+          setSuccess('Recipe has not been updated, please try again later')
+        }
+         dispatch(fetchUserRecipes(user.sub));
       };
-    return (  
-    <>
-    <button style={{width: '200px'}} onClick={(e) => handleSubmit(e)}>Create Recipe</button>
-    </>);
+
+    return ( 
+        <>
+        <button style={{width: '200px'}} onClick={handleSubmit}>Update Recipe</button>
+        </>
+     );
 }
  
-export default CreateRecipeSubmit;
+export default EditRecipeSubmit;

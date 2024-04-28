@@ -13,7 +13,7 @@ const SearchPage = () => {
     const [alert, setAlert] = useState('');
     const [subCategory, setSubCategory] = useState('All');
 
-    if(recent.length > 5){
+    if(recent?.length > 5){
         recent.shift();
     }
 
@@ -25,7 +25,7 @@ const SearchPage = () => {
         }
         let foundRecipes = await httpSearchRecipes(searching.trim(), subCategory);
         console.log('Found these recipes', foundRecipes);
-        if(foundRecipes.length === 0){
+        if(foundRecipes?.length === 0){
             setAlert('No Recipes Found');
             setResults(popularRecipes);
         }
