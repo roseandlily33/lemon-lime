@@ -1,10 +1,11 @@
 import { FooterContainer } from "./footer.styles";
-import Logo from '../../images/Logo2.png';
+import Logo from '../../images/Lemon - Lime.svg';
+
 
 const Footer = () => {
     return (
         <FooterContainer>
-            <img src={Logo} alt="Lemon Lime Logo" />
+            <img src={Logo} alt="Lemon Lime Logo" style={{marginInline: '2rem'}}/>
           
         </FooterContainer>
       );

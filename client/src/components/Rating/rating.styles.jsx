@@ -5,6 +5,6 @@ export const RatingDiv = styled.div`
     align-items: center;
     gap: 1em;
     .selected{
-     color: ${({theme}) => theme.colors.yellow};
+     color: ${({theme}) => theme.colors.peachyPink};
     }
 `;
