@@ -4,7 +4,7 @@ import { formatStars } from "../../../formattingUtils/stars";
 import DeleteComment from "../deleteComment/deleteComment.component";
 
 const SingleComment = ({comments, setEditing, setEditComment}) => {
-    console.log('Each comment', comments)
+    //console.log('Each comment', comments)
     return ( 
         <>
        {

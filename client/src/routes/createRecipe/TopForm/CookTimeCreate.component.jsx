@@ -1,7 +1,7 @@
 
 const CookTimeCreate = ({formValues, handleChange}) => {
     return (  
-        <>
+        <div className="each">
         <label for={formValues.cookTime}>Cook Time: <span>in minutes</span></label>
         <select name="cookTime" defaultValue={formValues.cookTime} onChange={handleChange}>
           <option value={formValues.cookTime[5]}>5</option>
@@ -19,7 +19,7 @@ const CookTimeCreate = ({formValues, handleChange}) => {
           <option value={formValues.cookTime[65]}>65</option>
           <option value={formValues.cookTime[70]}>70</option>
         </select>
-        </>
+        </div>
     );
 }
  

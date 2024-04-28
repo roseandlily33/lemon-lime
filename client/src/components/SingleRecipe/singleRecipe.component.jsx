@@ -20,7 +20,7 @@ const SingleRecipeComponent = () => {
     useEffect(() => {
       const fetchSingle = async() => {
           const res = await httpGetFullRecipeWithDetails(id);
-          console.log('Single recipes', res)
+          //console.log('Single recipes', res)
           setSingleRecipe(res.foundRecipe[0]);
           setUsersName(res.authorOfRecipe.name);
           setComments(res.allComments);

@@ -4,9 +4,8 @@ import PhotosCreate from "./PhotosCreate.component";
 const BottomCreate = ({images, addNewImage, addNewPhotos, photos}) => {
     return (
         <>
-        <h2> Bottom Create</h2>
-        {/* <PhotosCreate images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos}/>
-        <EachPhotoCreate  photos={photos}/> */}
+        <PhotosCreate images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos}/>
+        <EachPhotoCreate  photos={photos}/> 
         </>
       );
 }

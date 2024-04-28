@@ -1,7 +1,7 @@
 
 const RecipeNameCreate = ({formValues, handleChange}) => {
     return (  
-        <>
+        <div className="each">
         <label>Recipe Name:</label>
          <input 
           type="text" 
@@ -10,7 +10,7 @@ const RecipeNameCreate = ({formValues, handleChange}) => {
           onChange={handleChange}
           placeholder="Ice Cream Cake"
         />
-        </>
+        </div>
     );
 }
  

@@ -19,10 +19,8 @@ const PhotosCreate = ({images, addNewImage, addNewPhotos}) => {
         if(result.event === 'success'){
           let newImage = {publicId: result.info.public_id};
           let newImageURL = result.info.url;
-          //console.log('Result Success for', newImage);
           addNewImage(newImage);
           addNewPhotos(newImageURL)
-          //console.log('After images update', images);
         } else if(error){
           setIsOpen(true);
         } 
@@ -34,7 +32,8 @@ const PhotosCreate = ({images, addNewImage, addNewPhotos}) => {
 
     return ( 
         <>
-        <h2>Photos Create</h2>
+        <h3>Images</h3>
+        <hr />
         {isOpen && (
          <Modal onClose={() => setIsOpen(false)}>
            <h3>An error has occured trying to submit your pictures</h3>
@@ -43,7 +42,7 @@ const PhotosCreate = ({images, addNewImage, addNewPhotos}) => {
        )}
         <div key={1} className="image-item">
           <p className="error">{error}</p>
-        <div className="image-options">
+          <div className="image-options">
           <button onClick={(e) => {
             e.preventDefault();
             widgetRef.current.open();

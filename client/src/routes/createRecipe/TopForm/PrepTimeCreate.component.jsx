@@ -1,7 +1,7 @@
 
 const PrepTimeCreate = ({formValues, handleChange}) => {
     return ( 
-        <>
+        <div className="each">
          <label for={formValues.prepTime}>Prep Time: <span>in minutes</span></label>
         <select name="prepTime" defaultValue={formValues.prepTime} onChange={handleChange}>
           <option value={formValues.prepTime[10]}>10</option>
@@ -20,7 +20,7 @@ const PrepTimeCreate = ({formValues, handleChange}) => {
           <option value={formValues.prepTime[90]}>90</option>
           <option value={formValues.prepTime[100]}>100</option>
         </select>
-        </>
+        </div>
      );
 }
  

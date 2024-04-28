@@ -23,15 +23,15 @@ const Heart = ({recipe}) => {
     }
    }, [recipe, favorites])
     const addFavorite = async(userId, recipeId) => {
-        const adding = await httpAddFavoriteRecipe(userId, recipeId);
+         await httpAddFavoriteRecipe(userId, recipeId);
         dispatch(fetchFavorites(user.sub));
-        console.log('Recipe added', adding);
+        //console.log('Recipe added', adding);
         setFound(true)
     }
     const deleteFavorite = async(userId, recipeId) => {
-        const deleting = await httpDeleteFavoriteRecipe(userId, recipeId);
+         await httpDeleteFavoriteRecipe(userId, recipeId);
         dispatch(fetchFavorites(user.sub));
-        console.log('Deleting', deleting);
+        //console.log('Deleting', deleting);
         setFound(false);
     }
 

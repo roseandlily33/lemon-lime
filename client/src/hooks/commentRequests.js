@@ -2,7 +2,7 @@ const API_URL = 'http://localhost:8000';
 
 //Allows a user to comment on a recipe
 async function httpAddComment(comment){
-    console.log('Sending', comment);
+    //console.log('Sending', comment);
     try{
       return await fetch(`${API_URL}/comments/add`, {
         method: 'post',
@@ -19,7 +19,7 @@ async function httpAddComment(comment){
   }
   async function httpDeleteComment(id){
     try{
-      console.log('The deleting id for the HTTP', id);
+      //console.log('The deleting id for the HTTP', id);
       return await fetch(`${API_URL}/comments/${id}`, {
         method: 'delete',
         headers: {
@@ -46,7 +46,7 @@ async function httpAddComment(comment){
   }
   //Edit a comment from the user
   async function httpEditComment(id, comment){
-    console.log('Sending', comment);
+    //console.log('Sending', comment);
     try{
       return await fetch(`${API_URL}/comments/${id}`, {
         method: 'put',

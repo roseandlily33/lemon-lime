@@ -1,6 +1,6 @@
 
 const SubcategoryCreate = ({formValues, handleChange}) => {
-    return (  <>
+    return (  <div className="each">
      <label for={formValues.subCategory}>Choose SubCategory:</label>
          <select style={{width: '100px'}} name="subCategory" defaultValue={formValues.subCategory} onChange={handleChange}>
           <option value={formValues.subCategory["Breakfast"]}>Breakfast</option>
@@ -9,7 +9,7 @@ const SubcategoryCreate = ({formValues, handleChange}) => {
           <option value={formValues.subCategory["Dessert"]}>Dessert</option>
           <option value={formValues.subCategory["Drinks"]}>Drinks</option>
         </select>
-    </>);
+    </div>);
 }
  
 export default SubcategoryCreate;

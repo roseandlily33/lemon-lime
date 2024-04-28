@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:8000';
 async function httpGetUserRecipes(id){
     const response = await fetch(`${API_URL}/user/${id}`);
     let allRecipes = await response.json();
-    console.log('HTTP RETURNWD USER RECIPES', allRecipes)
+    //console.log('HTTP RETURNWD USER RECIPES', allRecipes)
     return allRecipes[0];
 }
 //Allows the user to create a recipe
@@ -61,7 +61,7 @@ async function httpDeleteRecipe(id){
 }
 //Allows the user to add a favorite recipe
 async function httpAddFavoriteRecipe(userId, recipeId){
-  console.log('ADDING HTTP FAVE RECIPE', userId, recipeId)
+  //console.log('ADDING HTTP FAVE RECIPE', userId, recipeId)
   try{
     return await fetch(`${API_URL}/user/favorites`, {
       method: 'post',
