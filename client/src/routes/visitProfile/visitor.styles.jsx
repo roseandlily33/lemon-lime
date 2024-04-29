@@ -1,19 +1,45 @@
 import styled from 'styled-components';
 
+//Responsive Styling Done
 export const VisitorContainer = styled.main`
     display: flex;
     height: 100vh;
     width: 100vw;   
+    @media screen and (width <= 1100px){ 
+        flex-direction: column;
+        align-items: center;
+    }
+    @media screen and (width >= 1100px){
+        flex-direction: row;
+        align-items: start;
+    }
 `;
 export const LeftContainer = styled.aside`
-    img{
-        height: 100vh;
+    @media screen and (width >= 360px){
+        display: none;
+    }
+    @media screen and (width >= 1100px){
+        display: contents;
+        img{
+            height: 100vh;
+        }
     }
 `
 export const RightContainer = styled.section`
-    width: 100%;
+    height: auto;
     margin: 1rem; 
+    overflow-y: scroll;
     background-color: ${({theme}) => theme.colors.white};
+    @media screen and (width >= 360px){ 
+        flex-direction: column;
+        width: 90%;
+    }
+    @media screen and (width >= 1100px){
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+    }
 `;
 export const UsersInfo = styled.div`
     display: flex;
@@ -24,7 +50,6 @@ export const UsersInfo = styled.div`
     margin-bottom: 1rem;
     border-radius: 5px;
     h2{
-        font-size: 1.8rem;
         color: ${({theme}) => theme.colors.peachyPink};
     }
     img{
@@ -44,7 +69,7 @@ export const UserOptions = styled.div`
         color: ${({theme}) => theme.colors.darkGrey};
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        padding: 1rem;
+        padding: 1.3rem;
     }
     .selected{
         background-color: ${({theme}) => theme.colors.peachyPink};
@@ -56,16 +81,15 @@ export const UserOptions = styled.div`
 `;
 
 export const UsersRecipes = styled.div`
-    height: 80%;
+    height: auto;
     overflow-y: scroll;
 `;
 export const UserRecipeContainer = styled.div`
-   display: flex;
-   flex-direction: column;
-   gap: 0.5rem;
-  // border: 10px solid ${({theme}) => theme.colors.peachyPink};
-   border-top: 10px solid ${({theme}) => theme.colors.peachyPink};
-   // background-color:hsl(0, 100%, 80%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-top: 10px solid ${({theme}) => theme.colors.peachyPink};
     padding: 2rem;
-    //border-radius: 5px;
+    overflow-y: scroll;
+    height: 80%;
 `
