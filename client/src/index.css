@@ -11,6 +11,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-size: 14px;
 }
 :root{
     --white: #f9f8f6;
@@ -92,15 +93,15 @@ span{
 }
 /* Buttons  */
 button {
-  border: 1px solid var(--lightestYellow);
+  border: 2px solid var(--mediumGreen);
   padding: 0.8rem 1rem;
   border-radius: 5px;
   min-width: 150px;
   width: auto;
-  background-color: var(--darkOrange);
+  background-color: var(--white);
   font-weight: bolder;
   font-size: 15px;
-  color: var(--white);
+  color: var(--mediumGreen);
   -webkit-box-shadow: 0px 0px 1px;
   box-shadow: 0px 0px 1px;
   -webkit-transform: all 2s esase;
@@ -129,15 +130,17 @@ button:active {
 
 /* Secondary Button */
 .secondaryButton {
-  border: 1px solid var(--lightestYellow);
+  border: 2px solid var(--grey3);
   padding: 0.4rem 0.8rem;
   border-radius: 5px;
   min-width: 150px;
   width: auto;
-  background-color: var(--grey2);
+  min-height: 10px;
+  height: auto;
+  background-color: var(--white);
   font-weight: bolder;
   font-size: 15px;
-  color: var(--white);
+  color: var(--grey3);
   -webkit-box-shadow: 0px 0px 1px;
   box-shadow: 0px 0px 1px;
   -webkit-transform: all 2s esase;
@@ -164,18 +167,15 @@ button:active {
   box-shadow: 0px 0px 1px var(--yellow);
 }
 
-
-
-
-
-
-
 .buttonWithIcon{
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   gap: 0.5rem;
+  padding: 0;
+  padding-block: 0.3rem;
+  padding-inline: 0.5rem;
 }
 input{
  border: none;
@@ -200,11 +200,13 @@ input:focus{
 
 select{
     background-color: hsla(36, 74%, 58%, 0.8);
-    border: none;
+    font-size: 1.2rem;
+    font-family: 'Jost', sans-serif;
+    border: 2px solid var(--yellow);
     border-radius: 5px;
-    padding: 0.5em; 
-    min-width: 80px;
-    text-align: center;
+    padding: 0.4rem 1rem;
+    min-width: 140px;
+    width: auto;
 }
 
 .glass{
@@ -295,4 +297,29 @@ border: 1px solid rgba(255, 255, 255, 0.57);
     radial-gradient(4.29rem at 50% calc(100% + 3.8rem),#0000 99%,#000 101%) 50% calc(100% - 2rem)/8rem 100% repeat-x;
   -webkit-mask: var(--mask);
           mask: var(--mask);
+}
+
+@media screen and (max-width: 1000px) {
+  h1{
+   font-size: 2.027rem;
+  }
+  h2{
+    font-size: 1.802rem;
+    border: 1px solid orange;
+  }
+  h3 {
+    font-size: 1.602rem;
+  }
+  h4{
+    font-size: 1.424rem;
+  }
+  h5{
+    font-size: 1.266rem;
+  }
+  h6{
+      font-size: 1.125rem;
+  }
+  li, ul, ol, p{
+    font-size: 1rem;
+  }
 }

@@ -38,7 +38,7 @@ const EachIngredientCreate = (
         {updated ? 
                <EachI className="boxShadow">
                <div className="left">
-                <h3>{idx + 1}</h3>
+                <h4>{idx + 1}</h4>
                 <EachMeasurementCreate mea={meas} id={ingID} idx={idx} setMeas={setMeas}/>
                 <input type="text" value={ingState} name="ing" onChange={(e) => {
                     e.preventDefault();
@@ -61,7 +61,7 @@ const EachIngredientCreate = (
                : 
                <EachI className="boxShadow">
                <div className="left">
-               <h3>{idx + 1}</h3>
+               <h4>{idx + 1}</h4>
                 <p style={{marginRight: '1rem'}}>{mea}</p>
                 <p>{ingState}</p>
                 </div>

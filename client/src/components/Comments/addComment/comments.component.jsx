@@ -71,7 +71,7 @@ const Comment = ({singleRecipe}) => {
         <textarea rows="6" cols="30" name="comment" value={formState.comment} onChange={handleChange}></textarea>
         </FormElement>
         <p>{success}</p>
-        <input style={{width: '150px'}} className="button" type="submit" />
+        <button style={{width: '200px'}} onClick={(e) => handleSubmit(e)}>Create Comment</button>
          </CommentForm>
     : 
     <FormElement>

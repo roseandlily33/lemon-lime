@@ -1,22 +1,25 @@
 import styled from 'styled-components';
-
+//Responsive Done for the home page
 export const MainDiv = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
     gap: 1em;
-    @media screen and (max-width: 900px){
-        flex-wrap: wrap;
-        border: 2px solid orange;
-        align-items: center;
-        justify-content: center;
+    @media screen and (width >= 360px){
+        border: 2px solid red;  
+    }
+    @media screen and (width >= 768px){
+        border: 2px solid purple;
+    }
+    @media screen and (width >= 1100px){
+        border: 2px solid green;
     }
 `;
 
 export const HeroImage = styled.section`
     width: 100%;
-    height: 100%;
+    height: auto;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -24,9 +27,10 @@ export const HeroImage = styled.section`
     img{
         max-width: 100%;
         opacity: 0.8;   
-        height: 100%;
+        height: auto;
     }
     .overlay {
+        height: auto;
         background-color: rgba(0,0,0,0.8); 
     }
     @keyframes slideInFromLeft {
@@ -40,14 +44,12 @@ export const HeroImage = styled.section`
     .text{
         animation: 1s ease-out 0s 1 slideInFromLeft;
         position: absolute;
-        top: 15%;
-        left: 5%;
         color: ${({theme}) => theme.colors.white};
     }
     .text h2{
         text-transform: lowercase;
         font-weight: bold;
-        font-size: 4.5rem;
+        font-size: 4rem;
         padding-bottom: 0.6rem;
     }
     button{
@@ -62,26 +64,59 @@ export const HeroImage = styled.section`
     button:hover{
         background-color: ${({theme}) => theme.colors.peachyPink};;
     }
+    @media screen and (width <= 1200px){  
+     .text{
+        top: 10%;
+        left: 4%;
+    }
+    }
+    @media screen and (width >= 1200px){
+        .text{
+            top: 13%;
+            left: 5%;
+        }
+    }
+    @media screen and (width <= 980px){
+        .text{
+            top: 9%;
+            left: 3%;
+        }
+        .text h2{
+            font-size: 2rem;
+        }
+        button{
+            width: 20%;
+            height: 40px;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+    }
 `;
 export const BottomDiv = styled.section`
     display: flex;
-    justify-content: center;
-    border: 1px solid orange;
-    width: 100%;
+    width: 90%;
     height: 60%;
     gap: 2rem;
+    @media screen and (width >= 360px){  
+        flex-direction: column;
+    }
+    @media screen and (width >= 768px){
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
 `;
 export const LeftMainDiv = styled.aside`
-    width: 50%;
     max-height: 90%;
     display: flex;
     flex-direction: column;
     margin-right: 1em;
-    border: 1px solid green;
     padding: 1em;
-    @media screen and (max-width: 900px){
-        border: 2px solid orange;
+    @media screen and (width >= 360px){
         width: 100%;
+    }
+    @media screen and (width >= 768px){
+        width: 60%;
     }
 `;
 
@@ -90,12 +125,13 @@ export const RightMainDiv = styled.aside`
     max-height: 90%;
     display: flex;
     flex-direction: column;
-
     padding: 1em;
-    @media screen and (max-width: 900px){
-        width: 100%;
-        border: 2px solid orange;
+    @media screen and (width >= 360px){
+        width: 100%;;
     }
-    
+    @media screen and (width >= 768px){
+        width: 40%;
+        align-items: center;
+    }
 `;
 

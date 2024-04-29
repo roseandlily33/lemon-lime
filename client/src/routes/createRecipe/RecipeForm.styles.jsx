@@ -18,10 +18,12 @@ background-color: ${({theme}) => theme.colors.white};
 border-radius: 5px;
 margin-bottom: 1em;
 padding: 2rem;
+overflow-y: scroll;
 h2, h3{
     margin-bottom: 0.5em;
     color: ${({theme}) => theme.colors.green};
  }
+ 
  hr{
     margin-bottom: 1em;
  }
@@ -134,9 +136,6 @@ export const EachI = styled.div`
     //border: 1px solid red;
     input{
         width: 100%;
-        }
-    h4{
-            padding-right: 2rem;
     }
     h2,p {
        // padding-block: 1.2%;
@@ -147,6 +146,10 @@ export const EachI = styled.div`
         justify-content: flex-start;
         align-items: center;
         gap: 1rem;  
+    }
+    .left h4{
+      color: ${({theme}) => theme.colors.green};
+      padding-right: 2rem;
     }
     .right{
       //  border: 1px solid green;
