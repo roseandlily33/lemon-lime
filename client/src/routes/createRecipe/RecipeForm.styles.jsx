@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-//Done
+//Responsive Design Done
 export const OuterForm = styled.main`
   height: 100vh;
   width: 100vw;
@@ -9,11 +9,10 @@ export const OuterForm = styled.main`
   justify-content: center;
 `;
 
-//Done
 export const RecipeForm = styled.form`
 display: flex;
 flex-direction: column;
-width: 70%;
+width: 95%;
 background-color: ${({theme}) => theme.colors.white};
 border-radius: 5px;
 margin-bottom: 1em;
@@ -28,7 +27,7 @@ h2, h3{
     margin-bottom: 1em;
  }
 `;
-//Done
+
 export const TopForm = styled.section`
     display: flex;
     flex-wrap: wrap;
@@ -49,15 +48,25 @@ export const TopForm = styled.section`
     }
 `;
 
-//Done
 export const LeftDiv = styled.div`
     width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1em;
+    @media screen and (width >= 360px){ 
+        width: 100%;
+  }
+  @media screen and (width >= 768px){ 
+        border: 1px solid purple;
+        width: 70%;
+        
+    }
+  @media screen and (width >= 1100px){ 
+        border: 1px solid green;
+    }
 `;
-//Done
+
 export const RightDiv = styled.div`
     width: auto;
     .cooking-image{
@@ -65,17 +74,21 @@ export const RightDiv = styled.div`
         width: 250px;
         float: right;
     } 
+  @media screen and (width >= 360px){ 
+        width: 100%;
+  }
 `;
 
-//Done
+
 export const MiddleForm = styled.section`
     display: flex;
     flex-direction: column;
 `;
 
-//Done
 export const BottomForm = styled.div`
     width: 100%;
+    min-height: 20%;
+    height: auto;
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
@@ -99,16 +112,16 @@ export const BottomForm = styled.div`
         height: 150px;
         width: 250px;
     }
-`;
-//Form Elements
 
+`;
+
+//Form Elements
 export const InputDiv = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1.5em;
     width: 100%;
-   // border-bottom: 1px solid ${({theme}) => theme.colors.grey};
     padding: 1rem;
     margin-block: 2rem;
 `;
@@ -125,7 +138,6 @@ export const OptionsContainer = styled.div`
 
 export const EachI = styled.div`
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
     gap: 2rem;
     align-items: center;
@@ -133,18 +145,16 @@ export const EachI = styled.div`
     margin-block: 1rem;
     padding: 1rem;
     justify-content: space-evenly;
-    //border: 1px solid red;
+    border: 1px solid red;
     input{
         width: 100%;
-    }
-    h2,p {
-       // padding-block: 1.2%;
     }
     .left{
         width: 70%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        flex-wrap: wrap;
         gap: 1rem;  
     }
     .left h4{
@@ -152,7 +162,7 @@ export const EachI = styled.div`
       padding-right: 2rem;
     }
     .right{
-      //  border: 1px solid green;
+        border: 1px solid green;
         width: 25%;
         display: flex;
         justify-content: flex-end;
