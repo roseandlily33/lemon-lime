@@ -30,7 +30,7 @@
     --border: 5px solid var(--yellow);
     --errorRed: hsl(354, 85%, 44%);
     --peachyPink: #D0415A;
-    --lightPeachyPink: #CE8491;
+    --lightPeachyPink: hsl(349, 43%, 66%);
     --mediumPeachyPink: #CF6174;
 }
 body{
@@ -90,80 +90,85 @@ span{
   font-size: 1.1rem;
   font-style: italic;
 }
-
-button, .button {
-    min-width: 130px;
-    height: 40px;
-    padding: 5px 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    outline: none;
-    border-radius: 5px;
-    z-index: 0;
-    background:  hsl(30, 17%, 98%);
-    overflow: hidden;
-    border: 2px solid var(--mediumGreen);
-    color: var(--green);
-  }
-  button:hover, .button:hover {
-    color: var(--white);
-    box-shadow: var(--grey3) 0px 2px 4px 0px, var(--grey1) 0px 2px 16px 0px;
-  }
-  button:hover:after, .button:hover:after {
-    height: 100%;
-  }
-  button:after, .button:after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    transition: all 0.3s ease;
-    left: 0;
-    top: 0;
-    height: 0;
-    width: 100%;
-    background: var(--lightGreen);
- }
-.secondaryButton{
-  min-width: 130px;
-  height: 40px;
-  color: var(--white);
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  outline: none;
+/* Buttons  */
+button {
+  border: 1px solid var(--lightestYellow);
+  padding: 0.8rem 1rem;
   border-radius: 5px;
-  z-index: 0;
-  background: #fff;
-  overflow: hidden;
-  border: 2px solid var(--lightYellow);
-  color: var(--orange);
-  background-color: var(--offWhite);
+  min-width: 150px;
+  width: auto;
+  background-color: var(--darkOrange);
+  font-weight: bolder;
+  font-size: 15px;
+  color: var(--white);
+  -webkit-box-shadow: 0px 0px 1px;
+  box-shadow: 0px 0px 1px;
+  -webkit-transform: all 2s esase;
+  -ms-transform: all 2s esase;
+  transform: all 2s esase;
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+}
+
+button:hover {
+  -webkit-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-box-shadow: 0px 7px 1px var(--yellow);
+  box-shadow: 0px 7px 1px var(--yellow);
+  border: 1px solid var(--yellow);
+}
+
+button:active {
+  -webkit-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  transform: translateY(10px);
+  -webkit-box-shadow: 0px 0px 1px;
+  box-shadow: 0px 0px 1px var(--yellow);
+}
+
+/* Secondary Button */
+.secondaryButton {
+  border: 1px solid var(--lightestYellow);
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  min-width: 150px;
+  width: auto;
+  background-color: var(--grey2);
+  font-weight: bolder;
+  font-size: 15px;
+  color: var(--white);
+  -webkit-box-shadow: 0px 0px 1px;
+  box-shadow: 0px 0px 1px;
+  -webkit-transform: all 2s esase;
+  -ms-transform: all 2s esase;
+  transform: all 2s esase;
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
 }
 
 .secondaryButton:hover {
-  color: var(--white);
-  box-shadow: var(--grey3) 0px 2px 4px 0px, var(--grey1) 0px 2px 16px 0px;
+  -webkit-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-box-shadow: 0px 7px 1px var(--yellow);
+  box-shadow: 0px 7px 1px var(--yellow);
+  border: 1px solid var(--yellow);
 }
-.secondaryButton:hover:after {
-  height: 100%;
+
+.secondaryButton:active {
+  -webkit-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  transform: translateY(10px);
+  -webkit-box-shadow: 0px 0px 1px;
+  box-shadow: 0px 0px 1px var(--yellow);
 }
-.secondaryButton:after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  transition: all 0.3s ease;
-  left: 0;
-  top: 0;
-  height: 0;
-  width: 100%;
-  background: var(--orange);
-}
+
+
+
+
+
+
 
 .buttonWithIcon{
   display: flex;
@@ -282,4 +287,12 @@ border: 1px solid rgba(255, 255, 255, 0.57);
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: var(--green) var(--orange);
+}
+
+.box {
+  --mask:
+    radial-gradient(4.29rem at 50% calc(100% - 5.8rem),#000 99%,#0000 101%) calc(50% - 4rem) 0/8rem 100%,
+    radial-gradient(4.29rem at 50% calc(100% + 3.8rem),#0000 99%,#000 101%) 50% calc(100% - 2rem)/8rem 100% repeat-x;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
 }

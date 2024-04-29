@@ -11,7 +11,7 @@ import { httpGetFullRecipeWithDetailsEditPage } from "../../hooks/recipeRequests
 import TopEdit from "./TopForm/TopEdit.component";
 import MiddleEdit from "./MiddleForm/MiddleEdit.component";
 import BottomEdit from "./BottomForm/BottomEdit.component";
-import DeleteRecipe from "./DeleteRecipe/DeleteRecipeEdit.component";
+
 import Modal from "../../components/Modal/Model.component";
 import { Cloudinary } from "@cloudinary/url-gen";
 
@@ -122,7 +122,6 @@ const EditRecipe = () => {
         setSuccess={setSuccess} ingredients={ingredients} instructions={instructions}
         formValues={formValues} id={id} user={user} setIsOpen={setIsOpen}
         />
-        <DeleteRecipe id={id} />
         </>
         </RecipeForm>
         </OuterForm>

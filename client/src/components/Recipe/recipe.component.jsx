@@ -13,7 +13,7 @@ const RecipeContainer = ({recipe}) => {
         <RecipeCont key={recipe._id} onClick={() => navigate(url)} className="boxShadowHover">
           <LeftContainer>
            <TopLabel>
-            <NavLink className="link" to={url}>{recipe.recipeName}</NavLink>
+            <NavLink className="link" to={url}>{recipe.recipeName.slice(0, 20)}</NavLink>
             </TopLabel>
             <p>{formatDate(recipe.createdAt)}</p>
             <p>Total Time: {recipe.totalTime.hours}:{recipe.totalTime.minutes}</p>

@@ -49,6 +49,7 @@ export const UserOptionsContainer = styled.section`
 `;
 export const UserRecipesContainer = styled.section`
 //border: 1px solid blue;
+  //  border-block: 2px solid ${({theme}) => theme.colors.peachyPink};
     display: flex;
     margin-inline: 1rem;
     gap: 1rem;
@@ -57,8 +58,8 @@ export const UserRecipesContainer = styled.section`
     text-align: center;
     top: 40%;
     align-items: center;
-    //justify-content: center;
-    padding-block: 0.5rem;
+    
+    //padding-block: 0.5rem;
 `;
 
 export const UserOptions = styled.aside`
@@ -69,14 +70,18 @@ export const UserOptions = styled.aside`
     position: relative;
     top: 37%;
     padding-block: 1rem;
+
     align-items: center;
     justify-content: space-around;
     div{
-        height: 120px;
+        height: 150px;
         width: 300px;
         border-radius:  5px;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: start;
+    }
+    h4{
+        margin-top: 1rem;
     }
 `;

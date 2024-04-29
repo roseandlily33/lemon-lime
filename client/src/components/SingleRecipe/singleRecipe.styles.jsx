@@ -75,9 +75,11 @@ border-radius: 5px;
     h4{
         font-weight: bold;
         padding-inline: 0.6rem;
-        color: ${({theme}) => theme.colors.green};
+        color:  ${({theme}) => theme.colors.white};
+        //color: ${({theme}) => theme.colors.green};
         padding-block: 1rem;
-        background-color: ${({theme}) => theme.colors.offWhite};
+        background-color: hsla(349, 43%, 66%, 0.5);
+       // background-color: ${({theme}) => theme.colors.offWhite};
         border-bottom: 1px solid ${({theme}) => theme.colors.white};
         
     }

@@ -30,13 +30,10 @@ const IngredientsCreate = ({ingredients, addNewIngredient, setIngredients}) => {
         });
         setIngredients(newArray);
       }
-      console.log('Ingredients total', ingredients)
-
       
-
     return ( 
         <MiddleContainer>
-          <h3>Ingredients <span>max 15</span>{count}</h3>
+          <h3>Ingredients <span>max 15</span></h3>
           <hr />
         <>
         {ingredients?.length > 0 ? 

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { fetchUserRecipes } from "../../redux/userSlice";
 import { httpCreateRecipe } from "../../hooks/userRequests";
 import { useAuth0 } from "@auth0/auth0-react";
+import { SubmitButtonContainer } from "./RecipeForm.styles";
 
 const CreateRecipeSubmit = ({formValues, images,
     instructions, ingredients, setIsOpen, setSuccessState,
@@ -42,9 +43,17 @@ const CreateRecipeSubmit = ({formValues, images,
         dispatch(fetchUserRecipes(user.sub));
       };
     return (  
-    <>
-    <button style={{width: '200px'}} onClick={(e) => handleSubmit(e)}>Create Recipe</button>
-    </>);
+    < SubmitButtonContainer>
+      <div class="button type--A"  onClick={(e) => handleSubmit(e)}>
+        <div class="button__line"></div>
+        <div class="button__line"></div>
+        <span class="button__text">Create Recipe</span>
+        <div class="button__drow1"></div>
+        <div class="button__drow2"></div>
+      </div>
+    </ SubmitButtonContainer>
+    
+    );
 }
  
 export default CreateRecipeSubmit;

@@ -9,7 +9,7 @@ export const CommentContainer = styled.div`
     border-radius: 5px;
     padding: 1em;
     border: 2px solid ${({theme}) => theme.colors.offWhite};
-    h3{
+    h4{
         background-color: ${({theme}) => theme.colors.offWhite};
         width: 100%;
         padding: 0;

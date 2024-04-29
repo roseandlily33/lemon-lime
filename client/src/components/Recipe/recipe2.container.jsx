@@ -13,7 +13,7 @@ const RecipeContainer2 = ({recipe}) => {
         <SideContainer key={recipe._id} onClick={() => navigate(url)} className="boxShadowHover">
            <div className="topDiv">
            <TopContainer>
-           <NavLink className="link" to={url}>{recipe.recipeName}</NavLink>
+           <NavLink className="link" to={url}>{recipe.recipeName.slice(0, 15)}</NavLink>
            {/* <Heart recipe={recipe}/> */}
            </TopContainer>
             <p>{formatDate(recipe.createdAt)}</p>
