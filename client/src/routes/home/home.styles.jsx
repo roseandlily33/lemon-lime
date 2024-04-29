@@ -6,15 +6,6 @@ export const MainDiv = styled.main`
     align-items: center;
     height: 100vh;
     gap: 1em;
-    @media screen and (width >= 360px){
-        border: 2px solid red;  
-    }
-    @media screen and (width >= 768px){
-        border: 2px solid purple;
-    }
-    @media screen and (width >= 1100px){
-        border: 2px solid green;
-    }
 `;
 
 export const HeroImage = styled.section`
