@@ -13,6 +13,16 @@ export const Navbar = styled.header`
         justify-content: space-evenly;
         flex-wrap: wrap;
     }
+    @media screen and (width >= 360px){ 
+        border: 1px solid red;
+  }
+  @media screen and (width >= 768px){ 
+        border: 1px solid purple;
+       // width: 70%;
+    }
+  @media screen and (width >= 1100px){ 
+        border: 1px solid green;
+    }
 `;
 
 export const RightNav = styled.nav`

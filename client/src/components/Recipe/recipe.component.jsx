@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 import Lemons from '../../images/lemons.jpg';
 import { useNavigate } from "react-router-dom";
 import CloudImage from "../../Photos/photo.component";
+// import Heart from "../Heart/heart.component";
 
 const RecipeContainer = ({recipe}) => {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ const RecipeContainer = ({recipe}) => {
           <LeftContainer>
            <TopLabel>
             <NavLink className="link" to={url}>{recipe.recipeName.slice(0, 20)}</NavLink>
+            {/* <Heart recipe={recipe._id}/> */}
             </TopLabel>
             <p>{formatDate(recipe.createdAt)}</p>
             <p>Total Time: {recipe.totalTime.hours}:{recipe.totalTime.minutes}</p>

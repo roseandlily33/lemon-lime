@@ -14,7 +14,7 @@ export const SideContainer = styled.div`
     max-width: 300px;
     padding: 1em;
     border-radius: 5px;
-    margin-top: 1em;
+    margin-block: 2em;
      font-size: 1rem;
     .recipePhoto{
         margin-top: 0.2em;

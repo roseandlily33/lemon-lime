@@ -10,12 +10,15 @@ import RecipeComments from "../Comments/recipeComments/recipeComment.component";
 import Carousel from "./singleRecipeCarousel.component";
 import Heart from '../Heart/heart.component';
 import { NavLink } from "react-router-dom";
+import { averageOfStars } from "../../formattingUtils/averageOfStarts";
+import { formatStars } from "../../formattingUtils/stars";
 
 const SingleRecipeComponent = () => {
     const {id} = useParams();
     const [singleRecipe, setSingleRecipe] = useState();
     const [usersName, setUsersName] = useState();
     const [comments, setComments] = useState();
+    const [average, setAverage] = useState();
     
     useEffect(() => {
       const fetchSingle = async() => {
@@ -24,6 +27,8 @@ const SingleRecipeComponent = () => {
           setSingleRecipe(res.foundRecipe[0]);
           setUsersName(res.authorOfRecipe.name);
           setComments(res.allComments);
+          console.log('INCOMING RATING', res.allComments)
+          setAverage(res.allComments.slice(0, 10));
       }
       fetchSingle();
   }, [id]);
@@ -48,6 +53,7 @@ const SingleRecipeComponent = () => {
         <Heart recipe={singleRecipe._id}/>
         </div>
         <>
+        <p>{formatStars(averageOfStars(average))}</p>
         <p>Cook Time: {singleRecipe.cookTime}</p>
         <p>Prep Time: {singleRecipe.prepTime}</p>
         <p>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</p>

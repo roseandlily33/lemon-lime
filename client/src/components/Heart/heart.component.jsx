@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import {useAuth0} from '@auth0/auth0-react';
 import {useSelector, useDispatch} from 'react-redux';
 import { httpAddFavoriteRecipe } from "../../hooks/userRequests";
@@ -12,15 +12,15 @@ const Heart = ({recipe}) => {
     const favorites = useSelector(state => state.favorites.favorites);
     const [found, setFound] = useState(false);
     useEffect(() => {
-   if(recipe && favorites){
-    if(favorites[recipe] === 'true'){
+    if(recipe && favorites){
+         if(favorites[recipe] === 'true'){
         setFound(true);
-    } else  {
+        } else  {
         setFound(false);
-    } 
-   }else {
-    setFound(false);
-    }
+            } 
+        }else {
+        setFound(false);
+        }
    }, [recipe, favorites])
     const addFavorite = async(userId, recipeId) => {
          await httpAddFavoriteRecipe(userId, recipeId);

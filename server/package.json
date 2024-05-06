@@ -22,11 +22,14 @@
     "testEnvironment": "node"
   },
   "dependencies": {
+    "@apollo/server": "^4.10.4",
+    "apollo-server-express": "^3.13.0",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.2",
     "express": "^4.18.2",
+    "graphql": "^16.8.1",
     "helmet": "^7.1.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.2",
