@@ -12,7 +12,7 @@ const NavBar = () => {
 
     return (
         <Navbar className='boxShadow'>
-            <NavLink to="/"><img className="logo" src={Logo} alt="lemon lime logo" title="home" style={{marginInline: '2rem', marginBlock: '1rem'}}/></NavLink>
+            <NavLink to="/"><img className="logoImage" src={Logo} alt="lemon lime logo" title="home" style={{marginInline: '2rem', marginBlock: '1rem'}}/></NavLink>
             <RightNav>
               {/* Checks if it is a mobile devices depending on screen size */}
              {isMobile ?

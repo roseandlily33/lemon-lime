@@ -6,13 +6,12 @@ export const RecipeCont = styled.div`
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
+    margin-top: 1rem;
     @media screen and (width >= 360px){
         padding: 0.5rem;
         width: 100%;
         height: auto;
-        .link{
-            font-size: 1.4rem;
-        }
+
         .recipePhoto{
         height: 100%;
         max-height: 100px;

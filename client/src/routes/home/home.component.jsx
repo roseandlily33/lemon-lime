@@ -27,7 +27,7 @@ const HomePage = () => {
             <div className="text">
                 <h2>Discover your new</h2>
                 <br />
-                <h2 style={{color: 'hsl(83, 70%, 34%)'}}>Favorite Recipes</h2>
+                <h2 style={{color: '#D0415A'}}>Favorite Recipes</h2>
                 <button onClick={() => navigate('search')}>Find Recipes</button>
             </div>
         </HeroImage>

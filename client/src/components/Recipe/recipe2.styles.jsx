@@ -14,8 +14,7 @@ export const SideContainer = styled.div`
     max-width: 300px;
     padding: 1em;
     border-radius: 5px;
-    margin-block: 2em;
-     font-size: 1rem;
+    margin-top: 1rem;
     .recipePhoto{
         margin-top: 0.2em;
         width: 250px;
@@ -33,7 +32,4 @@ export const SideContainer = styled.div`
     }
 `;
 
-export const TopContainer = styled.div`
 
-   // border: 1px solid purple;
-`;

@@ -17,18 +17,12 @@ export const Navbar = styled.header`
     @media screen and (width >= 360px){ 
         border: 1px solid red;
         height: 8vh;
-        .logo{
-            height: 150px;
-            width: 200px;
-        }
+
   }
   @media screen and (width >= 768px){ 
         border: 1px solid purple;
        // width: 70%;
-       .logo{
-            height: 200px;
-            width: 260px;
-        }
+
     }
   @media screen and (width >= 1100px){ 
         border: 1px solid green;

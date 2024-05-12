@@ -172,12 +172,7 @@ backdrop-filter: blur(3.3px);
 -webkit-backdrop-filter: blur(3.3px);
 border: 1px solid rgba(255, 255, 255, 0.57);
 }
-.link{
-  color: var(--green);
-  text-transform: capitalize;
-  font-size: 1.728rem;
-  text-decoration: none;
-}
+
 .link:hover{
   color: var(--darkOrange);
 }
