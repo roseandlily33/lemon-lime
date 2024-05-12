@@ -1,23 +1,31 @@
 import styled from 'styled-components';
 
+// Responsive Styling Done
 export const RecipeCont = styled.div`
     background-color: ${({theme}) => theme.colors.white};
-    height: auto;
-    gap: 1em;
-    padding: 1em;
-    display: flex;
-    align-items: center;
     border-radius: 5px;
-    margin-block: 0.7em;
-    @media screen and (max-width: 500px){
-        gap: 1em;
-        flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    @media screen and (width >= 360px){
+        padding: 0.5rem;
+        width: 100%;
+        height: auto;
+        .link{
+            font-size: 1.4rem;
+        }
+        .recipePhoto{
+        height: 100%;
+        max-height: 100px;
+        min-height: 100px;
+        width: 150px;
+        border-radius: 5px;
+        float: right;
+        }
+
     }
-    h4{
-        margin-top: 0.1em;
-       
-    }
-    .recipePhoto{
+    @media screen and (width >= 768px){
+
+        .recipePhoto{
         height: 100%;
         max-height: 150px;
         min-height: 150px;
@@ -25,46 +33,23 @@ export const RecipeCont = styled.div`
         border-radius: 5px;
         float: right;
     }
+    }
+   
 `;
 
 export const TopLabel = styled.div`
-        display: flex;
-        align-items: center;   
-        flex-wrap: wrap;
-        max-width: 100%;
-        font-size: 1rem;
-        @media screen and (max-width: 500px){
-        gap: 1em;
-        flex-wrap: wrap;
-        width: 100%;
-        
-    }
 `;
 
 export const LeftContainer = styled.div`
-    width: 50%;
-    max-width: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2em;
-
-    @media screen and (max-width: 500px){
-        gap: 1em;
+    @media screen and (width >= 360px){
         width: 100%;
-        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
     }
 `;
 
 export const RightContainer = styled.div`
-    width: 50%;
-    max-width: 50%;
-    img{
-        max-width: 100%;
-        float: right;
-    }
-    @media screen and (max-width: 500px){
-        gap: 1em;
-        width: 100%;
-        display: flex;  
-    }
+    display: flex;
+    align-items: center;
 `;

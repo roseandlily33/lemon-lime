@@ -118,7 +118,7 @@ export const RightMainDiv = styled.aside`
     flex-direction: column;
     padding: 1em;
     @media screen and (width >= 360px){
-        width: 100%;;
+        width: 100%;
     }
     @media screen and (width >= 768px){
         width: 40%;

@@ -42,55 +42,9 @@ body{
     font-size: 16px;
     background-repeat: no-repeat;
     background-size: cover;
+    border: 2px solid blue;
 }
-h1{
-  font-size: 2.986rem;
-  font-family: 'Poppins', sans-serif;
- /* font-size: 1.802rem; */
-}
-h2{
-  font-family: 'Poppins', sans-serif;
-  font-size: 2.488rem
-  /* font-size: 1.602rem; */
-}
-h3 {
-  
-  font-family: 'Poppins', sans-serif;
-  font-size: 2.074rem;
- /* font-size: 1.424rem; */
-}
-h4{
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.728rem;
-  /* font-size: 1.266rem; */
-  font-weight: normal;
-}
-h5{
-  font-family: 'Jost', sans-serif;
-  font-size: 1.44rem;
-    /* font-size: 1.125rem; */
-}
-h6{
-  font-family: 'Jost', sans-serif;
-    font-size: 1.33rem;
-}
-li, ul, ol, p{
-  font-size: 1.4rem;
-  font-family: 'Jost', sans-serif;
-}
-li{
-  list-style-type: none;
-}
-p{
-  color: hsl(41, 9%, 35%);
-}
-label{
-  font-size: 1.266rem;
-}
-span{
-  font-size: 1.1rem;
-  font-style: italic;
-}
+
 /* Buttons  */
 button {
   border: 2px solid var(--mediumGreen);
@@ -299,27 +253,3 @@ border: 1px solid rgba(255, 255, 255, 0.57);
           mask: var(--mask);
 }
 
-@media screen and (max-width: 1000px) {
-  h1{
-   font-size: 2.027rem;
-  }
-  h2{
-    font-size: 1.802rem;
-    border: 1px solid orange;
-  }
-  h3 {
-    font-size: 1.602rem;
-  }
-  h4{
-    font-size: 1.424rem;
-  }
-  h5{
-    font-size: 1.266rem;
-  }
-  h6{
-      font-size: 1.125rem;
-  }
-  li, ul, ol, p{
-    font-size: 1rem;
-  }
-}

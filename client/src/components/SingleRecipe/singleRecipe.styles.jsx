@@ -10,6 +10,7 @@ export const SingleRecipeContainer  = styled.main`
     background-color: ${({theme}) => theme.colors.white};
     border-radius: 5px;
     padding: 1rem;
+    border: 1px solid pink;
     @media screen and (max-width: 900px){
       //  border: 2px solid orange;
     }
@@ -86,10 +87,10 @@ border-radius: 5px;
 
     @media screen and (max-width: 900px){
         flex-wrap: wrap;
-      //  border: 2px solid orange;
+        border: 2px solid orange;
     }
     @media screen and (max-width: 500px){
-      //  border: 1px solid purple;
+       border: 1px solid purple; 
     }
 `;
 

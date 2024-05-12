@@ -43,7 +43,7 @@ const CreateRecipeSubmit = ({formValues, images,
         dispatch(fetchUserRecipes(user.sub));
       };
     return (  
-    < SubmitButtonContainer>
+    <SubmitButtonContainer>
       <div class="button type--A"  onClick={(e) => handleSubmit(e)}>
         <div class="button__line"></div>
         <div class="button__line"></div>

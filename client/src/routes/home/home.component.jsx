@@ -5,17 +5,17 @@ import { useSelector } from "react-redux";
 import MainPicture from '../../images/Background3.jpg';
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/loader.component";
-import { useQuery } from "@apollo/client";
-import { GET_USER } from "../../graphqlUtils/queries";
+// import { useQuery } from "@apollo/client";
+// import { GET_USER } from "../../graphqlUtils/queries";
 
 const HomePage = () => {
 
-    const {loading, data} = useQuery(GET_USER);
-    console.log('QUERY DATA', data);
+    // const {loading, data} = useQuery(GET_USER);
+    // console.log('QUERY DATA', data);
 
     const popularRecipes = useSelector(state => state.recipes.popularRecipes);
     const newestRecipes = useSelector(state => state.recipes.newestRecipes);
-    //const loading = useSelector(state => state.recipes.isLoading);
+    const loading = useSelector(state => state.recipes.isLoading);
     const loading2 = useSelector(state => state.recipes.isLoading2);
     const navigate = useNavigate();
     return (
