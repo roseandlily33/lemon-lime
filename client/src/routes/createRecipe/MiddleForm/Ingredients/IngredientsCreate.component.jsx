@@ -46,7 +46,7 @@ const IngredientsCreate = ({ingredients, addNewIngredient, setIngredients}) => {
         }
         </>
         
-     <InputDiv>
+     <InputDiv className="boxShadow">
       <p className="error">{error}</p>
         <Measurement mea={mea} setMea={setMea} />
         <input 

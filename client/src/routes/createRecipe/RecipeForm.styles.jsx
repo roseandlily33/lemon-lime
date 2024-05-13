@@ -22,7 +22,6 @@ h2, h3{
     margin-bottom: 0.5em;
     color: ${({theme}) => theme.colors.green};
  }
- 
  hr{
     margin-bottom: 1em;
  }
@@ -33,7 +32,6 @@ export const TopForm = styled.section`
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 1em;
-    /* border: 1px solid orange; */
     select{
         width: 10%;
     }
@@ -53,19 +51,14 @@ export const LeftDiv = styled.div`
     width: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 1em;
     @media screen and (width >= 360px){ 
         width: 100%;
     }
-  @media screen and (width >= 768px){ 
-        border: 1px solid purple;
-        width: 60%;
-        
+   @media screen and (width >= 768px){ 
+        width: 60%;       
     }
-  @media screen and (width >= 1100px){ 
-        border: 1px solid green;
-    }
+
 `;
 
 export const RightDiv = styled.div`
@@ -76,11 +69,10 @@ export const RightDiv = styled.div`
         .cooking-image{
         height: 150px;
         width: 200px;
-        float: right;
+        float: left;
       } 
     }
   @media screen and (width >= 768px){ 
-        /* border: 1px solid purple; */
         width: 30%;
         margin-top: 0rem;
         .cooking-image{
@@ -90,7 +82,6 @@ export const RightDiv = styled.div`
     }    
     }
 `;
-
 
 export const MiddleForm = styled.section`
     display: flex;
@@ -130,12 +121,39 @@ export const BottomForm = styled.div`
 //Form Elements
 export const InputDiv = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5em;
-    width: 100%;
-    padding: 1rem;
-    margin-block: 2rem;
+    background-color: ${({theme}) => theme.colors.white};
+    /* justify-content: center; */
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    @media screen and (width >= 360px){
+        /* max-width: 100%; */
+        flex-wrap: wrap;
+        input{
+          min-width: 100%;
+          margin-block: 1rem;
+        }
+        button{
+          min-width: 150px;
+          float: right;
+        }
+    }
+    @media screen and (width >= 768px){
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 1.5em;
+        padding: 1rem;
+        input{
+          min-width: 50%;
+          margin-block: 0;
+        }
+        button{
+          width: inherit;
+          float: none;
+        }
+    }
 `;
 
 export const MiddleContainer = styled.div`
@@ -157,7 +175,7 @@ export const EachI = styled.div`
     margin-block: 1rem;
     padding: 1rem;
     justify-content: space-evenly;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     input{
         width: 100%;
     }
@@ -174,7 +192,7 @@ export const EachI = styled.div`
       padding-right: 2rem;
     }
     .right{
-        border: 1px solid green;
+        /* border: 1px solid green; */
         width: 25%;
         display: flex;
         justify-content: flex-end;
@@ -190,7 +208,7 @@ export const SubmitButtonContainer = styled.div`
 
   .type--A {
   --line_color: ${({theme}) => theme.colors.darkGrey};
-  --back_color: ${({theme}) => theme.colors.lightYellow};
+  --back_color: ${({theme}) => theme.colors.lightGreen};
  }
 
 .button {

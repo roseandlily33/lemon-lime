@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { InputDiv, MiddleContainer, OptionsContainer } from "../../RecipeForm.styles";
+import { InputDiv, MiddleContainer} from "../../RecipeForm.styles";
 import EachInstructionCreate from "./EachInstructionCreate.component";
 
 const InstructionsCreate = ({instructions, setInstructions, addNewInstruction}) => {
@@ -85,7 +85,7 @@ const InstructionsCreate = ({instructions, setInstructions, addNewInstruction}) 
           }
         </>
 
-        <InputDiv>
+        <InputDiv className="boxShadow">
         <p className="error">{error}</p>
         <input type="text" value={ins} placeholder='Add an instruction' onChange={(e) => setIns(e.target.value)} />
         <button className="buttonWithIcon" onClick={addCard}>
