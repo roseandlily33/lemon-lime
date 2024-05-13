@@ -16,8 +16,7 @@ export const CommentContainer = styled.div`
         margin: 0;
         color: ${({theme}) => theme.colors.green};
     }
-    @media screen and (max-width: 500px){
-        width: 95%;
+    @media screen and (width >= 360px){
         padding: 1rem;
         margin-top: 2rem;
     }

@@ -52,6 +52,8 @@ export const StyledDiv = styled.section`
 `;
 
 export const ResultsDiv = styled.aside`
-    height: 100vh;
+    /* height: 100vh; */
     width: 100vw; 
+    height: 70%;
+    overflow-y: scroll;
 `;

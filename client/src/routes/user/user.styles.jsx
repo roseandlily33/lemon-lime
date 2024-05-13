@@ -3,71 +3,61 @@ import styled from 'styled-components';
 export const UserContainer = styled.main`
     height: 100vh;
     width: 100vw;
-   // background-color: ${({theme}) => theme.colors.offWhite};
+`;
+
+export const UserInfo = styled.div`
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-left: 1rem;
 `;
 
 export const UserOptionsContainer = styled.section`
-    height: 40%;
-    width: 100%;
-    position: absolute;
-    z-index: 4;
-    display: flex;
-    h2{
-        color: ${({theme}) => theme.colors.green};
-        padding-bottom: 1rem;
-    }
-    .imgDiv{
-        width: 100vw;
-        height: 100%;
-        z-index: -1;
-        position: absolute;
-        top: 0;
-        overflow: hidden;
-    }
-    img{
+    @media screen and (width >= 360px){
+        .imgDiv img{
+        height: 30%;
         width: 100%;
-        height: 80%;
-        overflow: hidden;
     }
-    .userDiv{
+    }
+    @media screen and (width >= 768px){
+        .imgDiv img{
+        height: 20%;
         width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
     }
-    .userInfo{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        position: absolute;
-        top: 60%;
-        padding: 3rem;
     }
-   
+     @media screen and (width >= 1000px){
+        .imgDiv img{
+        height: 400px;
+        width: 100%;
+    }
+    }
 `;
 export const UserRecipesContainer = styled.section`
     display: flex;
-    margin-inline: 1rem;
+    flex-wrap: wrap;
+    width: 70%;
+    justify-content: center;
     gap: 1rem;
-    z-index: 4;
-    position: relative;
-    text-align: center;
-    top: 40%;
-    align-items: center;
+    overflow-y: scroll;
     padding: 1rem;
+    @media screen and (width >= 360px){
+         max-height: 60vh;
+    }
+    @media screen and (width >= 768px){
+         max-height: 53vh;
+    }
 `;
 
 export const UserOptions = styled.aside`
     display: flex;
-    margin-inline: 1rem;
+    flex-direction: column;
+    margin-top: 2rem;
     gap: 1rem;
-    z-index: 4;
-    position: relative;
-    top: 37%;
-    padding-block: 1rem;
-    margin-top: 4rem;
-    align-items: center;
-    justify-content: space-around;
+    width: 30%;
+    margin-left: 1rem;
+`;
+
+export const UserContentContainer = styled.div`
+    display: flex;
+    gap: 2rem;
 `;

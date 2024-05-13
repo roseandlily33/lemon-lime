@@ -10,13 +10,6 @@ export const SingleRecipeContainer  = styled.main`
     background-color: ${({theme}) => theme.colors.white};
     border-radius: 5px;
     padding: 1rem;
-    border: 1px solid pink;
-    @media screen and (max-width: 900px){
-      //  border: 2px solid orange;
-    }
-    @media screen and (max-width: 500px){
-       // border: 1px solid red;
-    }
 `;
 
 export const TopDiv = styled.section`
@@ -24,22 +17,29 @@ export const TopDiv = styled.section`
     display: flex;
     flex-direction: row;
     gap: 2em;
-    @media screen and (max-width: 900px){
+    @media screen and (width >= 360px){
         flex-wrap: wrap-reverse;
-       // border: 2px solid orange;
-       
     }
-    @media screen and (max-width: 500px){
-       // border: 1px solid blue;
+    @media screen and (width >= 800px){
+        flex-wrap: nowrap;
     }
 `;
 
-export const LeftSide = styled.aside`
-    img{
-        height: 300px;
-        width: 400px;
+export const LeftSide = styled.aside`  
+    @media screen and (width >= 360px){
+        img{
+        height: 200px;
+        width: 100%;
         
     }
+    }
+    @media screen and (width >= 768px){
+        img{
+        height: 300px;
+        width: 400px;
+        }
+    }
+
 `;
 
 export const RightSide = styled.aside`
@@ -60,10 +60,6 @@ export const RightSide = styled.aside`
         color: ${({theme}) => theme.colors.peachyPink};
         font-weight: 700;
     }
-
-    @media screen and (max-width: 500px){
-       // border: 1px solid green;
-    }
 `;
 
 export const Bottom = styled.section`
@@ -77,25 +73,23 @@ border-radius: 5px;
         font-weight: bold;
         padding-inline: 0.6rem;
         color:  ${({theme}) => theme.colors.white};
-        //color: ${({theme}) => theme.colors.green};
         padding-block: 1rem;
         background-color: hsla(349, 43%, 66%, 0.5);
-       // background-color: ${({theme}) => theme.colors.offWhite};
         border-bottom: 1px solid ${({theme}) => theme.colors.white};
-        
     }
-
-    @media screen and (max-width: 900px){
+    @media screen and (width >= 360px){
         flex-wrap: wrap;
-        border: 2px solid orange;
     }
-    @media screen and (max-width: 500px){
-       border: 1px solid purple; 
+    @media screen and (width >= 768px){
+        border: 1px solid orange;
+        flex-wrap: nowrap;
+    }
+     @media screen and (width >= 1000px){
+        border: 1px solid pink;
     }
 `;
 
 export const IngredientsDiv = styled.div`
-width: 30%;
 border-radius: 5px;
 border: 2px solid ${({theme}) => theme.colors.offWhite};
 .outside{
@@ -103,42 +97,40 @@ border: 2px solid ${({theme}) => theme.colors.offWhite};
     width: 90%;
     margin: 0.5rem;
 }
-
 .insideIng1{
     display: flex;
     margin-bottom: 1rem;
-
 }
-.insideIng1 li{
+.insideIng1 p{
     padding-top: 0.4em;
 }
-.ing2 li{
+.ing2 p{
     padding-left: 1em;
     padding-top: 0.4em;
     margin-bottom: 1rem;
 }
-
-@media screen and (max-width: 500px){
-    border: 1px solid blue;
-    width: 100%;
-
-}
+@media screen and (width >= 360px){
+        width: 100%;
+    }
+    @media screen and (width >= 768px){
+        width: 30%;
+    }
 `;
 
 export const InstructionsDiv = styled.div`
-width: 70%;
 border-radius: 5px;
 border: 2px solid ${({theme}) => theme.colors.offWhite};
 ol{
     margin:0.5em;
 }
-li{
+p{
   padding-top: 0.4em;
   margin-bottom: 1rem;
  }
-
- @media screen and (max-width: 500px){
-    border: 1px solid yellow;
-    width: 100%;
+ @media screen and (width >= 360px){
+        width: 100%;
  }
-`
+@media screen and (width >= 768px){
+        width: 70%;
+}
+`;

@@ -70,14 +70,14 @@ const SingleRecipeComponent = () => {
     <div className="ing1">
     {singleRecipe.ingredients?.map(({id,mea}, index) => {
       return <div className="insideIng1">
-      <li key={id} style={{color: '#6C9251', paddingRight: '0.7em'}}>{index + 1}</li>
-      <li key={mea}>{mea}</li>
+      <p key={id} style={{color: '#6C9251', paddingRight: '0.7em'}}>{index + 1}</p>
+      <p key={mea}>{mea}</p>
       </div>
     })}
     </div>
     <div className="ing2" >
   {singleRecipe.ingredients?.map(({id, ing}) => {
-      return <li key={id}>{ing}</li>
+      return <p key={id}>{ing}</p>
   })
   }
    </div>
@@ -89,8 +89,8 @@ const SingleRecipeComponent = () => {
         <ol>
         {singleRecipe?.instructions?.map(({id, ins}, index) => {
         return <div style={{display: 'flex'}} key={id}>
-        <li style={{paddingRight: '0.7em', color: '#6C9251'}}>{index + 1}</li>
-        <li>{ins}</li>
+        <p style={{paddingRight: '0.7em', color: '#6C9251'}}>{index + 1}</p>
+        <p>{ins}</p>
         </div>
         })}
         </ol>
