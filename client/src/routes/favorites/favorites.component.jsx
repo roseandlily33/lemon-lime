@@ -17,7 +17,7 @@ const FavoritesPage = () => {
 
     return ( 
         <FavoritesContainerMain>
-            <h2>Your Favorite Recipes</h2>
+            <h1>Your Favorite Recipes</h1>
             <FavoritesRecipesDiv className="scrollBar">
            {!favorites ? <Loader /> :
             <>

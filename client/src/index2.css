@@ -1,7 +1,5 @@
 @media screen and (width >= 360px) {
-  body{
-    border: 2px solid red;
-  }
+
 h1{
   font-size: 1.476rem;
 }
@@ -42,9 +40,7 @@ li, ul, ol, p {
 
 
 @media screen and (width >= 768px) {
-    body{
-      border: 2px solid orange;
-    }
+
     h1{
      font-size: 2.027rem;
     }
@@ -85,9 +81,7 @@ li, ul, ol, p {
   }
 
   @media screen and (width >= 1000px){
-    body{
-      border: 2px solid purple;
-    }
+
     h1{
       font-size: 2.986rem;
       font-family: 'Poppins', sans-serif;

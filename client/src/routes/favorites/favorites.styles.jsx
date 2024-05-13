@@ -4,9 +4,10 @@ export const FavoritesContainerMain = styled.main`
     width: 100vw;
     height: 100vh;    
     margin-top: 2rem;
-    h2{
+    h1{
        //padding-left: 2rem;
        text-align: center;
+       color: ${({theme}) => theme.colors.peachyPink};
     }
 `;
 

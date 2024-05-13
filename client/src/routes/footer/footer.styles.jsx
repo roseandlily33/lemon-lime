@@ -6,7 +6,6 @@ export const FooterContainer = styled.footer`
     /* gap: 2em; */
     /* align-items: center; */
     /* height: 10vh; */
-    border: 1px solid orange;
     /* flex-wrap: wrap; */
     z-index: 10;
     /* position: sticky; */
