@@ -6,6 +6,7 @@ const BottomEdit = ({images, addNewImage, addNewPhotos, photos}) => {
         <>
        <PhotosCreate images={images} addNewImage={addNewImage} addNewPhotos={addNewPhotos} />
        <EachPhotoCreate  photos={photos}/> 
+       <hr/>
         </>
      );
 }

@@ -76,41 +76,6 @@ const EachIngredientCreate = (
                 </div>
                </EachI>
                }
-               {/* <label for={ingState}></label>
-                <input 
-                  id={id}
-                  type="text" 
-                  name={ing}   
-                  value={ingState}
-                  onChange={(e) => {
-                   setIngState(e.target.value);}}
-                />
-                <div className="right">
-                <button id={id} onClick={(e) => {
-                   setMyIngredients(e)
-                   setUpdated(true)
-                }}>{updated ? 
-                
-                'Update Complete' 
-                
-                : 
-                <svg onClick={(e) => {
-                    e.preventDefault();
-                    setUpdated(false);
-                    setMyIngredients(e);
-                }} className="primary" height="20" width="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-check">
-                    <circle cx="12" cy="12" r="10" class="primary"/>
-                    <path class="secondary" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
-                
-                
-                }</button>
-   
-               <button className="secondaryButton" id={id} onClick={(e) => {
-                   e.preventDefault();
-                   deleteIngredient(e, id)}}>
-               <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 24 24" class="icon-trash"><path class="primary" d="M5 5h14l-.89 15.12a2 2 0 0 1-2 1.88H7.9a2 2 0 0 1-2-1.88L5 5zm5 5a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1z"/><path class="secondary" d="M8.59 4l1.7-1.7A1 1 0 0 1 11 2h2a1 1 0 0 1 .7.3L15.42 4H19a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h3.59z"/></svg>  
-                   </button>
-              </div> */}
        </>
      );
 }

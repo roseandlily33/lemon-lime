@@ -33,6 +33,7 @@ export const TopForm = styled.section`
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 1em;
+    /* border: 1px solid orange; */
     select{
         width: 10%;
     }
@@ -56,10 +57,10 @@ export const LeftDiv = styled.div`
     gap: 1em;
     @media screen and (width >= 360px){ 
         width: 100%;
-  }
+    }
   @media screen and (width >= 768px){ 
         border: 1px solid purple;
-        width: 70%;
+        width: 60%;
         
     }
   @media screen and (width >= 1100px){ 
@@ -68,15 +69,26 @@ export const LeftDiv = styled.div`
 `;
 
 export const RightDiv = styled.div`
-    width: auto;
-    .cooking-image{
+     width: auto;
+     @media screen and (width >= 360px){ 
+        width: 100%;
+        margin-top: 1rem;
+        .cooking-image{
+        height: 150px;
+        width: 200px;
+        float: right;
+      } 
+    }
+  @media screen and (width >= 768px){ 
+        /* border: 1px solid purple; */
+        width: 30%;
+        margin-top: 0rem;
+        .cooking-image{
         height: 250px;
         width: 250px;
         float: right;
-    } 
-  @media screen and (width >= 360px){ 
-        width: 100%;
-  }
+    }    
+    }
 `;
 
 

@@ -177,10 +177,6 @@ border: 1px solid rgba(255, 255, 255, 0.57);
   color: var(--darkOrange);
 }
 /* For the main icons */
-.icon{
-  height: 40px;
-  width: 40px;
-}
 .primary {
   fill:  var(--yellow);
 }
@@ -240,11 +236,11 @@ border: 1px solid rgba(255, 255, 255, 0.57);
   scrollbar-color: var(--green) var(--orange);
 }
 
-.box {
+/* .box {
   --mask:
     radial-gradient(4.29rem at 50% calc(100% - 5.8rem),#000 99%,#0000 101%) calc(50% - 4rem) 0/8rem 100%,
     radial-gradient(4.29rem at 50% calc(100% + 3.8rem),#0000 99%,#000 101%) 50% calc(100% - 2rem)/8rem 100% repeat-x;
   -webkit-mask: var(--mask);
           mask: var(--mask);
-}
+} */
 

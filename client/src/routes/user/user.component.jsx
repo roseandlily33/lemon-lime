@@ -12,8 +12,8 @@ const UserHome = () => {
   const navigate = useNavigate();
   const buttonItems = [
     
-    {id: 1, title: 'Create A Recipe', color: 'hsla(349, 43%, 66%, 0.2)', action: 'createRecipe'},
-    {id: 2, title: 'Edit Comments', color: 'hsla(349, 43%, 66%, 0.4)', action: 'editComments'}, 
+    {id: 1, title: 'Create a recipe', color: 'hsla(349, 43%, 66%, 0.2)', action: 'createRecipe'},
+    {id: 2, title: 'Edit comments', color: 'hsla(349, 43%, 66%, 0.4)', action: 'editComments'}, 
     {id: 3, title: 'Not in use', color: 'hsla(349, 43%, 66%, 0.6)', action: ''},
     {id: 4, title: 'Not in use', color: 'hsla(349, 43%, 66%, 0.8)', action: ''}
   ];
@@ -49,10 +49,10 @@ const UserHome = () => {
           <UserOptions>
            
             {buttonItems.map((button) => {
-            return <div key={button.id} onClick={() => switchFunction(button.action)} 
-            style={{ backgroundColor:`${button.color}`}} className="box boxShadowHover">
-              <h4 style={{color: '#77340D'}} onClick={() => switchFunction(button.action)}>{button.title}</h4>
-            </div>
+            return <button key={button.id} onClick={() => switchFunction(button.action)} 
+            style={{ backgroundColor:`${button.color}`, border: `${button.color}`}} className="box boxShadowHover">
+              <p style={{color: '#77340D'}} onClick={() => switchFunction(button.action)}>{button.title}</p>
+            </button>
            })}
        
           </UserOptions>
