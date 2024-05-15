@@ -44,6 +44,10 @@ const recipesSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    authorName: {
+        type: String,
+        required: true
+    },
     comments: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'

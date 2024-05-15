@@ -29,7 +29,8 @@ const CreateRecipeSubmit = ({formValues, images,
           ingredients: ingredients,
           totalTime: totalTime,
           recipeName: newRecipeName,
-          images: images
+          images: images,
+          authorName: user.nickName
         });
       const response = await httpCreateRecipe(user, totalSending);
       const success = response.ok;
