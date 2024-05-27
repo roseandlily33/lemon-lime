@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000';
+const API_URL = 'http://localhost:10000';
 
 //Gets all the recipes for the main page
 // async function httpGetAllRecipes(){

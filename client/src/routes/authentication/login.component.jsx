@@ -37,7 +37,7 @@ const LoginComponent = ({setPage}) => {
     //   }); 
     try {
         const { data } = await axios.post(
-          "http://localhost:8000/home/login",
+          "http://localhost:10000/home/login",
           {
             ...formState,
           },

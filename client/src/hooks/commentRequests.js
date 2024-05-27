@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000';
+const API_URL = 'http://localhost:10000';
 
 //Allows a user to comment on a recipe
 async function httpAddComment(comment){

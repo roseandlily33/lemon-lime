@@ -7,7 +7,7 @@ const initialState = {
     isLoading2: false,
     error: null
 };
-const URL = 'http://localhost:8000';
+const URL = 'http://localhost:10000';
 
 //Gets the popular recipes for the main page
 export const fetchPopular = createAsyncThunk(

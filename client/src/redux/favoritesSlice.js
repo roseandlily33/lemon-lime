@@ -7,7 +7,7 @@ const initialState = {
     status: '',
     error: null
 };
-const URL = 'http://localhost:8000';
+const URL = 'http://localhost:10000';
 
 //Gets the users favorite recipes
 export const fetchFavorites = createAsyncThunk(

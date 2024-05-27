@@ -8,7 +8,7 @@
 //     isRecipeLoading: false
 // };
 
-// const URL = 'http://localhost:8000';
+// const URL = 'http://localhost:10000';
 
 // export const fetchRecipeComments = createAsyncThunk(
 //     'singleRecipe/comments',

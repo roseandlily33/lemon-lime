@@ -9,7 +9,7 @@ const initialState = {
     error: null
 };
 
-const URL = 'http://localhost:8000';
+const URL = 'http://localhost:10000';
 
 export const fetchUserRecipes = createAsyncThunk(
     'user/recipes',
