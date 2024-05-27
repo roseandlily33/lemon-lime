@@ -4,13 +4,11 @@
   "description": "backend for lemon lime",
   "main": "server.js",
   "engines": {
-    "node": "20.x"
+    "node": ">=16.0.0"
   },
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "test-watch": "jest --watch",
-    "start": "node server.js",
-    "watch": "nodemon server.js"
+    "test-watch": "jest --watch"
   },
   "repository": {
     "type": "git",
