@@ -4,14 +4,14 @@ const path = require('path');
 const morgan = require('morgan');
 const helmet = require('helmet');
 //const Recipes = require('./models/recipes.mongo');
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 
 const router = require('./routers');
 
 require('dotenv').config();
 
 const app = express();
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(morgan('combined'));
