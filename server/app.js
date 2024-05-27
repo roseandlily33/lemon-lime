@@ -3,7 +3,6 @@ const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 const helmet = require('helmet');
-//const Recipes = require('./models/recipes.mongo');
 // const cookieParser = require("cookie-parser");
 
 const router = require('./routers');
@@ -26,48 +25,19 @@ app.use(cors({
 app.use(helmet());
 
 app.use(express.static(path.join(__dirname, '..', 'public' )));
+
 app.use((req, res, next) => {
     console.log('INCOMING REQUEST', req.path);
     next()
 });
 
 app.use('/', router);
-// app.use('/', userVerification,(req, res) => {
-//     console.log('Home page')
-// })
-// app.get('/', (req, res) => {
-//     console.log('MAIN', req.body);
-//     return res.status(200).json({msg: "Hello"})
-// })
-//  app.get('/popular', async(req, res) => {
-//     console.log('GETTING ALL THE POPULAR RECIPES')
-//     try{
-//         let faveRecipes = await Recipes.find({}, {
-//             mainExcludes}).sort({favorites: -1}).limit(6);
-//          return res.status(200).json(faveRecipes);
-//     }catch(err){
-//         console.log('ERERR',err);
-//         return res.status(400).json(err);
-//     }
-//  })
 
-// app.use('/*', (req, res) => {
-//     console.log('Router is working')
-    
-//     res.sendFile(path.join(__dirname, '..','public', 'index.html'));
-// });
-// if(process.env.NODE_ENV === 'production') {
-//     app.use(express.static(path.join(__dirname, '/client/build')))
-//     app.get('*', (req,res) => {
-//     res.send("Router is working")
-//       res.sendFile(path.join(__dirname, 'build', 'index.html'))
-//     })
-//   }
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
   }
   
-  app.get('/*', (req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
   });
 
