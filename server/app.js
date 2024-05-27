@@ -22,14 +22,14 @@ app.use(cors({
    // optionsSuccessStatus: 204, 
     //allowedHeaders: ['Content-Type', 'Authorization']
 }));
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      connectSrc: ["'self'", 'http://127.0.0.1:10000', 'ws://localhost:42877/']
-    }
-  }
-}));
+// app.use(helmet({
+//   contentSecurityPolicy: {
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       connectSrc: ["'self'", 'http://127.0.0.1:10000', 'ws://localhost:42877/']
+//     }
+//   }
+// }));
 
 app.use(express.static(path.join(__dirname, '..', 'public' )));
 
