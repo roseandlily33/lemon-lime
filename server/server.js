@@ -1,9 +1,9 @@
 const http = require('http');
-const app = require('./src/app');
+const app = require('./app');
 const { ApolloServer } =  require('@apollo/server');
 const { startStandaloneServer } = require('@apollo/server/standalone');
-const {connectToMongoose} = require('./src/utils/connection');
-const {typeDefs, resolvers} = require('./src/schemas');
+const {connectToMongoose} = require('./utils/connection');
+const {typeDefs, resolvers} = require('./schemas');
 
 const PORT = process.env.PORT || 8000;
 

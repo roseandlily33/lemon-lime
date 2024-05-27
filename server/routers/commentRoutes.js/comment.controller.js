@@ -1,6 +1,6 @@
-const Comment = require('../../../models/comments.mongo');
-const User = require('../../../models/user.mongo');
-const Recipe = require('../../../models/recipes.mongo');
+const Comment = require('../../models/comments.mongo');
+const User = require('../../models/user.mongo');
+const Recipe = require('../../models/recipes.mongo');
 
 //Adds a comment under a post - should be good
 async function httpAddComment(req, res){

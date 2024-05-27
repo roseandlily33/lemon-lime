@@ -1,6 +1,6 @@
-const Recipe = require('../../../models/recipes.mongo');
-const User = require('../../../models/user.mongo');
-const Comment = require('../../../models/comments.mongo');
+const Recipe = require('../../models/recipes.mongo');
+const User = require('../../models/user.mongo');
+const Comment = require('../../models/comments.mongo');
 
 //Gets all of the recipes for the main page the newest 6 - finished
 async function httpGetNewestRecipes(req, res){
