@@ -1,5 +1,5 @@
-const Recipe = require('../../models/recipes.mongo');
-const User = require('../../models/user.mongo');
+const Recipe = require('../../../models/recipes.mongo');
+const User = require('../../../models/user.mongo');
 
 //User creates a recipe - finished
 async function httpCreateRecipe(req, res){
