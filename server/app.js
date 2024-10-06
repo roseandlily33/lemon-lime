@@ -15,7 +15,7 @@ app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(morgan('combined'));
 app.use(cors({
-    origin:'http://localhost:3000',
+    origin: process.env.FRONTEND_ROUTE,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
    // preflightContinue: false,
@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
   }
   
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+    res.send('Wildcard Path');
   });
 
 module.exports = app;
