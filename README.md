@@ -1,11 +1,11 @@
 # Lemon - Lime 
-A recipe application where you can favorite, search, share, and create your favorite recipes. 
 
 ## Description
-
+A recipe application where you can favorite, search, share, and create your favorite recipes. 
 ## Screenshots:
 
 ## LiveURL:
+https://lemon-lime.onrender.com
 
 ## Technologies Used:
 Front End:
