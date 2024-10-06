@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:10000';
+const API_URL = process.env.API_URL;
 
 //Gets all of the users recipes
 async function httpGetUserRecipes(id){

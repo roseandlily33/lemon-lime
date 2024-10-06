@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:10000';
+const API_URL = process.env.API_URL;
 
 //Allows a user to comment on a recipe
 async function httpAddComment(comment){
