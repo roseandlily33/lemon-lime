@@ -81,11 +81,11 @@ border-radius: 5px;
         flex-wrap: wrap;
     }
     @media screen and (width >= 768px){
-        border: 1px solid orange;
+       // border: 1px solid orange;
         flex-wrap: nowrap;
     }
      @media screen and (width >= 1000px){
-        border: 1px solid pink;
+       // border: 1px solid pink;
     }
 `;
 

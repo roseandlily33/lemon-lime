@@ -28,7 +28,8 @@ root.render(
     domain={domain}
     clientId={client_id}
     authorizationParams={{
-      redirect_uri: window.location.origin
+      //redirect_uri: window.location.origin
+      redirect_uri: process.env.REACT_APP_HOME_URL
     }}
   >
     <Provider store={store}>
