@@ -1,4 +1,4 @@
-const API_URL = process.env.API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 //Gets all the recipes for the main page
 // async function httpGetAllRecipes(){
