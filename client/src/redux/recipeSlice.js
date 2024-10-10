@@ -7,7 +7,7 @@ const initialState = {
     isLoading2: false,
     error: null
 };
-const URL = 'http://localhost:10000';
+const URL = process.env.REACT_APP_API_URL;
 
 //Gets the popular recipes for the main page
 export const fetchPopular = createAsyncThunk(

@@ -9,7 +9,7 @@ const initialState = {
     error: null
 };
 
-const URL = 'http://localhost:10000';
+const URL = process.env.REACT_APP_API_URL;
 
 export const fetchUserRecipes = createAsyncThunk(
     'user/recipes',

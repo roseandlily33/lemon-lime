@@ -7,7 +7,7 @@ const initialState = {
     status: '',
     error: null
 };
-const URL = 'http://localhost:10000';
+const URL = process.env.REACT_APP_API_URL;
 
 //Gets the users favorite recipes
 export const fetchFavorites = createAsyncThunk(

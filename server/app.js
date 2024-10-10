@@ -33,10 +33,10 @@ app.use(cors({
 
 app.use(express.static(path.join(__dirname, '..', 'public' )));
 
-app.use((req, res, next) => {
-    console.log('INCOMING REQUEST', req.path);
-    next()
-});
+// app.use((req, res, next) => {
+//     console.log('INCOMING REQUEST', req.path);
+//     next()
+// });
 
 app.use('/', router);
 

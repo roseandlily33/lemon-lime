@@ -20,7 +20,7 @@ const LoginComponent = ({setPage}) => {
             [name]: value,
         });
     };
-
+    const newRoute = `${process.env.REACT_APP_API_URL}/home/login`;
     const handleFormSubmit = async (event) => {
        event.preventDefault();
     //    const response = await httpLoginUser(formState);
@@ -37,7 +37,7 @@ const LoginComponent = ({setPage}) => {
     //   }); 
     try {
         const { data } = await axios.post(
-          "http://localhost:10000/home/login",
+          newRoute,
           {
             ...formState,
           },
