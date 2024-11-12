@@ -13,7 +13,7 @@ const {
 homeRouter.get('/recipes', httpGetNewestRecipes);
 homeRouter.get('/popular', httpGetPopularRecipes);
 homeRouter.get('/:id', httpGetFullRecipeWithDetails);
-homeRouter.get('/search/:searchText/:subCategory', httpSearchRecipes);
+homeRouter.get('/search/:search-text/:sub-category', httpSearchRecipes);
 //homeRouter.post('/login', httpLoginUser);
 //homeRouter.post('/create', httpCreateUser);
 

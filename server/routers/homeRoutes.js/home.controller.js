@@ -8,11 +8,12 @@ async function httpGetNewestRecipes(req, res){
     let allRecipes = await Recipe.find({}, {
         '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
     }).sort({createdAt: -1}).limit(6);
-    //.allowDiskUse(true)
+    if(!allRecipes){
+        return res.status(404).json({msg: "Could not get the recipes"});
+    }
     return res.status(200).json(allRecipes)
    } catch(err){
-    console.log('ERERR',err);
-    return res.status(400).json(err);
+    return res.status(500).json({msg: "An error has occured, could not get the recipes"});
    }
 };
 //Gets the most popular recipes the top 6 - finished
@@ -21,11 +22,12 @@ async function httpGetPopularRecipes(req, res){
         let faveRecipes = await Recipe.find({}, {
             '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
         }).sort({favorites: -1}).limit(6);
-        //.allowDiskUse(true)
-         return res.status(200).json(faveRecipes);
+        if(!faveRecipes){
+            return res.status(404).json({msg: "Could not get the recipes"});
+        }
+        return res.status(200).json(faveRecipes);
     }catch(err){
-        console.log('ERERR',err);
-        return res.status(400).json(err);
+        return res.status(500).json({msg: "An error has occured, could not get the most popular recipes"});
     }
 }
 
@@ -33,16 +35,22 @@ async function httpGetPopularRecipes(req, res){
 async function httpGetFullRecipeWithDetails(req, res){
     console.log('Getting full recipe with details')
     try{
-        let requestId = req.params.id;
+    let requestId = req.params.id;
     if(!requestId){
-        return res.status(404).json({err: 'Recipe not found'});
+        return res.status(404).json({err: 'Recipe id is needed'});
     }
     let foundRecipe = await Recipe.find({
         _id: requestId
     }, {'__v': 0});
+    if(!foundRecipe){
+        return res.status(404).json({err: 'Recipe not found'});
+    }
     let authorOfRecipe = await User.findOne({_id: foundRecipe[0].author});
+    if(!authorOfRecipe){
+        return res.status(404).json({err: 'Author not found'});
+    }
+    // No check for all comments because there may not be any
     let allComments = await Comment.find({recipe: requestId}).sort({createdAt: -1});
-    console.log('Comments and useres', allComments)
     return res.status(200).json({foundRecipe, authorOfRecipe, allComments});
     } catch(err){
         return res.status(400).json(err);
@@ -124,10 +132,15 @@ async function httpGetFullRecipeWithDetails(req, res){
 
 //Searches for a recipe based on criteria given - finished
  async function httpSearchRecipes(req, res){
-    // console.log('HTTP SEARCHING RECIPES', req.params.searchText, req.params.subCategory);
     try{
         const searchingFor = req.params.searchText.toLowerCase();
         const subCat = req.params.subCategory;
+        if(!searchingFor){
+            return res.status(400).json({msg: "No search criteria given"});
+        }
+        if(!subCat){
+            return res.status(400).json({msg: "No sub category given"});
+        }
         let foundRecipes;
         if(subCat === 'All'){
            foundRecipes = await Recipe.find({recipeName: {$regex: searchingFor}}, {
@@ -138,9 +151,12 @@ async function httpGetFullRecipeWithDetails(req, res){
             '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
         });
         }
+        if(!foundRecipes){
+            return res.status(404).json({msg: "Could not find any recipes"});
+        }
         return res.status(200).json(foundRecipes);
     } catch(err){
-        return res.status(400).json({msg: "Cannot search for recipes"})
+        return res.status(500).json({msg: "An error has occured, cannot search for recipes"})
     }
  }
 
