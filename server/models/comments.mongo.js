@@ -3,6 +3,8 @@ const{ mongoose, Schema } = require('mongoose');
 const commentsSchema = new mongoose.Schema({
     title: {
         type: String,
+        trim: true,
+        maxLength: 100,
         required: true
     },
     comment: {
@@ -17,6 +19,8 @@ const commentsSchema = new mongoose.Schema({
     },
     rating: {
         type: Number,
+        min: 1,
+        max: 5,
         required: true
     },
     
@@ -30,7 +34,8 @@ const commentsSchema = new mongoose.Schema({
     // },
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     authorName: {
         type: String,
@@ -38,12 +43,19 @@ const commentsSchema = new mongoose.Schema({
     },
     recipe: {
         type: Schema.Types.ObjectId,
-        ref: 'Recipe'
+        ref: 'Recipe',
+        required: true
     },
     recipeName: {
         type: String,
         required: true
-    }
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Comment', commentsSchema);

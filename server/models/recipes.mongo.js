@@ -4,7 +4,13 @@ const recipesSchema = new mongoose.Schema({
     recipeName: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        maxlength: [100, 'Recipe name must be under 100 characters']
+    },
+    description: {
+        type: String,
+        required: true,
+        maxlength: [800, 'Recipe description must be under 800 characters']
     },
     images: [{
        type: Schema.Types.Mixed
@@ -42,16 +48,24 @@ const recipesSchema = new mongoose.Schema({
     },
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     authorName: {
         type: String,
-        required: true
+        required: true,
+        trim: true
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
     },
     comments: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'
     }],
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Recipe', recipesSchema);

@@ -5,7 +5,7 @@ const Comment = require('../../models/comments.mongo');
 //Gets all of the recipes for the main page the newest 6 - finished
 async function httpGetNewestRecipes(req, res){
    try{
-    let allRecipes = await Recipe.find({}, {
+    const allRecipes = await Recipe.find({}, {
         '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
     }).sort({createdAt: -1}).limit(6);
     if(!allRecipes){
@@ -19,7 +19,7 @@ async function httpGetNewestRecipes(req, res){
 //Gets the most popular recipes the top 6 - finished
 async function httpGetPopularRecipes(req, res){
     try{
-        let faveRecipes = await Recipe.find({}, {
+        const faveRecipes = await Recipe.find({}, {
             '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
         }).sort({favorites: -1}).limit(6);
         if(!faveRecipes){
@@ -33,24 +33,23 @@ async function httpGetPopularRecipes(req, res){
 
 //Gets the full recipe with details - finished
 async function httpGetFullRecipeWithDetails(req, res){
-    console.log('Getting full recipe with details')
-    try{
-    let requestId = req.params.id;
+    try {
+    const requestId = req.params.id;
     if(!requestId){
         return res.status(404).json({err: 'Recipe id is needed'});
     }
-    let foundRecipe = await Recipe.find({
+    const foundRecipe = await Recipe.find({
         _id: requestId
     }, {'__v': 0});
     if(!foundRecipe){
         return res.status(404).json({err: 'Recipe not found'});
     }
-    let authorOfRecipe = await User.findOne({_id: foundRecipe[0].author});
+    const authorOfRecipe = await User.findOne({_id: foundRecipe[0].author});
     if(!authorOfRecipe){
         return res.status(404).json({err: 'Author not found'});
     }
     // No check for all comments because there may not be any
-    let allComments = await Comment.find({recipe: requestId}).sort({createdAt: -1});
+    const allComments = await Comment.find({recipe: requestId}).sort({createdAt: -1});
     return res.status(200).json({foundRecipe, authorOfRecipe, allComments});
     } catch(err){
         return res.status(400).json(err);

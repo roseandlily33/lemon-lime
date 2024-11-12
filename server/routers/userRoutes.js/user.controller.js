@@ -159,9 +159,8 @@ async function httpGetUserComments(req,res){
 
 //Gets the users favorite recipes - Finished
 async function httpGetUsersFavoriteRecipes(req, res){
- // console.log('Getting the users fave recipes')
   try{
-    let userId = req.params.userId;
+    const userId = req.params.userId;
     if(!userId){
       return res.status(404).json({msg: 'Could not find favorite recipes'})
     }
@@ -171,9 +170,9 @@ async function httpGetUsersFavoriteRecipes(req, res){
     } else {
        foundUserFaves = await User.findOne({_id: userId}, {favorites: true});
     }
-    let favorites = foundUserFaves.favorites;
+    const favorites = foundUserFaves.favorites;
     if(!favorites)  return res.status(404).json({msg: 'Could not find favorite recipes'})
-    let faveIds = Array.from(foundUserFaves.favorites.keys());
+    const faveIds = Array.from(foundUserFaves.favorites.keys());
     if(faveIds.length === 0) return res.status(200).json({favorites: [], favoriteRecipes: []});
     const favoriteRecipes = await Recipe.find({_id: {$in: faveIds}} , {
       '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
@@ -188,12 +187,12 @@ async function httpGetUsersFavoriteRecipes(req, res){
 //Adds a recipe to the users favorites ???
 async function httpAddFavoriteRecipe(req, res){
   try{ 
-    let userId = req.body.userId;
-    let recipeId = req.body.recipeId;
+    const userId = req.body.userId;
+    const recipeId = req.body.recipeId;
     if(!userId || !recipeId){
       return res.status(404).json({msg: 'Could not add a favorite recipe'})
     }
-    let found = await User.findOne({$and : [{authId: userId}, {
+    const found = await User.findOne({$and : [{authId: userId}, {
       ["favorites." + recipeId]: {$exists: true}
     }]});
     if(found){

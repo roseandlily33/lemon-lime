@@ -22,6 +22,7 @@ app.use(cors({
    // optionsSuccessStatus: 204, 
     //allowedHeaders: ['Content-Type', 'Authorization']
 }));
+app.use(helmet());
 // app.use(helmet({
 //   contentSecurityPolicy: {
 //     directives: {
