@@ -12,14 +12,14 @@ const {
 } = require('./user.controller');
 
 //user/
-userRouter.post('/', httpCreateRecipe);
+userRouter.get('/comments/:id', httpGetUserComments);
+userRouter.get('/favorites/:userId', httpGetUsersFavoriteRecipes);
 userRouter.get('/:id', httpGetUserRecipes);
 userRouter.get('/edit/:id', httpGetEditRecipe);
+userRouter.post('/', httpCreateRecipe);
+userRouter.post('/favorites', httpAddFavoriteRecipe);
 userRouter.put('/edit/:id', httpEditRecipe);
 userRouter.delete('/recipe/:id', httpDeleteRecipe);
 userRouter.delete('/favorites', httpDeleteFavoriteRecipe);
-userRouter.get('/comments/:id', httpGetUserComments);
-userRouter.get('/favorites/:userId', httpGetUsersFavoriteRecipes);
-userRouter.post('/favorites', httpAddFavoriteRecipe);
 
 module.exports = userRouter;
