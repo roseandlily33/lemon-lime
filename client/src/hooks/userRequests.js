@@ -4,7 +4,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 async function httpGetUserRecipes(id){
     const response = await fetch(`${API_URL}/user/${id}`);
     let allRecipes = await response.json();
-    //console.log('HTTP RETURNWD USER RECIPES', allRecipes)
     return allRecipes[0];
 }
 //Allows the user to create a recipe
@@ -28,7 +27,7 @@ async function httpCreateRecipe(user, recipe){
 }
 //Allows the user to edit a recipe
 async function httpEditUserRecipe(id, info){
-  console.log('HTTP EDIT CREATE RECIPE', id, info);
+  //console.log('HTTP EDIT CREATE RECIPE', id, info);
     try {
         return await fetch(`${API_URL}/user/edit/${id}`, {
         method: "put",
@@ -85,7 +84,7 @@ async function httpAddFavoriteRecipe(userId, recipeId){
 async function httpGetUsersFavoriteRecipes(userId){
   const response = await fetch(`${API_URL}/user/favorites/${userId}`);
   let allFavorites = await response.json();
-  console.log('Returned http all favorites', allFavorites)
+  //console.log('Returned http all favorites', allFavorites)
   return allFavorites;
 }
 
