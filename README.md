@@ -1,4 +1,5 @@
 # Lemon - Lime 
+MERN Recipe Application
 
 ## Table of Contents
 - [Description](#description)
