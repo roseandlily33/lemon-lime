@@ -12,29 +12,44 @@ const API_URL = process.env.REACT_APP_API_URL;
 //     let allRecipes = await response.json();
 //     return allRecipes;
 // }
-//Gets the full recipe with details for a view page
+
+
+//GET: Gets the full recipe with details for a view page
 async function httpGetFullRecipeWithDetails(id){
-    const response = await fetch(`${API_URL}/home/${id}`);
-    let oneRecipe = await response.json();
-    return oneRecipe;
-}
-//Gets the full recipe details for the edit a recipe page
-async function httpGetFullRecipeWithDetailsEditPage(id){
-  const response = await fetch(`${API_URL}/user/edit/${id}`);
-  let oneRecipe = await response.json();
-  return oneRecipe[0];
+    try{
+      const response = await fetch(`${API_URL}/home/${id}`);
+      const oneRecipe = await response.json();
+       return oneRecipe;
+    } catch(err){
+      return err;
+    }
 }
 
+//GET: Gets the full recipe details for the edit a recipe page
+async function httpGetFullRecipeWithDetailsEditPage(id){
+  try{
+    const response = await fetch(`${API_URL}/user/edit/${id}`);
+    const oneRecipe = await response.json();
+    return oneRecipe[0];
+  } catch(err){
+    return err;
+  }
+}
+
+// GET: Search for text and sub category
 async function httpSearchRecipes(searchText, subCategory){
-   let recipes =  await fetch(`${API_URL}/home/search/${searchText}/${subCategory}`);
-   let foundRecipes = await recipes.json();
-   //console.log('HTTP FOUND THESE RECIPES', foundRecipes);
-   return foundRecipes;
+   try{
+      const recipes =  await fetch(`${API_URL}/home/search/${searchText}/${subCategory}`);
+     const foundRecipes = await recipes.json();
+      return foundRecipes;
+   } catch(err){
+     return err;
+   }
 }
 
 export {
     //httpGetAllRecipes,
-   httpGetFullRecipeWithDetails,
+    httpGetFullRecipeWithDetails,
     httpGetFullRecipeWithDetailsEditPage,
    // httpGetPopularRecipes,
     httpSearchRecipes

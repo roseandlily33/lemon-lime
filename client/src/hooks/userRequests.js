@@ -1,12 +1,28 @@
 const API_URL = process.env.REACT_APP_API_URL;
 
-//Gets all of the users recipes
+//GET: Gets all of the users recipes
 async function httpGetUserRecipes(id){
+   try{
     const response = await fetch(`${API_URL}/user/${id}`);
-    let allRecipes = await response.json();
+    const allRecipes = await response.json();
     return allRecipes[0];
+   } catch(err){
+    return err;
+   }
 }
-//Allows the user to create a recipe
+
+//GET: Gets all the favorited recipes for a user
+async function httpGetUsersFavoriteRecipes(userId){
+  try{
+    const response = await fetch(`${API_URL}/user/favorites/${userId}`);
+    const allFavorites = await response.json();
+    return allFavorites;
+  } catch(err){
+    return err;
+  }
+}
+
+//POST: Allows the user to create a recipe
 async function httpCreateRecipe(user, recipe){
     try {
         return await fetch(`${API_URL}/user`, {
@@ -20,14 +36,12 @@ async function httpCreateRecipe(user, recipe){
         }),
       });
     } catch(err) {
-      return {
-        ok: false,
-      };
+      return err;
     }
 }
-//Allows the user to edit a recipe
+
+//PUT: Allows the user to edit a recipe
 async function httpEditUserRecipe(id, info){
-  //console.log('HTTP EDIT CREATE RECIPE', id, info);
     try {
         return await fetch(`${API_URL}/user/edit/${id}`, {
         method: "put",
@@ -37,30 +51,12 @@ async function httpEditUserRecipe(id, info){
         body: JSON.stringify(info),
       });
     } catch(err) {
-      return {
-        ok: false,
-      };
+      return err;
     }
 }
-//Allows the user to delete a recipe
-async function httpDeleteRecipe(id){
-  console.log('HTTP DELETE RECIPE', id);
-  try{
-    return await fetch(`${API_URL}/user/recipe/${id}`, {
-      method: 'delete',
-      headers: {
-        "Content-Type": "application/json",
-      }
-    })
-  } catch(err){
-    return {
-      ok: false,
-    };
-  }
-}
-//Allows the user to add a favorite recipe
+
+//PUT: Allows the user to add a favorite recipe
 async function httpAddFavoriteRecipe(userId, recipeId){
-  //console.log('ADDING HTTP FAVE RECIPE', userId, recipeId)
   try{
     return await fetch(`${API_URL}/user/favorites`, {
       method: 'post',
@@ -73,28 +69,25 @@ async function httpAddFavoriteRecipe(userId, recipeId){
       })
     })
   } catch(err){
-    console.log('HTTP ERROR', err);
-    return {
-      ok: false,
-    };
+    return err;
   }
 }
 
-//Gets all the favorited recipes for a user
-async function httpGetUsersFavoriteRecipes(userId){
-  const response = await fetch(`${API_URL}/user/favorites/${userId}`);
-  let allFavorites = await response.json();
-  //console.log('Returned http all favorites', allFavorites)
-  return allFavorites;
+//DELETE: Allows the user to delete a recipe
+async function httpDeleteRecipe(id){
+  try{
+    return await fetch(`${API_URL}/user/recipe/${id}`, {
+      method: 'delete',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+  } catch(err){
+    return err;
+  }
 }
 
-// async function httpGetFavoritesForMainPage(userId){
-//   const response = await fetch(`${API_URL}/user/main/favorites/${userId}`);
-//   let allFavorites = await response.json();
-//   return allFavorites;
-// }
-
-// Delete a favorited recipe for a user
+// DELETE: Delete a favorited recipe for a user
 async function httpDeleteFavoriteRecipe(userId, recipeId){
   try{
     return await fetch(`${API_URL}/user/favorites`, {
@@ -105,11 +98,13 @@ async function httpDeleteFavoriteRecipe(userId, recipeId){
       body: JSON.stringify({userId, recipeId})
     })
   } catch(err){
-    return {
-      ok: false,
-    };
+    return err;
   }
 }
+
+
+
+
 
 
 //Some functionailty for maybe a login page
@@ -130,7 +125,11 @@ async function httpDeleteFavoriteRecipe(userId, recipeId){
 //       };
 //     }
 // }
-
+// async function httpGetFavoritesForMainPage(userId){
+//   const response = await fetch(`${API_URL}/user/main/favorites/${userId}`);
+//   let allFavorites = await response.json();
+//   return allFavorites;
+// }
 // async function httpLoginUser(info){
 //    try{
 //     const response = await fetch(`${API_URL}/user/login`, {
