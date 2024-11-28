@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import Measurement from "./Measurement.component";
 import EachIngredientCreate from "./EachIngredientCreate.component";
 import { MiddleContainer, InputDiv } from "../../RecipeForm.styles";
+import IconButton from "../../../../components/Buttons/IconButton/IconButton.component";
+import RegularInput from "../../../../components/Input/RegularInput/regularInput.component";
 
 const IngredientsCreate = ({ingredients, addNewIngredient, setIngredients}) => {
 
@@ -33,7 +35,7 @@ const IngredientsCreate = ({ingredients, addNewIngredient, setIngredients}) => {
       
     return ( 
         <MiddleContainer>
-          <h3>Ingredients <span>max 15</span></h3>
+          <h3>Ingredients <span>Max 15</span></h3>
           <hr />
         <>
         {ingredients?.length > 0 ? 
@@ -45,20 +47,11 @@ const IngredientsCreate = ({ingredients, addNewIngredient, setIngredients}) => {
         <h4 style={{textAlign: 'center', marginBlock: '2rem'}}>Add Instructions</h4>
         }
         </>
-        
-     <InputDiv className="boxShadow">
-      <p className="error">{error}</p>
+       <InputDiv className="boxShadow">
+        {error && <p className="error">{error}</p>}
         <Measurement mea={mea} setMea={setMea} />
-        <input 
-               type="text"  
-               value={ing}
-               placeholder="Add an ingredient"
-               onChange={(e) => 
-                 setIng(e.target.value)}
-        />
-        <button className="buttonWithIcon" onClick={(e) => addCard(e, ing)}>
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="icon icon-add"><path className="secondary" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
-        Add Ingredient</button>
+        <RegularInput type="text" value={ing} placeholder="Add an ingredient" onChange={(e) => setIng(e.target.value)}  />
+        <IconButton functionName={(e) => addCard(e, ing)} span="Add Ingredient" svg={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="icon icon-add"><path className="secondary" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>}/>
         </InputDiv>
         </MiddleContainer>  
      );

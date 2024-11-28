@@ -87,7 +87,7 @@ const CreateRecipeForm = () => {
         <p className="error">{error}</p>
         {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
-        <h3>{successStatus}</h3>
+        {successStatus && <h3>{successStatus}</h3>}
         <button onClick={() => navigate('/user/home')}>Go Home</button>
          </Modal>
         )}

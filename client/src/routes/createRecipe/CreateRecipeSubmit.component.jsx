@@ -8,11 +8,12 @@ import { SubmitButtonContainer } from "./RecipeForm.styles";
 const CreateRecipeSubmit = ({formValues, images,
     instructions, ingredients, setIsOpen, setSuccessState,
     setError}) => {
+      
     const dispatch = useDispatch();
     const {user} = useAuth0();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-       // console.log('CREATING RECIPE WITH THESE', formValues, images, ingredients, instructions);
         if(images?.length > 4){
           setError('Only 4 images can be uploaded')
         } else if (!ingredients?.length){

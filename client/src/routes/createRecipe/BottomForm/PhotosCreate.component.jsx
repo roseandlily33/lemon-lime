@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../../components/Modal/Model.component";
+import PrimaryButton from "../../../components/Buttons/PrimaryButton/primaryButton.component";
 
 const PhotosCreate = ({images, addNewImage, addNewPhotos}) => {
 
@@ -37,16 +38,16 @@ const PhotosCreate = ({images, addNewImage, addNewPhotos}) => {
         {isOpen && (
          <Modal onClose={() => setIsOpen(false)}>
            <h3>An error has occured trying to submit your pictures</h3>
-           <button onClick={() => navigate('/user/home')}>Go Home</button>
+           <PrimaryButton functionName={() => navigate('/user/home')} span="Go Home" />
          </Modal>
        )}
         <div key={1} className="image-item">
-          <p className="error">{error}</p>
+          {error && <p className="error">{error}</p>}
           <div className="image-options">
-          <button onClick={(e) => {
+            <PrimaryButton functionName={(e) => {
             e.preventDefault();
             widgetRef.current.open();
-          }} style={{marginBlock: '1em'}}>Upload Images</button>
+          }} span="Upload Images"/>
         </div>
       </div>
         </>

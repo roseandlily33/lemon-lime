@@ -5,6 +5,8 @@ import Modal from '../../../components/Modal/Model.component';
 import { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import { fetchUserRecipes } from "../../../redux/userSlice";
+import SecondaryButton from '../../../components/Buttons/SecondaryButton/secondaryButton.component';
+import PrimaryButton from '../../../components/Buttons/PrimaryButton/primaryButton.component';
 
 const DeleteRecipe = ({id}) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -31,14 +33,11 @@ const DeleteRecipe = ({id}) => {
     return ( <>
      {isOpen && (
     <Modal onClose={() => setIsOpen(false)}>
-      <h3>{success}</h3>
-      <button onClick={() => navigate('/user/home')}>Go Home</button>
-    </Modal>
-  )}
-    <button className="secondaryButton" style={{display: 'flex', alignItems: 'center', maxHeight: '60px'}} onClick={(e) => {e.preventDefault(); deleteRecipe(id);}}>
-    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" className="icon icon-trash"><path className="primary" d="M5 5h14l-.89 15.12a2 2 0 0 1-2 1.88H7.9a2 2 0 0 1-2-1.88L5 5zm5 5a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1z"/><path class="secondary" d="M8.59 4l1.7-1.7A1 1 0 0 1 11 2h2a1 1 0 0 1 .7.3L15.42 4H19a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h3.59z"/></svg>
-    Delete Recipe
-    </button> 
+      {success && <h3>{success}</h3>}
+      <PrimaryButton functionName={() => navigate('/user/home')} span="Go Home" />
+      </Modal>
+     )}
+    <SecondaryButton functionName={(e) => {e.preventDefault(); deleteRecipe(id);}}  span="Delete Recipe" svg={<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" className="icon icon-trash"><path className="primary" d="M5 5h14l-.89 15.12a2 2 0 0 1-2 1.88H7.9a2 2 0 0 1-2-1.88L5 5zm5 5a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1z"/><path class="secondary" d="M8.59 4l1.7-1.7A1 1 0 0 1 11 2h2a1 1 0 0 1 .7.3L15.42 4H19a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h3.59z"/></svg>}/>
     </>);
 }
  

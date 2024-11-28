@@ -3,7 +3,9 @@ import {EachInput} from './auth.styles';
 import {useNavigate} from 'react-router-dom';
 import { useContext } from "react";
 import { UserContext } from "../../App";
+import RequiredInput from "../../components/Input/RequiredInput/requiredInput.component";
 import axios from "axios";
+import PrimaryButton from "../../components/Buttons/PrimaryButton/primaryButton.component";
 
 const LoginComponent = ({setPage}) => {
   const {setUser} = useContext(UserContext);
@@ -43,9 +45,7 @@ const LoginComponent = ({setPage}) => {
           },
           { withCredentials: true }
         );
-        console.log('SIGN UP ', data);
         const { success, message, token, userData } = data;
-        console.log('SIGN INSUCESS', success, 'Message', message)
         if (success) {
           alert(message);
           setUser(userData)
@@ -70,18 +70,17 @@ const LoginComponent = ({setPage}) => {
         <h3>Login</h3>
         <form onSubmit={handleFormSubmit}>
         <EachInput>
-        <label>Email: </label>
-            <input type="text" value={formState.email} name='email' onChange={handleChange} required/> 
-            </EachInput>
-            <EachInput>
+          <RequiredInput label="Email:" value={formState.email} name='email' onChange={handleChange}/>
+        </EachInput>
+        <EachInput>
             <label>Password:</label>
             <input type="password" value={formState.password} name='password' onChange={handleChange} required/> 
             </EachInput>
-       <button className="button">Submit</button>
+        <PrimaryButton functionName={handleFormSubmit} span="Submit"/>
        </form>
        <div>
-       <h4> Dont Have An Account?</h4>
-       <button onClick={() => setPage(false)}>Sign Up</button>
+       <h4>Don't Have An Account?</h4>
+       <PrimaryButton functionName={setPage(false)} span="Sign Up" />
        </div>
        </>
      );

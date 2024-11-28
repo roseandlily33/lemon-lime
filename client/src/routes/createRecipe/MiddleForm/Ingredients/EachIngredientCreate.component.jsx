@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
 import EachMeasurementCreate from "./EachMeasurementCreate.component";
 import { EachI } from "../../RecipeForm.styles";
-const EachIngredientCreate = (
-    {ing, id, idx, deleteIngredient, setIngredients,
-         ingredients, mea}
-
-) => {
+const EachIngredientCreate = ({ing, id, idx, deleteIngredient, setIngredients, ingredients, mea}) => {
 
     useEffect(() => {
-        //console.log('USE EFFECT', id, ing, mea)
         setIngId(id);
         setIng(ing);
         setMeas(mea);
@@ -30,7 +25,6 @@ const EachIngredientCreate = (
         }
         ing[idx] = item;
         setIngredients(ing);
-        console.log('Set ingredients', ing, ingredients);
     }
 
     return ( 
