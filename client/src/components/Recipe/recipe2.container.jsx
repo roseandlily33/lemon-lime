@@ -11,16 +11,16 @@ const RecipeContainer2 = ({recipe}) => {
     const url = `/recipe/${recipe._id}`;
    
     return ( 
-        <SideContainer key={recipe._id} onClick={() => navigate(url)} className="boxShadowHover">
+        <SideContainer key={recipe?._id} onClick={() => navigate(url)} className="boxShadowHover">
            <div className="topDiv">
            <div>
-           <NavLink className="link" to={url}>{recipe.recipeName.slice(0, 15)}</NavLink>
+           <NavLink className="link" to={url}>{recipe?.recipeName.slice(0, 15)}</NavLink>
            {/* <Heart recipe={recipe._id}/> */}
            </div>
-            <p>{formatDate(recipe.createdAt)}</p>
-            <p>Favorites: {recipe.favorites}</p>
+            <p>{formatDate(recipe?.createdAt)}</p>
+            <p>Favorites: {recipe?.favorites}</p>
            </div>
-           {recipe.images[0] ? <CloudImage publicId={recipe.images[0].publicId}/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
+           {recipe?.images[0] ? <CloudImage publicId={recipe?.images[0]?.publicId}/> : <img src={Lemons} alt="lemons" className="recipePhoto"/>}
         </SideContainer>
      );
 }

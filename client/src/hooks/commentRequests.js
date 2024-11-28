@@ -1,8 +1,18 @@
 const API_URL = process.env.REACT_APP_API_URL;
 
-//Allows a user to comment on a recipe
+ //GET:  Gets all the comments for a recipe
+ async function httpGetAllCommentsForRecipe(id){
+  try{
+    const response = await fetch(`${API_URL}/comments/${id}`);
+    const allComments = await response.json();
+    return allComments;
+  }catch(err){
+    return err;
+  }
+}
+
+// POST: Allows a user to comment on a recipe
 async function httpAddComment(comment){
-    //console.log('Sending', comment);
     try{
       return await fetch(`${API_URL}/comments/add`, {
         method: 'post',
@@ -12,56 +22,40 @@ async function httpAddComment(comment){
         body: JSON.stringify(comment)
       })
     } catch(err){
-      return {
-        ok: false,
-      };
+      return err;
     }
   }
+
+
+    //PUT: Edit a comment from the user
+    async function httpEditComment(id, comment){
+      try{
+        return await fetch(`${API_URL}/comments/${id}`, {
+          method: 'put',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(comment)
+        })
+      } catch(err){
+        return err;
+      }
+    }
+
+
+  // DELETE: Deletes a comment
   async function httpDeleteComment(id){
     try{
-      //console.log('The deleting id for the HTTP', id);
-      return await fetch(`${API_URL}/comments/${id}`, {
+       return await fetch(`${API_URL}/comments/${id}`, {
         method: 'delete',
         headers: {
           "Content-Type": "application/json",
         },
       })
     }catch(err){
-      return {
-        ok: false,
-      };
+      return err;
     }
   }
-  
-  async function httpGetAllCommentsForRecipe(id){
-    try{
-      const response = await fetch(`${API_URL}/comments/${id}`);
-      let allComments = await response.json();
-      return allComments;
-    }catch(err){
-      return {
-        ok: false,
-      };
-    }
-  }
-  //Edit a comment from the user
-  async function httpEditComment(id, comment){
-    //console.log('Sending', comment);
-    try{
-      return await fetch(`${API_URL}/comments/${id}`, {
-        method: 'put',
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(comment)
-      })
-    } catch(err){
-      return {
-        ok: false,
-      };
-    }
-  }
-
   
 
   export {

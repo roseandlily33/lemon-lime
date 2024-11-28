@@ -35,7 +35,7 @@ const DeleteComment = ({id}) => {
             e.preventDefault();
             deleteComment()
            }}>Yes</button>
-           <h3>{success}</h3>
+           {success && <h3>{success}</h3>}
            <button onClick={() => navigate('/user/home')}>Go Home</button>
          </Modal>
        )}

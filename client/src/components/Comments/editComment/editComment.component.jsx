@@ -3,6 +3,7 @@ import { CommentForm, FormElement  } from "../addComment/comments.styles";
 import { useState } from "react";
 import { CommentDiv } from "../userComments/userComments.styles";
 import { httpEditComment } from "../../../hooks/commentRequests";
+import RequiredInput from "../../Input/RequiredInput/requiredInput.component";
 
 const EditComment = ({comment}) => {
 
@@ -37,20 +38,10 @@ const EditComment = ({comment}) => {
          <CommentForm onSubmit={handleSubmit}>
         {/* Title */}
         <FormElement>
-        <label>Title:</label>
-        <input 
-          style={{width: '50%'}}
-            type="text" 
-            name="title"
-            value={formState.title}
-            onChange={handleChange}
-            required
-        />
+        <RequiredInput style={{width: '50%'}} label="Title:" name="title" value={formState.title} onChange={handleChange}/>
         </FormElement>
         {/* Rating */}
-        <Rating name="starRating"
-            value={starRating}
-            onChange={setStarRating} />
+        <Rating name="starRating" value={starRating} onChange={setStarRating} />
         {/* Comment */}
         <FormElement>
         <label>Review:</label>

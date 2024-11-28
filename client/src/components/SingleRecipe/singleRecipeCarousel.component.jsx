@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+//import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { CarouselDiv, Direction, LeftDirection, RightDirection, Indicator, RecipeImage } from "./singleRecipeCarousel.styles";
 import CloudImage from "../../Photos/photo.component";
@@ -27,7 +27,7 @@ const Carousel = ({images}) => {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className='icon icon-cheveron-left-circle'><circle cx="12" cy="12" r="10" className="primary"/><path class="secondary" d="M13.7 15.3a1 1 0 0 1-1.4 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 1.4L10.42 12l3.3 3.3z"/></svg>
         </LeftDirection>
         <Indicator>
-        {images.map((_, index) => (
+        {images?.map((_, index) => (
           <RecipeImage
             key={index}
             className={`dot ${currentIndex === index ? "active" : ""}`}

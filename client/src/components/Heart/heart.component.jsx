@@ -4,13 +4,17 @@ import {useSelector, useDispatch} from 'react-redux';
 import { httpAddFavoriteRecipe } from "../../hooks/userRequests";
 import { httpDeleteFavoriteRecipe } from "../../hooks/userRequests";
 import { fetchFavorites } from "../../redux/favoritesSlice";
+import FaveHeart from "./favedHeart.component";
+import NotFaveHeart from "./notFavedHeart.component";
 
 //Recipe = the id 
 const Heart = ({recipe}) => {
+    
     const {user} = useAuth0();
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favorites.favorites);
     const [found, setFound] = useState(false);
+
     useEffect(() => {
     if(recipe && favorites){
          if(favorites[recipe] === 'true'){
@@ -40,17 +44,11 @@ const Heart = ({recipe}) => {
         {
             found ?
             <>
-            <svg onClick={() => deleteFavorite(user.sub, recipe)} xmlns="http://www.w3.org/2000/svg"  className='icon icon-heart' viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" className="primaryHeartFaved"/>
-            <path className="secondaryHeartFaved" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/>
-             </svg>
+            <FaveHeart functionName={() => deleteFavorite(user.sub, recipe)} />
             </>
             :
             <>
-            <svg onClick={() => addFavorite(user.sub, recipe)} xmlns="http://www.w3.org/2000/svg" className="icon icon-heart" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" className="primaryHeart"/>
-            <path className="secondaryHeart" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/>
-            </svg>
+            <NotFaveHeart functionName={() => addFavorite(user.sub, recipe)} />
             </>
         }
         </>

@@ -9,12 +9,12 @@ const SingleComment = ({comments, setEditing, setEditComment}) => {
         <>
        {
         comments.map((c) => {
-            return <SingleCommentDiv key={c._id} className="boxShadow">
-                <h4 style={{fontWeight: 'bold'}}>{c.title}</h4>
+            return <SingleCommentDiv key={c?._id} className="boxShadow">
+                <h4 style={{fontWeight: 'bold'}}>{c?.title}</h4>
                 <div style={{display: 'flex', gap: '1rem'}}>
                 <p style={{textTransform: 'capitalize'}}>Recipe: {c?.recipeName}</p>
-                <p>{formatStars(c.rating)}</p>
-                <p>{formatDate(c.createdAt)}</p>
+                <p>{formatStars(c?.rating)}</p>
+                <p>{formatDate(c?.createdAt)}</p>
                 
                 </div>
                 <hr /> 
@@ -24,7 +24,7 @@ const SingleComment = ({comments, setEditing, setEditComment}) => {
                     setEditing(true);
                     setEditComment(c);
                 }} className="primary">Edit</button>
-                <DeleteComment id={c._id}/>
+                <DeleteComment id={c?._id}/>
                 </div>
                 
             </SingleCommentDiv>
