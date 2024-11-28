@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 //Responsive Styling Done
 export const SearchContainer = styled.main`
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;  
     display: flex;
     flex-direction: column;
@@ -23,6 +23,7 @@ export const StyledDiv = styled.section`
     height: 20%;
     background-color: ${({theme}) => theme.colors.white};    
     border-radius: 5px;
+    margin: 1rem;
     h2{
         color: ${({theme}) => theme.colors.green};  
     }
@@ -36,6 +37,8 @@ export const StyledDiv = styled.section`
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 1rem;
+            width: 80%;
         }
         button{
             width: 150px;
@@ -52,8 +55,8 @@ export const StyledDiv = styled.section`
 `;
 
 export const ResultsDiv = styled.aside`
-    /* height: 100vh; */
-    width: 100vw; 
+    height: 100vh;
+    min-width: 100vw; 
     height: 70%;
     overflow-y: scroll;
 `;
