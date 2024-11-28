@@ -12,9 +12,11 @@ import Heart from '../Heart/heart.component';
 import { NavLink } from "react-router-dom";
 import { averageOfStars } from "../../formattingUtils/averageOfStarts";
 import { formatStars } from "../../formattingUtils/stars";
+import {useAuth0} from '@auth0/auth0-react';
 
 const SingleRecipeComponent = () => {
     const {id} = useParams();
+    const {isAuthenticated} = useAuth0();
     const [singleRecipe, setSingleRecipe] = useState();
     const [usersName, setUsersName] = useState();
     const [comments, setComments] = useState();
@@ -24,11 +26,11 @@ const SingleRecipeComponent = () => {
       const fetchSingle = async() => {
           const res = await httpGetFullRecipeWithDetails(id);
           //console.log('Single recipes', res)
-          setSingleRecipe(res.foundRecipe[0]);
-          setUsersName(res.authorOfRecipe.name);
-          setComments(res.allComments);
-          console.log('INCOMING RATING', res.allComments)
-          setAverage(res.allComments.slice(0, 10));
+          setSingleRecipe(res?.foundRecipe[0]);
+          setUsersName(res?.authorOfRecipe.name);
+          setComments(res?.allComments);
+          console.log('INCOMING RATING', res?.allComments)
+          setAverage(res?.allComments.slice(0, 10));
       }
       fetchSingle();
   }, [id]);
@@ -42,7 +44,7 @@ const SingleRecipeComponent = () => {
     <>
     <TopDiv>
         <LeftSide>
-        {singleRecipe.images[0] ? <Carousel images={singleRecipe.images} /> : <img src={Lemon} alt="lemons" className="recipePhoto"/>}
+        {singleRecipe?.images[0] ? <Carousel images={singleRecipe?.images} /> : <img src={Lemon} alt="lemons" className="recipePhoto"/>}
        </LeftSide>
         <RightSide >
         <h2>{singleRecipe?.recipeName}</h2>
@@ -50,15 +52,15 @@ const SingleRecipeComponent = () => {
         <span>Created by: 
           <NavLink className="userLink" to={`/user/${singleRecipe.author}`}> {usersName} </NavLink>
             on {formatDate(singleRecipe.createdAt)}</span>
-        <Heart recipe={singleRecipe._id}/>
+        {isAuthenticated && <Heart recipe={singleRecipe._id}/>}
         </div>
         <>
         <p>{formatStars(averageOfStars(average))}</p>
-        <p>Cook Time: {singleRecipe.cookTime}</p>
-        <p>Prep Time: {singleRecipe.prepTime}</p>
-        <p>Total Time: {singleRecipe.totalTime.hours} Hours {singleRecipe.totalTime.minutes} Minutes</p>
-        <p>Sub Category: {singleRecipe.subCategory}</p>
-        <p>Favorites: {singleRecipe.favorites}</p>
+        <p>Cook Time: {singleRecipe?.cookTime}</p>
+        <p>Prep Time: {singleRecipe?.prepTime}</p>
+        <p>Total Time: {singleRecipe?.totalTime?.hours} Hours {singleRecipe?.totalTime?.minutes} Minutes</p>
+        <p>Sub Category: {singleRecipe?.subCategory}</p>
+        <p>Favorites: {singleRecipe?.favorites}</p>
         </>
        </RightSide>
      </TopDiv>
@@ -68,7 +70,7 @@ const SingleRecipeComponent = () => {
   <h4>Ingredients</h4>
   <ul className="outside">
     <div className="ing1">
-    {singleRecipe.ingredients?.map(({id,mea}, index) => {
+    {singleRecipe?.ingredients?.map(({id,mea}, index) => {
       return <div className="insideIng1">
       <p key={id} style={{color: '#6C9251', paddingRight: '0.7em'}}>{index + 1}</p>
       <p key={mea}>{mea}</p>
@@ -76,7 +78,7 @@ const SingleRecipeComponent = () => {
     })}
     </div>
     <div className="ing2" >
-  {singleRecipe.ingredients?.map(({id, ing}) => {
+  {singleRecipe?.ingredients?.map(({id, ing}) => {
       return <p key={id}>{ing}</p>
   })
   }
@@ -98,7 +100,6 @@ const SingleRecipeComponent = () => {
         </Bottom>
        </>
        }
-       
        <hr />
        <Comment singleRecipe={singleRecipe}/>
        <hr />

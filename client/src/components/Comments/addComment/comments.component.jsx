@@ -1,6 +1,6 @@
 import { CommentContainer, CommentForm, FormElement } from "./comments.styles";
 import { useState } from "react";
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 import {useAuth0} from '@auth0/auth0-react';
 import {httpAddComment} from '../../../hooks/commentRequests';
 import Rating from "../../Rating/rating.component";
@@ -8,11 +8,13 @@ import Rating from "../../Rating/rating.component";
 
 const Comment = ({singleRecipe}) => {
     const {id} = useParams();
-    const { user, isAuthenticated} = useAuth0();
+    const { user, isAuthenticated, loginWithRedirect} = useAuth0();
     const [formState, setFormState] = useState({
         title: '',
         comment: '',
     });
+
+    // 
 
     const[starRating, setStarRating] = useState(1);
     const[success, setSuccess] = useState('');
@@ -75,7 +77,7 @@ const Comment = ({singleRecipe}) => {
          </CommentForm>
     : 
     <FormElement>
-        <p>Login to post a comment</p>
+        <p><span style={{fontStyle: 'normal', color: 'orange'}} onClick={() => loginWithRedirect()}>Login</span> to post a comment</p>
     </FormElement>
     }
         </CommentContainer>

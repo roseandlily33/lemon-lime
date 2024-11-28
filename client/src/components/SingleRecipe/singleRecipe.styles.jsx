@@ -6,7 +6,7 @@ export const SingleRecipeContainer  = styled.main`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    margin-block: 2rem;
     background-color: ${({theme}) => theme.colors.white};
     border-radius: 5px;
     padding: 1rem;

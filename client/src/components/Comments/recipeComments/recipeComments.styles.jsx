@@ -12,7 +12,7 @@ export const SingleCommentDiv = styled.div`
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.white};
     border: 2px solid  ${({theme}) => theme.colors.offWhite};
-    width: 60%;
+    width: 100%;
     border-radius: 5px;
     p{
         padding-top: 0.4em;
