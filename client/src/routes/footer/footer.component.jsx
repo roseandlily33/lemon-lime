@@ -6,7 +6,6 @@ const Footer = () => {
     return (
         <FooterContainer>
             <img src={Logo} alt="Lemon Lime Logo" className="logoImage" style={{marginInline: '2rem'}}/>
-          
         </FooterContainer>
       );
 }

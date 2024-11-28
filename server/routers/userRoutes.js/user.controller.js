@@ -2,7 +2,90 @@ const Recipe = require('../../models/recipes.mongo');
 const User = require('../../models/user.mongo');
 
 
-//User creates a recipe - finished
+//GET: Gets all of the users recipes - finished
+async function httpGetUserRecipes(req, res){
+  try{
+    let userId = req.params.id;
+    if (!userId) {
+      return res.status(400).json({ msg: 'A User Id is required' });
+  }
+    let fetchedRecipes;
+    if(userId.slice(0,4) === 'auth'){
+       fetchedRecipes = await User.find({authId: userId}).populate("recipes").sort({createdAt: -1});
+    } else {
+      fetchedRecipes = await User.find({_id: userId}).populate("recipes").sort({createdAt: -1});
+    }
+    if(!fetchedRecipes){
+      return res.status(404).json({msg: "Could not get the recipe"})
+    }
+    return res.status(200).json(fetchedRecipes);
+  } catch (err){
+    return res.status(500).json({msg: "An error has occured, could not get the recipe"})
+  }
+}
+
+//GET: Gets the users favorite recipes
+async function httpGetUsersFavoriteRecipes(req, res){
+  try{
+    const userId = req.params.userId;
+    if(!userId){
+      return res.status(404).json({msg: 'Could not find favorite recipes'})
+    }
+    let foundUserFaves;
+    if(userId.slice(0,4) === 'auth'){
+       foundUserFaves = await User.findOne({authId: userId}, {favorites: true});
+    } else {
+       foundUserFaves = await User.findOne({_id: userId}, {favorites: true});
+    }
+    const favorites = foundUserFaves.favorites;
+    if(!favorites)  return res.status(404).json({msg: 'Could not find favorite recipes'})
+    const faveIds = Array.from(foundUserFaves.favorites.keys());
+    if(faveIds.length === 0) return res.status(200).json({favorites: [], favoriteRecipes: []});
+    const favoriteRecipes = await Recipe.find({_id: {$in: faveIds}} , {
+      '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
+    });
+    if(!favoriteRecipes) return res.status(404).json({msg: 'Could not find favorite recipes'})
+    return res.status(200).json({favorites, favoriteRecipes});
+  } catch(err){
+    return res.status(500).json({msg: 'An error has occured, could not find favorite recipes'})
+  }
+}
+
+//GET: Gets a recipe for a user for editing
+async function httpGetEditRecipe(req, res){
+  try{
+    let requestId = req.params.id;
+    if(!requestId){
+        return res.status(404).json({err: 'Recipe not found'});
+    }
+    let foundRecipe = await Recipe.find({
+        _id: requestId
+    }, {'__v': 0});
+    if(!foundRecipe){
+        return res.status(404).json({err: 'Recipe not found'});
+    } 
+    return res.status(200).json(foundRecipe);
+  } catch(err){
+    return res.status(500).json({msg: 'An error has occured, could not edit the recipe'})
+  }
+}
+
+//GET: Gets the users comments 
+async function httpGetUserComments(req,res){
+  try{
+    //let userId = req.params.id;
+    const commentsForUser = await User.findOne({authId: req.params.id}, {'email': 0, 'recipes': 0, '__v': 0, 'favorites': 0 }).populate('comments');
+    if(!commentsForUser){ 
+      return res.status(404).json({msg: 'Could not find comments'})
+    }
+   // const recipes = await Recipe.find({})
+    return res.status(200).json(commentsForUser);
+  } catch(err){
+    return res.status(500).json({msg: 'An error has occured, could not find comments'})
+  }
+}
+
+//POST: User creates a recipe 
 async function httpCreateRecipe(req, res){
     try{
       const {sub, nickname, email} = req.body.user;
@@ -37,154 +120,8 @@ async function httpCreateRecipe(req, res){
         return res.status(500).json({msg: 'An error has occured creating the recipe'})
     }
 }
-//Gets all of the users recipes - finished
-async function httpGetUserRecipes(req, res){
-    try{
-      let userId = req.params.id;
-      if (!userId) {
-        return res.status(400).json({ msg: 'A User Id is required' });
-    }
-      let fetchedRecipes;
-      if(userId.slice(0,4) === 'auth'){
-         fetchedRecipes = await User.find({authId: userId}).populate("recipes").sort({createdAt: -1});
-      } else {
-        fetchedRecipes = await User.find({_id: userId}).populate("recipes").sort({createdAt: -1});
-      }
-      if(!fetchedRecipes){
-        return res.status(404).json({msg: "Could not get the recipe"})
-      }
-      return res.status(200).json(fetchedRecipes);
-    } catch (err){
-      return res.status(500).json({msg: "An error has occured, could not get the recipe"})
-    }
-}
-//Edit a user recipe - finished
-async function httpEditRecipe(req, res){
-  try{
-    let editId = req.params.id;
-    if(!editId){
-      return res.status(404).json({msg: "Recipe not found"})
-    }
-    let recipeBody = req.body;
-    if(!recipeBody){
-      return res.status(404).json({msg: "Recipe not found"})
-    }
-    let editedRecipe = await Recipe.findOneAndUpdate({_id: editId}, recipeBody, {upsert: true});
-    if(!editedRecipe){
-      return res.status(404).json({msg: "Could not edit the recipe"})
-    }
-    return res.status(200).json(editedRecipe);
-  } catch(err) {
-    return res.status(500).json({msg: "An error has occured, could not edit the recipe"})
-  }
-}
-//Delete a user recipe - finished
-async function httpDeleteRecipe(req, res){
-  try{
-    let id = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ msg: 'Invalid id' });
-  }
-    let deletedRecipe = await Recipe.findOneAndDelete({_id: id});
-    if(!deletedRecipe){
-      return res.status(404).json({msg: "Could not delete the recipe"})
-    }
-    let userRecipe = await User.findOneAndUpdate({_id: deletedRecipe.author}, {
-      $pull: {recipes: id}
-    });
-    if(!userRecipe){
-      return res.status(404).json({msg: "Could not delete the recipe"})
-    } 
-    return res.status(200).json(deletedRecipe);
-  } catch(err){
-    return res.status(404).json({msg: "Could not delete the recipe"});
-  }
-}
 
-//Deletes a favorite recipe for a user -finished
-async function httpDeleteFavoriteRecipe(req, res){
-  try{
-    let userId = req.body.userId;
-    let recipeId = req.body.recipeId;
-    if(!userId || !recipeId){
-      return res.status(404).json({msg: "Could not delete favorite the recipe"});
-    }
-    let found = await User.findOne({$and : [{authId: userId}, {["favorites." + recipeId]: {$exists: true}}]});
-    if(found){
-       await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: -1}});
-       await User.findOneAndUpdate({authId: userId}, {
-        $unset: {["favorites." + recipeId]: ''}
-      });
-    } else {
-      return res.status(404).json({msg: "Could not delete favorite recipe"});
-    }
-    return res.status(201).json({msg: 'Removed the favorite recipe'})
-  } catch(err){
-    return res.status(500).json({msg: "An error has occured"});
-  }
-}
-//Gets a recipe for a user for editing - Finished
-async function httpGetEditRecipe(req, res){
-  try{
-    let requestId = req.params.id;
-    if(!requestId){
-        return res.status(404).json({err: 'Recipe not found'});
-    }
-    let foundRecipe = await Recipe.find({
-        _id: requestId
-    }, {'__v': 0});
-    if(!foundRecipe){
-        return res.status(404).json({err: 'Recipe not found'});
-    } 
-    return res.status(200).json(foundRecipe);
-  } catch(err){
-    return res.status(500).json({msg: 'An error has occured, could not edit the recipe'})
-  }
-}
-
-//Gets the users comments - Finished
-async function httpGetUserComments(req,res){
-  try{
-    //let userId = req.params.id;
-    const commentsForUser = await User.findOne({authId: req.params.id}, {'email': 0, 'recipes': 0, '__v': 0, 'favorites': 0 }).populate('comments');
-    if(!commentsForUser){ 
-      return res.status(404).json({msg: 'Could not find comments'})
-    }
-   // const recipes = await Recipe.find({})
-    return res.status(200).json(commentsForUser);
-  } catch(err){
-    return res.status(500).json({msg: 'An error has occured, could not find comments'})
-  }
-}
-
-//Gets the users favorite recipes - Finished
-async function httpGetUsersFavoriteRecipes(req, res){
-  try{
-    const userId = req.params.userId;
-    if(!userId){
-      return res.status(404).json({msg: 'Could not find favorite recipes'})
-    }
-    let foundUserFaves;
-    if(userId.slice(0,4) === 'auth'){
-       foundUserFaves = await User.findOne({authId: userId}, {favorites: true});
-    } else {
-       foundUserFaves = await User.findOne({_id: userId}, {favorites: true});
-    }
-    const favorites = foundUserFaves.favorites;
-    if(!favorites)  return res.status(404).json({msg: 'Could not find favorite recipes'})
-    const faveIds = Array.from(foundUserFaves.favorites.keys());
-    if(faveIds.length === 0) return res.status(200).json({favorites: [], favoriteRecipes: []});
-    const favoriteRecipes = await Recipe.find({_id: {$in: faveIds}} , {
-      '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
-    });
-    if(!favoriteRecipes) return res.status(404).json({msg: 'Could not find favorite recipes'})
-    return res.status(200).json({favorites, favoriteRecipes});
-  } catch(err){
-    return res.status(500).json({msg: 'An error has occured, could not find favorite recipes'})
-  }
-}
-
-//Adds a recipe to the users favorites ???
+// PUT: Adds a recipe to the users favorites ?
 async function httpAddFavoriteRecipe(req, res){
   try{ 
     const userId = req.body.userId;
@@ -208,6 +145,74 @@ async function httpAddFavoriteRecipe(req, res){
     return res.status(500).json({msg: 'An error has occured, could not add a favorite recipe'})
   }
 }
+
+//PUT: Edit a user recipe 
+async function httpEditRecipe(req, res){
+  try{
+    let editId = req.params.id;
+    if(!editId){
+      return res.status(404).json({msg: "Recipe not found"})
+    }
+    let recipeBody = req.body;
+    if(!recipeBody){
+      return res.status(404).json({msg: "Recipe not found"})
+    }
+    let editedRecipe = await Recipe.findOneAndUpdate({_id: editId}, recipeBody, {upsert: true});
+    if(!editedRecipe){
+      return res.status(404).json({msg: "Could not edit the recipe"})
+    }
+    return res.status(200).json(editedRecipe);
+  } catch(err) {
+    return res.status(500).json({msg: "An error has occured, could not edit the recipe"})
+  }
+}
+//DELETE: Delete a user recipe - finished
+async function httpDeleteRecipe(req, res){
+  try{
+    let id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ msg: 'Invalid id' });
+  }
+    let deletedRecipe = await Recipe.findOneAndDelete({_id: id});
+    if(!deletedRecipe){
+      return res.status(404).json({msg: "Could not delete the recipe"})
+    }
+    let userRecipe = await User.findOneAndUpdate({_id: deletedRecipe.author}, {
+      $pull: {recipes: id}
+    });
+    if(!userRecipe){
+      return res.status(404).json({msg: "Could not delete the recipe"})
+    } 
+    return res.status(200).json(deletedRecipe);
+  } catch(err){
+    return res.status(404).json({msg: "Could not delete the recipe"});
+  }
+}
+
+//DELETE: Deletes a favorite recipe for a user -finished
+async function httpDeleteFavoriteRecipe(req, res){
+  try{
+    let userId = req.body.userId;
+    let recipeId = req.body.recipeId;
+    if(!userId || !recipeId){
+      return res.status(404).json({msg: "Could not delete favorite the recipe"});
+    }
+    let found = await User.findOne({$and : [{authId: userId}, {["favorites." + recipeId]: {$exists: true}}]});
+    if(found){
+       await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: -1}});
+       await User.findOneAndUpdate({authId: userId}, {
+        $unset: {["favorites." + recipeId]: ''}
+      });
+    } else {
+      return res.status(404).json({msg: "Could not delete favorite recipe"});
+    }
+    return res.status(201).json({msg: 'Removed the favorite recipe'})
+  } catch(err){
+    return res.status(500).json({msg: "An error has occured"});
+  }
+}
+
+
 
 module.exports = {
     httpCreateRecipe,

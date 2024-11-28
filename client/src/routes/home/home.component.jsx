@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import MainPicture from '../../images/Background3.jpg';
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/loader.component";
+import PrimaryButton from "../../components/Buttons/PrimaryButton/primaryButton.component";
 // import { useQuery } from "@apollo/client";
 // import { GET_USER } from "../../graphqlUtils/queries";
 
@@ -28,7 +29,7 @@ const HomePage = () => {
                 <h2>Discover your new</h2>
                 <br />
                 <h2 style={{color: '#D0415A'}}>Favorite Recipes</h2>
-                <button onClick={() => navigate('search')}>Find Recipes</button>
+                <PrimaryButton functionName={() => navigate('search')} span="Find Recipes"/>
             </div>
         </HeroImage>
        <BottomDiv>

@@ -5,7 +5,7 @@ const RecentlySearched = ({recent, seachForOldSearch}) => {
         <RecentContainer>
         <h4>Recently Searched: </h4>
         <div style={{display: 'flex', gap: '1em'}}>
-        {recent.map((r) => <p onClick={() => seachForOldSearch(r)}>{r}</p>)}
+        {recent?.map((r) => <p onClick={() => seachForOldSearch(r)}>{r}</p>)}
         </div>
         </RecentContainer>
      );

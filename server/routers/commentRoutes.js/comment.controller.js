@@ -2,7 +2,7 @@ const Comment = require('../../models/comments.mongo');
 const User = require('../../models/user.mongo');
 const Recipe = require('../../models/recipes.mongo');
 
-//Adds a comment under a post - should be good
+//POST: Adds a comment under a post - should be good
 async function httpAddComment(req, res){
     try{
         const authId = req.body.author;
@@ -39,7 +39,28 @@ async function httpAddComment(req, res){
     }
 }
 
-//Delete a comment from a post - Finished
+//PUT: Edits the comment for a user 
+async function httpEditComment(req, res){
+    try{
+        const commentId = req.params.id;
+        if(!commentId){
+            return res.status(404).json({msg: "Comments id is needed"})
+        }
+        const body = req.body;
+        if(!body){
+            return res.status(404).json({msg: "Body of a comment is required"})
+        }
+        const updatedComment =  await Comment.findOneAndUpdate({_id: commentId}, body, {upsert: true} )
+        if(!updatedComment){
+            return res.status(404).json({msg: "Comment has not been updated"})
+        }
+        return res.status(201).json({msg: 'Comment has been updated'})
+    } catch(err){
+        return res.status(500).json({msg: "An error has occured, unable to edit a comment"})
+    }
+}
+
+//DELETE: Delete a comment from a post 
 async function httpDeleteComment(req, res){
     try{
         const id = req.params.id; 
@@ -64,26 +85,7 @@ async function httpDeleteComment(req, res){
     }
 }
 
-//Edits the comment for a user - Finished
-async function httpEditComment(req, res){
-    try{
-        const commentId = req.params.id;
-        if(!commentId){
-            return res.status(404).json({msg: "Comments id is needed"})
-        }
-        const body = req.body;
-        if(!body){
-            return res.status(404).json({msg: "Body of a comment is required"})
-        }
-        const updatedComment =  await Comment.findOneAndUpdate({_id: commentId}, body, {upsert: true} )
-        if(!updatedComment){
-            return res.status(404).json({msg: "Comment has not been updated"})
-        }
-        return res.status(201).json({msg: 'Comment has been updated'})
-    } catch(err){
-        return res.status(500).json({msg: "An error has occured, unable to edit a comment"})
-    }
-}
+
 
 module.exports = {
     httpAddComment,

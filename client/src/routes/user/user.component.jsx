@@ -41,27 +41,23 @@ const UserHome = () => {
           </UserOptionsContainer>
           <UserInfo>
               <img src={Profile} alt="User Profile" style={{height: '150px', width: '150px', borderRadius: '50%'}}/>
-              <h2>Welcome {user.nickname}</h2>
+              <h2>Welcome {user?.nickname}</h2>
           </UserInfo>
           <UserContentContainer>
           <UserOptions>
             {buttonItems.map((button) => {
-            return <button key={button.id} onClick={() => switchFunction(button.action)} 
+            return <button key={button.id} onClick={() => switchFunction(button?.action)} 
             style={{ backgroundColor:`${button.color}`, border: `${button.color}`}} className="box boxShadowHover">
               <p style={{color: '#77340D'}} onClick={() => switchFunction(button.action)}>{button.title}</p>
             </button>
            })}
           </UserOptions>
           <UserRecipesContainer className="scrollBar">
-          {recipes.map((r) => {
+          {recipes?.map((r) => {
             return <RecipeContainer3 recipe={r}/>
           })}
            </UserRecipesContainer>
           </UserContentContainer>
-         
-     
-          
-           
           </>
           }
          </> :
