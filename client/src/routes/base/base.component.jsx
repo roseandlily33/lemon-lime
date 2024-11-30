@@ -1,11 +1,16 @@
-import {Outlet} from 'react-router-dom'
+import {Outlet} from 'react-router-dom';
+import React from 'react';
 import { MainContainer } from './base.styles';
-const BasePage = () => {
+import ErrorBoundary from '../error-boundary/ErrorBoundary';
+
+const BasePage = React.memo(() => {
     return ( 
+        <ErrorBoundary>
         <MainContainer>
         <Outlet />
         </MainContainer>
+        </ErrorBoundary>
      );
-}
+});
  
 export default BasePage;
