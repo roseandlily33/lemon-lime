@@ -61,7 +61,7 @@
 //              password: '',
 //        });
 //     };
-//     return ( 
+//     return (
 //         <>
 //         <form onSubmit={handleFormSubmit}>
 //         <h3>Sign Up</h3>
@@ -83,9 +83,9 @@
 //             <h4>Have An Account?</h4>
 //          <button onClick={() => setPage(true)}>Log In</button>
 //          </div>
- 
+
 //         </>
 //      );
 // }
- 
+
 // export default SignUpComponent;
