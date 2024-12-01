@@ -2,7 +2,7 @@ const Recipe = require('../../models/recipes.mongo');
 const User = require('../../models/user.mongo');
 const Comment = require('../../models/comments.mongo');
 
-//GET: Gets all of the recipes for the main page the newest 6 - finished
+//Gets all of the recipes for the main page the newest 6 - finished
 async function httpGetNewestRecipes(req, res){
    try{
     const allRecipes = await Recipe.find({}, {
@@ -16,11 +16,11 @@ async function httpGetNewestRecipes(req, res){
     return res.status(500).json({msg: "An error has occured, could not get the recipes"});
    }
 };
-//GET: Gets the most popular recipes the top 6 - finished
+//Gets the most popular recipes the top 6 - finished
 async function httpGetPopularRecipes(req, res){
     try{
         const faveRecipes = await Recipe.find({}, {
-            '__v': 0, 'ingredients': 0, 'prepTime': 0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
+            '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
         }).sort({favorites: -1}).limit(6);
         if(!faveRecipes){
             return res.status(404).json({msg: "Could not get the recipes"});
@@ -31,7 +31,7 @@ async function httpGetPopularRecipes(req, res){
     }
 }
 
-//GET: Gets the full recipe with details - finished
+//Gets the full recipe with details - finished
 async function httpGetFullRecipeWithDetails(req, res){
     try {
     const requestId = req.params.id;
@@ -129,7 +129,7 @@ async function httpGetFullRecipeWithDetails(req, res){
 //        }
 //  }
 
-//GET: Searches for a recipe based on criteria given - finished
+//Searches for a recipe based on criteria given - finished
  async function httpSearchRecipes(req, res){
     try{
         const searchingFor = req.params.searchText.toLowerCase();

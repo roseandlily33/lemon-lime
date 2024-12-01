@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 import MainPicture from "../../images/Background3.jpg";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/loader.component";
-import PrimaryButton from "../../components/Buttons/PrimaryButton/primaryButton.component";
 // import { useQuery } from "@apollo/client";
 // import { GET_USER } from "../../graphqlUtils/queries";
 
@@ -20,6 +19,7 @@ const HomePage = () => {
   // const {loading, data} = useQuery(GET_USER);
   // console.log('QUERY DATA', data);
 
+<<<<<<< HEAD
   const popularRecipes = useSelector((state) => state.recipes.popularRecipes);
   const newestRecipes = useSelector((state) => state.recipes.newestRecipes);
   const loading = useSelector((state) => state.recipes.isLoading);
@@ -42,6 +42,30 @@ const HomePage = () => {
         </div>
       </HeroImage>
       <BottomDiv>
+=======
+    // const {loading, data} = useQuery(GET_USER);
+    // console.log('QUERY DATA', data);
+
+    const popularRecipes = useSelector(state => state.recipes.popularRecipes);
+    const newestRecipes = useSelector(state => state.recipes.newestRecipes);
+    const loading = useSelector(state => state.recipes.isLoading);
+    const loading2 = useSelector(state => state.recipes.isLoading2);
+    const navigate = useNavigate();
+    return (
+        <MainDiv>
+        <HeroImage>
+            <div className="overlay">
+            <img src={MainPicture} alt="Main Lemons" />
+            </div>
+            <div className="text">
+                <h2>Discover your new</h2>
+                <br />
+                <h2 style={{color: '#D0415A'}}>Favorite Recipes</h2>
+                <button onClick={() => navigate('search')}>Find Recipes</button>
+            </div>
+        </HeroImage>
+       <BottomDiv>
+>>>>>>> parent of 3b9200a (Organized the backend routes)
         <LeftMainDiv className="scrollBar">
           <h2>New Recipes</h2>
           {loading ? (

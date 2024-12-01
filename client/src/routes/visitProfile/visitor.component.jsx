@@ -18,6 +18,7 @@ import Background from "../../images/Background4.jpg";
 import Profile from "../../images/Profile1.jpg";
 
 const VisitorPage = () => {
+<<<<<<< HEAD
   const { id } = useParams();
   const [userRecipes, setUserRecipes] = useState();
   const [username, setUserName] = useState("");
@@ -43,6 +44,34 @@ const VisitorPage = () => {
     } else {
       setShowFave(false);
       setShowRecipe(true);
+=======
+    const {id} = useParams();
+    const [userRecipes, setUserRecipes] = useState();
+    const [username, setUserName] = useState('');
+    const [favorites, setFavorites] = useState();
+    const [showRecipe, setShowRecipe] = useState(true);
+    const [showFave, setShowFave] = useState(false);
+    console.log('On visitors page', id)
+    useEffect(() => {
+        const fetchUser = async() => {
+           let visitingUser = await httpGetUserRecipes(id);
+           let favorites = await httpGetUsersFavoriteRecipes(id);
+            setUserRecipes(visitingUser.recipes);
+            setUserName(visitingUser.name);
+            setFavorites(favorites.favoriteRecipes);
+        }
+        fetchUser();
+    }, [id])
+    //console.log('Visitor faves', favorites);
+    const switchTab = () => {
+        if(showRecipe === true){
+            setShowRecipe(false);
+            setShowFave(true)
+        } else {
+            setShowFave(false);
+            setShowRecipe(true);
+        }
+>>>>>>> parent of 3b9200a (Organized the backend routes)
     }
   };
 
@@ -76,6 +105,7 @@ const VisitorPage = () => {
             <>
               {showRecipe ? (
                 <>
+<<<<<<< HEAD
                   {userRecipes?.map((recipe) => {
                     return (
                       <RecipeContainer key={recipe?._id} recipe={recipe} />
@@ -100,3 +130,26 @@ const VisitorPage = () => {
 };
 
 export default VisitorPage;
+=======
+                    {showRecipe ?  
+                   <>
+                    {userRecipes?.map((recipe) => {
+                        return <RecipeContainer recipe={recipe} />
+                    })}
+                  </> :  <>
+                    {favorites?.map((recipe) => {
+                    return <RecipeContainer recipe={recipe} />
+                        })}
+                    </>
+                        } 
+                    </>
+                
+                </UserRecipeContainer>
+            </UsersRecipes>
+            </RightContainer>
+        </VisitorContainer>
+     );
+}
+ 
+export default VisitorPage;
+>>>>>>> parent of 3b9200a (Organized the backend routes)
