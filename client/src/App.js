@@ -15,14 +15,15 @@ import BasePage from './routes/base/base.component';
 import NotFound from './routes/notFound/notFound.component.jsx';
 import VisitorPage from './routes/visitProfile/visitor.component.jsx';
 import UserComments from './components/Comments/userComments/userComments.component.jsx';
+// Authentication:
 import {useAuth0} from '@auth0/auth0-react';
+// Redux:
 import { fetchFavorites } from './redux/favoritesSlice.js';
 import { fetchUserRecipes } from './redux/userSlice';
 import { fetchUserComments } from './redux/userCommentsSlice.js';
 import { store } from './redux/store.js';
+// Colours:
 import {theme} from './visuals/colors.jsx';
-// Added in the import theme 
-
  
 function App() {
   const {user, isAuthenticated} = useAuth0(); 
@@ -60,7 +61,6 @@ function App() {
      <Footer />
      </BrowserRouter>
      </ThemeProvider>
-     
     </div>
   );
 }
