@@ -8,15 +8,15 @@
 //     return (
 //     <AuthPage>
 //     <AuthForm>
-//         {page ? 
+//         {page ?
 //          <LoginComponent setPage={setPage}/>
-//             : 
+//             :
 //         <Component setPage={setPage} />
 //         }
 //     </AuthForm>
-//     </AuthPage>  
-    
+//     </AuthPage>
+
 // );
 // }
- 
+
 // export default AuthComponent;

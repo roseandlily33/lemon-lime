@@ -18,16 +18,15 @@
 //         const allRecipes = await httpGetPopularRecipes()
 //         setPopularRecipes(allRecipes);
 //     }, []);
-    
+
 //     useEffect(() => {
 //         getPopularRecipes()
 //     }, [getPopularRecipes]);
-    
+
 //     return {
 //         allRecipes,
 //         popularRecipes
 //     }
 // }
 
-
-// export default useRecipes; 
+// export default useRecipes;
