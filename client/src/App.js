@@ -1,5 +1,6 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {ThemeProvider} from 'styled-components';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 //Pages:
 import HomePage from "./routes/home/home.component";
 import NavBar from "./routes/navigation/nav.component";
@@ -26,25 +27,34 @@ import { store } from './redux/store.js';
 import {theme} from './visuals/colors.jsx';
  
 function App() {
-  const {user, isAuthenticated} = useAuth0(); 
-  if(isAuthenticated){
+  const { user, isAuthenticated } = useAuth0();
+  if (isAuthenticated) {
     store.dispatch(fetchUserRecipes(user.sub));
     store.dispatch(fetchUserComments(user.sub));
     store.dispatch(fetchFavorites(user.sub));
-    console.log('STORE', store.getState())
   }
 
   return (
     <div className="App">
-    <ThemeProvider theme={theme}>
-     <BrowserRouter>
-      <NavBar  />
-       <Routes>
-        <Route path='/' element={<BasePage />}>
-          <Route index element={<HomePage />} />
-          <Route path="user/:id" element={<VisitorPage />} />
-            <Route path="recipe">
-            <Route path=':id' element={<SingleRecipeComponent />} />
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<BasePage />}>
+              <Route index element={<HomePage />} />
+              <Route path="user/:id" element={<VisitorPage />} />
+              <Route path="recipe">
+                <Route path=":id" element={<SingleRecipeComponent />} />
+              </Route>
+              <Route path="user" element={<UserBase />}>
+                <Route index path="home" element={<UserHome />} />
+                <Route path="create" element={<CreateRecipeForm />} />
+                <Route path="edit/:id" element={<EditRecipe />} />
+                <Route path="comments" element={<UserComments />} />
+              </Route>
+              <Route path="favorites" element={<FavoritesPage />} />
+              <Route path="search" element={<SearchPage />} />
+              {/* <Route path='signin' element={<AuthComponent />} /> */}
             </Route>
             <Route path='user' element={<UserBase />}>
               <Route index path="home" element={<UserHome />} />
@@ -61,6 +71,7 @@ function App() {
      <Footer />
      </BrowserRouter>
      </ThemeProvider>
+
     </div>
   );
 }
