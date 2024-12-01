@@ -16,14 +16,15 @@ import BasePage from './routes/base/base.component';
 import NotFound from './routes/notFound/notFound.component.jsx';
 import VisitorPage from './routes/visitProfile/visitor.component.jsx';
 import UserComments from './components/Comments/userComments/userComments.component.jsx';
+// Authentication:
 import {useAuth0} from '@auth0/auth0-react';
+// Redux:
 import { fetchFavorites } from './redux/favoritesSlice.js';
 import { fetchUserRecipes } from './redux/userSlice';
 import { fetchUserComments } from './redux/userCommentsSlice.js';
 import { store } from './redux/store.js';
+// Colours:
 import {theme} from './visuals/colors.jsx';
-// Added in the import theme 
-
  
 function App() {
   const { user, isAuthenticated } = useAuth0();
@@ -55,11 +56,22 @@ function App() {
               <Route path="search" element={<SearchPage />} />
               {/* <Route path='signin' element={<AuthComponent />} /> */}
             </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </ThemeProvider>
+            <Route path='user' element={<UserBase />}>
+              <Route index path="home" element={<UserHome />} />
+              <Route path='create' element={<CreateRecipeForm />}/>
+              <Route path="edit/:id" element={<EditRecipe />}/>
+              <Route path="comments" element={<UserComments/>} />
+          </Route>
+          <Route path='favorites' element={<FavoritesPage />}/>
+          <Route path='search' element={<SearchPage />} />
+          {/* <Route path='signin' element={<AuthComponent />} /> */}
+          </Route>
+          <Route path='*' element={<NotFound />} />
+     </Routes>
+     <Footer />
+     </BrowserRouter>
+     </ThemeProvider>
+
     </div>
   );
 }
