@@ -1,11 +1,14 @@
-import {Outlet} from 'react-router-dom';
+import { Outlet } from "react-router-dom";
+import React from "react";
 
-const UserBase = () => {
-    return (  
-        <>
-        <Outlet />
-        </>
-    );
-}
- 
+const UserBase = React.memo(() => {
+  return (
+    <>
+      <Outlet />
+    </>
+  );
+});
+
+UserBase.displayName = "UserBase";
+
 export default UserBase;

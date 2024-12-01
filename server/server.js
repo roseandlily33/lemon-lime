@@ -5,7 +5,6 @@ const {connectToMongoose} = require('./utils/connection');
 
 const PORT = process.env.PORT || 8000;
 
-
 async function startServer (){
     await connectToMongoose();
     await app.listen(PORT, () => {
