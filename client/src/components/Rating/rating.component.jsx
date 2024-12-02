@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
-import { RatingDiv } from "./rating.styles";
+import { RatingDiv } from "./Rating.styles";
 
 const Rating = ({name, value, onChange}) => {
     const [hoveredRating, setHoveredRating] = useState(value);

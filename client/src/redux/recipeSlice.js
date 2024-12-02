@@ -33,7 +33,18 @@ export const recipeSlice = createSlice({
     name: 'recipe',
     initialState,
     reducers: {
-
+        addRecipe: (state, action) => {
+            state.recipes.push(action.payload);
+          },
+          updateRecipe: (state, action) => {
+            const index = state.recipes.findIndex(recipe => recipe.id === action.payload.id);
+            if (index !== -1) {
+              state.recipes[index] = action.payload;
+            }
+          },
+          removeRecipe: (state, action) => {
+            state.recipes = state.recipes.filter(recipe => recipe.id !== action.payload.id);
+          },
     },
     extraReducers: (builder) => {
         builder
@@ -66,6 +77,6 @@ export const recipeSlice = createSlice({
 })
 
 //Any reducers go in here:
-//export const {} = recipeSlice.actions;
+export const { addRecipe, updateRecipe, removeRecipe } = recipeSlice.actions;
 
 export default recipeSlice.reducer;

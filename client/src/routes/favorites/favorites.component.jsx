@@ -1,34 +1,39 @@
-import { FavoritesContainerMain, FavoritesRecipesDiv  } from "./favorites.styles";
-import RecipeContainer2 from "../../components/Recipe/recipe2.container";
-import {useAuth0} from '@auth0/auth0-react';
-import {useNavigate} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import Loader from "../../components/Loader/loader.component";
+import {
+  FavoritesContainerMain,
+  FavoritesRecipesDiv,
+} from "./Favorites.styles";
+import RecipeContainer2 from "../../components/Recipe/Recipe2.container";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Loader from "../../components/Loader/Loader.component";
 
 const FavoritesPage = () => {
-    const {isAuthenticated} = useAuth0();
-    const navigate = useNavigate();
-    const favorites = useSelector(state => state.favorites.favorites);
-    const faveRecipes = useSelector(state => state.favorites.favoriteRecipes)
+  const { isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
+  const favorites = useSelector((state) => state.favorites.favorites);
+  const faveRecipes = useSelector((state) => state.favorites.favoriteRecipes);
 
-    if(!isAuthenticated){
-        navigate('/');
-    }
+  if (!isAuthenticated) {
+    navigate("/");
+  }
 
-    return ( 
-        <FavoritesContainerMain>
-            <h1>Your Favorite Recipes</h1>
-            <FavoritesRecipesDiv className="scrollBar">
-           {!favorites ? <Loader /> :
-            <>
-             {faveRecipes?.map((recipe) => {
-                return <RecipeContainer2 recipe={recipe} />
+  return (
+    <FavoritesContainerMain>
+      <h1>Your Favorite Recipes</h1>
+      <FavoritesRecipesDiv className="scrollBar">
+        {!favorites ? (
+          <Loader />
+        ) : (
+          <>
+            {faveRecipes?.map((recipe) => {
+              return <RecipeContainer2 recipe={recipe} />;
             })}
-            </>
-           }
-            </FavoritesRecipesDiv>
-        </FavoritesContainerMain>
-     );
-}
- 
+          </>
+        )}
+      </FavoritesRecipesDiv>
+    </FavoritesContainerMain>
+  );
+};
+
 export default FavoritesPage;

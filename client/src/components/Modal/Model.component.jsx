@@ -1,4 +1,4 @@
-import { ModalContainer } from "./modal.styles";
+import { ModalContainer } from "./Modal.styles";
 
 const Modal = ({children, onClose}) => {
 

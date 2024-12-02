@@ -4,8 +4,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import { httpAddFavoriteRecipe } from "../../hooks/userRequests";
 import { httpDeleteFavoriteRecipe } from "../../hooks/userRequests";
 import { fetchFavorites } from "../../redux/favoritesSlice";
-import FaveHeart from "./favedHeart.component";
-import NotFaveHeart from "./notFavedHeart.component";
+import FaveHeart from "./FavedHeart.component";
+import NotFaveHeart from "./NotFavedHeart.component";
 
 //Recipe = the id 
 const Heart = ({recipe}) => {

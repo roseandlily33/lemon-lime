@@ -1,4 +1,4 @@
-import { FooterContainer } from "./footer.styles";
+import { FooterContainer } from "./Footer.styles";
 import Logo from '../../images/Lemon - Lime.svg';
 
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { ResultsDiv, StyledDiv, SearchContainer } from "./search.styles";
-import SearchResults from './results/searchResults.component';
-import RecentlySearched from './recent/recent.component';
+import { ResultsDiv, StyledDiv, SearchContainer } from "./Search.styles";
+import SearchResults from './results/SearchResults.component';
+import RecentlySearched from './recent/Recent.component';
 import { httpSearchRecipes } from '../../hooks/recipeRequests';
 import { useSelector } from 'react-redux';
 

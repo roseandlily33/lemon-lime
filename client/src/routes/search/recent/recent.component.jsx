@@ -1,4 +1,4 @@
-import { RecentContainer } from "./recent.styles";
+import { RecentContainer } from "./Recent.styles";
 const RecentlySearched = ({recent, seachForOldSearch}) => {
 
     return ( 
