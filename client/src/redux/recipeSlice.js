@@ -61,6 +61,6 @@ export const recipeSlice = createSlice({
 });
 
 //Any reducers go in here:
-//export const {} = recipeSlice.actions;
+export const { addRecipe, updateRecipe, removeRecipe } = recipeSlice.actions;
 
 export default recipeSlice.reducer;

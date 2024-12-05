@@ -16,7 +16,7 @@ import RecipeComments from "../Comments/recipeComments/recipeComment.component";
 import Carousel from "./singleRecipeCarousel.component";
 import Heart from "../Heart/heart.component";
 import { NavLink } from "react-router-dom";
-import { averageOfStars } from "../../formattingUtils/averageOfStarts";
+import { averageOfStars } from "../../formattingUtils/average-of-stars";
 import { formatStars } from "../../formattingUtils/stars";
 import { useAuth0 } from "@auth0/auth0-react";
 import IngredientSection from "./Ingredients/Ingredients.component";

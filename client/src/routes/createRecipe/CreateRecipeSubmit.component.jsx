@@ -1,4 +1,4 @@
-import { getTotalTime } from "../../formattingUtils/totalTime";
+import { getTotalTime } from "../../formattingUtils/total-time";
 import { useDispatch } from "react-redux";
 import { fetchUserRecipes } from "../../redux/userSlice";
 import { httpCreateRecipe } from "../../hooks/userRequests";

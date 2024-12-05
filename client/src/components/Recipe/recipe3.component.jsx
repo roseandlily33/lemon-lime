@@ -1,9 +1,17 @@
+<<<<<<< HEAD
+import { SideContainer, ButtonRecipeContainer } from "./Recipe3.styles";
+=======
 import { SideContainer, ButtonRecipeContainer } from "./recipe3.styles";
+>>>>>>> 2ca9627cd0f3c041bb6cc57de20a972a03879123
 import { formatDate } from "../../formattingUtils/date";
 import { NavLink } from "react-router-dom";
 import Lemons from "../../images/lemons.jpg";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
+import CloudImage from "../../Photos/Photo.component";
+=======
 import CloudImage from "../../Photos/photo.component";
+>>>>>>> 2ca9627cd0f3c041bb6cc57de20a972a03879123
 import IconButton from "../Buttons/IconButton/IconButton.component";
 import React from "react";
 import PropTypes from "prop-types";
@@ -46,7 +54,11 @@ const RecipeContainer3 = ({ recipe }) => {
                 height="2"
                 x="2"
                 y="20"
+<<<<<<< HEAD
+                class="secondary"
+=======
                 className="secondary"
+>>>>>>> 2ca9627cd0f3c041bb6cc57de20a972a03879123
                 rx="1"
               />
             </svg>
@@ -57,6 +69,8 @@ const RecipeContainer3 = ({ recipe }) => {
   );
 };
 
+<<<<<<< HEAD
+=======
 RecipeContainer3.propTypes = {
   recipe: PropTypes.shape({
     _id: PropTypes.string.isRequired,
@@ -71,4 +85,5 @@ RecipeContainer3.propTypes = {
   }).isRequired,
 };
 
+>>>>>>> 2ca9627cd0f3c041bb6cc57de20a972a03879123
 export default RecipeContainer3;
