@@ -11,7 +11,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import MainPicture from "../../images/Background3.jpg";
 import { useNavigate } from "react-router-dom";
-import Loader from "../../components/Loader/Loader.component";
+import PrimaryButton from "../../components/Buttons/PrimaryButton/primaryButton.component";
+import Loader from "../../components/Loader/loader.component";
 // import { useQuery } from "@apollo/client";
 // import { GET_USER } from "../../graphqlUtils/queries";
 

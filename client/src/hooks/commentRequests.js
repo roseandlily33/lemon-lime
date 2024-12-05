@@ -1,5 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
 //let process;
 if (!process.env.REACT_APP_API_URL) {
   throw new Error(
