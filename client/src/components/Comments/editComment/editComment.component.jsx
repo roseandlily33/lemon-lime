@@ -4,7 +4,7 @@ import { CommentForm, FormElement } from "../addComment/comments.styles";
 import React, { useState } from "react";
 import { CommentDiv } from "../userComments/userComments.styles";
 import { httpEditComment } from "../../../hooks/commentRequests";
-import RequiredInput from "../../Input/RequiredInput/RequiredInput.component";
+import RequiredInput from "../../Input/RequiredInput/requiredInput.component";
 
 const EditComment = ({ comment }) => {
   const [success, setSuccess] = useState("");
