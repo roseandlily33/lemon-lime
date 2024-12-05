@@ -4,28 +4,28 @@ import { ThemeProvider } from "styled-components";
 //Pages:
 import HomePage from "./routes/home/home.component.jsx";
 import NavBar from "./routes/navigation/nav.component.jsx";
-import FavoritesPage from './routes/favorites/favorites.component.jsx';
-import EditRecipe from './routes/editRecipe/EditRecipe.component.jsx';
-import UserHome from './routes/user/user.component.jsx';
-import SearchPage from './routes/search/search.component.jsx';
-import Footer from './routes/footer/footer.component.jsx';
-import SingleRecipeComponent from './components/SingleRecipe/singleRecipe.component.jsx';
-import CreateRecipeForm from './routes/createRecipe/CreateRecipe.component.jsx';
-import UserBase from './routes/user/userBase.component.jsx';
-import BasePage from './routes/base/base.component.jsx';
-import NotFound from './routes/notFound/notFound.component.jsx';
-import VisitorPage from './routes/visitProfile/visitor.component.jsx';
-import UserComments from './components/Comments/userComments/userComments.component.jsx';
+import FavoritesPage from "./routes/favorites/favorites.component.jsx";
+import EditRecipe from "./routes/editRecipe/EditRecipe.component.jsx";
+import UserHome from "./routes/user/user.component.jsx";
+import SearchPage from "./routes/search/search.component.jsx";
+import Footer from "./routes/footer/footer.component.jsx";
+import SingleRecipeComponent from "./components/SingleRecipe/singleRecipe.component.jsx";
+import CreateRecipeForm from "./routes/createRecipe/CreateRecipe.component.jsx";
+import UserBase from "./routes/user/userBase.component.jsx";
+import BasePage from "./routes/base/base.component.jsx";
+import NotFound from "./routes/notFound/notFound.component.jsx";
+import VisitorPage from "./routes/visitProfile/visitor.component.jsx";
+import UserComments from "./components/Comments/userComments/userComments.component.jsx";
 // Authentication:
-import {useAuth0} from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 // Redux:
-import { fetchFavorites } from './redux/favoritesSlice.js';
-import { fetchUserRecipes } from './redux/userSlice';
-import { fetchUserComments } from './redux/userCommentsSlice.js';
-import { store } from './redux/store.js';
+import { fetchFavorites } from "./redux/favoritesSlice.js";
+import { fetchUserRecipes } from "./redux/userSlice";
+import { fetchUserComments } from "./redux/userCommentsSlice.js";
+import { store } from "./redux/store.js";
 // Colours:
-import {theme} from './visuals/colors.jsx';
- 
+import { theme } from "./visuals/colors.jsx";
+
 function App() {
   const { user, isAuthenticated } = useAuth0();
   if (isAuthenticated) {
@@ -56,20 +56,20 @@ function App() {
               <Route path="search" element={<SearchPage />} />
               {/* <Route path='signin' element={<AuthComponent />} /> */}
             </Route>
-            <Route path='user' element={<UserBase />}>
+            <Route path="user" element={<UserBase />}>
               <Route index path="home" element={<UserHome />} />
-              <Route path='create' element={<CreateRecipeForm />}/>
-              <Route path="edit/:id" element={<EditRecipe />}/>
-              <Route path="comments" element={<UserComments/>} />
-          </Route>
-          <Route path='favorites' element={<FavoritesPage />}/>
-          <Route path='search' element={<SearchPage />} />
-          {/* <Route path='signin' element={<AuthComponent />} /> */}
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-       <Footer />
-     </BrowserRouter>
-     </ThemeProvider>
+              <Route path="create" element={<CreateRecipeForm />} />
+              <Route path="edit/:id" element={<EditRecipe />} />
+              <Route path="comments" element={<UserComments />} />
+            </Route>
+            <Route path="favorites" element={<FavoritesPage />} />
+            <Route path="search" element={<SearchPage />} />
+            {/* <Route path='signin' element={<AuthComponent />} /> */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }

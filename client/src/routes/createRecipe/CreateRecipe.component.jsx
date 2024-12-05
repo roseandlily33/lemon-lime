@@ -1,5 +1,5 @@
 // Needed Imports
-import { useState } from "react";
+import React, { useState } from "react";
 import CookingIllustration from "../../images/undraw_cooking_p7m1.svg";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
