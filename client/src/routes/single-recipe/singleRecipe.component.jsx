@@ -21,7 +21,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import IngredientSection from "./Ingredients/Ingredients.component";
 import InstructionSection from "./Instructions/Instructions.component";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleRecipe } from "../../redux/singleRecipeSlice";
+import { fetchSingleRecipe, clearRecipe } from "../../redux/singleRecipeSlice";
 
 const SingleRecipeComponent = () => {
   const { id } = useParams();
@@ -35,10 +35,13 @@ const SingleRecipeComponent = () => {
   //const [average, setAverage] = useState();
 
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchSingleRecipe(id));
-  }, [id]);
+    return () => {
+      dispatch(clearRecipe());
+    };
+  }, [dispatch, id]);
 
   const { recipe, comments, author, isLoading, error } = useSelector(
     (state) => state.singleRecipe
@@ -51,6 +54,14 @@ const SingleRecipeComponent = () => {
     isLoading,
     error
   );
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <h2>An error has occured</h2>;
+  }
 
   // useEffect(() => {
   //   const fetchSingle = async () => {

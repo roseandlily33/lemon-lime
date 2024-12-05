@@ -11,8 +11,10 @@ const initialState = {
 const URL = process.env.REACT_APP_API_URL;
 
 export const fetchSingleRecipe = createAsyncThunk(
-  "singleRecipe/recipe",
+  "singleRecipe/fetchRecipe",
   async (id, { rejectWithValue }) => {
+    console.log("FETCHING THE RECIPE FOR SINGLE RECIPE");
+    console.log("FOR THE ID", id);
     try {
       const res = await fetch(`${URL}/recipes/${id}`);
       console.log("Res from getting a single recipe", res);
@@ -31,34 +33,26 @@ export const fetchSingleRecipe = createAsyncThunk(
 export const singleRecipeSlice = createSlice({
   name: "singleRecipe",
   initialState,
-  reducers: {},
+  reducers: {
+    clearRecipe: (state) => {
+      state.recipe = null;
+      state.comments = [];
+      state.author = "";
+      state.isLoading = false;
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
-      // .addCase(fetchRecipeComments.pending, (state, action) => {
-      //   state.isLoading = true;
-      //   state.error = null;
-      // })
-      // .addCase(fetchRecipeComments.fulfilled, (state, action) => {
-      //   state.isLoading = false;
-      //   state.comments = action.payload;
-      // })
-      // .addCase(fetchRecipeComments.rejected, (state, action) => {
-      //   state.isLoading = false;
-      //   state.error = action.error.message;
-      // })
       .addCase(fetchSingleRecipe.pending, (state) => {
         state.isLoading = true;
-        state.error = false;
+        state.error = null;
       })
       .addCase(fetchSingleRecipe.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log(
-          "ACTION PAYLOAD FROM SINGLE RECIPE",
-          action.payload,
-          action.payload.foundRecipe[0]
-        );
-        state.recipe = action.payload.foundRecipe[0];
-        state.author = action.payload.authorOfRecipe;
+        console.log("ACTION PAYLOAD FROM SINGLE RECIPE", action.payload);
+        // state.recipe = action.payload.foundRecipe[0];
+        // state.author = action.payload.authorOfRecipe;
       })
       .addCase(fetchSingleRecipe.rejected, (state, action) => {
         state.isLoading = false;
@@ -66,5 +60,7 @@ export const singleRecipeSlice = createSlice({
       });
   },
 });
+
+export const { clearRecipe } = singleRecipeSlice.actions;
 
 export default singleRecipeSlice.reducer;
