@@ -12,9 +12,9 @@ import React from "react";
 const FavoritesPage = () => {
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-  const favorites = useSelector((state) => state.favorites.favorites);
-  const faveRecipes = useSelector((state) => state.favorites.favoriteRecipes);
-
+  const { favorites, favoriteRecipes } = useSelector(
+    (state) => state.favorites
+  );
   if (!isAuthenticated) {
     navigate("/");
   }
@@ -27,7 +27,7 @@ const FavoritesPage = () => {
           <Loader />
         ) : (
           <>
-            {faveRecipes?.map((recipe) => {
+            {favoriteRecipes?.map((recipe) => {
               return <RecipeContainer2 key={recipe._id} recipe={recipe} />;
             })}
           </>

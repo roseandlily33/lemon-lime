@@ -35,9 +35,7 @@ const UserHome = () => {
     // {id: 3, title: 'Not in use', color: 'hsla(349, 43%, 66%, 0.6)', action: ''},
     // {id: 4, title: 'Not in use', color: 'hsla(349, 43%, 66%, 0.8)', action: ''}
   ];
-
-  const recipes = useSelector((state) => state.user.userRecipes);
-  const loading = useSelector((state) => state.user.isLoading);
+  const { userRecipes, isLoading, error } = useSelector((state) => state.user);
 
   const switchFunction = (action) => {
     switch (action) {
@@ -52,11 +50,15 @@ const UserHome = () => {
     }
   };
 
+  if (error) {
+    <h3>An error has occured</h3>;
+  }
+
   return (
     <UserContainer>
       {isAuthenticated ? (
         <>
-          {loading ? (
+          {isLoading ? (
             <Loader />
           ) : (
             <>
@@ -101,7 +103,7 @@ const UserHome = () => {
                   })}
                 </UserOptions>
                 <UserRecipesContainer className="scrollBar">
-                  {recipes?.map((r) => {
+                  {userRecipes?.map((r) => {
                     return <RecipeContainer3 key={r?._id} recipe={r} />;
                   })}
                 </UserRecipesContainer>

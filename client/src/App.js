@@ -9,7 +9,7 @@ import EditRecipe from "./routes/editRecipe/EditRecipe.component.jsx";
 import UserHome from "./routes/user/user.component.jsx";
 import SearchPage from "./routes/search/search.component.jsx";
 import Footer from "./routes/footer/footer.component.jsx";
-import SingleRecipeComponent from "./components/SingleRecipe/singleRecipe.component.jsx";
+import SingleRecipeComponent from "./routes/single-recipe/singleRecipe.component.jsx";
 import CreateRecipeForm from "./routes/createRecipe/CreateRecipe.component.jsx";
 import UserBase from "./routes/user/userBase.component.jsx";
 import BasePage from "./routes/base/base.component.jsx";

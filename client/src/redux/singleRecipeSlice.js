@@ -5,37 +5,22 @@ const initialState = {
   comments: [],
   author: "",
   isLoading: false,
-  isRecipeLoading: false,
   error: null,
 };
 
 const URL = process.env.REACT_APP_API_URL;
-
-export const fetchRecipeComments = createAsyncThunk(
-  "singleRecipe/comments",
-  async (id, { rejectWithValue }) => {
-    try {
-      const res = await fetch(`${URL}/comments/${id}`);
-      if (!res.ok) {
-        throw new Error("Failed to fetch comments");
-      }
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      return rejectWithValue(err.message);
-    }
-  }
-);
 
 export const fetchSingleRecipe = createAsyncThunk(
   "singleRecipe/recipe",
   async (id, { rejectWithValue }) => {
     try {
       const res = await fetch(`${URL}/recipes/${id}`);
+      console.log("Res from getting a single recipe", res);
       if (!res.ok) {
         throw new Error("Failed to fetch recipe");
       }
       const data = await res.json();
+      console.log("Single recipe data", data);
       return data;
     } catch (err) {
       return rejectWithValue(err.message);
@@ -49,26 +34,26 @@ export const singleRecipeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRecipeComments.pending, (state, action) => {
+      // .addCase(fetchRecipeComments.pending, (state, action) => {
+      //   state.isLoading = true;
+      //   state.error = null;
+      // })
+      // .addCase(fetchRecipeComments.fulfilled, (state, action) => {
+      //   state.isLoading = false;
+      //   state.comments = action.payload;
+      // })
+      // .addCase(fetchRecipeComments.rejected, (state, action) => {
+      //   state.isLoading = false;
+      //   state.error = action.error.message;
+      // })
+      .addCase(fetchSingleRecipe.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchRecipeComments.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.comments = action.payload;
-      })
-      .addCase(fetchRecipeComments.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message;
-      })
-      .addCase(fetchSingleRecipe.pending, (state, action) => {
-        state.isRecipeLoading = true;
         state.error = false;
       })
       .addCase(fetchSingleRecipe.fulfilled, (state, action) => {
-        state.isRecipeLoading = false;
+        state.isLoading = false;
         console.log(
-          "ACTION PAYLOAD",
+          "ACTION PAYLOAD FROM SINGLE RECIPE",
           action.payload,
           action.payload.foundRecipe[0]
         );
@@ -76,7 +61,7 @@ export const singleRecipeSlice = createSlice({
         state.author = action.payload.authorOfRecipe;
       })
       .addCase(fetchSingleRecipe.rejected, (state, action) => {
-        state.isRecipeLoading = false;
+        state.isLoading = false;
         state.error = action.error.message;
       });
   },
