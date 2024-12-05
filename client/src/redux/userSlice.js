@@ -27,6 +27,29 @@ export const fetchUserRecipes = createAsyncThunk(
   }
 );
 
+// Create a recipe
+export const submitRecipe = createAsyncThunk(
+  "recipes/submitRecipe",
+  async (recipeData, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${URL}/recipes`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(recipeData),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to submit recipe");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const userSlice = createSlice({
   name: "user",
   initialState,

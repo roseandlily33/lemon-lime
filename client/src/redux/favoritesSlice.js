@@ -14,7 +14,7 @@ export const fetchFavorites = createAsyncThunk(
   "favorites/fetchFavorites",
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${URL}/user/favorites/${userId}`);
+      const response = await fetch(`${URL}/favorites/${userId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch favorites");
       }
@@ -53,6 +53,8 @@ export const favoritesSlice = createSlice({
         state.isLoading = false;
         state.favorites = action.payload.favorites;
         state.favoriteRecipes = action.payload.favoriteRecipes;
+        console.log("FAVORITES FROM STSTAE", state.favorites);
+        console.log("FAVE RECIPES FROM STATE", state.favoriteRecipes);
       })
       .addCase(fetchFavorites.rejected, (state, action) => {
         state.status = "failed";

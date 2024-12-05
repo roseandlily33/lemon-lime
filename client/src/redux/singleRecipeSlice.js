@@ -31,7 +31,7 @@ export const fetchSingleRecipe = createAsyncThunk(
   "singleRecipe/recipe",
   async (id, { rejectWithValue }) => {
     try {
-      const res = await fetch(`${URL}/home/${id}`);
+      const res = await fetch(`${URL}/recipes/${id}`);
       if (!res.ok) {
         throw new Error("Failed to fetch recipe");
       }
@@ -60,8 +60,7 @@ export const singleRecipeSlice = createSlice({
       .addCase(fetchRecipeComments.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
-      });
-    builder
+      })
       .addCase(fetchSingleRecipe.pending, (state, action) => {
         state.isRecipeLoading = true;
         state.error = false;

@@ -15,7 +15,7 @@ export const fetchPopular = createAsyncThunk(
   "recipes/fetchPopular",
   async () => {
     try {
-      const res = await fetch(`${URL}/home/popular`);
+      const res = await fetch(`${URL}/recipes/popular`);
       if (!res.ok) {
         throw new Error("Failed to fetch popular recipes");
       }
@@ -27,12 +27,10 @@ export const fetchPopular = createAsyncThunk(
   }
 );
 
-
-
 //Gets the most recent recipes for the main page
 export const fetchRecent = createAsyncThunk("recipes/fetchNewest", async () => {
   try {
-    const res = await fetch(`${URL}/home/recipes`);
+    const res = await fetch(`${URL}/recipes`);
     if (!res.ok) {
       throw new Error("Failed to fetch recent recipes");
     }
@@ -43,31 +41,8 @@ export const fetchRecent = createAsyncThunk("recipes/fetchNewest", async () => {
   }
 });
 
-// Create a recipe
-export const submitRecipe = createAsyncThunk(
-    'recipes/submitRecipe',
-    async (recipeData, { rejectWithValue }) => {
-      try {
-        const response = await fetch(`${URL}/recipes`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(recipeData),
-        });
-        if (!response.ok) {
-          throw new Error('Failed to submit recipe');
-        }
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        return rejectWithValue(error.message);
-      }
-    }
-  );
-
 export const recipeSlice = createSlice({
-  name: "recipe",
+  name: "recipes",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -101,8 +76,5 @@ export const recipeSlice = createSlice({
       });
   },
 });
-
-//Any reducers go in here:
-export const { addRecipe, updateRecipe, removeRecipe } = recipeSlice.actions;
 
 export default recipeSlice.reducer;

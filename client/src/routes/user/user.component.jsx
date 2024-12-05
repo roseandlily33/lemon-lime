@@ -17,6 +17,7 @@ import React from "react";
 
 const UserHome = () => {
   const { user, isAuthenticated } = useAuth0();
+  console.log("User", user);
   const navigate = useNavigate();
   const buttonItems = [
     {
@@ -37,6 +38,7 @@ const UserHome = () => {
 
   const recipes = useSelector((state) => state.user.userRecipes);
   const loading = useSelector((state) => state.user.isLoading);
+
   const switchFunction = (action) => {
     switch (action) {
       case "createRecipe":

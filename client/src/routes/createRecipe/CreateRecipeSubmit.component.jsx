@@ -1,26 +1,26 @@
-import { getTotalTime } from "../../formattingUtils/total-time";
-import { useDispatch, useSelector } from "react-redux";
+//import { getTotalTime } from "../../formattingUtils/total-time";
+import { useDispatch } from "react-redux";
+//useSelector
 import { fetchUserRecipes } from "../../redux/userSlice";
-import { httpCreateRecipe } from "../../hooks/userRequests";
+// import { httpCreateRecipe } from "../../hooks/userRequests";
 import { useAuth0 } from "@auth0/auth0-react";
 import { SubmitButtonContainer } from "./RecipeForm.styles";
 import PropTypes from "prop-types";
 import React from "react";
-import { submitRecipe } from "../../redux/recipeSlice";
+//import { submitRecipe } from "../../redux/recipeSlice";
 
 const CreateRecipeSubmit = ({
   formValues,
   images,
   instructions,
   ingredients,
-  setIsOpen,
-  setSuccessState,
+  // setIsOpen,
+  // setSuccessState,
   setError,
 }) => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
-  const { isLoading, success, error } = useSelector((state) => state.recipes);
-
+  //const { isLoading, success, error } = useSelector((state) => state.recipes);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,22 +33,23 @@ const CreateRecipeSubmit = ({
     } else if (!formValues?.recipeName) {
       setError("There must be a recipe name");
     }
-    let totalTime = await getTotalTime(
-      formValues.cookTime,
-      formValues.prepTime
-    );
-    let newRecipeName = formValues.recipeName.toLowerCase();
-   
-    const fullRecipe = {
-      ...formValues,instructions: instructions,
-      ingredients: ingredients,
-      totalTime: totalTime,
-      recipeName: newRecipeName,
-      images: images,
-      authorName: user.nickName,
-    };
-    dispatch(submitRecipe(fullRecipe));
-  
+    // let totalTime = await getTotalTime(
+    //   formValues.cookTime,
+    //   formValues.prepTime
+    // );
+    // let newRecipeName = formValues.recipeName.toLowerCase();
+
+    // const fullRecipe = {
+    //   ...formValues,
+    //   instructions: instructions,
+    //   ingredients: ingredients,
+    //   totalTime: totalTime,
+    //   recipeName: newRecipeName,
+    //   images: images,
+    //   authorName: user.nickName,
+    // };
+    //  dispatch(submitRecipe(fullRecipe));
+
     dispatch(fetchUserRecipes(user.sub));
   };
   return (

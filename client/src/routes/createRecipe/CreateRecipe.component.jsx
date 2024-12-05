@@ -20,6 +20,8 @@ import BottomCreate from "./BottomForm/BottomCreate.component";
 import CreateRecipeSubmit from "./CreateRecipeSubmit.component";
 import Modal from "../../components/Modal/Model.component";
 
+// prettier-ignore
+
 const CreateRecipeForm = () => {
   const { user } = useAuth0();
   const navigate = useNavigate();
