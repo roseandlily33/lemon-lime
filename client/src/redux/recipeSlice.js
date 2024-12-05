@@ -3,9 +3,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   newestRecipes: [],
   popularRecipes: [],
-  isLoading: false,
-  isLoading2: false,
-  error: null,
+  isLoadingNewest: false,
+  isLoadingPopular: false,
+  errorNewest: null,
+  errorPopular: null,
 };
 const URL = process.env.REACT_APP_API_URL;
 
@@ -13,17 +14,31 @@ const URL = process.env.REACT_APP_API_URL;
 export const fetchPopular = createAsyncThunk(
   "recipes/fetchPopular",
   async () => {
-    const res = await fetch(`${URL}/home/popular`);
-    const data = await res.json();
-    return data;
+    try {
+      const res = await fetch(`${URL}/home/popular`);
+      if (!res.ok) {
+        throw new Error("Failed to fetch popular recipes");
+      }
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      throw new Error("Failed to fetch popular recipes");
+    }
   }
 );
 
 //Gets the most recent recipes for the main page
 export const fetchRecent = createAsyncThunk("recipes/fetchNewest", async () => {
-  const res = await fetch(`${URL}/home/recipes`);
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`${URL}/home/recipes`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch recent recipes");
+    }
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw new Error("Failed to fetch recent recipes");
+  }
 });
 
 export const recipeSlice = createSlice({
@@ -35,22 +50,24 @@ export const recipeSlice = createSlice({
       //For Popular Recipes
       // Took out action from params
       .addCase(fetchPopular.pending, (state) => {
-        state.isLoading2 = true;
+        state.isLoadingPopular = true;
+        state.errorPopular = null;
       })
       .addCase(fetchPopular.fulfilled, (state, action) => {
-        state.isLoading2 = false;
+        state.isLoadingPopular = false;
         state.popularRecipes = action.payload;
       })
       .addCase(fetchPopular.rejected, (state, action) => {
-        state.isLoading2 = false;
+        state.isLoadingPopular = false;
         state.error = action.error.message;
       })
       //For Newest Recipes
       .addCase(fetchRecent.pending, (state) => {
-        state.isLoading = true;
+        state.isLoadingNewest = true;
+        state.errorNewest = null;
       })
       .addCase(fetchRecent.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.isLoadingNewest = false;
         state.newestRecipes = action.payload;
       })
       .addCase(fetchRecent.rejected, (state, action) => {

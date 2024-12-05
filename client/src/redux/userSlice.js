@@ -11,20 +11,41 @@ const initialState = {
 
 const URL = process.env.REACT_APP_API_URL;
 
-export const fetchUserRecipes = createAsyncThunk("user/recipes", async (id) => {
-  const res = await fetch(`${URL}/user/${id}`);
-  const data = await res.json();
-  return data[0];
-});
+export const fetchUserRecipes = createAsyncThunk(
+  "user/recipes",
+  async (id, { rejectWithValue }) => {
+    try {
+      const res = await fetch(`${URL}/user/${id}`);
+      if (!res.ok) {
+        throw new Error("Failed to fetch user");
+      }
+      const data = await res.json();
+      return data[0];
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+    updateUser: (state, action) => {
+      state.user = { ...state.user, ...action.payload };
+    },
+    logOut: (state) => {
+      state.user = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserRecipes.pending, (state) => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(fetchUserRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -38,5 +59,6 @@ export const userSlice = createSlice({
       });
   },
 });
+export const { setUser, updateUser, logOut } = userSlice.actions;
 
 export default userSlice.reducer;
