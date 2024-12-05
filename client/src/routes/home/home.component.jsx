@@ -13,18 +13,18 @@ import MainPicture from "../../images/Background3.jpg";
 import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/Buttons/PrimaryButton/primaryButton.component";
 import Loader from "../../components/Loader/loader.component";
-// import { useQuery } from "@apollo/client";
-// import { GET_USER } from "../../graphqlUtils/queries";
 
 const HomePage = () => {
-  // const {loading, data} = useQuery(GET_USER);
-  // console.log('QUERY DATA', data);
-
-  const popularRecipes = useSelector((state) => state.recipes.popularRecipes);
-  const newestRecipes = useSelector((state) => state.recipes.newestRecipes);
-  const loading = useSelector((state) => state.recipes.isLoading);
-  const loading2 = useSelector((state) => state.recipes.isLoading2);
   const navigate = useNavigate();
+
+  const {
+    popularRecipes,
+    newestRecipes,
+    loadingPopular,
+    loadingNewest,
+    errorPopular,
+    errorNewest,
+  } = useSelector((state) => state.recipes);
   return (
     <MainDiv>
       <HeroImage>
@@ -44,7 +44,8 @@ const HomePage = () => {
       <BottomDiv>
         <LeftMainDiv className="scrollBar">
           <h2>New Recipes</h2>
-          {loading ? (
+          {errorNewest && <h2>{errorNewest}</h2>}
+          {loadingNewest ? (
             <Loader />
           ) : (
             <>
@@ -56,7 +57,8 @@ const HomePage = () => {
         </LeftMainDiv>
         <RightMainDiv className="scrollBar">
           <h2>Popular Recipes</h2>
-          {loading2 ? (
+          {errorPopular && <h2>{errorPopular}</h2>}
+          {loadingPopular ? (
             <Loader />
           ) : (
             <>

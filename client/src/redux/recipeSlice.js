@@ -16,6 +16,7 @@ export const fetchPopular = createAsyncThunk(
   async () => {
     try {
       const res = await fetch(`${URL}/recipes/popular`);
+      console.log("POPULAR RES", res);
       if (!res.ok) {
         throw new Error("Failed to fetch popular recipes");
       }
@@ -48,7 +49,6 @@ export const recipeSlice = createSlice({
   extraReducers: (builder) => {
     builder
       //For Popular Recipes
-      // Took out action from params
       .addCase(fetchPopular.pending, (state) => {
         state.isLoadingPopular = true;
         state.errorPopular = null;
