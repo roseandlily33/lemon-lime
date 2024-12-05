@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { httpGetFullRecipeWithDetails } from "../../hooks/recipeRequests";
 import { useParams } from "react-router-dom";
 import { formatDate } from "../../formattingUtils/date";
@@ -9,12 +9,12 @@ import {
   LeftSide,
   RightSide,
   Bottom,
-} from "./SingleRecipe.styles";
-import Comment from "../Comments/addComment/Comments.component";
-import Loader from "../Loader/Loader.component";
-import RecipeComments from "../Comments/recipeComments/RecipeComment.component";
-import Carousel from "./SingleRecipeCarousel.component";
-import Heart from "../Heart/Heart.component";
+} from "./singleRecipe.styles";
+import Comment from "../Comments/addComment/comments.component";
+import Loader from "../Loader/loader.component";
+import RecipeComments from "../Comments/recipeComments/recipeComment.component";
+import Carousel from "./singleRecipeCarousel.component";
+import Heart from "../Heart/heart.component";
 import { NavLink } from "react-router-dom";
 import { averageOfStars } from "../../formattingUtils/average-of-stars";
 import { formatStars } from "../../formattingUtils/stars";

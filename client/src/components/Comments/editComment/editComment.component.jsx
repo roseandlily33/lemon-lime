@@ -1,7 +1,8 @@
-import Rating from "../../Rating/Rating.component";
-import { CommentForm, FormElement } from "../addComment/Comments.styles";
-import { useState } from "react";
-import { CommentDiv } from "../userComments/UserComments.styles";
+import Rating from "../../Rating/rating.component";
+import PropTypes from "prop-types";
+import { CommentForm, FormElement } from "../addComment/comments.styles";
+import React, { useState } from "react";
+import { CommentDiv } from "../userComments/userComments.styles";
 import { httpEditComment } from "../../../hooks/commentRequests";
 import RequiredInput from "../../Input/RequiredInput/RequiredInput.component";
 
@@ -69,6 +70,14 @@ const EditComment = ({ comment }) => {
       </CommentDiv>
     </>
   );
+};
+EditComment.propTypes = {
+  comment: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default EditComment;

@@ -3,12 +3,12 @@ import {
   OuterDiv,
   RightCommentsDiv,
   LeftCommentsDiv,
-} from "./UserComments.styles";
-import SingleComment from "./SingleComment.component";
+} from "./userComments.styles";
+import SingleComment from "./singleComment.component";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import React, { useState } from "react";
 import CommentsImage from "../../../images/undraw_reviews_lp8w.svg";
-import EditComment from "../editComment/EditComment.component";
+import EditComment from "../editComment/editComment.component";
 
 const UserComments = () => {
   const { comments } = useSelector((state) => state.userComments.userComments);

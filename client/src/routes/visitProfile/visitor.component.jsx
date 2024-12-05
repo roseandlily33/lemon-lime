@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   VisitorContainer,
   LeftContainer,
@@ -8,12 +8,12 @@ import {
   UsersRecipes,
   UserOptions,
   UserRecipeContainer,
-} from "./Visitor.styles";
+} from "./visitor.styles";
 import {
   httpGetUserRecipes,
   httpGetUsersFavoriteRecipes,
 } from "../../hooks/userRequests";
-import RecipeContainer from "../../components/Recipe/Recipe.component";
+import RecipeContainer from "../../components/Recipe/recipe.component";
 import Background from "../../images/Background4.jpg";
 import Profile from "../../images/Profile1.jpg";
 
@@ -24,7 +24,7 @@ const VisitorPage = () => {
   const [favorites, setFavorites] = useState();
   const [showRecipe, setShowRecipe] = useState(true);
   const [showFave, setShowFave] = useState(false);
-  console.log("On visitors page", id);
+
   useEffect(() => {
     const fetchUser = async () => {
       let visitingUser = await httpGetUserRecipes(id);
@@ -35,7 +35,7 @@ const VisitorPage = () => {
     };
     fetchUser();
   }, [id]);
-  //console.log('Visitor faves', favorites);
+
   const switchTab = () => {
     if (showRecipe === true) {
       setShowRecipe(false);
@@ -77,13 +77,17 @@ const VisitorPage = () => {
               {showRecipe ? (
                 <>
                   {userRecipes?.map((recipe) => {
-                    return <RecipeContainer recipe={recipe} />;
+                    return (
+                      <RecipeContainer key={recipe?._id} recipe={recipe} />
+                    );
                   })}
                 </>
               ) : (
                 <>
                   {favorites?.map((recipe) => {
-                    return <RecipeContainer recipe={recipe} />;
+                    return (
+                      <RecipeContainer key={recipe?._id} recipe={recipe} />
+                    );
                   })}
                 </>
               )}

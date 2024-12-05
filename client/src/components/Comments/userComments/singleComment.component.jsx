@@ -1,7 +1,9 @@
-import { SingleCommentDiv } from "./UserComments.styles";
+import { SingleCommentDiv } from "./userComments.styles";
+import PropTypes from "prop-types";
 import { formatDate } from "../../../formattingUtils/date";
 import { formatStars } from "../../../formattingUtils/stars";
-import DeleteComment from "../deleteComment/DeleteComment.component";
+import DeleteComment from "../deleteComment/deleteComment.component";
+import React from "react";
 
 const SingleComment = ({ comments, setEditing, setEditComment }) => {
   //console.log('Each comment', comments)
@@ -44,6 +46,21 @@ const SingleComment = ({ comments, setEditing, setEditComment }) => {
       })}
     </>
   );
+};
+
+SingleComment.propTypes = {
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      title: PropTypes.string,
+      recipeName: PropTypes.string,
+      rating: PropTypes.number,
+      createdAt: PropTypes.string,
+      comment: PropTypes.string,
+    })
+  ).isRequired,
+  setEditing: PropTypes.func.isRequired,
+  setEditComment: PropTypes.func.isRequired,
 };
 
 export default SingleComment;

@@ -1,5 +1,10 @@
 //import { motion, AnimatePresence } from "framer-motion";
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+>>>>>>> 2ca9627cd0f3c041bb6cc57de20a972a03879123
 import {
   CarouselDiv,
   Direction,
@@ -7,8 +12,13 @@ import {
   RightDirection,
   Indicator,
   RecipeImage,
+<<<<<<< HEAD
 } from "./SingleRecipeCarousel.styles";
 import CloudImage from "../../Photos/Photo.component";
+=======
+} from "./singleRecipeCarousel.styles";
+import CloudImage from "../../Photos/photo.component";
+>>>>>>> 2ca9627cd0f3c041bb6cc57de20a972a03879123
 
 const Carousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,7 +52,11 @@ const Carousel = ({ images }) => {
           >
             <circle cx="12" cy="12" r="10" className="primary" />
             <path
+<<<<<<< HEAD
               class="secondary"
+=======
+              className="secondary"
+>>>>>>> 2ca9627cd0f3c041bb6cc57de20a972a03879123
               d="M13.7 15.3a1 1 0 0 1-1.4 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 1.4L10.42 12l3.3 3.3z"
             />
           </svg>
@@ -64,7 +78,11 @@ const Carousel = ({ images }) => {
           >
             <circle cx="12" cy="12" r="10" className="primary" />
             <path
+<<<<<<< HEAD
               class="secondary"
+=======
+              className="secondary"
+>>>>>>> 2ca9627cd0f3c041bb6cc57de20a972a03879123
               d="M10.3 8.7a1 1 0 0 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-1.4-1.4l3.29-3.3-3.3-3.3z"
             />
           </svg>
@@ -73,5 +91,15 @@ const Carousel = ({ images }) => {
     </CarouselDiv>
   );
 };
+<<<<<<< HEAD
+=======
+Carousel.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      publicId: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+>>>>>>> 2ca9627cd0f3c041bb6cc57de20a972a03879123
 
 export default Carousel;

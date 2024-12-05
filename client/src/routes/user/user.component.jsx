@@ -5,14 +5,15 @@ import {
   UserOptionsContainer,
   UserOptions,
   UserInfo,
-} from "./User.styles";
+} from "./user.styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-import RecipeContainer3 from "../../components/Recipe/Recipe3.component";
-import Loader from "../../components/Loader/Loader.component";
+import RecipeContainer3 from "../../components/Recipe/recipe3.component";
+import Loader from "../../components/Loader/loader.component";
 import { useSelector } from "react-redux";
 import Background from "../../images/Background2.jpg";
 import Profile from "../../images/Profile1.jpg";
+import React from "react";
 
 const UserHome = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -72,7 +73,7 @@ const UserHome = () => {
                     borderRadius: "50%",
                   }}
                 />
-                <h2>Welcome {user.nickname}</h2>
+                <h2>Welcome {user?.nickname}</h2>
               </UserInfo>
               <UserContentContainer>
                 <UserOptions>
@@ -80,7 +81,7 @@ const UserHome = () => {
                     return (
                       <button
                         key={button.id}
-                        onClick={() => switchFunction(button.action)}
+                        onClick={() => switchFunction(button?.action)}
                         style={{
                           backgroundColor: `${button.color}`,
                           border: `${button.color}`,
@@ -98,8 +99,8 @@ const UserHome = () => {
                   })}
                 </UserOptions>
                 <UserRecipesContainer className="scrollBar">
-                  {recipes.map((r) => {
-                    return <RecipeContainer3 recipe={r} />;
+                  {recipes?.map((r) => {
+                    return <RecipeContainer3 key={r?._id} recipe={r} />;
                   })}
                 </UserRecipesContainer>
               </UserContentContainer>

@@ -3,12 +3,15 @@ import {
   TopLabel,
   LeftContainer,
   RightContainer,
-} from "./Recipe.styles";
+} from "./recipe.styles";
 import { formatDate } from "../../formattingUtils/date";
 import { NavLink } from "react-router-dom";
 import Lemons from "../../images/lemons.jpg";
 import { useNavigate } from "react-router-dom";
-import CloudImage from "../../Photos/Photo.component";
+import CloudImage from "../../Photos/photo.component";
+import React from "react";
+import PropTypes from "prop-types";
+
 // import Heart from "../Heart/heart.component";
 
 const RecipeContainer = ({ recipe }) => {
@@ -44,6 +47,25 @@ const RecipeContainer = ({ recipe }) => {
       </RightContainer>
     </RecipeCont>
   );
+};
+
+RecipeContainer.propTypes = {
+  recipe: PropTypes.shape({
+    _id: PropTypes.string,
+    recipeName: PropTypes.string,
+    createdAt: PropTypes.string,
+    totalTime: PropTypes.shape({
+      hours: PropTypes.number,
+      minutes: PropTypes.number,
+    }),
+    favorites: PropTypes.number,
+    subCategory: PropTypes.string,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        publicId: PropTypes.string,
+      })
+    ),
+  }).isRequired,
 };
 
 export default RecipeContainer;

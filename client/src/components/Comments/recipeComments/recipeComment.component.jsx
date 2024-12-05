@@ -1,24 +1,15 @@
-//import { useState, useEffect } from "react";
-import Loader from "../../Loader/Loader.component";
-//import { httpGetAllCommentsForRecipe } from "../../../hooks/commentRequests";
+import Loader from "../../Loader/loader.component";
+import PropTypes from "prop-types";
+import React from "react";
 import {
   RecipeCommentsDiv,
   SingleCommentDiv,
   SingleTop,
-} from "./RecipeComments.styles";
+} from "./recipeComments.styles";
 import { formatDate } from "../../../formattingUtils/date";
 import { formatStars } from "../../../formattingUtils/stars";
 
-const RecipeComments = ({ id, comments }) => {
-  // const [comments, setComments] = useState();
-  // useEffect(() => {
-  //    const fetchComments = async() => {
-  //     const res = await httpGetAllCommentsForRecipe(id);
-  //     setComments(res);
-  //    }
-  //    fetchComments();
-  // }, [id]);
-
+const RecipeComments = ({ comments }) => {
   return (
     <RecipeCommentsDiv className="scrollBar">
       {!comments ? (
@@ -45,6 +36,19 @@ const RecipeComments = ({ id, comments }) => {
       )}
     </RecipeCommentsDiv>
   );
+};
+RecipeComments.propTypes = {
+  id: PropTypes.string.isRequired,
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string,
+      rating: PropTypes.number,
+      createdAt: PropTypes.string,
+      authorName: PropTypes.string,
+      comment: PropTypes.string,
+    })
+  ),
 };
 
 export default RecipeComments;

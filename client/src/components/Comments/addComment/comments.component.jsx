@@ -1,13 +1,14 @@
-import { CommentContainer, CommentForm, FormElement } from "./Comments.styles";
-import { useState } from "react";
+import { CommentContainer, CommentForm, FormElement } from "./comments.styles";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { httpAddComment } from "../../../hooks/commentRequests";
-import Rating from "../../Rating/Rating.component";
-import TextArea from "../../Textarea/Textarea.component";
-import PrimaryButton from "../../Buttons/PrimaryButton/PrimaryButton.component";
-import RequiredInput from "../../Input/RequiredInput/RequiredInput.component";
-import RedirectLoginButton from "../../Buttons/RedirectLoginButton/RedirectLogin.component";
+import Rating from "../../Rating/rating.component";
+import TextArea from "../../Textarea/textarea.component";
+import PrimaryButton from "../../Buttons/PrimaryButton/primaryButton.component";
+import RequiredInput from "../../Input/RequiredInput/requiredInput.component";
+import RedirectLoginButton from "../../Buttons/RedirectLoginButton/redirectLogin.component";
 
 const Comment = ({ singleRecipe }) => {
   const { id } = useParams();
@@ -90,6 +91,11 @@ const Comment = ({ singleRecipe }) => {
       )}
     </CommentContainer>
   );
+};
+Comment.propTypes = {
+  singleRecipe: PropTypes.shape({
+    recipeName: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Comment;

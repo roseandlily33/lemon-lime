@@ -1,4 +1,6 @@
-import { IngredientsDiv } from "../SingleRecipe.styles";
+import { IngredientsDiv } from "../singleRecipe.styles";
+import PropTypes from "prop-types";
+import React from "react";
 
 const IngredientSection = ({ singleRecipe }) => {
   return (
@@ -9,7 +11,7 @@ const IngredientSection = ({ singleRecipe }) => {
           <div className="ing1">
             {singleRecipe?.ingredients?.map(({ id, mea }, index) => {
               return (
-                <div className="insideIng1">
+                <div className="insideIng1" key={index}>
                   <p
                     key={id}
                     style={{ color: "#6C9251", paddingRight: "0.7em" }}
@@ -30,6 +32,18 @@ const IngredientSection = ({ singleRecipe }) => {
       </IngredientsDiv>
     </>
   );
+};
+IngredientSection.propTypes = {
+  singleRecipe: PropTypes.shape({
+    ingredients: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+          .isRequired,
+        mea: PropTypes.string,
+        ing: PropTypes.string,
+      })
+    ),
+  }),
 };
 
 export default IngredientSection;

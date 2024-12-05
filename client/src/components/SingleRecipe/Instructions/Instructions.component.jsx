@@ -1,4 +1,6 @@
-import { InstructionsDiv } from "../SingleRecipe.styles";
+import { InstructionsDiv } from "../singleRecipe.styles";
+import React from "react";
+import PropTypes from "prop-types";
 
 const InstructionSection = ({ singleRecipe }) => {
   return (
@@ -20,6 +22,16 @@ const InstructionSection = ({ singleRecipe }) => {
       </InstructionsDiv>
     </>
   );
+};
+InstructionSection.propTypes = {
+  singleRecipe: PropTypes.shape({
+    instructions: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        ins: PropTypes.string.isRequired,
+      })
+    ),
+  }).isRequired,
 };
 
 export default InstructionSection;

@@ -4,6 +4,8 @@ import { fetchUserRecipes } from "../../redux/userSlice";
 import { httpCreateRecipe } from "../../hooks/userRequests";
 import { useAuth0 } from "@auth0/auth0-react";
 import { SubmitButtonContainer } from "./RecipeForm.styles";
+import PropTypes from "prop-types";
+import React from "react";
 
 const CreateRecipeSubmit = ({
   formValues,
@@ -16,9 +18,9 @@ const CreateRecipeSubmit = ({
 }) => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log('CREATING RECIPE WITH THESE', formValues, images, ingredients, instructions);
     if (images?.length > 4) {
       setError("Only 4 images can be uploaded");
     } else if (!ingredients?.length) {
@@ -54,15 +56,28 @@ const CreateRecipeSubmit = ({
   };
   return (
     <SubmitButtonContainer>
-      <div class="button type--A" onClick={(e) => handleSubmit(e)}>
-        <div class="button__line"></div>
-        <div class="button__line"></div>
-        <span class="button__text">Create Recipe</span>
-        <div class="button__drow1"></div>
-        <div class="button__drow2"></div>
+      <div className="button type--A" onClick={(e) => handleSubmit(e)}>
+        <div className="button__line"></div>
+        <div className="button__line"></div>
+        <span className="button__text">Create Recipe</span>
+        <div className="button__drow1"></div>
+        <div className="button__drow2"></div>
       </div>
     </SubmitButtonContainer>
   );
+};
+CreateRecipeSubmit.propTypes = {
+  formValues: PropTypes.shape({
+    recipeName: PropTypes.string,
+    cookTime: PropTypes.number,
+    prepTime: PropTypes.number,
+  }).isRequired,
+  images: PropTypes.array,
+  instructions: PropTypes.array,
+  ingredients: PropTypes.array,
+  setIsOpen: PropTypes.func.isRequired,
+  setSuccessState: PropTypes.func.isRequired,
+  setError: PropTypes.func.isRequired,
 };
 
 export default CreateRecipeSubmit;

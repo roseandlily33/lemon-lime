@@ -1,9 +1,11 @@
-import { SideContainer } from "./Recipe2.styles";
+import { SideContainer } from "./recipe2.styles";
 import { formatDate } from "../../formattingUtils/date";
 import { NavLink } from "react-router-dom";
 import Lemons from "../../images/lemons.jpg";
 import { useNavigate } from "react-router-dom";
-import CloudImage from "../../Photos/Photo.component";
+import CloudImage from "../../Photos/photo.component";
+import React from "react";
+import PropTypes from "prop-types";
 // import Heart from "../Heart/heart.component";
 
 const RecipeContainer2 = ({ recipe }) => {
@@ -33,6 +35,20 @@ const RecipeContainer2 = ({ recipe }) => {
       )}
     </SideContainer>
   );
+};
+
+RecipeContainer2.propTypes = {
+  recipe: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    recipeName: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    favorites: PropTypes.number.isRequired,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        publicId: PropTypes.string,
+      })
+    ),
+  }).isRequired,
 };
 
 export default RecipeContainer2;
