@@ -1,11 +1,12 @@
 import { getTotalTime } from "../../formattingUtils/total-time";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchUserRecipes } from "../../redux/userSlice";
 import { httpCreateRecipe } from "../../hooks/userRequests";
 import { useAuth0 } from "@auth0/auth0-react";
 import { SubmitButtonContainer } from "./RecipeForm.styles";
 import PropTypes from "prop-types";
 import React from "react";
+import { submitRecipe } from "../../redux/recipeSlice";
 
 const CreateRecipeSubmit = ({
   formValues,
@@ -18,6 +19,8 @@ const CreateRecipeSubmit = ({
 }) => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
+  const { isLoading, success, error } = useSelector((state) => state.recipes);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,23 +38,17 @@ const CreateRecipeSubmit = ({
       formValues.prepTime
     );
     let newRecipeName = formValues.recipeName.toLowerCase();
-    let totalSending = Object.assign(formValues, {
-      instructions: instructions,
+   
+    const fullRecipe = {
+      ...formValues,instructions: instructions,
       ingredients: ingredients,
       totalTime: totalTime,
       recipeName: newRecipeName,
       images: images,
       authorName: user.nickName,
-    });
-    const response = await httpCreateRecipe(user, totalSending);
-    const success = response.ok;
-    if (success) {
-      setSuccessState("You have created a recipe");
-      setIsOpen(true);
-    } else {
-      setSuccessState("Recipe has not been created");
-      setIsOpen(true);
-    }
+    };
+    dispatch(submitRecipe(fullRecipe));
+  
     dispatch(fetchUserRecipes(user.sub));
   };
   return (

@@ -27,6 +27,8 @@ export const fetchPopular = createAsyncThunk(
   }
 );
 
+
+
 //Gets the most recent recipes for the main page
 export const fetchRecent = createAsyncThunk("recipes/fetchNewest", async () => {
   try {
@@ -40,6 +42,29 @@ export const fetchRecent = createAsyncThunk("recipes/fetchNewest", async () => {
     throw new Error("Failed to fetch recent recipes");
   }
 });
+
+// Create a recipe
+export const submitRecipe = createAsyncThunk(
+    'recipes/submitRecipe',
+    async (recipeData, { rejectWithValue }) => {
+      try {
+        const response = await fetch(`${URL}/recipes`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(recipeData),
+        });
+        if (!response.ok) {
+          throw new Error('Failed to submit recipe');
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  );
 
 export const recipeSlice = createSlice({
   name: "recipe",
