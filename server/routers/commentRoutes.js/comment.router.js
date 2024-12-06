@@ -1,15 +1,17 @@
 const commentRouter = require('express').Router();
+const checkJwt = require('../../utils/authentication');
 const {
    httpAddComment,
    httpDeleteComment,
  //  httpGetAllCommentsForRecipe,
-   httpEditComment
+   httpEditComment,
+   httpGetUserComments
 } = require('./comment.controller');
 
 // comments
-//commentRouter.get('/:id', httpGetAllCommentsForRecipe);
-commentRouter.post('/add', httpAddComment);
-commentRouter.put('/:id', httpEditComment)
-commentRouter.delete('/:id', httpDeleteComment);
+commentRouter.get('/:id', httpGetUserComments);
+commentRouter.post('/add', checkJwt, httpAddComment);
+commentRouter.put('/:id', checkJwt, httpEditComment)
+commentRouter.delete('/:id', checkJwt, httpDeleteComment);
 
 module.exports = commentRouter;

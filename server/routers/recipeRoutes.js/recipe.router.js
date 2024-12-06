@@ -8,11 +8,11 @@ const {
     httpSearchRecipes
 } = require('./recipe.controller');
 
-// recipe/
+// recipes/
 recipeRouter.get('/', httpGetNewestRecipes);
 recipeRouter.get('/popular', httpGetPopularRecipes);
 recipeRouter.get('/:id', httpGetFullRecipeWithDetails);
-recipeRouter.get('/search/:search-text/:sub-category', httpSearchRecipes);
+recipeRouter.get('/search/:searchText/:subCategory', httpSearchRecipes);
 
 
 module.exports = recipeRouter;

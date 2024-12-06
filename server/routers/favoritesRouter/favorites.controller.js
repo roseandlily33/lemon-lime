@@ -5,6 +5,7 @@ const User = require('../../models/user.mongo');
 // GET: Gets the users favorite recipes 
 async function httpGetUsersFavoriteRecipes(req, res){
     try{
+      console.log('GETTING FAVORITES')
       const userId = req.params.userId;
       if(!userId){
         return res.status(404).json({msg: 'Could not find favorite recipes'})
@@ -22,9 +23,11 @@ async function httpGetUsersFavoriteRecipes(req, res){
       const favoriteRecipes = await Recipe.find({_id: {$in: faveIds}} , {
         '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
       });
-      if(!favoriteRecipes) return res.status(404).json({msg: 'Could not find favorite recipes'})
+      if(!favoriteRecipes) return res.status(404).json({msg: 'Could not find favorite recipes'});
+     // console.log('FAVORITES', favorites, 'Fave recipes', favoriteRecipes)
       return res.status(200).json({favorites, favoriteRecipes});
     } catch(err){
+      console.log('ERROR', err)
       return res.status(500).json({msg: 'An error has occured, could not find favorite recipes'})
     }
   };
@@ -32,6 +35,7 @@ async function httpGetUsersFavoriteRecipes(req, res){
 // PUT: Adds a recipe to the users favorites - NOT VERIEIFED FUNCTIONALITY
 async function httpAddFavoriteRecipe(req, res){
     try{ 
+      console.log('Adding faves')
       const userId = req.body.userId;
       const recipeId = req.body.recipeId;
       if(!userId || !recipeId){
@@ -47,9 +51,11 @@ async function httpAddFavoriteRecipe(req, res){
        await User.findOneAndUpdate({authId: userId}, {
          $set: {["favorites." + recipeId]: true}
         });
-      }
+      };
+      console.log('Added the new recipe')
       return res.status(201).json({msg: 'Added the new recipe'})
     } catch(err){
+      console.log('ERROR', err)
       return res.status(500).json({msg: 'An error has occured, could not add a favorite recipe'})
     }
   };
@@ -57,6 +63,7 @@ async function httpAddFavoriteRecipe(req, res){
 // DELETE: Deletes a favorite recipe for a user 
 async function httpDeleteFavoriteRecipe(req, res){
     try{
+      console.log('Deleting recipe')
       let userId = req.body.userId;
       let recipeId = req.body.recipeId;
       if(!userId || !recipeId){
@@ -71,8 +78,10 @@ async function httpDeleteFavoriteRecipe(req, res){
       } else {
         return res.status(404).json({msg: "Could not delete favorite recipe"});
       }
+      console.log('Removed the favorite recipe')
       return res.status(201).json({msg: 'Removed the favorite recipe'})
     } catch(err){
+      console.log('ERROR', err)
       return res.status(500).json({msg: "An error has occured"});
     }
   };

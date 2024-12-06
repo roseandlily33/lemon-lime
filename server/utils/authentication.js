@@ -1,21 +1,17 @@
-const User = require('../models/user.mongo');
-require("dotenv").config();
-const jwt = require("jsonwebtoken");
+// src/middleware/auth.js
+const { expressjwt: jwt } = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
 
-module.exports.userVerification = (req, res) => {
-  const token = req.cookies;
-  if (!token) {
-    return res.json({ status: false });
-  }
-  jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
-    if (err) {
-     return res.json({ status: false })
-    } else {
-      const user = await User.findOne({_id: data.id})
-      if (user) {
-        return res.json({ status: true, user: user.name })
-      }
-      else return res.json({ status: false })
-    }
-  })
-}
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+  }),
+  audience: process.env.AUTH0_AUDIENCE,
+  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  algorithms: ['RS256']
+});
+
+module.exports = checkJwt;

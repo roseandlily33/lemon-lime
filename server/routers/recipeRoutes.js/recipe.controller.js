@@ -1,18 +1,19 @@
 const Recipe = require('../../models/recipes.mongo');
-const User = require('../../models/user.mongo');
-const Comment = require('../../models/comments.mongo');
 
 // GET: Gets all of the recipes for the main page the newest 6 
 async function httpGetNewestRecipes(req, res){
    try{
+    console.log('getting the newest recipes')
     const allRecipes = await Recipe.find({}, {
         '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
     }).sort({createdAt: -1}).limit(6);
     if(!allRecipes){
         return res.status(404).json({msg: "Could not get the recipes"});
     }
+    //console.log('newest recipes', allRecipes);
     return res.status(200).json(allRecipes)
    } catch(err){
+    console.log('ERROR', err)
     return res.status(500).json({msg: "An error has occured, could not get the recipes"});
    }
 };
@@ -20,14 +21,16 @@ async function httpGetNewestRecipes(req, res){
 // GET: Gets the most popular recipes the top 6 
 async function httpGetPopularRecipes(req, res){
     try{
-        const faveRecipes = await Recipe.find({}, {
+        const popularRecipes = await Recipe.find({}, {
             '__v': 0, 'ingredients': 0, 'prepTime':0, 'cookTime': 0, 'instructions': 0, 'comments': 0, 'author': 0
         }).sort({favorites: -1}).limit(6);
-        if(!faveRecipes){
+        if(!popularRecipes){
             return res.status(404).json({msg: "Could not get the recipes"});
         }
-        return res.status(200).json(faveRecipes);
-    }catch(err){
+       // console.log('popular recipes', popularRecipes);
+        return res.status(200).json(popularRecipes);
+    } catch(err){
+        console.log('ERROR', err)
         return res.status(500).json({msg: "An error has occured, could not get the most popular recipes"});
     }
 }
@@ -35,27 +38,25 @@ async function httpGetPopularRecipes(req, res){
 //GET: Gets the full recipe with details 
 async function httpGetFullRecipeWithDetails(req, res){
     try {
+        console.log('Getting full recipe with details')
     const requestId = req.params.id;
     if(!requestId){
         return res.status(404).json({err: 'Recipe id is needed'});
     }
     const foundRecipe = await Recipe.find({
         _id: requestId
-    }, {'__v': 0});
+    }, {'__v': 0}).populate('comments');
+    console.log('FOUND RECIPES with comments', foundRecipe);
     if(!foundRecipe){
         return res.status(404).json({err: 'Recipe not found'});
     }
-    const authorOfRecipe = await User.findOne({_id: foundRecipe[0].author});
-    if(!authorOfRecipe){
-        return res.status(404).json({err: 'Author not found'});
-    }
-    // No check for all comments because there may not be any
-    const allComments = await Comment.find({recipe: requestId}).sort({createdAt: -1});
-    return res.status(200).json({foundRecipe, authorOfRecipe, allComments});
+    console.log('Found recipes', foundRecipe)
+    return res.status(200).json(foundRecipe);
     } catch(err){
+        console.log('ERROR', err)
         return res.status(400).json(err);
     }
-}
+};
 
 // GET: Searches for a recipe based on criteria given 
  async function httpSearchRecipes(req, res){
@@ -85,11 +86,11 @@ async function httpGetFullRecipeWithDetails(req, res){
     } catch(err){
         return res.status(500).json({msg: "An error has occured, cannot search for recipes"})
     }
- }
+ };
 
 module.exports = {
     httpGetNewestRecipes,
     httpGetPopularRecipes,
     httpGetFullRecipeWithDetails,
     httpSearchRecipes
-}
+};
