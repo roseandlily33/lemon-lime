@@ -1,23 +1,5 @@
-// //let process;
-// if (!process.env.REACT_APP_API_URL) {
-//   throw new Error(
-//     "REACT_APP_API_URL is not defined in the environment variables"
-//   );
-// }
-
 const API_URL = process.env.REACT_APP_API_URL;
-
-//GET:  Gets all the comments for a recipe
-// async function httpGetAllCommentsForRecipe(id) {
-//   try {
-//     const response = await fetch(`${API_URL}/comments/${id}`);
-//     const allComments = await response.json();
-//     return allComments;
-//   } catch (err) {
-//     return err;
-//   }
-// }
-
+// prettier-ignore
 // POST: Allows a user to comment on a recipe
 async function httpAddComment(comment) {
   try {
@@ -62,9 +44,4 @@ async function httpDeleteComment(id) {
   }
 }
 
-export {
-  httpAddComment,
-  // httpGetAllCommentsForRecipe,
-  httpDeleteComment,
-  httpEditComment,
-};
+export { httpAddComment, httpDeleteComment, httpEditComment };

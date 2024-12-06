@@ -2,6 +2,7 @@ import RecipeNameCreate from "./RecipeNameCreate.component";
 import CookTimeCreate from "./CookTimeCreate.component";
 import PrepTimeCreate from "./PrepTimeCreate.component";
 import SubcategoryCreate from "./SubcategoryCreate.component";
+import Description from "./Description.component";
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -12,6 +13,7 @@ const TopCreate = ({ formValues, handleChange }) => {
       <CookTimeCreate formValues={formValues} handleChange={handleChange} />
       <PrepTimeCreate formValues={formValues} handleChange={handleChange} />
       <SubcategoryCreate formValues={formValues} handleChange={handleChange} />
+      <Description formValues={formValues} handleChange={handleChange} />
     </>
   );
 };

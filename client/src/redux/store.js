@@ -7,6 +7,7 @@ import visitorSlice from "./visitorSlice";
 import favoritesSlice from "./favoritesSlice";
 import singleRecipeSlice from "./singleRecipeSlice";
 import searchSlice from "./searchSlice";
+import { crudRecipeSlice } from "./crudRecipeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
     visitor: visitorSlice,
     singleRecipe: singleRecipeSlice,
     search: searchSlice,
+    crudRecipes: crudRecipeSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

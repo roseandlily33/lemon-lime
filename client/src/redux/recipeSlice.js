@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+// prettier-ignore
 const initialState = {
   newestRecipes: [],
   popularRecipes: [],
@@ -41,6 +42,28 @@ export const fetchRecent = createAsyncThunk("recipes/fetchNewest", async () => {
     throw new Error("Failed to fetch recent recipes");
   }
 });
+
+export const createRecipe = createAsyncThunk(
+  "recipes/createRecipe",
+  async ({ user, recipeData }, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${URL}/user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user, recipeData }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to submit recipe");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const recipeSlice = createSlice({
   name: "recipes",

@@ -13,8 +13,6 @@ import {
 } from "../createRecipe/RecipeForm.styles";
 import EditRecipeSubmit from "./EditRecipeSubmit";
 import CookingIllustration from "../../images/undraw_cooking_p7m1.svg";
-// HTTP requests
-import { httpGetFullRecipeWithDetailsEditPage } from "../../hooks/recipeRequests";
 // The Components for the edit form
 import TopEdit from "./TopForm/TopEdit.component";
 import MiddleEdit from "./MiddleForm/MiddleEdit.component";
@@ -34,7 +32,8 @@ const EditRecipe = () => {
   useEffect(() => {
     const fetchSingle = async () => {
       const cloud = new Cloudinary({ cloud: { cloudName: "dql7lqwmr" } });
-      const res = await httpGetFullRecipeWithDetailsEditPage(id);
+      //const res = await httpGetFullRecipeWithDetailsEditPage(id);
+      let res;
       if (res) {
         console.log("RES", res);
         setFormValues({

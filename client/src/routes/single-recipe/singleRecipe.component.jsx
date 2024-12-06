@@ -69,6 +69,7 @@ const SingleRecipeComponent = () => {
                     )}
                     on {formatDate(recipe?.createdAt)}
                   </span>
+                  {/* ADD IN DESCRIPTION */}
                   {isAuthenticated && <Heart recipe={recipe?._id} />}
                 </div>
                 <>
