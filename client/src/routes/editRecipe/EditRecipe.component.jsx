@@ -20,10 +20,15 @@ import { useSelector } from "react-redux";
 import Modal from "../../components/Modal/Model.component";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { selectRecipeById } from "../../redux/userSlice";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // prettier-ignore
 const EditRecipe = () => {
-  //const { user } = useAuth0();
+  const { isAuthenticated } = useAuth0();
+  if (!isAuthenticated) {
+    navigate("/");
+  }
+
   const navigate = useNavigate();
   const { id } = useParams();
   const recipe = useSelector((state) => selectRecipeById(state, id));

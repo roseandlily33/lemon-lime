@@ -17,7 +17,10 @@ import React from "react";
 
 const UserHome = () => {
   const { user, isAuthenticated } = useAuth0();
-  console.log("User", user);
+
+  if (!isAuthenticated) {
+    navigate("/");
+  }
   const navigate = useNavigate();
   const buttonItems = [
     {

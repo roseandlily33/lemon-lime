@@ -23,13 +23,13 @@ import Modal from "../../components/Modal/Model.component";
 // prettier-ignore
 
 const CreateRecipeForm = () => {
-  const { user } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [successStatus, setSuccessState] = useState("");
   const [error, setError] = useState("");
 
-  if (!user) {
+  if (!isAuthenticated) {
     navigate("/");
   }
 
