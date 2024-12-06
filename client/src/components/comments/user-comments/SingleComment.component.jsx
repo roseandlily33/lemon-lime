@@ -9,7 +9,7 @@ const SingleComment = ({ comments, setEditing, setEditComment }) => {
   //console.log('Each comment', comments)
   return (
     <>
-      {comments.map((c) => {
+      {comments?.map((c) => {
         return (
           <SingleCommentDiv key={c?._id} className="boxShadow">
             <h4 style={{ fontWeight: "bold" }}>{c?.title}</h4>

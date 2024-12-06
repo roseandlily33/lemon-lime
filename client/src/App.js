@@ -21,7 +21,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 // Redux:
 import { fetchFavorites } from "./redux/favoritesSlice.js";
 import { fetchUserRecipes } from "./redux/userSlice";
-import { fetchUserComments } from "./redux/userCommentsSlice.js";
+// import { fetchUserComments } from "./redux/userCommentsSlice.js";
 import { store } from "./redux/store.js";
 // Colours:
 import { theme } from "./visuals/colors.jsx";
@@ -30,7 +30,7 @@ function App() {
   const { user, isAuthenticated } = useAuth0();
   if (isAuthenticated) {
     store.dispatch(fetchUserRecipes(user.sub));
-    store.dispatch(fetchUserComments(user.sub));
+    //store.dispatch(fetchUserComments(user.sub));
     store.dispatch(fetchFavorites(user.sub));
   }
 

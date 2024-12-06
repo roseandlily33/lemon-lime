@@ -1,25 +1,30 @@
 import { CommentContainer, CommentForm, FormElement } from "./Comments.styles";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { httpAddComment } from "../../../hooks/commentRequests";
 import Rating from "../../rating/Rating.component";
 import TextArea from "../../textarea/Textarea.component";
 import PrimaryButton from "../../buttons/primary-button/PrimaryButton.component";
 import RequiredInput from "../../input/required-input/RequiredInput.component";
 import RedirectLoginButton from "../../buttons/redirect-login-button/RedirectLogin.component";
+import { useDispatch, useSelector } from "react-redux";
+import { addComment } from "../../../redux/commentsSlice";
+import Loader from "../../loader/Loader.component";
 
 const Comment = ({ singleRecipe }) => {
   const { id } = useParams();
   const { user, isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
   const [formState, setFormState] = useState({
     title: "",
     comment: "",
   });
-
+  const { isLoading, error, alert, success } = useSelector(
+    (state) => state.comments
+  );
   const [starRating, setStarRating] = useState(1);
-  const [success, setSuccess] = useState("");
+  const [successState, setSuccess] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,26 +33,36 @@ const Comment = ({ singleRecipe }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let totalComment = Object.assign(formState, {
+    const fullComment = {
+      ...formState,
       rating: starRating,
       author: user.sub,
       recipe: id,
       authorName: user.nickname,
       recipeName: singleRecipe.recipeName,
-    });
-    let res = await httpAddComment(totalComment);
+    };
+    dispatch(addComment(fullComment));
 
-    if (res.ok) {
-      setSuccess("Comment has been created");
-    } else {
-      setSuccess("Comment has not been created");
-    }
     setFormState({
       title: "",
       comment: "",
     });
     setStarRating(1);
   };
+
+  useEffect(() => {
+    if (success) {
+      setSuccess(alert);
+    }
+
+    if (error) {
+      setSuccess(alert);
+    }
+  }, [success, error]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <CommentContainer>
@@ -78,7 +93,7 @@ const Comment = ({ singleRecipe }) => {
               onChange={handleChange}
             />
           </FormElement>
-          {success && <p>{success}</p>}
+          <p>{successState}</p>
           <PrimaryButton
             functionName={(e) => handleSubmit(e)}
             span="Create Comment"

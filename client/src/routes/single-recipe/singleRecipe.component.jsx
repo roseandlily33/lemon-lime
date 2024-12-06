@@ -30,7 +30,7 @@ const SingleRecipeComponent = () => {
   const { recipe, comments, author, isLoading, error } = useSelector(
     (state) => state.singleRecipe
   );
-  console.log('SINGLE RECIPE STATE', recipe, comments, author)
+  console.log('SINGLE RECIPE STATE', recipe, comments, author, isLoading, error)
 
   if (isLoading) {
     return <Loader />;
@@ -43,10 +43,6 @@ const SingleRecipeComponent = () => {
   return (
     <>
       <SingleRecipeContainer className="boxShadow">
-        {!recipe ? (
-          <Loader />
-        ) : (
-          <>
             <TopDiv>
               <LeftSide>
                 {recipe?.images[0] ? (
@@ -93,9 +89,6 @@ const SingleRecipeComponent = () => {
               <IngredientSection singleRecipe={recipe} />
               <InstructionSection singleRecipe={recipe} />
             </Bottom>
-            
-          </>
-        )}
         <hr />
         <Comment singleRecipe={recipe} />
         <hr />

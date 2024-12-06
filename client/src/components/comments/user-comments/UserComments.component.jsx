@@ -11,9 +11,10 @@ import CommentsImage from "../../../images/undraw_reviews_lp8w.svg";
 import EditComment from "../edit-comment/EditComment.component";
 
 const UserComments = () => {
-  const { comments } = useSelector((state) => state.userComments.userComments);
+  const comments = useSelector((state) => state.user.userComments);
+  console.log("COMMENTS PAGE", comments);
   const [editing, setEditing] = useState(false);
-  const [editComment, setEditComment] = useState();
+  const [editComment, setEditComment] = useState(true);
 
   return (
     <UserCommentsContainer>
