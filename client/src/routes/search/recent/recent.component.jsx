@@ -2,7 +2,7 @@ import { RecentContainer } from "./recent.styles";
 import PropTypes from "prop-types";
 import React from "react";
 
-const RecentlySearched = ({ recent, seachForOldSearch }) => {
+const RecentlySearched = ({ recent = [], seachForOldSearch }) => {
   return (
     <RecentContainer>
       <h4>Recently Searched: </h4>

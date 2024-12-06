@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { SearchResultsDiv } from "./searchResults.styles";
 
-const SearchResults = ({ results }) => {
+const SearchResults = ({ results = [] }) => {
   return (
     <SearchResultsDiv className="scrollBar">
       {results?.map((recipe) => {

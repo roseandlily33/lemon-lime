@@ -60,6 +60,7 @@ const SingleRecipeComponent = () => {
                 >
                   <span>
                     Created by:
+                    {/*  Implement going to the user page here */}
                     {author && (
                       <NavLink className="userLink" to={`/user/${author}`}>
                         {" "}
