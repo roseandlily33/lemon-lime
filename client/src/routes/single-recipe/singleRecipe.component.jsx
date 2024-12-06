@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { formatDate } from "../../formattingUtils/date";
+import { formatDate } from "../../formatting-utils/date";
 import Lemon from "../../images/lemons.jpg";
 import {
   SingleRecipeContainer,
@@ -8,18 +8,18 @@ import {
   LeftSide,
   RightSide,
   Bottom,
-} from "./singleRecipe.styles";
-import Comment from "../../components/Comments/addComment/comments.component";
-import Loader from "../../components/Loader/loader.component";
-import RecipeComments from "../../components/Comments/recipeComments/recipeComment.component";
-import Carousel from "./singleRecipeCarousel.component";
-import Heart from "../../components/Heart/heart.component";
+} from "./SingleRecipe.styles";
+import Comment from "../../components/comments/add-comment/Comments.component";
+import Loader from "../../components/loader/Loader.component";
+import RecipeComments from "../../components/comments/recipe-comments/RecipeComment.component";
+import Carousel from "./SingleRecipeCarousel.component";
+import Heart from "../../components/heart/Heart.component";
 import { NavLink } from "react-router-dom";
 // import { averageOfStars } from "../../formattingUtils/average-of-stars";
 // import { formatStars } from "../../formattingUtils/stars";
 import { useAuth0 } from "@auth0/auth0-react";
-import IngredientSection from "./Ingredients/Ingredients.component";
-import InstructionSection from "./Instructions/Instructions.component";
+import IngredientSection from "./ingredients/Ingredients.component";
+import InstructionSection from "./instructions/Instructions.component";
 import { useSelector } from "react-redux";
 
 const SingleRecipeComponent = () => {

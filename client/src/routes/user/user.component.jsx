@@ -5,11 +5,11 @@ import {
   UserOptionsContainer,
   UserOptions,
   UserInfo,
-} from "./user.styles";
+} from "./User.styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-import RecipeContainer3 from "../../components/Recipe/recipe3.component";
-import Loader from "../../components/Loader/loader.component";
+import RecipeContainer3 from "../../components/recipe/Recipe3.component";
+import Loader from "../../components/loader/Loader.component";
 import { useSelector } from "react-redux";
 import Background from "../../images/Background2.jpg";
 import Profile from "../../images/Profile1.jpg";

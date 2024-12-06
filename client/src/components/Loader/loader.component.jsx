@@ -1,4 +1,4 @@
-import { LoaderDiv } from "./loader.styles";
+import { LoaderDiv } from "./Loader.styles";
 import React from "react";
 
 const Loader = () => {

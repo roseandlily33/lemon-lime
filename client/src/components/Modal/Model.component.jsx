@@ -1,4 +1,4 @@
-import { ModalContainer } from "./modal.styles";
+import { ModalContainer } from "./Modal.styles";
 import React from "react";
 import PropTypes from "prop-types";
 

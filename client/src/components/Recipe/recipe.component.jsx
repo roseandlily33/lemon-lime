@@ -3,12 +3,12 @@ import {
   TopLabel,
   LeftContainer,
   RightContainer,
-} from "./recipe.styles";
-import { formatDate } from "../../formattingUtils/date";
+} from "./Recipe.styles";
+import { formatDate } from "../../formatting-utils/date";
 import { NavLink } from "react-router-dom";
 import Lemons from "../../images/lemons.jpg";
 import { useNavigate } from "react-router-dom";
-import CloudImage from "../../Photos/photo.component";
+import CloudImage from "../../photos-cloudinary/photo.component";
 import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";

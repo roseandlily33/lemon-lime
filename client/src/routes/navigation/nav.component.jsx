@@ -1,5 +1,5 @@
 import Logo from "../../images/Lemon - Lime.svg";
-import { Navbar, RightNav } from "./nav.styles";
+import { Navbar, RightNav } from "./Nav.styles";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";

@@ -1,18 +1,18 @@
-import RecipeContainer from "../../components/Recipe/recipe.component";
-import RecipeContainer2 from "../../components/Recipe/recipe2.container";
+import RecipeContainer from "../../components/recipe/Recipe.component";
+import RecipeContainer2 from "../../components/recipe/Recipe2.container";
 import {
   MainDiv,
   BottomDiv,
   LeftMainDiv,
   RightMainDiv,
   HeroImage,
-} from "./home.styles";
+} from "./Home.styles";
 import React from "react";
 import { useSelector } from "react-redux";
 import MainPicture from "../../images/Background3.jpg";
 import { useNavigate } from "react-router-dom";
-import PrimaryButton from "../../components/Buttons/PrimaryButton/primaryButton.component";
-import Loader from "../../components/Loader/loader.component";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
+import Loader from "../../components/loader/Loader.component";
 
 const HomePage = () => {
   const navigate = useNavigate();
