@@ -5,7 +5,7 @@ import userSlice from "./userSlice";
 import userCommentsSlice from "./userCommentsSlice";
 import visitorSlice from "./visitorSlice";
 import favoritesSlice from "./favoritesSlice";
-import { singleRecipeSlice } from "./singleRecipeSlice";
+import singleRecipeSlice from "./singleRecipeSlice";
 
 export const store = configureStore({
   reducer: {

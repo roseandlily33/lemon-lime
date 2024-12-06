@@ -25,6 +25,7 @@ const HomePage = () => {
     errorPopular,
     errorNewest,
   } = useSelector((state) => state.recipes);
+
   return (
     <MainDiv>
       <HeroImage>

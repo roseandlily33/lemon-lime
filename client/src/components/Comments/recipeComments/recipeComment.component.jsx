@@ -9,7 +9,7 @@ import {
 import { formatDate } from "../../../formattingUtils/date";
 import { formatStars } from "../../../formattingUtils/stars";
 
-const RecipeComments = ({ comments }) => {
+const RecipeComments = ({ comments = [] }) => {
   return (
     <RecipeCommentsDiv className="scrollBar">
       {!comments ? (
@@ -18,7 +18,7 @@ const RecipeComments = ({ comments }) => {
         <>
           {comments?.map((c) => {
             return (
-              <SingleCommentDiv key={c._id}>
+              <SingleCommentDiv key={c?._id}>
                 <SingleTop>
                   <h4>{c?.title}</h4>
                   <div className="underTitleDiv">
@@ -38,10 +38,10 @@ const RecipeComments = ({ comments }) => {
   );
 };
 RecipeComments.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   comments: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.string.isRequired,
+      _id: PropTypes.string,
       title: PropTypes.string,
       rating: PropTypes.number,
       createdAt: PropTypes.string,

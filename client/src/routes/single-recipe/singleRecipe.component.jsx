@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { formatDate } from "../../formattingUtils/date";
 import Lemon from "../../images/lemons.jpg";
@@ -15,44 +15,19 @@ import RecipeComments from "../../components/Comments/recipeComments/recipeComme
 import Carousel from "./singleRecipeCarousel.component";
 import Heart from "../../components/Heart/heart.component";
 import { NavLink } from "react-router-dom";
-import { averageOfStars } from "../../formattingUtils/average-of-stars";
-import { formatStars } from "../../formattingUtils/stars";
+// import { averageOfStars } from "../../formattingUtils/average-of-stars";
+// import { formatStars } from "../../formattingUtils/stars";
 import { useAuth0 } from "@auth0/auth0-react";
 import IngredientSection from "./Ingredients/Ingredients.component";
 import InstructionSection from "./Instructions/Instructions.component";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleRecipe, clearRecipe } from "../../redux/singleRecipeSlice";
+import { useSelector } from "react-redux";
 
 const SingleRecipeComponent = () => {
   const { id } = useParams();
   const { isAuthenticated } = useAuth0();
-  let usersName;
-  let average;
-  let singleRecipe;
-  // const [singleRecipe, setSingleRecipe] = useState();
-  // const [usersName, setUsersName] = useState();
-  //const [comments, setComments] = useState();
-  //const [average, setAverage] = useState();
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchSingleRecipe(id));
-    return () => {
-      dispatch(clearRecipe());
-    };
-  }, [dispatch, id]);
 
   const { recipe, comments, author, isLoading, error } = useSelector(
     (state) => state.singleRecipe
-  );
-  console.log(
-    "STATE FOR SINGLE RECIPE",
-    recipe,
-    comments,
-    author,
-    isLoading,
-    error
   );
 
   if (isLoading) {
@@ -62,19 +37,6 @@ const SingleRecipeComponent = () => {
   if (error) {
     return <h2>An error has occured</h2>;
   }
-
-  // useEffect(() => {
-  //   const fetchSingle = async () => {
-  //    // const res = await httpGetFullRecipeWithDetails(id);
-  //     //console.log('Single recipes', res)
-  //     setSingleRecipe(res?.foundRecipe[0]);
-  //     setUsersName(res?.authorOfRecipe.name);
-  //   //  setComments(res?.allComments);
-  //     // console.log('INCOMING RATING', res?.allComments)
-  //     setAverage(res?.allComments.slice(0, 10));
-  //   };
-  //   fetchSingle();
-  // }, [id]);
 
   return (
     <>
@@ -98,19 +60,19 @@ const SingleRecipeComponent = () => {
                 >
                   <span>
                     Created by:
-                    <NavLink
-                      className="userLink"
-                      to={`/user/${singleRecipe.author}`}
-                    >
-                      {" "}
-                      {usersName}{" "}
-                    </NavLink>
+                    {author && (
+                      <NavLink className="userLink" to={`/user/${author}`}>
+                        {" "}
+                        {author}{" "}
+                      </NavLink>
+                    )}
                     on {formatDate(recipe?.createdAt)}
                   </span>
                   {isAuthenticated && <Heart recipe={recipe?._id} />}
                 </div>
                 <>
-                  <p>{formatStars(averageOfStars(average))}</p>
+                  {/* Work on finding the average of stars later */}
+                  {/* <p>{formatStars(averageOfStars(average))}</p> */}
                   <p>Cook Time: {recipe?.cookTime}</p>
                   <p>Prep Time: {recipe?.prepTime}</p>
                   <p>

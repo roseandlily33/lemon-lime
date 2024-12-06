@@ -6,21 +6,30 @@ import { useNavigate } from "react-router-dom";
 import CloudImage from "../../Photos/photo.component";
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { fetchSingleRecipe } from "../../redux/singleRecipeSlice";
 // import Heart from "../Heart/heart.component";
 
 const RecipeContainer2 = ({ recipe }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const url = `/recipe/${recipe._id}`;
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(fetchSingleRecipe(recipe._id));
+    navigate(url);
+  };
 
   return (
     <SideContainer
       key={recipe?._id}
-      onClick={() => navigate(url)}
+      onClick={handleClick}
       className="boxShadowHover"
     >
       <div className="topDiv">
         <div>
-          <NavLink className="link" to={url}>
+          <NavLink className="link" to={url} onClick={handleClick}>
             {recipe?.recipeName.slice(0, 15)}
           </NavLink>
           {/* <Heart recipe={recipe._id}/> */}
