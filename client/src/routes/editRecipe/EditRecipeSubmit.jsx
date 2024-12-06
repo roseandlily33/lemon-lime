@@ -49,17 +49,17 @@ const EditRecipeSubmit = ({
       recipeName: newRecipeName,
       images: images,
     };
-    dispatch(editRecipe({ user: user, recipe: fullRecipe }));
+    dispatch(editRecipe({ user: user, recipe: fullRecipe, id }));
   };
 
   useEffect(() => {
     if (success) {
-      setSuccess("Recipe Created");
+      setSuccess("Recipe has been edited");
       setIsOpen(true);
       dispatch(clearState());
     }
     if (error) {
-      setError("Failed to create recipe");
+      setError("Failed to edit recipe");
       setIsOpen(true);
       dispatch(clearState());
     }

@@ -21,7 +21,6 @@ const CreateRecipeSubmit = ({
   const { isLoading, success, error } = useSelector(
     (state) => state.crudRecipes
   );
-  console.log("STATE FOR CREATE RECIPE", isLoading, success, error);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,8 +48,6 @@ const CreateRecipeSubmit = ({
       images: images,
       authorName: user.nickName,
     };
-
-    console.log("RECIPE SENDING", fullRecipe);
 
     dispatch(createRecipe({ user: user, recipe: fullRecipe }));
   };

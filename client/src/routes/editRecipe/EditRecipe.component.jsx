@@ -18,7 +18,7 @@ import MiddleEdit from "./MiddleForm/MiddleEdit.component";
 import BottomEdit from "./BottomForm/BottomEdit.component";
 import { useSelector } from "react-redux";
 import Modal from "../../components/Modal/Model.component";
-// import { Cloudinary } from "@cloudinary/url-gen";
+import { Cloudinary } from "@cloudinary/url-gen";
 import { selectRecipeById } from "../../redux/userSlice";
 
 // prettier-ignore
@@ -38,9 +38,10 @@ const EditRecipe = () => {
 
   const [instructions, setInstructions] = useState([]);
   const [ingredients, setIngredients] = useState([]);
+  // Contains the publicId to fetch on cloudinary
   const [images, setImages] = useState(recipe?.images || []);
+  // The link for the cloudinary - actual photo
   const [photos, setPhotos] = useState(recipe?.photos || []);
-
 
   const [isOpen, setIsOpen] = useState(false);
   const [success, setSuccess] = useState('');
@@ -57,11 +58,10 @@ const EditRecipe = () => {
       });
       setInstructions(recipe.instructions);
       setIngredients(recipe.ingredients);
+      setImages(recipe.images || []);
     }
   }, [recipe]);
-
   
-
   const addNewInstruction = (ins) => {
     setInstructions([...instructions, ins]);
   };
@@ -75,18 +75,18 @@ const EditRecipe = () => {
     setPhotos((prev) => [...prev, photo]);
   };
 
-  // useEffect(() => {
-  //   const fetchSingle = async () => {
-  //     const cloud = new Cloudinary({ cloud: { cloudName: "dql7lqwmr" } });
-  //     if (images) {
-  //       await images?.map((img) => {
-  //         const myImage = cloud.image(img.publicId).toURL();
-  //         return addNewPhotos(myImage);
-  //       });
-  //     }
-  //   };
-  //   fetchSingle();
-  // }, [id]);
+  useEffect(() => {
+    const fetchSingle = async () => {
+      const cloud = new Cloudinary({ cloud: { cloudName: "dql7lqwmr" } });
+      if (images) {
+        await images?.map((img) => {
+          const myImage = cloud.image(img.publicId).toURL();
+          return addNewPhotos(myImage);
+        });
+      }
+    };
+    fetchSingle();
+  }, [id, images]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -132,10 +132,10 @@ const EditRecipe = () => {
           {isOpen && (
             <Modal onClose={() => setIsOpen(false)}>
               <h3>{success}</h3>
+              <h3>{error}</h3>
               <button onClick={() => navigate("/user/home")}>Go Home</button>
             </Modal>
           )}
-          <p className="error">{error}</p>
           <EditRecipeSubmit
             images={images}
             setError={setError}

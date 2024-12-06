@@ -33,10 +33,11 @@ export const createRecipe = createAsyncThunk(
 
 export const editRecipe = createAsyncThunk(
   "crudRecipes/editRecipe",
-  async ({ user, recipe }, { rejectWithValue }) => {
+  async ({ user, recipe, id }, { rejectWithValue }) => {
+    console.log("Recipe id", recipe._id);
     try {
-      const response = await fetch(`${URL}/user`, {
-        method: "POST",
+      const response = await fetch(`${URL}/user/edit/${id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
