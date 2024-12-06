@@ -13,6 +13,7 @@ export const RecipeForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 95%;
+  height: 100vh;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
   margin-bottom: 1em;
@@ -91,7 +92,6 @@ export const MiddleForm = styled.section`
 export const BottomForm = styled.div`
   width: 100%;
   min-height: 20%;
-  height: auto;
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
@@ -121,7 +121,6 @@ export const BottomForm = styled.div`
 export const InputDiv = styled.div`
   display: flex;
   background-color: ${({ theme }) => theme.colors.white};
-  /* justify-content: center; */
   border-radius: 5px;
   padding: 0.5rem;
   margin-bottom: 1rem;
@@ -204,6 +203,7 @@ export const SubmitButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 2rem;
+  padding-top: 5rem;
 
   .type--A {
     --line_color: ${({ theme }) => theme.colors.darkGrey};

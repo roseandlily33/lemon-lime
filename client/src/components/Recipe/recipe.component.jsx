@@ -11,22 +11,31 @@ import { useNavigate } from "react-router-dom";
 import CloudImage from "../../Photos/photo.component";
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { fetchSingleRecipe } from "../../redux/singleRecipeSlice";
 
 // import Heart from "../Heart/heart.component";
 
 const RecipeContainer = ({ recipe }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const url = `/recipe/${recipe._id}`;
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(fetchSingleRecipe(recipe._id));
+    navigate(url);
+  };
 
   return (
     <RecipeCont
       key={recipe?._id}
-      onClick={() => navigate(url)}
+      onClick={handleClick}
       className="boxShadowHover"
     >
       <LeftContainer>
         <TopLabel>
-          <NavLink className="link" to={url}>
+          <NavLink className="link" to={url} onClick={handleClick}>
             {recipe?.recipeName.slice(0, 20)}
           </NavLink>
           {/* <Heart recipe={recipe._id}/> */}

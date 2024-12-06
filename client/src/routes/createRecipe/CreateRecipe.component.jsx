@@ -20,6 +20,8 @@ import BottomCreate from "./BottomForm/BottomCreate.component";
 import CreateRecipeSubmit from "./CreateRecipeSubmit.component";
 import Modal from "../../components/Modal/Model.component";
 
+// prettier-ignore
+
 const CreateRecipeForm = () => {
   const { user } = useAuth0();
   const navigate = useNavigate();
@@ -37,6 +39,7 @@ const CreateRecipeForm = () => {
     prepTime: 10,
     cookTime: 10,
     subCategory: "Breakfast",
+    description: '',
   });
 
   //Handle Change for the Top Level form state
@@ -108,7 +111,7 @@ const CreateRecipeForm = () => {
           <p className="error">{error}</p>
           {isOpen && (
             <Modal onClose={() => setIsOpen(false)}>
-              {successStatus && <h3>{successStatus}</h3>}
+               <h3>{successStatus}</h3>
               <button onClick={() => navigate("/user/home")}>Go Home</button>
             </Modal>
           )}

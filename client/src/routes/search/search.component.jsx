@@ -1,53 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { ResultsDiv, StyledDiv, SearchContainer } from "./search.styles";
 import SearchResults from "./results/searchResults.component";
 import RecentlySearched from "./recent/recent.component";
-import { httpSearchRecipes } from "../../hooks/recipeRequests";
-import { useSelector } from "react-redux";
 import IconButton from "../../components/Buttons/IconButton/IconButton.component";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchSearchedRecipes,
+  clearSearch,
+  setAlert,
+  setRecent,
+} from "../../redux/searchSlice";
+import Loader from "../../components/Loader/loader.component";
 
 const SearchPage = () => {
   const popularRecipes = useSelector((state) => state.recipes.popularRecipes);
   const [searching, setSearching] = useState("");
-  const [recent, setRecent] = useState([]);
-  const [results, setResults] = useState();
-  const [alert, setAlert] = useState("");
   const [subCategory, setSubCategory] = useState("All");
+  const [firstLoad, setFirstLoad] = useState(true);
+  const dispatch = useDispatch();
 
-  if (recent?.length > 5) {
-    recent.shift();
-  }
+  useEffect(() => {
+    dispatch(clearSearch());
+    dispatch(setAlert(""));
+  }, [dispatch]);
 
-  const searchForRecipe = async () => {
-    setAlert("");
-    if (!searching) {
-      setResults(popularRecipes);
-      return;
+  const { results, recent, isLoading, error, alert } = useSelector(
+    (state) => state.search
+  );
+
+  const memoizedResults = useMemo(() => {
+    return results.length ? results : popularRecipes;
+  }, [results, popularRecipes]);
+
+  useEffect(() => {
+    if (results.length === 0 && !isLoading && !firstLoad) {
+      dispatch(setAlert("No Recipes Found"));
     }
-    let foundRecipes = await httpSearchRecipes(searching.trim(), subCategory);
-    if (foundRecipes?.length === 0) {
-      setAlert("No Recipes Found");
-      setResults(popularRecipes);
-    }
-    setResults(foundRecipes);
-    setRecent([...recent, searching]);
+  }, [results, isLoading, dispatch]);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    dispatch(setRecent(searching));
+    dispatch(setAlert(""));
+    dispatch(fetchSearchedRecipes({ text: searching, category: subCategory }));
   };
 
-  const seachForOldSearch = async (recipe) => {
-    setAlert("");
+  const searchForOldSearch = async (searching) => {
+    dispatch(setAlert(""));
     setSubCategory("All");
-    const searching = await await httpSearchRecipes(recipe, "All");
-    setResults(searching);
+    dispatch(fetchSearchedRecipes({ text: searching, category: subCategory }));
   };
 
-  if (!results) {
-    setResults(popularRecipes);
+  if (error) {
+    return <h2>Something has gone wrong</h2>;
   }
 
   const handleChange = (e) => {
     const subCat = e.target.value;
     setSubCategory(subCat);
   };
+
+  useEffect(() => {
+    dispatch(setAlert(""));
+    setFirstLoad(false);
+  }, []);
 
   return (
     <SearchContainer>
@@ -80,7 +96,7 @@ const SearchPage = () => {
             />{" "}
           </div>
           <IconButton
-            functionName={searchForRecipe}
+            functionName={handleSearch}
             span="Search"
             svg={
               <svg
@@ -97,14 +113,14 @@ const SearchPage = () => {
             }
           />
         </form>
-        {alert && <span style={{ color: "#CF1124" }}>{alert}</span>}
+        <span style={{ color: "#CF1124" }}>{alert}</span>
         <RecentlySearched
           recent={recent}
-          seachForOldSearch={seachForOldSearch}
+          seachForOldSearch={searchForOldSearch}
         />
       </StyledDiv>
       <ResultsDiv>
-        <SearchResults results={results} />
+        {isLoading ? <Loader /> : <SearchResults results={memoizedResults} />}
       </ResultsDiv>
     </SearchContainer>
   );

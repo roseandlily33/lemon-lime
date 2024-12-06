@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   VisitorContainer,
   LeftContainer,
@@ -9,32 +9,37 @@ import {
   UserOptions,
   UserRecipeContainer,
 } from "./visitor.styles";
-import {
-  httpGetUserRecipes,
-  httpGetUsersFavoriteRecipes,
-} from "../../hooks/userRequests";
+// import {
+//   httpGetUserRecipes,
+//   httpGetUsersFavoriteRecipes,
+// } from "../../hooks/userRequests";
 import RecipeContainer from "../../components/Recipe/recipe.component";
 import Background from "../../images/Background4.jpg";
 import Profile from "../../images/Profile1.jpg";
 
 const VisitorPage = () => {
   const { id } = useParams();
-  const [userRecipes, setUserRecipes] = useState();
-  const [username, setUserName] = useState("");
-  const [favorites, setFavorites] = useState();
+
+  // Need to dispatch based on the id
+
+  // Then we need to use selector and get the recipes, users name and favorites
   const [showRecipe, setShowRecipe] = useState(true);
   const [showFave, setShowFave] = useState(false);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      let visitingUser = await httpGetUserRecipes(id);
-      let favorites = await httpGetUsersFavoriteRecipes(id);
-      setUserRecipes(visitingUser.recipes);
-      setUserName(visitingUser.name);
-      setFavorites(favorites.favoriteRecipes);
-    };
-    fetchUser();
-  }, [id]);
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     let visitingUser = await httpGetUserRecipes(id);
+  //     let favorites = await httpGetUsersFavoriteRecipes(id);
+  //     setUserRecipes(visitingUser.recipes);
+  //     setUserName(visitingUser.name);
+  //     setFavorites(favorites.favoriteRecipes);
+  //   };
+  //   fetchUser();
+  // }, [id]);
+  let userRecipes;
+  let favorites;
+  //let id;
+  let username;
 
   const switchTab = () => {
     if (showRecipe === true) {
@@ -54,7 +59,10 @@ const VisitorPage = () => {
       <RightContainer>
         <UsersInfo className="boxShadow">
           <img src={Profile} alt="User Profile Avatar" />
-          <h2>{username}</h2>
+          <h2>
+            {username}
+            {id}
+          </h2>
         </UsersInfo>
         <UsersRecipes>
           <UserOptions>

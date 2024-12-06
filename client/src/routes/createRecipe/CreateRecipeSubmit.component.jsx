@@ -1,11 +1,11 @@
 import { getTotalTime } from "../../formattingUtils/total-time";
-import { useDispatch } from "react-redux";
-import { fetchUserRecipes } from "../../redux/userSlice";
-import { httpCreateRecipe } from "../../hooks/userRequests";
+import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { SubmitButtonContainer } from "./RecipeForm.styles";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
+import { createRecipe, clearState } from "../../redux/crudRecipeSlice";
+import Loader from "../../components/Loader/loader.component";
 
 const CreateRecipeSubmit = ({
   formValues,
@@ -18,6 +18,9 @@ const CreateRecipeSubmit = ({
 }) => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
+  const { isLoading, success, error } = useSelector(
+    (state) => state.crudRecipes
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,25 +38,37 @@ const CreateRecipeSubmit = ({
       formValues.prepTime
     );
     let newRecipeName = formValues.recipeName.toLowerCase();
-    let totalSending = Object.assign(formValues, {
+
+    const fullRecipe = {
+      ...formValues,
       instructions: instructions,
       ingredients: ingredients,
       totalTime: totalTime,
       recipeName: newRecipeName,
       images: images,
       authorName: user.nickName,
-    });
-    const response = await httpCreateRecipe(user, totalSending);
-    const success = response.ok;
-    if (success) {
-      setSuccessState("You have created a recipe");
-      setIsOpen(true);
-    } else {
-      setSuccessState("Recipe has not been created");
-      setIsOpen(true);
-    }
-    dispatch(fetchUserRecipes(user.sub));
+    };
+
+    dispatch(createRecipe({ user: user, recipe: fullRecipe }));
   };
+
+  useEffect(() => {
+    if (success) {
+      setSuccessState("Recipe Created");
+      setIsOpen(true);
+      dispatch(clearState());
+    }
+    if (error) {
+      setError("Failed to create recipe");
+      setIsOpen(true);
+      dispatch(clearState());
+    }
+  }, [success, error]);
+
+  if (isLoading) {
+    <Loader />;
+  }
+
   return (
     <SubmitButtonContainer>
       <div className="button type--A" onClick={(e) => handleSubmit(e)}>

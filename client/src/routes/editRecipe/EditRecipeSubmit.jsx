@@ -1,14 +1,14 @@
 import { getTotalTime } from "../../formattingUtils/total-time";
-import { useDispatch } from "react-redux";
-import { httpEditUserRecipe } from "../../hooks/userRequests";
-import { fetchUserRecipes } from "../../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { SubmitButtonContainer } from "../createRecipe/RecipeForm.styles";
 import DeleteRecipe from "./DeleteRecipe/DeleteRecipeEdit.component";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
+import { editRecipe, clearState } from "../../redux/crudRecipeSlice";
+import Loader from "../../components/Loader/loader.component";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const EditRecipeSubmit = ({
-  user,
   setIsOpen,
   formValues,
   images,
@@ -19,6 +19,10 @@ const EditRecipeSubmit = ({
   setSuccess,
 }) => {
   const dispatch = useDispatch();
+  const { user } = useAuth0();
+  const { isLoading, success, error } = useSelector(
+    (state) => state.crudRecipes
+  );
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (images?.length > 4) {
@@ -36,25 +40,34 @@ const EditRecipeSubmit = ({
       formValues.prepTime
     );
     let newRecipeName = formValues.recipeName.toLowerCase();
-    let totalSending = Object.assign(formValues, {
+
+    const fullRecipe = {
+      ...formValues,
       instructions: instructions,
       ingredients: ingredients,
       totalTime: totalTime,
       recipeName: newRecipeName,
       images: images,
-    });
-
-    const response = await httpEditUserRecipe(id, totalSending);
-
-    const success = response.ok;
-    setIsOpen(true);
-    if (success) {
-      setSuccess("Recipe has been updated");
-    } else {
-      setSuccess("Recipe has not been updated, please try again later");
-    }
-    dispatch(fetchUserRecipes(user.sub));
+    };
+    dispatch(editRecipe({ user: user, recipe: fullRecipe, id }));
   };
+
+  useEffect(() => {
+    if (success) {
+      setSuccess("Recipe has been edited");
+      setIsOpen(true);
+      dispatch(clearState());
+    }
+    if (error) {
+      setError("Failed to edit recipe");
+      setIsOpen(true);
+      dispatch(clearState());
+    }
+  }, [success, error]);
+
+  if (isLoading) {
+    <Loader />;
+  }
 
   return (
     <SubmitButtonContainer>
@@ -70,7 +83,6 @@ const EditRecipeSubmit = ({
   );
 };
 EditRecipeSubmit.propTypes = {
-  user: PropTypes.object.isRequired,
   setIsOpen: PropTypes.func.isRequired,
   formValues: PropTypes.shape({
     recipeName: PropTypes.string,

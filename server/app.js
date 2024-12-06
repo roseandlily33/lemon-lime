@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === 'production') {
   }
   
   app.get('*', (req, res) => {
-    res.send('Wildcard Path');
+    res.json({msg: "Welcome to the Recipe App"});
   });
 
 module.exports = app;

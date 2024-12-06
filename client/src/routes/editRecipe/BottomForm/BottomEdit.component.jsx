@@ -12,7 +12,6 @@ const BottomEdit = ({ images, addNewImage, addNewPhotos, photos }) => {
         addNewPhotos={addNewPhotos}
       />
       <EachPhotoCreate photos={photos} />
-      <hr />
     </>
   );
 };

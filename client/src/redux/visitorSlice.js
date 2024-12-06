@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userRecipes: [],
-  userComments: [],
-  userFavorites: [],
+  visitorRecipes: [],
+  visitorFavorites: [],
   isLoading: false,
   error: null,
 };
@@ -11,10 +10,27 @@ const initialState = {
 const URL = process.env.REACT_APP_API_URL;
 
 export const fetchUserRecipes = createAsyncThunk(
-  "user/recipes",
+  "visitor/recipes",
   async (id, { rejectWithValue }) => {
     try {
       const res = await fetch(`${URL}/user/${id}`);
+      if (!res.ok) {
+        throw new Error("Failed to fetch user");
+      }
+      const data = await res.json();
+      console.log("VISITOR DATA RETURNED", data);
+      return data[0];
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
+
+export const fetchUsersFavoriteRecipes = createAsyncThunk(
+  "visitor/favorites",
+  async (id, { rejectWithValue }) => {
+    try {
+      const res = await fetch(`${URL}/favorites/${id}`);
       if (!res.ok) {
         throw new Error("Failed to fetch user");
       }
@@ -26,43 +42,10 @@ export const fetchUserRecipes = createAsyncThunk(
   }
 );
 
-// Create a recipe
-export const submitRecipe = createAsyncThunk(
-  "recipes/submitRecipe",
-  async (recipeData, { rejectWithValue }) => {
-    try {
-      const response = await fetch(`${URL}/recipes`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(recipeData),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to submit recipe");
-      }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const userSlice = createSlice({
-  name: "user",
+export const visitorSlice = createSlice({
+  name: "visitor",
   initialState,
-  reducers: {
-    setUser: (state, action) => {
-      state.user = action.payload;
-    },
-    updateUser: (state, action) => {
-      state.user = { ...state.user, ...action.payload };
-    },
-    logOut: (state) => {
-      state.user = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserRecipes.pending, (state) => {
@@ -71,6 +54,7 @@ export const userSlice = createSlice({
       })
       .addCase(fetchUserRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
+        console.log("FIRST FOR VISITOR ", action.payload);
         state.userRecipes = action.payload.recipes;
         state.userComments = action.payload.comments;
         state.userFavorites = action.payload.favorites;
@@ -78,13 +62,20 @@ export const userSlice = createSlice({
       .addCase(fetchUserRecipes.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+      .addCase(fetchUsersFavoriteRecipes.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUsersFavoriteRecipes.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userFavorites = action.payload.favorites;
+      })
+      .addCase(fetchUsersFavoriteRecipes.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
   },
 });
 
-export const selectRecipeById = (state, recipeId) =>
-  state.user.userRecipes.find((recipe) => recipe._id === recipeId);
-
-export const { setUser, updateUser, logOut } = userSlice.actions;
-
-export default userSlice.reducer;
+export default visitorSlice.reducer;

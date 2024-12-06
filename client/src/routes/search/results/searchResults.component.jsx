@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { SearchResultsDiv } from "./searchResults.styles";
 
-const SearchResults = ({ results }) => {
+const SearchResults = React.memo(({ results = [] }) => {
   return (
     <SearchResultsDiv className="scrollBar">
       {results?.map((recipe) => {
@@ -11,10 +11,12 @@ const SearchResults = ({ results }) => {
       })}
     </SearchResultsDiv>
   );
-};
+});
 
 SearchResults.propTypes = {
   results: PropTypes.array.isRequired,
 };
+
+SearchResults.displayName = "SearchResults";
 
 export default SearchResults;
