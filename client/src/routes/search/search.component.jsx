@@ -42,9 +42,6 @@ const SearchPage = () => {
     dispatch(fetchSearchedRecipes({ text: searching, category: subCategory }));
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
   if (error) {
     return <h2>Something has gone wrong</h2>;
   }
@@ -109,7 +106,7 @@ const SearchPage = () => {
         />
       </StyledDiv>
       <ResultsDiv>
-        <SearchResults results={memoizedResults} />
+        {isLoading ? <Loader /> : <SearchResults results={memoizedResults} />}
       </ResultsDiv>
     </SearchContainer>
   );
