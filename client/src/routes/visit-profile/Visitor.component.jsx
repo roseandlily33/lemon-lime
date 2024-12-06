@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   VisitorContainer,
   LeftContainer,
@@ -9,37 +9,34 @@ import {
   UserOptions,
   UserRecipeContainer,
 } from "./Visitor.styles";
-// import {
-//   httpGetUserRecipes,
-//   httpGetUsersFavoriteRecipes,
-// } from "../../hooks/userRequests";
 import RecipeContainer from "../../components/recipe/Recipe.component";
 import Background from "../../images/Background4.jpg";
 import Profile from "../../images/Profile1.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../components/loader/Loader.component";
+import {
+  fetchUserRecipes,
+  fetchUsersFavoriteRecipes,
+  //clearState,
+} from "../../redux/visitorSlice";
 
 const VisitorPage = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const { visitorRecipes, visitorFavorites, isLoading } = useSelector(
+    (state) => state.visitor
+  );
 
-  // Need to dispatch based on the id
+  console.log("Visitir state", visitorRecipes, visitorFavorites, isLoading);
+
+  useEffect(() => {
+    dispatch(fetchUserRecipes(id));
+    dispatch(fetchUsersFavoriteRecipes(id));
+  }, [id]);
 
   // Then we need to use selector and get the recipes, users name and favorites
   const [showRecipe, setShowRecipe] = useState(true);
   const [showFave, setShowFave] = useState(false);
-
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     let visitingUser = await httpGetUserRecipes(id);
-  //     let favorites = await httpGetUsersFavoriteRecipes(id);
-  //     setUserRecipes(visitingUser.recipes);
-  //     setUserName(visitingUser.name);
-  //     setFavorites(favorites.favoriteRecipes);
-  //   };
-  //   fetchUser();
-  // }, [id]);
-  let userRecipes;
-  let favorites;
-  //let id;
-  let username;
 
   const switchTab = () => {
     if (showRecipe === true) {
@@ -51,6 +48,14 @@ const VisitorPage = () => {
     }
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  // if (error) {
+  //   return <h2>There has been an error</h2>;
+  // }
+
   return (
     <VisitorContainer>
       <LeftContainer>
@@ -60,7 +65,7 @@ const VisitorPage = () => {
         <UsersInfo className="boxShadow">
           <img src={Profile} alt="User Profile Avatar" />
           <h2>
-            {username}
+            {/* {username} */}
             {id}
           </h2>
         </UsersInfo>
@@ -84,7 +89,7 @@ const VisitorPage = () => {
             <>
               {showRecipe ? (
                 <>
-                  {userRecipes?.map((recipe) => {
+                  {visitorRecipes?.map((recipe) => {
                     return (
                       <RecipeContainer key={recipe?._id} recipe={recipe} />
                     );
@@ -92,7 +97,7 @@ const VisitorPage = () => {
                 </>
               ) : (
                 <>
-                  {favorites?.map((recipe) => {
+                  {visitorFavorites?.map((recipe) => {
                     return (
                       <RecipeContainer key={recipe?._id} recipe={recipe} />
                     );

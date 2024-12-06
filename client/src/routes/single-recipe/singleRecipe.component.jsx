@@ -22,6 +22,7 @@ import IngredientSection from "./ingredients/Ingredients.component";
 import InstructionSection from "./instructions/Instructions.component";
 import { useSelector } from "react-redux";
 
+// prettier-ignore
 const SingleRecipeComponent = () => {
   const { id } = useParams();
   const { isAuthenticated } = useAuth0();
@@ -29,6 +30,7 @@ const SingleRecipeComponent = () => {
   const { recipe, comments, author, isLoading, error } = useSelector(
     (state) => state.singleRecipe
   );
+  console.log('SINGLE RECIPE STATE', recipe, comments, author)
 
   if (isLoading) {
     return <Loader />;
@@ -62,7 +64,7 @@ const SingleRecipeComponent = () => {
                     Created by:
                     {/*  Implement going to the user page here */}
                     {author && (
-                      <NavLink className="userLink" to={`/user/${author}`}>
+                      <NavLink className="userLink" to={`/user/${recipe?.author}`}>
                         {" "}
                         {author}{" "}
                       </NavLink>
@@ -83,6 +85,7 @@ const SingleRecipeComponent = () => {
                   </p>
                   <p>Sub Category: {recipe?.subCategory}</p>
                   <p>Favorites: {recipe?.favorites}</p>
+                  <p>About this recipe: {recipe?.description}</p> 
                 </>
               </RightSide>
             </TopDiv>
@@ -90,6 +93,7 @@ const SingleRecipeComponent = () => {
               <IngredientSection singleRecipe={recipe} />
               <InstructionSection singleRecipe={recipe} />
             </Bottom>
+            
           </>
         )}
         <hr />

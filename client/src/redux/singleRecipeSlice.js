@@ -45,7 +45,7 @@ export const singleRecipeSlice = createSlice({
       .addCase(fetchSingleRecipe.fulfilled, (state, action) => {
         state.recipe = action.payload;
         state.comments = action.payload?.comments;
-        state.author = action.payload?.authorOfRecipe;
+        state.author = action.payload?.authorName;
         state.isLoading = false;
       })
       .addCase(fetchSingleRecipe.rejected, (state, action) => {
