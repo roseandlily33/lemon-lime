@@ -40,23 +40,23 @@ async function httpGetFullRecipeWithDetailsEditPage(id) {
   }
 }
 
-// GET: Search for text and sub category
-async function httpSearchRecipes(searchText, subCategory) {
-  try {
-    const recipes = await fetch(
-      `${API_URL}/home/search/${searchText}/${subCategory}`
-    );
-    const foundRecipes = await recipes.json();
-    return foundRecipes;
-  } catch (err) {
-    return err;
-  }
-}
+// // GET: Search for text and sub category
+// async function httpSearchRecipes(searchText, subCategory) {
+//   try {
+//     const recipes = await fetch(
+//       `${API_URL}/home/search/${searchText}/${subCategory}`
+//     );
+//     const foundRecipes = await recipes.json();
+//     return foundRecipes;
+//   } catch (err) {
+//     return err;
+//   }
+// }
 
 export {
   //httpGetAllRecipes,
   httpGetFullRecipeWithDetails,
   httpGetFullRecipeWithDetailsEditPage,
   // httpGetPopularRecipes,
-  httpSearchRecipes,
+  // httpSearchRecipes,
 };

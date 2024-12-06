@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { ResultsDiv, StyledDiv, SearchContainer } from "./search.styles";
 import SearchResults from "./results/searchResults.component";
 import RecentlySearched from "./recent/recent.component";
-import { httpSearchRecipes } from "../../hooks/recipeRequests";
 import IconButton from "../../components/Buttons/IconButton/IconButton.component";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  searchRecipes,
+  fetchSearchedRecipes,
   clearSearch,
   setAlert,
   setRecent,
@@ -27,14 +26,20 @@ const SearchPage = () => {
     (state) => state.search
   );
 
+  const memoizedResults = useMemo(() => {
+    return results.length ? results : popularRecipes;
+  }, [results, popularRecipes]);
+
   const handleSearch = async () => {
     dispatch(setAlert(""));
+    dispatch(fetchSearchedRecipes({ text: searching, category: subCategory }));
+    setRecent(searching);
   };
 
-  const searchForOldSearch = async (recipe) => {
+  const searchForOldSearch = async (searching) => {
     dispatch(setAlert(""));
     setSubCategory("All");
-    dispatch(searchRecipes({ recipe, subCategory }));
+    dispatch(fetchSearchedRecipes({ text: searching, category: subCategory }));
   };
 
   if (isLoading) {
@@ -104,7 +109,7 @@ const SearchPage = () => {
         />
       </StyledDiv>
       <ResultsDiv>
-        <SearchResults results={results} />
+        <SearchResults results={memoizedResults} />
       </ResultsDiv>
     </SearchContainer>
   );

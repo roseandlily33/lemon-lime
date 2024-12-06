@@ -9,17 +9,13 @@ const initialState = {
 };
 
 const URL = process.env.REACT_APP_API_URL;
-
+// prettier-ignore
 export const fetchSearchedRecipes = createAsyncThunk(
-  "search/fetchRecipes",
+  "search/fetchSearchRecipes",
   async ({ text, category }, { rejectWithValue }) => {
     try {
       const res = await fetch(`${URL}/recipes/search/${text}/${category}`);
-      if (!res.ok) {
-        throw new Error("Failed to fetch user");
-      }
       const data = await res.json();
-      console.log("SEARCH DATA RETURNED", data);
       return data;
     } catch (err) {
       return rejectWithValue(err.message);
