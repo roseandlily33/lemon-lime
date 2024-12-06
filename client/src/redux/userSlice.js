@@ -81,6 +81,10 @@ export const userSlice = createSlice({
       });
   },
 });
+
+export const selectRecipeById = (state, recipeId) =>
+  state.user.userRecipes.find((recipe) => recipe._id === recipeId);
+
 export const { setUser, updateUser, logOut } = userSlice.actions;
 
 export default userSlice.reducer;

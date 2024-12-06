@@ -1,7 +1,6 @@
-// Imports needed
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+//import { useAuth0 } from "@auth0/auth0-react";
 import {
   OuterForm,
   RecipeForm,
@@ -17,82 +16,81 @@ import CookingIllustration from "../../images/undraw_cooking_p7m1.svg";
 import TopEdit from "./TopForm/TopEdit.component";
 import MiddleEdit from "./MiddleForm/MiddleEdit.component";
 import BottomEdit from "./BottomForm/BottomEdit.component";
-
+import { useSelector } from "react-redux";
 import Modal from "../../components/Modal/Model.component";
-import { Cloudinary } from "@cloudinary/url-gen";
+// import { Cloudinary } from "@cloudinary/url-gen";
+import { selectRecipeById } from "../../redux/userSlice";
 
-//All imported files are coming from createRecipe and the styles are located in RecipeForm.styles.jsx
-
+// prettier-ignore
 const EditRecipe = () => {
-  const { user } = useAuth0();
+  //const { user } = useAuth0();
   const navigate = useNavigate();
   const { id } = useParams();
+  const recipe = useSelector((state) => selectRecipeById(state, id));
 
-  //Gets the recipe when loaded
-  useEffect(() => {
-    const fetchSingle = async () => {
-      const cloud = new Cloudinary({ cloud: { cloudName: "dql7lqwmr" } });
-      //const res = await httpGetFullRecipeWithDetailsEditPage(id);
-      let res;
-      if (res) {
-        console.log("RES", res);
-        setFormValues({
-          recipeName: res.recipeName,
-          cookTime: res.cookTime,
-          prepTime: res.prepTime,
-          subCategory: res.subCategory,
-        });
-        setInstructions(res.instructions);
-        setIngredients(res.ingredients);
-        setImages(res.images);
-        if (res.images) {
-          await images?.map((img) => {
-            const myImage = cloud.image(img.publicId).toURL();
-            return addNewPhotos(myImage);
-          });
-        }
-      }
-    };
-    fetchSingle();
-  }, [id]);
+  const [formValues, setFormValues] = useState({
+    recipeName: '',
+    prepTime: 0,
+    cookTime: 0,
+    subCategory: '',
+    description: '',
+  });
 
-  if (!user) {
-    navigate("/");
-  }
+  const [instructions, setInstructions] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const [images, setImages] = useState(recipe?.images || []);
+  const [photos, setPhotos] = useState(recipe?.photos || []);
+
 
   const [isOpen, setIsOpen] = useState(false);
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
 
-  //Recipe Name, Times, SubCategory
-  const [formValues, setFormValues] = useState();
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
-  console.log("FORM VALUES TOP", formValues);
-  //Instructions
-  const [instructions, setInstructions] = useState();
+  useEffect(() => {
+    if (recipe) {
+      setFormValues({
+        recipeName: recipe.recipeName,
+        prepTime: recipe.prepTime,
+        cookTime: recipe.cookTime,
+        subCategory: recipe.subCategory,
+        description: recipe.description,
+      });
+      setInstructions(recipe.instructions);
+      setIngredients(recipe.ingredients);
+    }
+  }, [recipe]);
+
+  
+
   const addNewInstruction = (ins) => {
     setInstructions([...instructions, ins]);
   };
-  console.log("INSTRUCTIONS TOP", instructions);
-  //Ingredients
-  const [ingredients, setIngredients] = useState();
-  const addNewIngredient = (ing) => {
+    const addNewIngredient = (ing) => {
     setIngredients([...ingredients, ing]);
   };
-  console.log("INGREDIENTS TOP", ingredients);
-  //Images
-  const [images, setImages] = useState();
   const addNewImage = (img) => {
     setImages((prev) => [...prev, img]);
   };
-
-  //For Displaying the photos
-  const [photos, setPhotos] = useState([]);
   const addNewPhotos = (photo) => {
     setPhotos((prev) => [...prev, photo]);
+  };
+
+  // useEffect(() => {
+  //   const fetchSingle = async () => {
+  //     const cloud = new Cloudinary({ cloud: { cloudName: "dql7lqwmr" } });
+  //     if (images) {
+  //       await images?.map((img) => {
+  //         const myImage = cloud.image(img.publicId).toURL();
+  //         return addNewPhotos(myImage);
+  //       });
+  //     }
+  //   };
+  //   fetchSingle();
+  // }, [id]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
   };
 
   return (
@@ -146,7 +144,6 @@ const EditRecipe = () => {
             instructions={instructions}
             formValues={formValues}
             id={id}
-            user={user}
             setIsOpen={setIsOpen}
           />
         </>

@@ -33,14 +33,14 @@ export const createRecipe = createAsyncThunk(
 
 export const editRecipe = createAsyncThunk(
   "crudRecipes/editRecipe",
-  async ({ user, recipeData }, { rejectWithValue }) => {
+  async ({ user, recipe }, { rejectWithValue }) => {
     try {
       const response = await fetch(`${URL}/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user, recipeData }),
+        body: JSON.stringify({ user, recipe }),
       });
       if (!response.ok) {
         throw new Error("Failed to submit recipe");
@@ -76,6 +76,21 @@ export const crudRecipeSlice = createSlice({
         state.error = null;
       })
       .addCase(createRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.success = false;
+        state.error = action.error.message;
+      })
+      .addCase(editRecipe.pending, (state) => {
+        state.isLoading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(editRecipe.fulfilled, (state) => {
+        state.isLoading = false;
+        state.success = true;
+        state.error = null;
+      })
+      .addCase(editRecipe.rejected, (state, action) => {
         state.isLoading = false;
         state.success = false;
         state.error = action.error.message;
