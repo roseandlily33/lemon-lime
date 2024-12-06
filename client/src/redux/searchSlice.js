@@ -31,9 +31,11 @@ export const searchSlice = createSlice({
       state.alert = action.payload;
     },
     setRecent: (state, action) => {
-      state.recent = action.payload;
-      if (state.recent.length > 5) {
-        state.recent.shift();
+      if (!state.recent.includes(action.payload)) {
+        state.recent.push(action.payload);
+        if (state.recent.length > 5) {
+          state.recent.shift();
+        }
       }
     },
     clearSearch: (state) => {
@@ -48,16 +50,16 @@ export const searchSlice = createSlice({
       .addCase(fetchSearchedRecipes.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.alert = "";
       })
       .addCase(fetchSearchedRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
         state.results = action.payload;
-        if (action.payload.length === 0) {
-          state.alert = "No Recipes Found";
-        }
+        state.alert = "";
       })
       .addCase(fetchSearchedRecipes.rejected, (state, action) => {
         state.isLoading = false;
+        state.alert = "Could not get the recipes";
         state.error = action.error.message;
       });
   },

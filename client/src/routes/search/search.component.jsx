@@ -16,10 +16,12 @@ const SearchPage = () => {
   const popularRecipes = useSelector((state) => state.recipes.popularRecipes);
   const [searching, setSearching] = useState("");
   const [subCategory, setSubCategory] = useState("All");
+  const [firstLoad, setFirstLoad] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(clearSearch());
+    dispatch(setAlert(""));
   }, [dispatch]);
 
   const { results, recent, isLoading, error, alert } = useSelector(
@@ -30,10 +32,17 @@ const SearchPage = () => {
     return results.length ? results : popularRecipes;
   }, [results, popularRecipes]);
 
-  const handleSearch = async () => {
+  useEffect(() => {
+    if (results.length === 0 && !isLoading && !firstLoad) {
+      dispatch(setAlert("No Recipes Found"));
+    }
+  }, [results, isLoading, dispatch]);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    dispatch(setRecent(searching));
     dispatch(setAlert(""));
     dispatch(fetchSearchedRecipes({ text: searching, category: subCategory }));
-    setRecent(searching);
   };
 
   const searchForOldSearch = async (searching) => {
@@ -50,6 +59,11 @@ const SearchPage = () => {
     const subCat = e.target.value;
     setSubCategory(subCat);
   };
+
+  useEffect(() => {
+    dispatch(setAlert(""));
+    setFirstLoad(false);
+  }, []);
 
   return (
     <SearchContainer>
@@ -99,7 +113,7 @@ const SearchPage = () => {
             }
           />
         </form>
-        {alert && <span style={{ color: "#CF1124" }}>{alert}</span>}
+        <span style={{ color: "#CF1124" }}>{alert}</span>
         <RecentlySearched
           recent={recent}
           seachForOldSearch={searchForOldSearch}
