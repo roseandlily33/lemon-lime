@@ -24,6 +24,7 @@ const CreateRecipeSubmit = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     if (images?.length > 4) {
       setError("Only 4 images can be uploaded");
     } else if (!ingredients?.length) {
@@ -32,6 +33,8 @@ const CreateRecipeSubmit = ({
       setError("There must be at least 1 instruction");
     } else if (!formValues?.recipeName) {
       setError("There must be a recipe name");
+    } else if (!formValues?.description) {
+      setError("There must be a description");
     }
     let totalTime = await getTotalTime(
       formValues.cookTime,
@@ -86,6 +89,7 @@ CreateRecipeSubmit.propTypes = {
     recipeName: PropTypes.string,
     cookTime: PropTypes.number,
     prepTime: PropTypes.number,
+    description: PropTypes.string,
   }).isRequired,
   images: PropTypes.array,
   instructions: PropTypes.array,

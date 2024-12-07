@@ -87,9 +87,9 @@ button:active {
   padding: 0.4rem 0.8rem;
   border-radius: 5px;
   min-width: 150px;
-  width: auto;
+  width: 200px;
   min-height: 10px;
-  height: auto;
+  height: 40px;
   background-color: var(--white);
   font-weight: bolder;
   font-size: 15px;

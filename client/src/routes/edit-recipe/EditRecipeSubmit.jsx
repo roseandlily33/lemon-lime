@@ -25,6 +25,7 @@ const EditRecipeSubmit = ({
   );
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     if (images?.length > 4) {
       setError("Only 4 images can be uploaded");
     } else if (!ingredients?.length) {
@@ -33,6 +34,8 @@ const EditRecipeSubmit = ({
       setError("There must be at least 1 instruction");
     } else if (!formValues?.recipeName) {
       setError("There must be a recipe name");
+    } else if (!formValues?.description){
+      setError("There must be a description")
     }
 
     let totalTime = await getTotalTime(

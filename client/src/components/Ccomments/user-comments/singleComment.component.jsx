@@ -4,6 +4,7 @@ import { formatDate } from "../../../formatting-utils/date";
 import { formatStars } from "../../../formatting-utils/stars";
 import DeleteComment from "../delete-comment/DeleteComment.component";
 import React from "react";
+import PrimaryButton from "../../buttons/primary-button/PrimaryButton.component";
 
 const SingleComment = ({ comments, setEditing, setEditComment }) => {
   //console.log('Each comment', comments)
@@ -30,15 +31,13 @@ const SingleComment = ({ comments, setEditing, setEditComment }) => {
                 justifyContent: "end",
               }}
             >
-              <button
-                onClick={() => {
+              <PrimaryButton
+                functionName={() => {
                   setEditing(true);
                   setEditComment(c);
                 }}
-                className="primary"
-              >
-                Edit
-              </button>
+                span="Edit"
+              />
               <DeleteComment id={c?._id} />
             </div>
           </SingleCommentDiv>

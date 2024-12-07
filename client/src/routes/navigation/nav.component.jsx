@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Turn as Hamburger } from "hamburger-react";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 
 const NavBar = () => {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
@@ -88,7 +89,10 @@ const NavBar = () => {
                         />
                       </svg>
                     </NavLink>
-                    <button onClick={() => logout()}>Logout</button>
+                    <PrimaryButton
+                      functionName={() => logout()}
+                      span="Logout"
+                    />
                   </div>
                 ) : (
                   <>
@@ -171,7 +175,7 @@ const NavBar = () => {
                     />
                   </svg>
                 </NavLink>
-                <button onClick={() => logout()}>Logout</button>
+                <PrimaryButton functionName={() => logout()} span="Logout" />
               </>
             ) : (
               <>
@@ -189,7 +193,10 @@ const NavBar = () => {
                     />
                   </svg>
                 </NavLink>
-                <button onClick={() => loginWithRedirect()}>Login</button>
+                <PrimaryButton
+                  functionName={() => loginWithRedirect()}
+                  span="Login"
+                />
               </>
             )}
           </>

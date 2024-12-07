@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import { InputDiv, MiddleContainer } from "../../RecipeForm.styles";
 import EachInstructionCreate from "./EachInstructionCreate.component";
+import IconButton from "../../../../components/buttons/icon-button/IconButton.component";
 
 const InstructionsCreate = ({
   instructions,
@@ -109,20 +110,23 @@ const InstructionsCreate = ({
           placeholder="Add an instruction"
           onChange={(e) => setIns(e.target.value)}
         />
-        <button className="buttonWithIcon" onClick={addCard}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="icon icon-add"
-          >
-            <path
-              className="secondary"
-              fillRule="evenodd"
-              d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"
-            />
-          </svg>
-          Add Instruction
-        </button>
+        <IconButton
+          functionName={addCard}
+          span="Add Instruction"
+          svg={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="icon icon-add"
+            >
+              <path
+                className="secondary"
+                fillRule="evenodd"
+                d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"
+              />
+            </svg>
+          }
+        />
       </InputDiv>
     </MiddleContainer>
   );

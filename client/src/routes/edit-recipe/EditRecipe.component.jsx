@@ -21,6 +21,7 @@ import Modal from "../../components/modal/Model.component";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { selectRecipeById } from "../../redux/userSlice";
 import { useAuth0 } from "@auth0/auth0-react";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 
 // prettier-ignore
 const EditRecipe = () => {
@@ -138,7 +139,7 @@ const EditRecipe = () => {
             <Modal onClose={() => setIsOpen(false)}>
               <h3>{success}</h3>
               <h3>{error}</h3>
-              <button onClick={() => navigate("/user/home")}>Go Home</button>
+              <PrimaryButton functionName={() => navigate("/user/home")} span="Go Home" />
             </Modal>
           )}
           <EditRecipeSubmit

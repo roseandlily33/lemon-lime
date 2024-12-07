@@ -4,7 +4,11 @@ import PropTypes from "prop-types";
 const PrimaryButton = ({ functionName, span }) => {
   return (
     <>
-      <button style={{ width: "200px" }} onClick={functionName}>
+      <button
+        style={{ width: "200px" }}
+        onClick={functionName}
+        className="primary"
+      >
         {span}
       </button>
     </>

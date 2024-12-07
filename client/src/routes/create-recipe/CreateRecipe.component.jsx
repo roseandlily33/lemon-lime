@@ -19,6 +19,7 @@ import MiddleCreate from "./middle-form/MiddleCreate.component";
 import BottomCreate from "./bottom-form/BottomCreate.component";
 import CreateRecipeSubmit from "./CreateRecipeSubmit.component";
 import Modal from "../../components/modal/Model.component";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 
 // prettier-ignore
 
@@ -108,11 +109,11 @@ const CreateRecipeForm = () => {
           />
         </BottomForm>
         <>
-          <p className="error">{error}</p>
+          <p className="error" style={{textAlign: 'center'}}>{error}</p>
           {isOpen && (
             <Modal onClose={() => setIsOpen(false)}>
                <h3>{successStatus}</h3>
-              <button onClick={() => navigate("/user/home")}>Go Home</button>
+               <PrimaryButton functionName={() => navigate("/user/home")} span="Go Home"/>
             </Modal>
           )}
         </>

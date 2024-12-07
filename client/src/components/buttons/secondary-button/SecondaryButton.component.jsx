@@ -1,14 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SecondaryButton = ({ functionName, span, svg }) => {
+const SecondaryButton = ({ functionName, span }) => {
   return (
-    <button
-      className="secondaryButton"
-      style={{ display: "flex", alignItems: "center", maxHeight: "60px" }}
-      onClick={functionName}
-    >
-      {svg}
+    <button className="secondaryButton" onClick={functionName}>
       {span}
     </button>
   );
@@ -16,7 +11,6 @@ const SecondaryButton = ({ functionName, span, svg }) => {
 SecondaryButton.propTypes = {
   functionName: PropTypes.func.isRequired,
   span: PropTypes.node.isRequired,
-  svg: PropTypes.node.isRequired,
 };
 
 export default SecondaryButton;
