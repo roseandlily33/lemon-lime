@@ -6,6 +6,7 @@ const CookTimeCreate = ({ formValues, handleChange }) => {
     <div className="each">
       <label htmlFor={formValues?.cookTime}>
         Cook Time: <span>in minutes</span>
+        <span className="required"> *</span>
       </label>
       <select
         name="cookTime"

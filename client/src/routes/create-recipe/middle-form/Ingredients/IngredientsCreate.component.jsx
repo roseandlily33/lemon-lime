@@ -40,7 +40,9 @@ const IngredientsCreate = ({
   return (
     <MiddleContainer>
       <h3>
-        Ingredients <span>Max 15</span>
+        Ingredients
+        <span> max 15 </span>
+        <span className="required"> * </span>
       </h3>
       <hr />
       <>

@@ -4,7 +4,11 @@ import React from "react";
 const SubcategoryCreate = ({ formValues, handleChange }) => {
   return (
     <div className="each">
-      <label htmlFor={formValues?.subCategory}> Subcategory:</label>
+      <label htmlFor={formValues?.subCategory}>
+        {" "}
+        Subcategory:
+        <span className="required"> *</span>
+      </label>
       <select
         style={{ width: "100px" }}
         name="subCategory"

@@ -43,6 +43,9 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.required{
+  color: var(--orange);
+}
 
 /* Buttons  */
 button {

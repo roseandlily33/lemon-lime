@@ -6,6 +6,7 @@ const PrepTimeCreate = ({ formValues, handleChange }) => {
     <div className="each">
       <label htmlFor={formValues?.prepTime}>
         Prep Time: <span>in minutes</span>
+        <span className="required"> *</span>
       </label>
       <select
         name="prepTime"

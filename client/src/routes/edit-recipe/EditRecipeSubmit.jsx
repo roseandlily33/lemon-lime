@@ -34,8 +34,8 @@ const EditRecipeSubmit = ({
       setError("There must be at least 1 instruction");
     } else if (!formValues?.recipeName) {
       setError("There must be a recipe name");
-    } else if (!formValues?.description){
-      setError("There must be a description")
+    } else if (!formValues?.description) {
+      setError("There must be a description");
     }
 
     let totalTime = await getTotalTime(
@@ -91,6 +91,7 @@ EditRecipeSubmit.propTypes = {
     recipeName: PropTypes.string,
     cookTime: PropTypes.number,
     prepTime: PropTypes.number,
+    description: PropTypes.string,
   }).isRequired,
   images: PropTypes.array,
   instructions: PropTypes.array,

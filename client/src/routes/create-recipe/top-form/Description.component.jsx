@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 const Description = ({ formValues, handleChange }) => {
   return (
     <div style={{display: 'flex', justifyContent: 'space-between', width: '92%'}}>
-      <label htmlFor="description">Description:</label>
+      <label htmlFor="description">Description:
+      <span className="required"> *</span>
+      </label>
       <textarea
         type="text"
         name="description"

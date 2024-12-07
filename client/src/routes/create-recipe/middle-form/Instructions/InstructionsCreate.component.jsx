@@ -60,7 +60,9 @@ const InstructionsCreate = ({
   return (
     <MiddleContainer>
       <h3>
-        Instructions <span>max 15</span>
+        Instructions
+        <span> max 15 </span>
+        <span className="required"> * </span>
       </h3>
       <hr />
 
