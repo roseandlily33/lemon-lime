@@ -1,55 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector, useDispatch } from "react-redux";
-import { httpAddFavoriteRecipe } from "../../hooks/userRequests";
-import { httpDeleteFavoriteRecipe } from "../../hooks/userRequests";
-import { fetchFavorites } from "../../redux/favoritesSlice";
-import FaveHeart from "./FavedHeart.component";
-import NotFaveHeart from "./NotFavedHeart.component";
+import { addFavorite, removeFavorite } from "../../redux/userSlice";
 
-//Recipe = the id
 const Heart = ({ recipe }) => {
-  const { user } = useAuth0();
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites.favorites);
-  const [found, setFound] = useState(false);
+  const favorites = useSelector((state) => state.user.userFavorites);
+  const ifFaved = Object.keys(favorites).includes(recipe);
 
-  useEffect(() => {
-    if (recipe && favorites) {
-      if (favorites[recipe] === "true") {
-        setFound(true);
-      } else {
-        setFound(false);
-      }
+  const toggleFave = () => {
+    if (ifFaved) {
+      dispatch(removeFavorite(recipe));
     } else {
-      setFound(false);
+      dispatch(addFavorite(recipe));
     }
-  }, [recipe, favorites]);
-  const addFavorite = async (userId, recipeId) => {
-    await httpAddFavoriteRecipe(userId, recipeId);
-    dispatch(fetchFavorites(user.sub));
-    //console.log('Recipe added', adding);
-    setFound(true);
-  };
-  const deleteFavorite = async (userId, recipeId) => {
-    await httpDeleteFavoriteRecipe(userId, recipeId);
-    dispatch(fetchFavorites(user.sub));
-    //console.log('Deleting', deleting);
-    setFound(false);
   };
 
   return (
     <>
-      {found ? (
-        <>
-          <FaveHeart functionName={() => deleteFavorite(user.sub, recipe)} />
-        </>
-      ) : (
-        <>
-          <NotFaveHeart functionName={() => addFavorite(user.sub, recipe)} />
-        </>
-      )}
+      <svg
+        onClick={toggleFave}
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-heart"
+        viewBox="0 0 24 24"
+      >
+        <circle cx="12" cy="12" r="10" className="primaryHeartFaved" />
+        <path
+          className={`icon icon-heart ${ifFaved ? "secondaryHeartFaved" : "secondaryHeart"}`}
+          d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"
+        />
+      </svg>
     </>
   );
 };

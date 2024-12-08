@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  user: [],
   userRecipes: [],
   userComments: [],
   userFavorites: [],
@@ -62,6 +63,14 @@ export const userSlice = createSlice({
     logOut: (state) => {
       state.user = null;
     },
+    addFavorite: (state, action) => {
+      state.userFavorites.push(action.payload);
+    },
+    removeFavorite: (state, action) => {
+      state.userFavorites = state.userFavorites.filter((fave) => {
+        return fave !== action.payload;
+      });
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -88,6 +97,7 @@ export const selectCommentById = (state, commentId) =>
 export const selectRecipeById = (state, recipeId) =>
   state.user.userRecipes.find((recipe) => recipe._id === recipeId);
 
-export const { setUser, updateUser, logOut } = userSlice.actions;
+export const { setUser, updateUser, logOut, addFavorite, removeFavorite } =
+  userSlice.actions;
 
 export default userSlice.reducer;

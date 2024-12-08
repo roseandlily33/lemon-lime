@@ -54,6 +54,28 @@ export const editRecipe = createAsyncThunk(
   }
 );
 
+export const deleteRecipe = createAsyncThunk(
+  "crudRecipes/deleteRecipe",
+  async (id, { rejectWithValue }) => {
+    console.log("Recipe id", id);
+    try {
+      const response = await fetch(`${URL}/user/recipe/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to submit recipe");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const crudRecipeSlice = createSlice({
   name: "crudRecipes",
   initialState,
