@@ -37,6 +37,7 @@ export const addComment = createAsyncThunk(
 export const editComment = createAsyncThunk(
   "comments/editComment",
   async ({ id, comment }, { rejectWithValue }) => {
+    console.log("ID AND COMMENT EDIT COMMENT HANDLER", id, comment);
     try {
       const response = await fetch(`${URL}/comments/${id}`, {
         method: "PUT",
@@ -59,14 +60,13 @@ export const editComment = createAsyncThunk(
 // Delete Comment
 export const deleteComment = createAsyncThunk(
   "comments/deleteComment",
-  async (id, { rejectWithValue }) => {
+  async ({ id }, { rejectWithValue }) => {
     try {
       const response = await fetch(`${URL}/comments/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-        //body: JSON.stringify(comment),
       });
       if (!response.ok) {
         throw new Error("Failed to add comment");

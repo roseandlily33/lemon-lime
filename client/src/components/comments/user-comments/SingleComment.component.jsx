@@ -2,14 +2,13 @@ import { SingleCommentDiv } from "./UserComments.styles";
 import PropTypes from "prop-types";
 import { formatDate } from "../../../formatting-utils/date";
 import { formatStars } from "../../../formatting-utils/stars";
-// import DeleteComment from "../delete-comment/DeleteComment.component";
+import DeleteComment from "../delete-comment/DeleteComment.component";
 import React from "react";
 import PrimaryButton from "../../buttons/primary-button/PrimaryButton.component";
 //
 
 // prettier-ignore
 const SingleComment = ({ comments, setEditing, setEditComment }) => {
-  console.log("Each comment", comments);
   return (
     <>
       {comments?.map((c) => (
@@ -39,7 +38,7 @@ const SingleComment = ({ comments, setEditing, setEditComment }) => {
               }}
               span="Edit"
             />
-            {/* <DeleteComment id={c?._id} /> */}
+            <DeleteComment id={c?._id} />
           </div>
         </SingleCommentDiv>
       ))}

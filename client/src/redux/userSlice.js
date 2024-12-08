@@ -82,6 +82,9 @@ export const userSlice = createSlice({
   },
 });
 
+export const selectCommentById = (state, commentId) =>
+  state.user.userComments.find((comment) => comment._id === commentId);
+
 export const selectRecipeById = (state, recipeId) =>
   state.user.userRecipes.find((recipe) => recipe._id === recipeId);
 

@@ -12,10 +12,8 @@ import EditComment from "../edit-comment/EditComment.component";
 
 const UserComments = () => {
   const comments = useSelector((state) => state.user.userComments);
-  console.log("COMMENTS PAGE", comments);
   const [editing, setEditing] = useState(false);
-  const [editComment, setEditComment] = useState(true);
-  console.log("Editing", editing, editComment);
+  const [editComment, setEditComment] = useState();
   return (
     <UserCommentsContainer>
       <h2>Your Comments</h2>

@@ -5,9 +5,12 @@ import React, { useState, useEffect } from "react";
 import { CommentDiv } from "../user-comments/UserComments.styles";
 import RequiredInput from "../../input/required-input/RequiredInput.component";
 import { editComment, clearState } from "../../../redux/commentsSlice";
+// import { selectCommentById } from "../../../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../loader/Loader.component";
+import PrimaryButton from "../../buttons/primary-button/PrimaryButton.component";
 
+// prettier-ignore
 const EditComment = ({ comment }) => {
   const dispatch = useDispatch();
   const [successState, setSuccess] = useState("");
@@ -17,7 +20,7 @@ const EditComment = ({ comment }) => {
     comment: comment.comment,
   });
   const { isLoading, error, success, alert } = useSelector(
-    (state) => state.comment
+    (state) => state.comments
   );
 
   const handleChange = (e) => {
@@ -28,11 +31,17 @@ const EditComment = ({ comment }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const fullComment = {
+      ...comment,
       ...formState,
       rating: starRating,
     };
-
-    dispatch(editComment(comment._id, fullComment));
+    console.log("SUB<ITTING COMMENT", fullComment, 'ID',  fullComment._id);
+    dispatch(editComment({id: fullComment._id, comment: fullComment}));
+    setFormState({
+      title: "",
+      comment: "",
+    });
+    setStarRating(1);
 
     dispatch(clearState());
   };
@@ -48,13 +57,13 @@ const EditComment = ({ comment }) => {
     if (error) {
       setSuccess(alert);
     }
-  }, []);
+  }, [success, error]);
 
   return (
     <>
       <h3>Edit Comment</h3>
       <CommentDiv className="boxShadow">
-        <CommentForm onSubmit={handleSubmit}>
+        <CommentForm>
           {/* Title */}
           <FormElement>
             <RequiredInput
@@ -84,7 +93,7 @@ const EditComment = ({ comment }) => {
             ></textarea>
           </FormElement>
           <p style={{ color: "hsl(0, 71%, 66%)" }}>{successState}</p>
-          <input style={{ width: "150px" }} className="button" type="submit" />
+          <PrimaryButton functionName={handleSubmit} span="Edit Comment" />
         </CommentForm>
       </CommentDiv>
     </>
