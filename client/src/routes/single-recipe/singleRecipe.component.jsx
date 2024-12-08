@@ -30,7 +30,6 @@ const SingleRecipeComponent = () => {
   const { recipe, comments, author, isLoading, error } = useSelector(
     (state) => state.singleRecipe
   );
-  console.log('SINGLE RECIPE STATE', recipe, comments, author, isLoading, error)
 
   if (isLoading) {
     return <Loader />;

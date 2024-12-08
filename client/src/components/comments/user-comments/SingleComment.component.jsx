@@ -2,15 +2,17 @@ import { SingleCommentDiv } from "./UserComments.styles";
 import PropTypes from "prop-types";
 import { formatDate } from "../../../formatting-utils/date";
 import { formatStars } from "../../../formatting-utils/stars";
-import DeleteComment from "../delete-comment/DeleteComment.component";
+// import DeleteComment from "../delete-comment/DeleteComment.component";
 import React from "react";
 import PrimaryButton from "../../buttons/primary-button/PrimaryButton.component";
+//
 
+// prettier-ignore
 const SingleComment = ({ comments, setEditing, setEditComment }) => {
-  //console.log('Each comment', comments)
+  console.log("Each comment", comments);
   return (
     <>
-      {comments?.map((c) => {
+      {comments?.map((c) => (
         <SingleCommentDiv key={c?._id} className="boxShadow">
           <h4 style={{ fontWeight: "bold" }}>{c?.title}</h4>
           <div style={{ display: "flex", gap: "1rem" }}>
@@ -21,7 +23,7 @@ const SingleComment = ({ comments, setEditing, setEditComment }) => {
             <p>{formatDate(c?.createdAt)}</p>
           </div>
           <hr />
-          <p>{c.comment}</p>
+          <p>{c?.comment}</p>
           <div
             style={{
               display: "flex",
@@ -37,25 +39,16 @@ const SingleComment = ({ comments, setEditing, setEditComment }) => {
               }}
               span="Edit"
             />
-            <DeleteComment id={c?._id} />
+            {/* <DeleteComment id={c?._id} /> */}
           </div>
-        </SingleCommentDiv>;
-      })}
+        </SingleCommentDiv>
+      ))}
     </>
   );
 };
 
 SingleComment.propTypes = {
-  comments: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string,
-      title: PropTypes.string,
-      recipeName: PropTypes.string,
-      rating: PropTypes.number,
-      createdAt: PropTypes.string,
-      comment: PropTypes.string,
-    })
-  ).isRequired,
+  comments: PropTypes.array.isRequired,
   setEditing: PropTypes.func.isRequired,
   setEditComment: PropTypes.func.isRequired,
 };

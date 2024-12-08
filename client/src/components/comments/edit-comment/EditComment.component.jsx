@@ -1,35 +1,54 @@
 import Rating from "../../rating/Rating.component";
 import PropTypes from "prop-types";
 import { CommentForm, FormElement } from "../add-comment/Comments.styles";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CommentDiv } from "../user-comments/UserComments.styles";
-import { httpEditComment } from "../../../hooks/commentRequests";
 import RequiredInput from "../../input/required-input/RequiredInput.component";
+import { editComment, clearState } from "../../../redux/commentsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../loader/Loader.component";
 
 const EditComment = ({ comment }) => {
-  const [success, setSuccess] = useState("");
+  const dispatch = useDispatch();
+  const [successState, setSuccess] = useState("");
   const [starRating, setStarRating] = useState(comment.rating);
   const [formState, setFormState] = useState({
     title: comment.title,
     comment: comment.comment,
   });
+  const { isLoading, error, success, alert } = useSelector(
+    (state) => state.comment
+  );
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormState({ ...formState, [name]: value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let totalComment = Object.assign(formState, {
+    const fullComment = {
+      ...formState,
       rating: starRating,
-    });
-    let res = await httpEditComment(comment._id, totalComment);
+    };
 
-    if (res.ok) {
-      setSuccess("Comment has been edited");
-    } else {
-      setSuccess("Comment has not been edited");
-    }
+    dispatch(editComment(comment._id, fullComment));
+
+    dispatch(clearState());
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  useEffect(() => {
+    if (success) {
+      setSuccess(alert);
+    }
+    if (error) {
+      setSuccess(alert);
+    }
+  }, []);
 
   return (
     <>
@@ -64,7 +83,7 @@ const EditComment = ({ comment }) => {
               onChange={handleChange}
             ></textarea>
           </FormElement>
-          <p style={{ color: "hsl(0, 71%, 66%)" }}>{success}</p>
+          <p style={{ color: "hsl(0, 71%, 66%)" }}>{successState}</p>
           <input style={{ width: "150px" }} className="button" type="submit" />
         </CommentForm>
       </CommentDiv>

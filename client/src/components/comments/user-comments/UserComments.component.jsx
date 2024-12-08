@@ -15,13 +15,13 @@ const UserComments = () => {
   console.log("COMMENTS PAGE", comments);
   const [editing, setEditing] = useState(false);
   const [editComment, setEditComment] = useState(true);
-
+  console.log("Editing", editing, editComment);
   return (
     <UserCommentsContainer>
-      <h2>Your Comments {editing}</h2>
+      <h2>Your Comments</h2>
       <OuterDiv>
         <LeftCommentsDiv>
-          {!comments ? (
+          {!comments.length ? (
             <h3 style={{ textAlign: "center" }}>You have no comments</h3>
           ) : (
             <SingleComment
