@@ -4,9 +4,10 @@ import { SubmitButtonContainer } from "../create-recipe/RecipeForm.styles";
 import DeleteRecipe from "./delete-recipe/DeleteRecipeEdit.component";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
-import { editRecipe, clearState } from "../../redux/crudRecipeSlice";
+import { editRecipe } from "../../redux/crudRecipeSlice";
 import Loader from "../../components/loader/Loader.component";
 import { useAuth0 } from "@auth0/auth0-react";
+import CreateRecipeButton from "../../components/buttons/create-recipe-button/CreateRecipeButton.component";
 
 const EditRecipeSubmit = ({
   setIsOpen,
@@ -15,8 +16,9 @@ const EditRecipeSubmit = ({
   instructions,
   ingredients,
   id,
+  setNotification,
   setError,
-  setSuccess,
+  setSuccessState,
 }) => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
@@ -57,30 +59,26 @@ const EditRecipeSubmit = ({
 
   useEffect(() => {
     if (success) {
-      setSuccess("Recipe has been edited");
+      setSuccessState("Recipe has been edited");
       setIsOpen(true);
-      dispatch(clearState());
+      setNotification(true);
+      // dispatch(clearState());
     }
     if (error) {
-      setError("Failed to edit recipe");
+      setSuccessState("Failed to edit recipe");
       setIsOpen(true);
-      dispatch(clearState());
+      setNotification(false);
+      // dispatch(clearState());
     }
   }, [success, error]);
 
   if (isLoading) {
-    <Loader />;
+    return <Loader />;
   }
 
   return (
     <SubmitButtonContainer>
-      <div className="button type--A" onClick={(e) => handleSubmit(e)}>
-        <div className="button__line"></div>
-        <div className="button__line"></div>
-        <span className="button__text">Edit Recipe</span>
-        <div className="button__drow1"></div>
-        <div className="button__drow2"></div>
-      </div>
+      <CreateRecipeButton functionName={handleSubmit} span="Edit Recipe" />
       <DeleteRecipe id={id} />
     </SubmitButtonContainer>
   );
@@ -97,8 +95,9 @@ EditRecipeSubmit.propTypes = {
   instructions: PropTypes.array,
   ingredients: PropTypes.array,
   id: PropTypes.string.isRequired,
+  setSuccessState: PropTypes.func.isRequired,
   setError: PropTypes.func.isRequired,
-  setSuccess: PropTypes.func.isRequired,
+  setNotification: PropTypes.func.isRequired,
 };
 
 export default EditRecipeSubmit;

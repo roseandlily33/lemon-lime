@@ -1,13 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { PrimaryButtonContainer } from "../primary-button/PrimaryButton.styles";
 
 const IconButton = ({ functionName, span, svg }) => {
+  const styles = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    gap: "0.5rem",
+    padding: "0",
+    paddingBlock: "0.3rem",
+    paddingInline: "0.5rem",
+  };
+
   return (
     <>
-      <button onClick={functionName} className="buttonWithIcon">
+      <PrimaryButtonContainer
+        style={styles}
+        onClick={functionName}
+        className="buttonWithIcon"
+      >
         {svg}
         {span}
-      </button>
+      </PrimaryButtonContainer>
     </>
   );
 };

@@ -1,16 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { PrimaryButtonContainer } from "./PrimaryButton.styles";
 
 const PrimaryButton = ({ functionName, span }) => {
   return (
     <>
-      <button
-        style={{ width: "200px" }}
-        onClick={functionName}
-        className="primary"
-      >
+      <PrimaryButtonContainer onClick={functionName}>
         {span}
-      </button>
+      </PrimaryButtonContainer>
     </>
   );
 };

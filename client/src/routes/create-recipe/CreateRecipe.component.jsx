@@ -20,6 +20,7 @@ import BottomCreate from "./bottom-form/BottomCreate.component";
 import CreateRecipeSubmit from "./CreateRecipeSubmit.component";
 import Modal from "../../components/modal/Model.component";
 import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
+import Notification from "../../components/notification/Notification.component";
 
 // prettier-ignore
 
@@ -28,6 +29,7 @@ const CreateRecipeForm = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [successStatus, setSuccessState] = useState("");
+  const [notificationType, setNotificationType] = useState(false);
   const [error, setError] = useState("");
 
   if (!isAuthenticated) {
@@ -109,10 +111,11 @@ const CreateRecipeForm = () => {
           />
         </BottomForm>
         <>
+        <Notification success={notificationType} message={successStatus} />
           <p className="error" style={{textAlign: 'center'}}>{error}</p>
           {isOpen && (
             <Modal onClose={() => setIsOpen(false)}>
-               <h3>{successStatus}</h3>
+               <Notification success={notificationType} message={successStatus} />
                <PrimaryButton functionName={() => navigate("/user/home")} span="Go Home"/>
             </Modal>
           )}
@@ -125,6 +128,7 @@ const CreateRecipeForm = () => {
           setIsOpen={setIsOpen}
           ingredients={ingredients}
           setError={setError}
+          setNotificationType={setNotificationType}
         />
       </RecipeForm>
     </OuterForm>

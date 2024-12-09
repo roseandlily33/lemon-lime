@@ -4,16 +4,18 @@ import { CommentForm, FormElement } from "../add-comment/Comments.styles";
 import React, { useState, useEffect } from "react";
 import { CommentDiv } from "../user-comments/UserComments.styles";
 import RequiredInput from "../../input/required-input/RequiredInput.component";
-import { editComment, clearState } from "../../../redux/commentsSlice";
+import { editComment } from "../../../redux/commentsSlice";
 // import { selectCommentById } from "../../../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../loader/Loader.component";
 import PrimaryButton from "../../buttons/primary-button/PrimaryButton.component";
+import Notification from "../../notification/Notification.component";
 
 // prettier-ignore
 const EditComment = ({ comment }) => {
   const dispatch = useDispatch();
   const [successState, setSuccess] = useState("");
+  const [notificationType, setNotificationType] = useState(false);
   const [starRating, setStarRating] = useState(comment.rating);
   const [formState, setFormState] = useState({
     title: comment.title,
@@ -43,7 +45,6 @@ const EditComment = ({ comment }) => {
     });
     setStarRating(1);
 
-    dispatch(clearState());
   };
 
   if (isLoading) {
@@ -53,9 +54,11 @@ const EditComment = ({ comment }) => {
   useEffect(() => {
     if (success) {
       setSuccess(alert);
+      setNotificationType(true);
     }
     if (error) {
       setSuccess(alert);
+      setNotificationType(false);
     }
   }, [success, error]);
 
@@ -92,7 +95,7 @@ const EditComment = ({ comment }) => {
               onChange={handleChange}
             ></textarea>
           </FormElement>
-          <p style={{ color: "hsl(0, 71%, 66%)" }}>{successState}</p>
+          <Notification success={notificationType} message={successState} />
           <PrimaryButton functionName={handleSubmit} span="Edit Comment" />
         </CommentForm>
       </CommentDiv>

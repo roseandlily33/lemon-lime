@@ -21,6 +21,7 @@ import Modal from "../../components/modal/Model.component";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { selectRecipeById } from "../../redux/userSlice";
 import { useAuth0 } from "@auth0/auth0-react";
+import Notification from "../../components/notification/Notification.component";
 import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 
 // prettier-ignore
@@ -33,7 +34,8 @@ const EditRecipe = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const recipe = useSelector((state) => selectRecipeById(state, id));
-
+  const [notification, setNotification] = useState(null);
+  const [error, setError] = useState("");
   const [formValues, setFormValues] = useState({
     recipeName: '',
     prepTime: 0,
@@ -48,10 +50,8 @@ const EditRecipe = () => {
   const [images, setImages] = useState(recipe?.images || []);
   // The link for the cloudinary - actual photo
   const [photos, setPhotos] = useState(recipe?.photos || []);
-
   const [isOpen, setIsOpen] = useState(false);
-  const [success, setSuccess] = useState('');
-  const [error, setError] = useState('');
+  const [successState, setSuccessState] = useState("");
 
   useEffect(() => {
     if (recipe) {
@@ -135,22 +135,23 @@ const EditRecipe = () => {
           />
         </BottomForm>
         <>
+        <p className="errorRed">{error}</p>
           {isOpen && (
             <Modal onClose={() => setIsOpen(false)}>
-              <h3>{success}</h3>
-              <h3>{error}</h3>
+             <Notification message={successState} success={notification} />
               <PrimaryButton functionName={() => navigate("/user/home")} span="Go Home" />
             </Modal>
           )}
           <EditRecipeSubmit
             images={images}
-            setError={setError}
-            setSuccess={setSuccess}
             ingredients={ingredients}
             instructions={instructions}
             formValues={formValues}
             id={id}
             setIsOpen={setIsOpen}
+            setError={setError}
+            setNotification={setNotification}
+            setSuccessState={setSuccessState}
           />
         </>
       </RecipeForm>

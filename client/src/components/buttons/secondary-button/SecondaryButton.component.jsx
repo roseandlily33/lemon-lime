@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { SecondaryButtonContainer } from "./SecondaryButton.styles";
 
 const SecondaryButton = ({ functionName, span }) => {
   return (
-    <button className="secondaryButton" onClick={functionName}>
+    <SecondaryButtonContainer onClick={functionName}>
       {span}
-    </button>
+    </SecondaryButtonContainer>
   );
 };
 SecondaryButton.propTypes = {

@@ -12,6 +12,7 @@ export const ModalContainer = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
+  background-color: hsla(0, 0%, 0%, 0.3);
   .modal {
     background-color: ${({ theme }) => theme.colors.white};
     padding: 9rem;
@@ -24,6 +25,7 @@ export const ModalContainer = styled.div`
     position: absolute;
     border: none;
     top: 20%;
+    border: 16px solid ${({ theme }) => theme.colors.lightGreen};
   }
 
   /* ----------------------------------------------

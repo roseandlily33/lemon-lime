@@ -4,8 +4,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { SubmitButtonContainer } from "./RecipeForm.styles";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
-import { createRecipe, clearState } from "../../redux/crudRecipeSlice";
+import { createRecipe } from "../../redux/crudRecipeSlice";
 import Loader from "../../components/loader/Loader.component";
+import CreateEditRecipeButton from "../../components/buttons/create-recipe-button/CreateRecipeButton.component";
 
 const CreateRecipeSubmit = ({
   formValues,
@@ -15,6 +16,7 @@ const CreateRecipeSubmit = ({
   setIsOpen,
   setSuccessState,
   setError,
+  setNotificationType,
 }) => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
@@ -59,12 +61,12 @@ const CreateRecipeSubmit = ({
     if (success) {
       setSuccessState("Recipe Created");
       setIsOpen(true);
-      dispatch(clearState());
+      setNotificationType(true);
     }
     if (error) {
       setError("Failed to create recipe");
       setIsOpen(true);
-      dispatch(clearState());
+      setNotificationType(false);
     }
   }, [success, error]);
 
@@ -74,13 +76,7 @@ const CreateRecipeSubmit = ({
 
   return (
     <SubmitButtonContainer>
-      <div className="button type--A" onClick={(e) => handleSubmit(e)}>
-        <div className="button__line"></div>
-        <div className="button__line"></div>
-        <span className="button__text">Create Recipe</span>
-        <div className="button__drow1"></div>
-        <div className="button__drow2"></div>
-      </div>
+      <CreateEditRecipeButton functionName={handleSubmit} span="Submit" />
     </SubmitButtonContainer>
   );
 };
@@ -97,6 +93,7 @@ CreateRecipeSubmit.propTypes = {
   setIsOpen: PropTypes.func.isRequired,
   setSuccessState: PropTypes.func.isRequired,
   setError: PropTypes.func.isRequired,
+  setNotificationType: PropTypes.func.isRequired,
 };
 
 export default CreateRecipeSubmit;
