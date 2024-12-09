@@ -1,26 +1,33 @@
-import { useState, useEffect } from "react";
-// import { clearState } from "../redux/crudRecipeSlice";
-// import { useDispatch } from "react-redux";
+// import { useState, useEffect, useMemo } from "react";
 
-const useNotification = (success, error, alert) => {
-  const [notificationType, setNotificationType] = useState();
-  const [successMessage, setSuccessMessage] = useState("");
-  // const dispatch = useDispatch();
+// const useNotification = (error, alert) => {
+//   const [notificationType, setNotificationType] = useState("");
+//   const [successMessage, setSuccessMessage] = useState("");
 
-  useEffect(() => {
-    if (success) {
-      setSuccessMessage(alert);
-      setNotificationType(true);
-    }
+//   useEffect(() => {
+//     if (error) {
+//       setSuccessMessage(alert);
+//       setNotificationType("error");
+//     } else {
+//       setSuccessMessage(alert);
+//       setNotificationType("success");
+//     }
+//   }, [error, alert]);
+
+//   return { notificationType, successMessage };
+// };
+
+// export default useNotification;
+import { useMemo } from "react";
+
+const useNotification = (error, alert) => {
+  const { notificationType, successMessage } = useMemo(() => {
     if (error) {
-      setSuccessMessage(alert);
-      setNotificationType(false);
+      return { notificationType: "error", successMessage: alert };
+    } else {
+      return { notificationType: "success", successMessage: alert };
     }
-    // const timer = setTimeout(() => {
-    //   dispatch(clearState());
-    // }, 3000);
-    // return () => clearTimeout(timer);
-  }, [success, error, alert]);
+  }, [error, alert]);
 
   return { notificationType, successMessage };
 };

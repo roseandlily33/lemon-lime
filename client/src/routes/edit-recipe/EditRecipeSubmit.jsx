@@ -1,7 +1,7 @@
 import { getTotalTime } from "../../formatting-utils/total-time";
 import { useDispatch, useSelector } from "react-redux";
 import { SubmitButtonContainer } from "../create-recipe/RecipeForm.styles";
-import DeleteRecipe from "./delete-recipe/DeleteRecipeEdit.component";
+// import DeleteRecipe from "./delete-recipe/DeleteRecipeEdit.component";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { editRecipe } from "../../redux/crudRecipeSlice";
@@ -21,21 +21,17 @@ const EditRecipeSubmit = ({
   instructions,
   ingredients,
   id,
-  setError,
 }) => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const { isLoading, success, error } = useSelector(
-    (state) => state.crudRecipes
-  );
+  const [errorInput, setError] = useState("");
+  const { isLoading, error, alert } = useSelector((state) => state.crudRecipes);
 
-  const { notificationType, successMessage } = useNotification(
-    success,
-    error,
-    alert
-  );
+  const { notificationType, successMessage } = useNotification(error, alert);
+
+  console.log("Submit Recipe", notificationType, successMessage);
 
   const handleSubmit = async (e) => {
     console.log("Editing recipe");
@@ -67,8 +63,9 @@ const EditRecipeSubmit = ({
       recipeName: newRecipeName,
       images: images,
     };
+    console.log("FULL RECIPE SENDING", fullRecipe);
     setIsOpen(true);
-    dispatch(editRecipe({ user: user, recipe: fullRecipe, id }));
+    dispatch(editRecipe({ recipe: fullRecipe, id }));
     dispatch(fetchUserRecipes(user.sub));
   };
 
@@ -78,9 +75,13 @@ const EditRecipeSubmit = ({
 
   return (
     <SubmitButtonContainer>
+      <p style={{ color: "red" }}>{errorInput}</p>
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
-          <Notification message={notificationType} success={successMessage} />
+          <Notification
+            messageShown={successMessage}
+            status={notificationType}
+          />
           <PrimaryButton
             functionName={() => navigate("/user/home")}
             span="Go Home"
@@ -104,9 +105,6 @@ EditRecipeSubmit.propTypes = {
   instructions: PropTypes.array,
   ingredients: PropTypes.array,
   id: PropTypes.string.isRequired,
-  setSuccessState: PropTypes.func.isRequired,
-  setError: PropTypes.func.isRequired,
-  setNotification: PropTypes.func.isRequired,
 };
 
 export default EditRecipeSubmit;

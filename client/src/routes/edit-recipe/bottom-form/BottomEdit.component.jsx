@@ -3,7 +3,13 @@ import EachPhotoCreate from "../../create-recipe/bottom-form/EachPhoto.component
 import React from "react";
 import PropTypes from "prop-types";
 
-const BottomEdit = ({ images, addNewImage, addNewPhotos, photos }) => {
+const BottomEdit = ({ images, setImages, setPhotos, photos }) => {
+  const addNewImage = (img) => {
+    setImages((prev) => [...prev, img]);
+  };
+  const addNewPhotos = (photo) => {
+    setPhotos((prev) => [...prev, photo]);
+  };
   return (
     <>
       <PhotosCreate
@@ -17,8 +23,8 @@ const BottomEdit = ({ images, addNewImage, addNewPhotos, photos }) => {
 };
 BottomEdit.propTypes = {
   images: PropTypes.array.isRequired,
-  addNewImage: PropTypes.func.isRequired,
-  addNewPhotos: PropTypes.func.isRequired,
+  setImages: PropTypes.func.isRequired,
+  setPhotos: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
 };
 

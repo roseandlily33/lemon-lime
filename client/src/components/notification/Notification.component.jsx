@@ -6,23 +6,25 @@ import {
 import React from "react";
 import PropTypes from "prop-types";
 
-const Notification = ({ success, message }) => {
-  console.log("NOTFICIATION CONTAINER INCOMING", success, message);
+const Notification = ({ status, messageShown }) => {
+  console.log("NOTFICIATION CONTAINER INCOMING", status, messageShown);
   return (
     <>
       <NotificationContainer>
-        {success ? (
-          <NotificationMessageSuccess>{message}</NotificationMessageSuccess>
+        {status === "success" ? (
+          <NotificationMessageSuccess>
+            {messageShown}
+          </NotificationMessageSuccess>
         ) : (
-          <NotificationMessageError>{message}</NotificationMessageError>
+          <NotificationMessageError>{messageShown}</NotificationMessageError>
         )}
       </NotificationContainer>
     </>
   );
 };
 Notification.propTypes = {
-  success: PropTypes.bool.isRequired,
-  message: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  messageShown: PropTypes.string.isRequired,
 };
 
 export default Notification;

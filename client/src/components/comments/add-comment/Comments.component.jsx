@@ -11,13 +11,11 @@ import RedirectLoginButton from "../../buttons/redirect-login-button/RedirectLog
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../../../redux/commentsSlice";
 import Loader from "../../loader/Loader.component";
-import Notification from "../../notification/Notification.component";
 
 const Comment = ({ singleRecipe }) => {
   const { id } = useParams();
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const [notificationType, setNotificationType] = useState(false);
   const [formState, setFormState] = useState({
     title: "",
     comment: "",
@@ -55,12 +53,10 @@ const Comment = ({ singleRecipe }) => {
   useEffect(() => {
     if (success) {
       setSuccess(alert);
-      setNotificationType(true);
     }
 
     if (error) {
       setSuccess(alert);
-      setNotificationType(false);
     }
   }, [success, error]);
 
@@ -97,7 +93,6 @@ const Comment = ({ singleRecipe }) => {
               onChange={handleChange}
             />
           </FormElement>
-          <Notification success={notificationType} message={successState} />
           <p>{successState}</p>
           <PrimaryButton
             functionName={(e) => handleSubmit(e)}

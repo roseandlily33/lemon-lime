@@ -6,11 +6,15 @@ import React from "react";
 const MiddleEdit = ({
   ingredients,
   setIngredients,
-  addNewIngredient,
   instructions,
   setInstructions,
-  addNewInstruction,
 }) => {
+  const addNewInstruction = (ins) => {
+    setInstructions([...instructions, ins]);
+  };
+  const addNewIngredient = (ing) => {
+    setIngredients([...ingredients, ing]);
+  };
   return (
     <>
       <IngredientsCreate
@@ -29,10 +33,8 @@ const MiddleEdit = ({
 MiddleEdit.propTypes = {
   ingredients: PropTypes.array.isRequired,
   setIngredients: PropTypes.func.isRequired,
-  addNewIngredient: PropTypes.func.isRequired,
   instructions: PropTypes.array.isRequired,
   setInstructions: PropTypes.func.isRequired,
-  addNewInstruction: PropTypes.func.isRequired,
 };
 
 export default MiddleEdit;

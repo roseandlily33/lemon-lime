@@ -6,7 +6,11 @@ import Description from "../../create-recipe/top-form/Description.component";
 import PropTypes from "prop-types";
 import React from "react";
 
-const TopEdit = ({ formValues, handleChange }) => {
+const TopEdit = ({ formValues, setFormValues }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
   return (
     <>
       <RecipeNameCreate formValues={formValues} handleChange={handleChange} />
@@ -19,7 +23,7 @@ const TopEdit = ({ formValues, handleChange }) => {
 };
 TopEdit.propTypes = {
   formValues: PropTypes.object.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  setFormValues: PropTypes.func.isRequired,
 };
 
 export default TopEdit;
