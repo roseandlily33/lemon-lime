@@ -1,18 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import { addFavorite, removeFavorite } from "../../redux/userSlice";
+import { addFavorites, deleteFavorites } from "../../redux/favoritesSlice";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Heart = ({ recipe }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.user.userFavorites);
   const ifFaved = Object.keys(favorites).includes(recipe);
+  const { user } = useAuth0();
+  console.log("USER", user);
+  console.log("Recipe ID", recipe);
 
   const toggleFave = () => {
+    console.log("FAVED?", ifFaved);
     if (ifFaved) {
-      dispatch(removeFavorite(recipe));
+      console.log("Deleting fave");
+      dispatch(deleteFavorites({ userId: user.sub, recipeId: recipe }));
     } else {
-      dispatch(addFavorite(recipe));
+      console.log("Adding Fave");
+      dispatch(addFavorites({ userId: user.sub, recipeId: recipe }));
     }
   };
 

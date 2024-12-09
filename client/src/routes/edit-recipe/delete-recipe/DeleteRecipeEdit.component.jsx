@@ -1,17 +1,18 @@
-import { httpDeleteRecipe } from "../../../hooks/userRequests";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../../components/modal/Model.component";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchUserRecipes } from "../../../redux/userSlice";
+import { deleteRecipe } from "../../../redux/crudRecipeSlice";
 import SecondaryButton from "../../../components/buttons/secondary-button/SecondaryButton.component";
 import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton.component";
+import Loader from "../../../components/loader/Loader.component";
 
 const DeleteRecipe = ({ id }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [success, setSuccess] = useState("");
+  const [successState, setSuccess] = useState("");
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -20,22 +21,34 @@ const DeleteRecipe = ({ id }) => {
     navigate("/");
   }
 
-  const deleteRecipe = async (id) => {
+  const { isLoading, error, alert, success } = useSelector(
+    (state) => state.crudRecipes
+  );
+
+  const handleDeleteRecipe = async (id) => {
     setIsOpen(true);
-    let res = await httpDeleteRecipe(id);
-    if (res.ok) {
-      setSuccess("Recipe has been deleted");
-    } else {
-      setSuccess("Recipe has not been deleted, please try again later");
-    }
+    dispatch(deleteRecipe(id));
     dispatch(fetchUserRecipes(user.sub));
   };
+
+  useEffect(() => {
+    if (success) {
+      setSuccess(alert);
+    }
+    if (error) {
+      setSuccess(alert);
+    }
+  }, [success, error]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
-          {success && <h3>{success}</h3>}
+          <h3>{successState}</h3>
           <PrimaryButton
             functionName={() => navigate("/user/home")}
             span="Go Home"
@@ -45,7 +58,7 @@ const DeleteRecipe = ({ id }) => {
       <SecondaryButton
         functionName={(e) => {
           e.preventDefault();
-          deleteRecipe(id);
+          handleDeleteRecipe(id);
         }}
         span="Delete Recipe"
         svg={

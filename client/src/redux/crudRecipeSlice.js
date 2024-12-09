@@ -4,6 +4,7 @@ const initialState = {
   isLoading: false,
   success: false,
   error: null,
+  alert: "",
 };
 
 const URL = process.env.REACT_APP_API_URL;
@@ -84,25 +85,31 @@ export const crudRecipeSlice = createSlice({
       state.isLoading = false;
       state.success = false;
       state.error = null;
+      state.alert = "";
     },
   },
   extraReducers: (builder) => {
     builder
+      // Creating the recipe
       .addCase(createRecipe.pending, (state) => {
         state.isLoading = true;
         state.success = false;
+        state.alert = "";
         state.error = null;
       })
       .addCase(createRecipe.fulfilled, (state) => {
         state.isLoading = false;
         state.success = true;
+        state.alert = "Recipe has been created";
         state.error = null;
       })
       .addCase(createRecipe.rejected, (state, action) => {
         state.isLoading = false;
+        state.alert = "There was an error creating the recipe";
         state.success = false;
         state.error = action.error.message;
       })
+      // Editing the recipe
       .addCase(editRecipe.pending, (state) => {
         state.isLoading = true;
         state.success = false;
@@ -111,11 +118,31 @@ export const crudRecipeSlice = createSlice({
       .addCase(editRecipe.fulfilled, (state) => {
         state.isLoading = false;
         state.success = true;
+        state.alert = "Recipe has been edited";
         state.error = null;
       })
       .addCase(editRecipe.rejected, (state, action) => {
         state.isLoading = false;
         state.success = false;
+        state.alert = "There was an error editing the recipe";
+        state.error = action.error.message;
+      })
+      // Deleting the recipe
+      .addCase(deleteRecipe.pending, (state) => {
+        state.isLoading = true;
+        state.success = false;
+        state.error = null;
+      })
+      .addCase(deleteRecipe.fulfilled, (state) => {
+        state.isLoading = false;
+        state.success = true;
+        state.alert = "Recipe has been deleted";
+        state.error = null;
+      })
+      .addCase(deleteRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.success = false;
+        state.alert = "There was an error deleting the recipe";
         state.error = action.error.message;
       });
   },
