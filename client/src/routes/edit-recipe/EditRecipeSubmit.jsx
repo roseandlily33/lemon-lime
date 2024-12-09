@@ -3,29 +3,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { SubmitButtonContainer } from "../create-recipe/RecipeForm.styles";
 import DeleteRecipe from "./delete-recipe/DeleteRecipeEdit.component";
 import PropTypes from "prop-types";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { editRecipe } from "../../redux/crudRecipeSlice";
 import Loader from "../../components/loader/Loader.component";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 import CreateRecipeButton from "../../components/buttons/create-recipe-button/CreateRecipeButton.component";
+import { fetchUserRecipes } from "../../redux/userSlice";
+import useNotification from "../../utils/useNotification";
+import Modal from "../../components/modal/Model.component";
+import Notification from "../../components/notification/Notification.component";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 
 const EditRecipeSubmit = ({
-  setIsOpen,
   formValues,
   images,
   instructions,
   ingredients,
   id,
-  setNotification,
   setError,
-  setSuccessState,
 }) => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
   const { isLoading, success, error } = useSelector(
     (state) => state.crudRecipes
   );
+
+  const { notificationType, successMessage } = useNotification(
+    success,
+    error,
+    alert
+  );
+
   const handleSubmit = async (e) => {
+    console.log("Editing recipe");
     e.preventDefault();
     setError("");
     if (images?.length > 4) {
@@ -54,23 +67,10 @@ const EditRecipeSubmit = ({
       recipeName: newRecipeName,
       images: images,
     };
+    setIsOpen(true);
     dispatch(editRecipe({ user: user, recipe: fullRecipe, id }));
+    dispatch(fetchUserRecipes(user.sub));
   };
-
-  useEffect(() => {
-    if (success) {
-      setSuccessState("Recipe has been edited");
-      setIsOpen(true);
-      setNotification(true);
-      // dispatch(clearState());
-    }
-    if (error) {
-      setSuccessState("Failed to edit recipe");
-      setIsOpen(true);
-      setNotification(false);
-      // dispatch(clearState());
-    }
-  }, [success, error]);
 
   if (isLoading) {
     return <Loader />;
@@ -78,13 +78,22 @@ const EditRecipeSubmit = ({
 
   return (
     <SubmitButtonContainer>
+      {isOpen && (
+        <Modal onClose={() => setIsOpen(false)}>
+          <Notification message={notificationType} success={successMessage} />
+          <PrimaryButton
+            functionName={() => navigate("/user/home")}
+            span="Go Home"
+          />
+        </Modal>
+      )}
       <CreateRecipeButton functionName={handleSubmit} span="Edit Recipe" />
-      <DeleteRecipe id={id} />
+      {/* <DeleteRecipe id={id} /> */}
     </SubmitButtonContainer>
   );
 };
+
 EditRecipeSubmit.propTypes = {
-  setIsOpen: PropTypes.func.isRequired,
   formValues: PropTypes.shape({
     recipeName: PropTypes.string,
     cookTime: PropTypes.number,

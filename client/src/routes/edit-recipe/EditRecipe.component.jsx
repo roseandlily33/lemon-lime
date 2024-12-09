@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-//import { useAuth0 } from "@auth0/auth0-react";
 import {
   OuterForm,
   RecipeForm,
@@ -12,17 +11,14 @@ import {
 } from "../create-recipe/RecipeForm.styles";
 import EditRecipeSubmit from "./EditRecipeSubmit";
 import CookingIllustration from "../../images/undraw_cooking_p7m1.svg";
-// The Components for the edit form
 import TopEdit from "./top-form/TopEdit.component";
 import MiddleEdit from "./middle-form/MiddleEdit.component";
 import BottomEdit from "./bottom-form/BottomEdit.component";
 import { useSelector } from "react-redux";
-import Modal from "../../components/modal/Model.component";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { selectRecipeById } from "../../redux/userSlice";
 import { useAuth0 } from "@auth0/auth0-react";
-import Notification from "../../components/notification/Notification.component";
-import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
+import RecipeForm from "./EditRecipeForm.component";
 
 // prettier-ignore
 const EditRecipe = () => {
@@ -34,7 +30,6 @@ const EditRecipe = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const recipe = useSelector((state) => selectRecipeById(state, id));
-  const [notification, setNotification] = useState(null);
   const [error, setError] = useState("");
   const [formValues, setFormValues] = useState({
     recipeName: '',
@@ -50,8 +45,6 @@ const EditRecipe = () => {
   const [images, setImages] = useState(recipe?.images || []);
   // The link for the cloudinary - actual photo
   const [photos, setPhotos] = useState(recipe?.photos || []);
-  const [isOpen, setIsOpen] = useState(false);
-  const [successState, setSuccessState] = useState("");
 
   useEffect(() => {
     if (recipe) {
@@ -104,54 +97,17 @@ const EditRecipe = () => {
       <RecipeForm className="boxShadow">
         <h2>Edit Recipe</h2>
         <hr />
-        <TopForm>
-          <LeftDiv>
-            <TopEdit formValues={formValues} handleChange={handleChange} />
-          </LeftDiv>
-          <RightDiv>
-            <img
-              src={CookingIllustration}
-              alt="Cooking Illustration"
-              className="cooking-image"
-            />
-          </RightDiv>
-        </TopForm>
-        <MiddleForm>
-          <MiddleEdit
-            ingredients={ingredients}
-            setIngredients={setIngredients}
-            addNewIngredient={addNewIngredient}
-            instructions={instructions}
-            setInstructions={setInstructions}
-            addNewInstruction={addNewInstruction}
-          />
-        </MiddleForm>
-        <BottomForm>
-          <BottomEdit
-            images={images}
-            addNewImage={addNewImage}
-            addNewPhotos={addNewPhotos}
-            photos={photos}
-          />
-        </BottomForm>
+
         <>
         <p className="errorRed">{error}</p>
-          {isOpen && (
-            <Modal onClose={() => setIsOpen(false)}>
-             <Notification message={successState} success={notification} />
-              <PrimaryButton functionName={() => navigate("/user/home")} span="Go Home" />
-            </Modal>
-          )}
+          
           <EditRecipeSubmit
             images={images}
             ingredients={ingredients}
             instructions={instructions}
             formValues={formValues}
             id={id}
-            setIsOpen={setIsOpen}
             setError={setError}
-            setNotification={setNotification}
-            setSuccessState={setSuccessState}
           />
         </>
       </RecipeForm>

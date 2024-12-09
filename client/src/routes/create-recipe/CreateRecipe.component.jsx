@@ -29,7 +29,7 @@ const CreateRecipeForm = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [successStatus, setSuccessState] = useState("");
-  const [notificationType, setNotificationType] = useState(false);
+  const [notificationType, setNotificationType] = useState(null);
   const [error, setError] = useState("");
 
   if (!isAuthenticated) {

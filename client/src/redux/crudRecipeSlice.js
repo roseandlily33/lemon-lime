@@ -58,7 +58,6 @@ export const editRecipe = createAsyncThunk(
 export const deleteRecipe = createAsyncThunk(
   "crudRecipes/deleteRecipe",
   async (id, { rejectWithValue }) => {
-    console.log("Recipe id", id);
     try {
       const response = await fetch(`${URL}/user/recipe/${id}`, {
         method: "DELETE",
@@ -114,6 +113,7 @@ export const crudRecipeSlice = createSlice({
         state.isLoading = true;
         state.success = false;
         state.error = null;
+        state.alert = "";
       })
       .addCase(editRecipe.fulfilled, (state) => {
         state.isLoading = false;
@@ -132,6 +132,7 @@ export const crudRecipeSlice = createSlice({
         state.isLoading = true;
         state.success = false;
         state.error = null;
+        state.alert = "";
       })
       .addCase(deleteRecipe.fulfilled, (state) => {
         state.isLoading = false;
