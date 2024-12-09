@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { addFavorites, deleteFavorites } from "../../redux/favoritesSlice";
@@ -7,20 +7,22 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Heart = ({ recipe }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.user.userFavorites);
-  const ifFaved = Object.keys(favorites).includes(recipe);
+  const [isFaved, setIsFaved] = useState(
+    Object.keys(favorites).includes(recipe)
+  );
   const { user } = useAuth0();
-  console.log("USER", user);
-  console.log("Recipe ID", recipe);
+
+  useEffect(() => {
+    setIsFaved(Object.keys(favorites).includes(recipe));
+  }, [favorites, recipe]);
 
   const toggleFave = () => {
-    console.log("FAVED?", ifFaved);
-    if (ifFaved) {
-      console.log("Deleting fave");
+    if (isFaved) {
       dispatch(deleteFavorites({ userId: user.sub, recipeId: recipe }));
     } else {
-      console.log("Adding Fave");
       dispatch(addFavorites({ userId: user.sub, recipeId: recipe }));
     }
+    setIsFaved(!isFaved);
   };
 
   return (
@@ -35,10 +37,10 @@ const Heart = ({ recipe }) => {
           cx="12"
           cy="12"
           r="10"
-          className={`icon icon-heart ${ifFaved ? "primaryHeartFaved" : "primaryHeart"}`}
+          className={`icon icon-heart ${isFaved ? "primaryHeartFaved" : "primaryHeart"}`}
         />
         <path
-          className={`icon icon-heart ${ifFaved ? "secondaryHeartFaved" : "secondaryHeart"}`}
+          className={`icon icon-heart ${isFaved ? "secondaryHeartFaved" : "secondaryHeart"}`}
           d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"
         />
       </svg>
