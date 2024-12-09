@@ -6,7 +6,12 @@ import Description from "./Description.component";
 import React from "react";
 import PropTypes from "prop-types";
 
-const TopCreate = ({ formValues, handleChange }) => {
+const TopCreate = ({ formValues, setFormValues }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
   return (
     <>
       <RecipeNameCreate formValues={formValues} handleChange={handleChange} />
@@ -19,7 +24,7 @@ const TopCreate = ({ formValues, handleChange }) => {
 };
 TopCreate.propTypes = {
   formValues: PropTypes.object.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  setFormValues: PropTypes.func.isRequired,
 };
 
 export default TopCreate;

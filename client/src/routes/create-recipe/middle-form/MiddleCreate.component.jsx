@@ -5,12 +5,16 @@ import React from "react";
 
 const MiddleCreate = ({
   ingredients,
-  addNewIngredient,
   setIngredients,
   instructions,
   setInstructions,
-  addNewInstruction,
 }) => {
+  const addNewIngredient = (ing) => {
+    setIngredients([...ingredients, ing]);
+  };
+  const addNewInstruction = (ins) => {
+    setInstructions([...instructions, ins]);
+  };
   return (
     <>
       <IngredientsCreate
@@ -28,11 +32,9 @@ const MiddleCreate = ({
 };
 MiddleCreate.propTypes = {
   ingredients: PropTypes.array.isRequired,
-  addNewIngredient: PropTypes.func.isRequired,
   setIngredients: PropTypes.func.isRequired,
   instructions: PropTypes.array.isRequired,
   setInstructions: PropTypes.func.isRequired,
-  addNewInstruction: PropTypes.func.isRequired,
 };
 
 export default MiddleCreate;

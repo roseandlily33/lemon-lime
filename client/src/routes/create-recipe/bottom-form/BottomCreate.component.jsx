@@ -3,7 +3,14 @@ import PhotosCreate from "./PhotosCreate.component";
 import PropTypes from "prop-types";
 import React from "react";
 
-const BottomCreate = ({ images, addNewImage, addNewPhotos, photos }) => {
+const BottomCreate = ({ images, setImages, setPhotos, photos }) => {
+  const addNewImage = (img) => {
+    setImages((prev) => [...prev, img]);
+  };
+
+  const addNewPhotos = (photo) => {
+    setPhotos((prev) => [...prev, photo]);
+  };
   return (
     <>
       <PhotosCreate
@@ -17,8 +24,8 @@ const BottomCreate = ({ images, addNewImage, addNewPhotos, photos }) => {
 };
 BottomCreate.propTypes = {
   images: PropTypes.array.isRequired,
-  addNewImage: PropTypes.func.isRequired,
-  addNewPhotos: PropTypes.func.isRequired,
+  setImages: PropTypes.func.isRequired,
+  setPhotos: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
 };
 

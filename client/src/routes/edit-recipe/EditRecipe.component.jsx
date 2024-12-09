@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { OuterForm, RecipeForm } from "../create-recipe/RecipeForm.styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import EditRecipeForm from "./EditRecipeForm.component";
