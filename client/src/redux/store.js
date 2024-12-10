@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import recipeSlice from "./recipeSlice";
 import userSlice from "./userSlice";
-import userCommentsSlice from "./userCommentsSlice";
+import commentsSlice from "./commentsSlice";
 import visitorSlice from "./visitorSlice";
 import favoritesSlice from "./favoritesSlice";
 import singleRecipeSlice from "./singleRecipeSlice";
@@ -12,7 +12,7 @@ import { crudRecipeSlice } from "./crudRecipeSlice";
 export const store = configureStore({
   reducer: {
     recipes: recipeSlice,
-    userComments: userCommentsSlice,
+    comments: commentsSlice,
     user: userSlice,
     favorites: favoritesSlice,
     visitor: visitorSlice,

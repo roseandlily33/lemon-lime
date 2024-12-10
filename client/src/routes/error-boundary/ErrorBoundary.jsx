@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // UPDATED ERROR BOUNDARY COMPONENT
-const ErrorFallback = ({ error, resetErrorBoundary }) => {
+const ErrorFallback = ({ resetErrorBoundary }) => {
   return (
     <div role="alert">
       <p>Sorry, something went wrong:</p>
-      <span>{error.message}</span>
       <button onClick={resetErrorBoundary}>Try again</button>
     </div>
   );

@@ -1,13 +1,14 @@
-import { ModalContainer } from "./modal.styles";
+import { ModalContainer } from "./Modal.styles";
 import React from "react";
 import PropTypes from "prop-types";
+import SecondaryButton from "../buttons/secondary-button/SecondaryButton.component";
 
 const Modal = ({ children, onClose }) => {
   return (
     <ModalContainer className="boxShadow">
       <div className="modal slit-in-vertical">
         {children}
-        <button onClick={onClose}>Close</button>
+        <SecondaryButton functionName={onClose} span="Close" />
       </div>
     </ModalContainer>
   );

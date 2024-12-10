@@ -5,19 +5,31 @@ import {
   UserOptionsContainer,
   UserOptions,
   UserInfo,
-} from "./user.styles";
+} from "./User.styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-import RecipeContainer3 from "../../components/Recipe/recipe3.component";
-import Loader from "../../components/Loader/loader.component";
-import { useSelector } from "react-redux";
+import RecipeContainer3 from "../../components/recipe/Recipe3.component";
+import Loader from "../../components/loader/Loader.component";
+import { useSelector, useDispatch } from "react-redux";
 import Background from "../../images/Background2.jpg";
 import Profile from "../../images/Profile1.jpg";
-import React from "react";
+import React, { useEffect } from "react";
+import { fetchUserRecipes } from "../../redux/userSlice";
 
 const UserHome = () => {
   const { user, isAuthenticated } = useAuth0();
-  console.log("User", user);
+  const dispatch = useDispatch();
+  if (!isAuthenticated) {
+    navigate("/");
+  }
+  const { userRecipes, isLoading, error } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (!userRecipes) {
+      dispatch(fetchUserRecipes(user.sub));
+    }
+  }, [userRecipes]);
+
   const navigate = useNavigate();
   const buttonItems = [
     {
@@ -35,7 +47,6 @@ const UserHome = () => {
     // {id: 3, title: 'Not in use', color: 'hsla(349, 43%, 66%, 0.6)', action: ''},
     // {id: 4, title: 'Not in use', color: 'hsla(349, 43%, 66%, 0.8)', action: ''}
   ];
-  const { userRecipes, isLoading, error } = useSelector((state) => state.user);
 
   const switchFunction = (action) => {
     switch (action) {

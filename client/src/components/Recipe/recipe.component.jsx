@@ -3,23 +3,24 @@ import {
   TopLabel,
   LeftContainer,
   RightContainer,
-} from "./recipe.styles";
-import { formatDate } from "../../formattingUtils/date";
+} from "./Recipe.styles";
+import { formatDate } from "../../formatting-utils/date";
 import { NavLink } from "react-router-dom";
 import Lemons from "../../images/lemons.jpg";
 import { useNavigate } from "react-router-dom";
-import CloudImage from "../../Photos/photo.component";
+import CloudImage from "../../photos-cloudinary/photo.component";
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { fetchSingleRecipe } from "../../redux/singleRecipeSlice";
-
-// import Heart from "../Heart/heart.component";
+import Heart from "../heart/Heart.component";
 
 const RecipeContainer = ({ recipe }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const url = `/recipe/${recipe._id}`;
+  const { isAuthenticated } = useAuth0();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -38,7 +39,7 @@ const RecipeContainer = ({ recipe }) => {
           <NavLink className="link" to={url} onClick={handleClick}>
             {recipe?.recipeName.slice(0, 20)}
           </NavLink>
-          {/* <Heart recipe={recipe._id}/> */}
+          {isAuthenticated && <Heart recipe={recipe._id} />}
         </TopLabel>
         <p>{formatDate(recipe?.createdAt)}</p>
         <p>

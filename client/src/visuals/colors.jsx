@@ -15,8 +15,8 @@ export const theme = {
     grey3: "hsl(41, 8%, 61%)",
     darkGrey: "hsl(0, 0%, 38%)",
     errorRed: "hsl(354, 85%, 44%)",
-    peachyPink: "#D0415A",
-    mediumPeachyPink: "#CF6174",
-    lightPeachyPink: "#CE8491",
+    successGreen: "hsl(120, 100%, 25%)",
+    peach: "#f97f69",
+    peach1: "#fbbe84",
   },
 };

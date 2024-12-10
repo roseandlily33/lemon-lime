@@ -1,21 +1,23 @@
-import RecipeContainer from "../../components/Recipe/recipe.component";
-import RecipeContainer2 from "../../components/Recipe/recipe2.container";
+import RecipeContainer from "../../components/recipe/Recipe.component";
+import RecipeContainer2 from "../../components/recipe/Recipe2.container";
 import {
   MainDiv,
   BottomDiv,
   LeftMainDiv,
   RightMainDiv,
   HeroImage,
-} from "./home.styles";
-import React from "react";
-import { useSelector } from "react-redux";
+} from "./Home.styles";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import MainPicture from "../../images/Background3.jpg";
 import { useNavigate } from "react-router-dom";
-import PrimaryButton from "../../components/Buttons/PrimaryButton/primaryButton.component";
-import Loader from "../../components/Loader/loader.component";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
+import Loader from "../../components/loader/Loader.component";
+import { fetchRecent } from "../../redux/recipeSlice";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     popularRecipes,
@@ -25,6 +27,10 @@ const HomePage = () => {
     errorPopular,
     errorNewest,
   } = useSelector((state) => state.recipes);
+
+  useEffect(() => {
+    dispatch(fetchRecent());
+  }, []);
 
   return (
     <MainDiv>
@@ -45,7 +51,7 @@ const HomePage = () => {
       <BottomDiv>
         <LeftMainDiv className="scrollBar">
           <h2>New Recipes</h2>
-          {errorNewest && <h2>{errorNewest}</h2>}
+          {errorNewest && <h2 className="error">{errorNewest}</h2>}
           {loadingNewest ? (
             <Loader />
           ) : (
@@ -58,7 +64,7 @@ const HomePage = () => {
         </LeftMainDiv>
         <RightMainDiv className="scrollBar">
           <h2>Popular Recipes</h2>
-          {errorPopular && <h2>{errorPopular}</h2>}
+          {errorPopular && <h2 className="error">{errorPopular}</h2>}
           {loadingPopular ? (
             <Loader />
           ) : (

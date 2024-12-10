@@ -11,9 +11,9 @@ async function httpGetUserRecipes(req, res){
   }
     let fetchedRecipes;
     if(userId.slice(0,4) === 'auth'){
-       fetchedRecipes = await User.find({authId: userId}).populate("recipes").sort({createdAt: -1});
+       fetchedRecipes = await User.find({authId: userId}).populate({path: "recipes", options: {sort: {createdAt: -1}}}).populate({path: "comments", options: {sort: {createdAt: -1}}})
     } else {
-       fetchedRecipes = await User.find({_id: userId}).populate("recipes").sort({createdAt: -1});
+       fetchedRecipes = await User.find({_id: userId}).populate({path: "recipes", options: {sort: {createdAt: -1}}}).populate({path: "comments", options: {sort: {createdAt: -1}}})
     }
     if(!fetchedRecipes){
       return res.status(404).json({msg: "Could not get the recipe"})
@@ -92,10 +92,12 @@ async function httpEditRecipe(req, res){
       return res.status(404).json({msg: "Recipe not found"})
     }
     let recipeBody = req.body;
+    console.log('Recipe Body', recipeBody);
     if(!recipeBody){
       return res.status(404).json({msg: "Recipe not found"})
     }
     let editedRecipe = await Recipe.findOneAndUpdate({_id: editId}, recipeBody, {upsert: true});
+    console.log('Edited recipe', editedRecipe);
     if(!editedRecipe){
       return res.status(404).json({msg: "Could not edit the recipe"})
     }

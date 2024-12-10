@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { ResultsDiv, StyledDiv, SearchContainer } from "./search.styles";
-import SearchResults from "./results/searchResults.component";
-import RecentlySearched from "./recent/recent.component";
-import IconButton from "../../components/Buttons/IconButton/IconButton.component";
+import { ResultsDiv, StyledDiv, SearchContainer } from "./Search.styles";
+import SearchResults from "./results/SearchResults.component";
+import RecentlySearched from "./recent/Recent.component";
+import IconButton from "../../components/buttons/icon-button/IconButton.component";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchSearchedRecipes,
@@ -10,7 +10,7 @@ import {
   setAlert,
   setRecent,
 } from "../../redux/searchSlice";
-import Loader from "../../components/Loader/loader.component";
+import Loader from "../../components/loader/Loader.component";
 
 const SearchPage = () => {
   const popularRecipes = useSelector((state) => state.recipes.popularRecipes);

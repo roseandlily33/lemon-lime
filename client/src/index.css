@@ -30,10 +30,11 @@
     --darkOrange: #E08600;
     --border: 5px solid var(--yellow);
     --errorRed: hsl(354, 85%, 44%);
-    --peachyPink: #D0415A;
-    --lightPeachyPink: hsl(349, 43%, 66%);
-    --mediumPeachyPink: #CF6174;
+    --successGreen: hsl(120, 100%, 25%);
+    --peach:#f97f69;
+    --peach1:#fbbe84;
 }
+
 body{
     background-color: var(--white);
     color: hsl(0, 1%, 30%);
@@ -43,93 +44,18 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-/* Buttons  */
-button {
-  border: 2px solid var(--mediumGreen);
-  padding: 0.8rem 1rem;
-  border-radius: 5px;
-  min-width: 150px;
-  width: auto;
-  background-color: var(--white);
-  font-weight: bolder;
-  font-size: 15px;
-  color: var(--mediumGreen);
-  -webkit-box-shadow: 0px 0px 1px;
-  box-shadow: 0px 0px 1px;
-  -webkit-transform: all 2s esase;
-  -ms-transform: all 2s esase;
-  transform: all 2s esase;
-  -webkit-transition-duration: .3s;
-  transition-duration: .3s;
+.required{
+  color: var(--orange);
+}
+.error {
+  color: var(--errorRed);
+  font-weight: bold;
+}
+.success {
+  color: var(--successGreen);
+  font-weight: bold;
 }
 
-button:hover {
-  -webkit-transform: translateY(-10px);
-  -ms-transform: translateY(-10px);
-  transform: translateY(-10px);
-  -webkit-box-shadow: 0px 7px 1px var(--yellow);
-  box-shadow: 0px 7px 1px var(--yellow);
-  border: 1px solid var(--yellow);
-}
-
-button:active {
-  -webkit-transform: translateY(10px);
-  -ms-transform: translateY(10px);
-  transform: translateY(10px);
-  -webkit-box-shadow: 0px 0px 1px;
-  box-shadow: 0px 0px 1px var(--yellow);
-}
-
-/* Secondary Button */
-.secondaryButton {
-  border: 2px solid var(--grey3);
-  padding: 0.4rem 0.8rem;
-  border-radius: 5px;
-  min-width: 150px;
-  width: auto;
-  min-height: 10px;
-  height: auto;
-  background-color: var(--white);
-  font-weight: bolder;
-  font-size: 15px;
-  color: var(--grey3);
-  -webkit-box-shadow: 0px 0px 1px;
-  box-shadow: 0px 0px 1px;
-  -webkit-transform: all 2s esase;
-  -ms-transform: all 2s esase;
-  transform: all 2s esase;
-  -webkit-transition-duration: .3s;
-  transition-duration: .3s;
-}
-
-.secondaryButton:hover {
-  -webkit-transform: translateY(-10px);
-  -ms-transform: translateY(-10px);
-  transform: translateY(-10px);
-  -webkit-box-shadow: 0px 7px 1px var(--yellow);
-  box-shadow: 0px 7px 1px var(--yellow);
-  border: 1px solid var(--yellow);
-}
-
-.secondaryButton:active {
-  -webkit-transform: translateY(10px);
-  -ms-transform: translateY(10px);
-  transform: translateY(10px);
-  -webkit-box-shadow: 0px 0px 1px;
-  box-shadow: 0px 0px 1px var(--yellow);
-}
-
-.buttonWithIcon{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 0.5rem;
-  padding: 0;
-  padding-block: 0.3rem;
-  padding-inline: 0.5rem;
-}
 input{
  border: none;
  background-color: var(--offWhite);
@@ -203,10 +129,10 @@ border: 1px solid rgba(255, 255, 255, 0.57);
 }
 /* For the favorited heart */
 .primaryHeartFaved{
-  fill: var(--lightPeachyPink);
+  fill: var(--peach1);
 }
 .primaryHeartFaved:hover{
-  fill: var(--peachyPink);
+  fill: var(--peach);
 }
 .secondaryHeartFaved{
   fill: var(--lightestYellow);
@@ -214,9 +140,9 @@ border: 1px solid rgba(255, 255, 255, 0.57);
 .secondaryHeartFaved:hover{
   fill: var(--lightPeachyPink);
 }
-.error{
-  color: var(--errorRed);
-  font-weight: 700;
+.icon-heart{
+  height: 15px;
+  width: 15px;
 }
 .boxShadowHover{
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;

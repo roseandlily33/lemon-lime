@@ -1,10 +1,10 @@
-import { SideContainer, ButtonRecipeContainer } from "./recipe3.styles";
-import { formatDate } from "../../formattingUtils/date";
+import { SideContainer, ButtonRecipeContainer } from "./Recipe3.styles";
+import { formatDate } from "../../formatting-utils/date";
 import { NavLink } from "react-router-dom";
 import Lemons from "../../images/lemons.jpg";
 import { useNavigate } from "react-router-dom";
-import CloudImage from "../../Photos/photo.component";
-import IconButton from "../Buttons/IconButton/IconButton.component";
+import CloudImage from "../../photos-cloudinary/photo.component";
+import IconButton from "../buttons/icon-button/IconButton.component";
 import React from "react";
 import PropTypes from "prop-types";
 

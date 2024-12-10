@@ -8,8 +8,8 @@ import {
   RightDirection,
   Indicator,
   RecipeImage,
-} from "./singleRecipeCarousel.styles";
-import CloudImage from "../../Photos/photo.component";
+} from "./SingleRecipeCarousel.styles";
+import CloudImage from "../../photos-cloudinary/photo.component";
 
 const Carousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -35,7 +35,7 @@ export const fetchUsersFavoriteRecipes = createAsyncThunk(
         throw new Error("Failed to fetch user");
       }
       const data = await res.json();
-      return data[0];
+      return data;
     } catch (err) {
       return rejectWithValue(err.message);
     }
@@ -45,7 +45,14 @@ export const fetchUsersFavoriteRecipes = createAsyncThunk(
 export const visitorSlice = createSlice({
   name: "visitor",
   initialState,
-  reducers: {},
+  reducers: {
+    clearState: (state) => {
+      state.visitorFavorites = [];
+      state.visitorRecipes = [];
+      state.error = null;
+      state.isLoading = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserRecipes.pending, (state) => {
@@ -54,10 +61,7 @@ export const visitorSlice = createSlice({
       })
       .addCase(fetchUserRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log("FIRST FOR VISITOR ", action.payload);
-        state.userRecipes = action.payload.recipes;
-        state.userComments = action.payload.comments;
-        state.userFavorites = action.payload.favorites;
+        state.visitorRecipes = action.payload.recipes;
       })
       .addCase(fetchUserRecipes.rejected, (state, action) => {
         state.isLoading = false;
@@ -69,7 +73,7 @@ export const visitorSlice = createSlice({
       })
       .addCase(fetchUsersFavoriteRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.userFavorites = action.payload.favorites;
+        state.visitorFavorites = action.payload.favoriteRecipes;
       })
       .addCase(fetchUsersFavoriteRecipes.rejected, (state, action) => {
         state.isLoading = false;
@@ -77,5 +81,7 @@ export const visitorSlice = createSlice({
       });
   },
 });
+
+export const { clearState } = visitorSlice.actions;
 
 export default visitorSlice.reducer;

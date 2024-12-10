@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { formatDate } from "../../formattingUtils/date";
+import { formatDate } from "../../formatting-utils/date";
 import Lemon from "../../images/lemons.jpg";
 import {
   SingleRecipeContainer,
@@ -8,27 +8,35 @@ import {
   LeftSide,
   RightSide,
   Bottom,
-} from "./singleRecipe.styles";
-import Comment from "../../components/Comments/addComment/comments.component";
-import Loader from "../../components/Loader/loader.component";
-import RecipeComments from "../../components/Comments/recipeComments/recipeComment.component";
-import Carousel from "./singleRecipeCarousel.component";
-import Heart from "../../components/Heart/heart.component";
+} from "./SingleRecipe.styles";
+import Comment from "../../components/comments/add-comment/Comments.component";
+import Loader from "../../components/loader/Loader.component";
+import RecipeComments from "../../components/comments/recipe-comments/RecipeComment.component";
+import Carousel from "./SingleRecipeCarousel.component";
+import Heart from "../../components/heart/Heart.component";
 import { NavLink } from "react-router-dom";
-// import { averageOfStars } from "../../formattingUtils/average-of-stars";
-// import { formatStars } from "../../formattingUtils/stars";
+import { formatStars } from "../../formatting-utils/stars";
 import { useAuth0 } from "@auth0/auth0-react";
-import IngredientSection from "./Ingredients/Ingredients.component";
-import InstructionSection from "./Instructions/Instructions.component";
-import { useSelector } from "react-redux";
+import IngredientSection from "./ingredients/Ingredients.component";
+import InstructionSection from "./instructions/Instructions.component";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchSingleRecipe } from "../../redux/singleRecipeSlice";
 
+// prettier-ignore
 const SingleRecipeComponent = () => {
   const { id } = useParams();
   const { isAuthenticated } = useAuth0();
-
-  const { recipe, comments, author, isLoading, error } = useSelector(
+  const dispatch = useDispatch();
+  const { recipe, comments, author, isLoading, error, averageOfStars } = useSelector(
     (state) => state.singleRecipe
   );
+
+  useEffect(() => {
+    if (!recipe) {
+      dispatch(fetchSingleRecipe(id));
+    }
+  }, [recipe, id]);
+
 
   if (isLoading) {
     return <Loader />;
@@ -41,10 +49,6 @@ const SingleRecipeComponent = () => {
   return (
     <>
       <SingleRecipeContainer className="boxShadow">
-        {!recipe ? (
-          <Loader />
-        ) : (
-          <>
             <TopDiv>
               <LeftSide>
                 {recipe?.images[0] ? (
@@ -62,19 +66,17 @@ const SingleRecipeComponent = () => {
                     Created by:
                     {/*  Implement going to the user page here */}
                     {author && (
-                      <NavLink className="userLink" to={`/user/${author}`}>
+                      <NavLink className="userLink" to={`/user/${recipe?.author}`}>
                         {" "}
                         {author}{" "}
                       </NavLink>
                     )}
                     on {formatDate(recipe?.createdAt)}
                   </span>
-                  {/* ADD IN DESCRIPTION */}
                   {isAuthenticated && <Heart recipe={recipe?._id} />}
                 </div>
                 <>
-                  {/* Work on finding the average of stars later */}
-                  {/* <p>{formatStars(averageOfStars(average))}</p> */}
+                  {averageOfStars && <p>{formatStars(averageOfStars)}</p>}
                   <p>Cook Time: {recipe?.cookTime}</p>
                   <p>Prep Time: {recipe?.prepTime}</p>
                   <p>
@@ -83,6 +85,7 @@ const SingleRecipeComponent = () => {
                   </p>
                   <p>Sub Category: {recipe?.subCategory}</p>
                   <p>Favorites: {recipe?.favorites}</p>
+                  <p>About this recipe: {recipe?.description}</p> 
                 </>
               </RightSide>
             </TopDiv>
@@ -90,8 +93,6 @@ const SingleRecipeComponent = () => {
               <IngredientSection singleRecipe={recipe} />
               <InstructionSection singleRecipe={recipe} />
             </Bottom>
-          </>
-        )}
         <hr />
         <Comment singleRecipe={recipe} />
         <hr />
