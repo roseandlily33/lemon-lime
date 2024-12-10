@@ -68,6 +68,8 @@ async function httpAddComment(req, res){
 async function httpEditComment(req, res){
     try{
         const commentId = req.params.id;
+        console.log('COMMENT ID', commentId);
+        console.log('REQ BODY', req.body);
         if(!commentId){
             return res.status(404).json({msg: "Comments id is needed"})
         }
@@ -89,7 +91,6 @@ async function httpEditComment(req, res){
 //DELETE: Delete a comment from a post 
 async function httpDeleteComment(req, res){
     try{
-        console.log('Deleting comment')
         const id = req.params.id; 
         if (!id) {
             return res.status(400).json({ msg: 'Invalid id' });
@@ -102,8 +103,8 @@ async function httpDeleteComment(req, res){
         if(!userUpdated){
             return res.status(404).json({msg: "User has not been updated"})
         }
-        const recipeUpadted = await Recipe.findOneAndUpdate({_id: deletedComment.recipe}, {$pull: {comments: deletedComment._id}})
-        if(!recipeUpadted){
+        const recipeUpdated = await Recipe.findOneAndUpdate({_id: deletedComment.recipe}, {$pull: {comments: deletedComment._id}})
+        if(!recipeUpdated){
             return res.status(404).json({msg: "Recipe has not been updated"})
         }
         console.log('Deleted commnet', deletedComment)
