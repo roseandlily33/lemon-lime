@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { formatDate } from "../../formatting-utils/date";
 import Lemon from "../../images/lemons.jpg";
@@ -20,16 +20,24 @@ import { NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import IngredientSection from "./ingredients/Ingredients.component";
 import InstructionSection from "./instructions/Instructions.component";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchSingleRecipe } from "../../redux/singleRecipeSlice";
 
 // prettier-ignore
 const SingleRecipeComponent = () => {
   const { id } = useParams();
   const { isAuthenticated } = useAuth0();
-
+  const dispatch = useDispatch();
   const { recipe, comments, author, isLoading, error } = useSelector(
     (state) => state.singleRecipe
   );
+
+  useEffect(() => {
+    if (!recipe) {
+      dispatch(fetchSingleRecipe(id));
+    }
+  }, [recipe, id]);
+
 
   if (isLoading) {
     return <Loader />;

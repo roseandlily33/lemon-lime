@@ -34,6 +34,7 @@
     --peach:#f97f69;
     --peach1:#fbbe84;
 }
+
 body{
     background-color: var(--white);
     color: hsl(0, 1%, 30%);
@@ -45,6 +46,14 @@ body{
 }
 .required{
   color: var(--orange);
+}
+.error {
+  color: var(--errorRed);
+  font-weight: bold;
+}
+.success {
+  color: var(--successGreen);
+  font-weight: bold;
 }
 
 input{

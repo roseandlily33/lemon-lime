@@ -45,7 +45,7 @@ const HomePage = () => {
       <BottomDiv>
         <LeftMainDiv className="scrollBar">
           <h2>New Recipes</h2>
-          {errorNewest && <h2>{errorNewest}</h2>}
+          {errorNewest && <h2 className="error">{errorNewest}</h2>}
           {loadingNewest ? (
             <Loader />
           ) : (
@@ -58,7 +58,7 @@ const HomePage = () => {
         </LeftMainDiv>
         <RightMainDiv className="scrollBar">
           <h2>Popular Recipes</h2>
-          {errorPopular && <h2>{errorPopular}</h2>}
+          {errorPopular && <h2 className="error">{errorPopular}</h2>}
           {loadingPopular ? (
             <Loader />
           ) : (

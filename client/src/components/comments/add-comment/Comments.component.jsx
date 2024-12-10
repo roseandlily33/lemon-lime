@@ -11,6 +11,7 @@ import RedirectLoginButton from "../../buttons/redirect-login-button/RedirectLog
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../../../redux/commentsSlice";
 import Loader from "../../loader/Loader.component";
+import { addCommentRecipe } from "../../../redux/singleRecipeSlice";
 
 const Comment = ({ singleRecipe }) => {
   const { id } = useParams();
@@ -42,6 +43,9 @@ const Comment = ({ singleRecipe }) => {
       recipeName: singleRecipe.recipeName,
     };
     dispatch(addComment(fullComment));
+    if (!error) {
+      dispatch(addCommentRecipe(fullComment));
+    }
 
     setFormState({
       title: "",
@@ -93,7 +97,7 @@ const Comment = ({ singleRecipe }) => {
               onChange={handleChange}
             />
           </FormElement>
-          <p>{successState}</p>
+          <p className="success">{successState}</p>
           <PrimaryButton
             functionName={(e) => handleSubmit(e)}
             span="Create Comment"

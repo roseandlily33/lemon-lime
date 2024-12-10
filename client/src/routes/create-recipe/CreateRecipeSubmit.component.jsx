@@ -22,7 +22,7 @@ const CreateRecipeSubmit = ({
 
   const { isLoading, alert, error } = useSelector((state) => state.crudRecipes);
 
-  const { handleSubmit, errorState } = useCreateRecipe(
+  const { handleSubmit, errorState, fetchNewUserRecipes } = useCreateRecipe(
     formValues,
     images,
     instructions,
@@ -38,7 +38,7 @@ const CreateRecipeSubmit = ({
 
   return (
     <SubmitButtonContainer>
-      <p style={{ color: "red" }}>{errorState}</p>
+      <p className="error">{errorState}</p>
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
           <Notification
@@ -46,7 +46,10 @@ const CreateRecipeSubmit = ({
             status={notificationType}
           />
           <PrimaryButton
-            functionName={() => navigate("/user/home")}
+            functionName={() => {
+              navigate("/user/home");
+              fetchNewUserRecipes();
+            }}
             span="Go Home"
           />
         </Modal>

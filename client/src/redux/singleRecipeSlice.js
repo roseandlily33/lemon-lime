@@ -35,6 +35,9 @@ export const singleRecipeSlice = createSlice({
       state.isLoading = false;
       state.error = null;
     },
+    addCommentRecipe: (state, action) => {
+      state.comments.push(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -55,6 +58,6 @@ export const singleRecipeSlice = createSlice({
   },
 });
 
-export const { clearRecipe } = singleRecipeSlice.actions;
+export const { clearRecipe, addCommentRecipe } = singleRecipeSlice.actions;
 
 export default singleRecipeSlice.reducer;

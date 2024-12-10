@@ -39,7 +39,7 @@ const EditRecipeSubmit = ({
 
   return (
     <SubmitButtonContainer>
-      <p style={{ color: "red" }}>{errorState}</p>
+      <p className="error">{errorState}</p>
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
           <Notification

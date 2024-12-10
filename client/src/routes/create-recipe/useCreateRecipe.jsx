@@ -47,9 +47,12 @@ const useCreateRecipe = (
     };
     setIsOpen(true);
     dispatch(createRecipe({ user: user, recipe: fullRecipe }));
-    dispatch(fetchUserRecipes(user.sub));
   };
-  return { handleSubmit, errorState };
+  const fetchNewUserRecipes = () => {
+    dispatch(fetchUserRecipes(user.sub));
+  }
+
+  return { handleSubmit, errorState, fetchNewUserRecipes };
 };
 
 export default useCreateRecipe;
