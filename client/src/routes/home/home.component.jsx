@@ -7,15 +7,17 @@ import {
   RightMainDiv,
   HeroImage,
 } from "./Home.styles";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import MainPicture from "../../images/Background3.jpg";
 import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 import Loader from "../../components/loader/Loader.component";
+import { fetchRecent } from "../../redux/recipeSlice";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     popularRecipes,
@@ -25,6 +27,10 @@ const HomePage = () => {
     errorPopular,
     errorNewest,
   } = useSelector((state) => state.recipes);
+
+  useEffect(() => {
+    dispatch(fetchRecent());
+  }, []);
 
   return (
     <MainDiv>

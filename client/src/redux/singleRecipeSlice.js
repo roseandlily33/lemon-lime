@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
+import { averageOfStars } from "../formatting-utils/average-of-stars";
 const initialState = {
   recipe: [],
   comments: [],
+  averageOfStars: 0,
   author: "",
   isLoading: false,
   error: null,
@@ -49,6 +50,7 @@ export const singleRecipeSlice = createSlice({
         state.recipe = action.payload;
         state.comments = action.payload?.comments;
         state.author = action.payload?.authorName;
+        state.averageOfStars = averageOfStars(action.payload?.comments);
         state.isLoading = false;
       })
       .addCase(fetchSingleRecipe.rejected, (state, action) => {

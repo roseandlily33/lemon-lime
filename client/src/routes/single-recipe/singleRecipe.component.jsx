@@ -15,8 +15,7 @@ import RecipeComments from "../../components/comments/recipe-comments/RecipeComm
 import Carousel from "./SingleRecipeCarousel.component";
 import Heart from "../../components/heart/Heart.component";
 import { NavLink } from "react-router-dom";
-// import { averageOfStars } from "../../formattingUtils/average-of-stars";
-// import { formatStars } from "../../formattingUtils/stars";
+import { formatStars } from "../../formatting-utils/stars";
 import { useAuth0 } from "@auth0/auth0-react";
 import IngredientSection from "./ingredients/Ingredients.component";
 import InstructionSection from "./instructions/Instructions.component";
@@ -28,7 +27,7 @@ const SingleRecipeComponent = () => {
   const { id } = useParams();
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const { recipe, comments, author, isLoading, error } = useSelector(
+  const { recipe, comments, author, isLoading, error, averageOfStars } = useSelector(
     (state) => state.singleRecipe
   );
 
@@ -74,12 +73,10 @@ const SingleRecipeComponent = () => {
                     )}
                     on {formatDate(recipe?.createdAt)}
                   </span>
-                  {/* ADD IN DESCRIPTION */}
                   {isAuthenticated && <Heart recipe={recipe?._id} />}
                 </div>
                 <>
-                  {/* Work on finding the average of stars later */}
-                  {/* <p>{formatStars(averageOfStars(average))}</p> */}
+                  {averageOfStars && <p>{formatStars(averageOfStars)}</p>}
                   <p>Cook Time: {recipe?.cookTime}</p>
                   <p>Prep Time: {recipe?.prepTime}</p>
                   <p>

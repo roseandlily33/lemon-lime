@@ -4,7 +4,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoading: false,
   error: null,
-  success: false,
   alert: '',
 };
 
@@ -86,8 +85,7 @@ export const commentsSlice = createSlice({
     clearState: (state) => {
       state.isLoading = false;
       state.alert = "";
-      state.error = null;
-      state.success = false;
+      state.error = false;
     },
   },
   extraReducers: (builder) => {
@@ -95,56 +93,50 @@ export const commentsSlice = createSlice({
       // Add Comment
       .addCase(addComment.pending, (state) => {
         state.isLoading = true;
-        state.success = false;
-        state.error = null;
+        state.error = false;
+        state.alert = "";
       })
       .addCase(addComment.fulfilled, (state) => {
         state.isLoading = false;
-        state.success = true;
         state.alert = "Comment has been created";
-        state.error = null;
+        state.error = false;
       })
-      .addCase(addComment.rejected, (state, action) => {
+      .addCase(addComment.rejected, (state) => {
         state.isLoading = false;
-        state.success = false;
         state.alert = "Comment has not been created";
-        state.error = action.error.message;
+        state.error = true;
       })
       //Edit Comment
       .addCase(editComment.pending, (state) => {
         state.isLoading = true;
-        state.success = false;
-        state.error = null;
+        state.error = false;
+        state.alert = "";
       })
       .addCase(editComment.fulfilled, (state) => {
         state.isLoading = false;
-        state.success = true;
         state.alert = "Comment has been editied";
-        state.error = null;
+        state.error = false;
       })
-      .addCase(editComment.rejected, (state, action) => {
+      .addCase(editComment.rejected, (state) => {
         state.isLoading = false;
-        state.success = false;
         state.alert = "Comment has not been editied";
-        state.error = action.error.message;
+        state.error = true;
       })
       //Delete Comment
       .addCase(deleteComment.pending, (state) => {
         state.isLoading = true;
-        state.success = false;
-        state.error = null;
+        state.error = false;
+        state.alert = "";
       })
       .addCase(deleteComment.fulfilled, (state) => {
         state.isLoading = false;
-        state.success = true;
         state.alert = "Comment has been deleted";
-        state.error = null;
+        state.error = false;
       })
-      .addCase(deleteComment.rejected, (state, action) => {
+      .addCase(deleteComment.rejected, (state) => {
         state.isLoading = false;
-        state.success = false;
         state.alert = "Comment has not been deleted";
-        state.error = action.error.message;
+        state.error = true;
       });
   },
 });
