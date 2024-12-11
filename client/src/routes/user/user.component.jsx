@@ -2,7 +2,6 @@ import {
   UserContainer,
   UserRecipesContainer,
   UserContentContainer,
-  // UserOptionsContainer,
   UserOptions,
   UserInfo,
 } from "./User.styles";
@@ -11,9 +10,7 @@ import { useNavigate } from "react-router-dom";
 import RecipeContainer3 from "../../components/recipe/Recipe3.component";
 import Loader from "../../components/loader/Loader.component";
 import { useSelector, useDispatch } from "react-redux";
-// import Background from "../../images/Background2.jpg";
 import Profile from "../../images/Profile1.jpg";
-// import wave from "../../images/wave.svg";
 import React, { useEffect } from "react";
 import { fetchUserRecipes } from "../../redux/userSlice";
 
@@ -65,64 +62,55 @@ const UserHome = () => {
   if (error) {
     return <h3>An error has occured</h3>;
   }
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <UserContainer>
       {isAuthenticated ? (
         <>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              {/* <UserOptionsContainer>
-                <div className="imgDiv">
-                <img src={wave} alt="wave" />
-                  <img src={Background} alt="lemons background" />
-                </div>
-              </UserOptionsContainer> */}
-              <UserInfo>
-                <img
-                  src={Profile}
-                  alt="User Profile"
-                  style={{
-                    height: "150px",
-                    width: "150px",
-                    borderRadius: "50%",
-                  }}
-                />
-                <h2>Welcome {user?.nickname}</h2>
-              </UserInfo>
-              <UserContentContainer>
-                <UserOptions>
-                  {buttonItems.map((button) => {
-                    return (
-                      <button
-                        key={button.id}
-                        onClick={() => switchFunction(button?.action)}
-                        style={{
-                          backgroundColor: `${button.color}`,
-                          border: `${button.color}`,
-                        }}
-                        className="box boxShadowHover"
-                      >
-                        <h4
-                          style={{ color: "#77340D" }}
-                          onClick={() => switchFunction(button.action)}
-                        >
-                          {button.title}
-                        </h4>
-                      </button>
-                    );
-                  })}
-                </UserOptions>
-                <UserRecipesContainer className="scrollBar">
-                  {userRecipes?.map((r) => {
-                    return <RecipeContainer3 key={r?._id} recipe={r} />;
-                  })}
-                </UserRecipesContainer>
-              </UserContentContainer>
-            </>
-          )}
+          <UserInfo>
+            <img
+              src={Profile}
+              alt="User Profile"
+              style={{
+                height: "150px",
+                width: "150px",
+                borderRadius: "50%",
+              }}
+            />
+            <h2>Welcome {user?.nickname}</h2>
+          </UserInfo>
+          <UserContentContainer>
+            <UserOptions>
+              {buttonItems.map((button) => {
+                return (
+                  <button
+                    key={button.id}
+                    onClick={() => switchFunction(button?.action)}
+                    style={{
+                      backgroundColor: `${button.color}`,
+                      border: `${button.color}`,
+                    }}
+                    className="box boxShadowHover"
+                  >
+                    <h4
+                      style={{ color: "#77340D" }}
+                      onClick={() => switchFunction(button.action)}
+                    >
+                      {button.title}
+                    </h4>
+                  </button>
+                );
+              })}
+            </UserOptions>
+            <UserRecipesContainer className="scrollBar">
+              {userRecipes?.map((r) => {
+                return <RecipeContainer3 key={r?._id} recipe={r} />;
+              })}
+            </UserRecipesContainer>
+          </UserContentContainer>
         </>
       ) : (
         <h2>Login To View Your Recipes</h2>
