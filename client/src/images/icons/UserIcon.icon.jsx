@@ -4,7 +4,7 @@ const UserIcon = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      className="icon-user"
+      className="icon icon-user"
     >
       <path className="primary" d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z" />
       <path

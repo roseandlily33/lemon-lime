@@ -7,7 +7,7 @@ const CheckIcon = ({ functionName }) => {
       onClick={functionName}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      className="icon-check"
+      className="icon icon-check"
     >
       <circle cx="12" cy="12" r="10" className="primary" />
       <path

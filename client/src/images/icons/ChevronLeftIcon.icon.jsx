@@ -5,7 +5,7 @@ const ChevronLeft = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      className="icon-cheveron-left-circle"
+      className="icon icon-cheveron-left-circle"
     >
       <circle cx="12" cy="12" r="10" className="primary" />
       <path

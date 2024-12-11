@@ -20,11 +20,16 @@ const IngredientsCreate = ({
 
   const addCard = (e) => {
     e.preventDefault();
+    if (!ing?.length) {
+      setError("Please enter an ingredient");
+      return;
+    }
     if (count <= 15) {
       const newIng = { id: uuidv4(), ing: ing, mea: mea };
       addNewIngredient(newIng);
       setIng("");
       setCount(count + 1);
+      setError("");
     } else {
       setError("Cannot add more than 15 ingredients");
     }
@@ -64,12 +69,12 @@ const IngredientsCreate = ({
           </>
         ) : (
           <h4 style={{ textAlign: "center", marginBlock: "2rem" }}>
-            Add Instructions
+            Add Ingredients
           </h4>
         )}
       </>
+      <p className="error">{error}</p>
       <InputDiv className="boxShadow">
-        {error && <p className="error">{error}</p>}
         <Measurement mea={mea} setMea={setMea} />
         <RegularInput
           type="text"

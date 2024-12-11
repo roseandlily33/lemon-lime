@@ -19,6 +19,7 @@ const InstructionsCreate = ({
   const addCard = (e) => {
     e.preventDefault();
     if (!ins?.length) {
+      setError("Please enter an instruction");
       return;
     }
     if (maxSteps > count) {
@@ -26,6 +27,7 @@ const InstructionsCreate = ({
       addNewInstruction(newIns);
       setIns("");
       setCount(count + 1);
+      setError("");
     } else {
       setError("Cannot add more than 15 instructions");
     }
@@ -66,9 +68,8 @@ const InstructionsCreate = ({
           </h4>
         )}
       </>
-
+      <p className="error">{error}</p>
       <InputDiv className="boxShadow">
-        <p className="error">{error}</p>
         <input
           type="text"
           value={ins}
