@@ -17,7 +17,6 @@ export const fetchSingleRecipe = createAsyncThunk(
     try {
       const res = await fetch(`${URL}/recipes/${id}`);
       const data = await res.json();
-      console.log("Single recipe data", data[0]);
       return data[0];
     } catch (err) {
       return rejectWithValue(err.message);

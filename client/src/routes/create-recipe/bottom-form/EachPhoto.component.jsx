@@ -5,7 +5,6 @@ import DeletePhotoButton from "./DeletePhoto.component";
 // prettier-ignore
 //  images={photos} addNewImage={addNewPhotos} setImages={setPhotos}
 const EachPhotoCreate = ({ images, setImages }) => {
-  console.log("EACHPHTOTOCREATE", images);
   return (
     <>
       <div

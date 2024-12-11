@@ -37,7 +37,6 @@ const EditComment = ({ comment }) => {
       ...formState,
       rating: starRating,
     };
-    console.log("SUB<ITTING COMMENT", fullComment, 'ID',  fullComment._id);
     dispatch(editComment({id: fullComment._id, comment: fullComment}));
     setFormState({
       title: "",

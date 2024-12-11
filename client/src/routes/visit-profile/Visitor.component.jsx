@@ -27,8 +27,6 @@ const VisitorPage = () => {
     (state) => state.visitor
   );
 
-  console.log("Visitir state", visitorRecipes, visitorFavorites, isLoading);
-
   useEffect(() => {
     dispatch(fetchUserRecipes(id));
     dispatch(fetchUsersFavoriteRecipes(id));

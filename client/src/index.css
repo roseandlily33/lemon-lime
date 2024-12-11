@@ -55,6 +55,9 @@ body{
   color: var(--successGreen);
   font-weight: bold;
 }
+.selected {
+  color: var(--peach);
+}
 
 input{
  border: none;

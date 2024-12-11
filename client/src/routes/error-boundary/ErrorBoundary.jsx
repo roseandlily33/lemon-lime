@@ -2,14 +2,18 @@ import React from "react";
 import { ErrorBoundary as ReactErrorBoundary } from "react-error-boundary";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
+import { ErrorBoundaryContainer, ErrorInfo } from "./ErrorBoundary.styles";
 
 // UPDATED ERROR BOUNDARY COMPONENT
 const ErrorFallback = ({ resetErrorBoundary }) => {
   return (
-    <div role="alert">
-      <p>Sorry, something went wrong:</p>
-      <button onClick={resetErrorBoundary}>Try again</button>
-    </div>
+    <ErrorBoundaryContainer>
+      <ErrorInfo>
+        <p>Sorry, something went wrong:</p>
+        <PrimaryButton functionName={resetErrorBoundary} span="Try again" />
+      </ErrorInfo>
+    </ErrorBoundaryContainer>
   );
 };
 

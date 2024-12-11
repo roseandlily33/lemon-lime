@@ -5,16 +5,19 @@ import Notification from "../../../components/notification/Notification.componen
 import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton.component";
 import { useNavigate } from "react-router-dom";
 
+// prettier-ignore
 const DeleteModalConfirmation = ({
   notifiationType,
   successMessage,
   setIsOpen,
 }) => {
+
   const navigate = useNavigate();
+  console.log("SET OPEN INSIDE", setIsOpen);
   return (
     <>
       <Modal onClose={() => setIsOpen(false)}>
-        <Notification success={notifiationType} message={successMessage} />
+        <Notification status={notifiationType} messageShown={successMessage} />
         <PrimaryButton
           functionName={() => navigate("/user/home")}
           span="Go Home"

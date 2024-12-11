@@ -13,6 +13,7 @@ const useAddComment = (singleRecipe, user, formState, starRating) => {
       author: user.sub,
       recipe: id,
       authorName: user.nickname,
+      createdAt: new Date(),
       recipeName: singleRecipe.recipeName,
     };
     dispatch(addComment(fullComment));

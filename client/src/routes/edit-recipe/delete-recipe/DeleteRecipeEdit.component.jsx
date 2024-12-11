@@ -9,6 +9,7 @@ import DeleteModalConfirmation from "./DeleteModal.component";
 import useNotification from "../../../utils/useNotification";
 import useDeleteRecipe from "./useDeleteSubmit";
 
+// prettier-ignore
 const DeleteRecipe = ({ id }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,18 +24,13 @@ const DeleteRecipe = ({ id }) => {
     id
   );
 
-  const { isLoading, error, alert, success } = useSelector(
-    (state) => state.crudRecipes
-  );
-  const { notificationType, successMessage } = useNotification(
-    success,
-    error,
-    alert
-  );
+  const { isLoading, error, alert } = useSelector((state) => state.crudRecipes);
+  const { notificationType, successMessage } = useNotification(error, alert);
 
   if (isLoading) {
     return <Loader />;
   }
+  console.log("IS OPEN EDIT OUTSIDE", isOpen);
 
   return (
     <>
@@ -42,6 +38,7 @@ const DeleteRecipe = ({ id }) => {
         <DeleteModalConfirmation
           notifiationType={notificationType}
           successMessage={successMessage}
+          setIsOpen={setIsOpen}
         />
       )}
       <DestructiveButton

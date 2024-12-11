@@ -32,7 +32,7 @@ const EditRecipeForm = () => {
   const [instructions, setInstructions] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   // Contains the publicId to fetch on cloudinary
-  const [images, setImages] = useState([]);
+  //const [images, setImages] = useState([]);
   // The link for the cloudinary & the publicId send this one to the router
   const [photos, setPhotos] = useState([]);
 
@@ -47,7 +47,7 @@ const EditRecipeForm = () => {
       });
       setInstructions(recipe.instructions);
       setIngredients(recipe.ingredients);
-      setImages(recipe.images || []);
+     // setImages(recipe.images || []);
     }
   }, [recipe]);
 
@@ -64,28 +64,12 @@ const EditRecipeForm = () => {
       })
     );
     setPhotos(processedImages);
-    console.log("Use effect photos", photos);
   };
 
   if (recipe && recipe.images && recipe.images.length > 0) {
     fetchSingle();
   }
-    // const fetchSingle = async () => {
-    //   const cloud = new Cloudinary({ cloud: { cloudName: "dql7lqwmr" } });
-    //   if (images.length) {
-    //     await images?.map((img) => {
-    //       const myImageURL = cloud.image(img.publicId).toURL();
-    //       const image = {
-    //         publicId: img.publicId,
-    //         url: myImageURL,
-    //       };
-    //       setPhotos((prev) => [...prev, image]);
-    //     });
-    //   }
-    // };
-    //   fetchSingle();
   }, [id]);
-  console.log('EDIT FORM IMAGRS', images)
 
   return (
     <>
@@ -111,8 +95,6 @@ const EditRecipeForm = () => {
       </MiddleForm>
       <BottomForm>
         <BottomEdit
-          // images={images}
-          // setImages={setImages}
           setPhotos={setPhotos}
           photos={photos}
         />

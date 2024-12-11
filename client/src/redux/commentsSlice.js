@@ -36,7 +36,6 @@ export const addComment = createAsyncThunk(
 export const editComment = createAsyncThunk(
   "comments/editComment",
   async ({ id, comment }, { rejectWithValue }) => {
-    console.log("ID AND COMMENT EDIT COMMENT HANDLER", id, comment);
     try {
       const response = await fetch(`${URL}/comments/${id}`, {
         method: "PUT",

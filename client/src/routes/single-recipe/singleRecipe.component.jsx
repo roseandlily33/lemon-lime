@@ -30,7 +30,6 @@ const SingleRecipeComponent = () => {
   const { recipe, comments, author, isLoading, error, averageOfStars } = useSelector(
     (state) => state.singleRecipe
   );
-  console.log("Single recipe", recipe);
 
   useEffect(() => {
     if (!recipe) {

@@ -11,7 +11,6 @@ const URL = process.env.REACT_APP_API_URL;
 export const createRecipe = createAsyncThunk(
   "crudRecipes/createRecipe",
   async ({ user, recipe }, { rejectWithValue }) => {
-    console.log("SENDING", user, recipe);
     try {
       const response = await fetch(`${URL}/user`, {
         method: "POST",

@@ -20,7 +20,6 @@ export const fetchFavorites = createAsyncThunk(
         throw new Error("Failed to fetch favorites");
       }
       const data = await response.json();
-      console.log("Fetched Favorites", data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -32,8 +31,6 @@ export const fetchFavorites = createAsyncThunk(
 export const addFavorites = createAsyncThunk(
   "favorites/addFavorite",
   async ({ userId, recipeId }, { rejectWithValue }) => {
-    console.log("Hitting fave handler");
-    console.log("Adding Fave Handler", userId, recipeId);
     try {
       const response = await fetch(`${URL}/favorites`, {
         method: "POST",
@@ -57,7 +54,6 @@ export const addFavorites = createAsyncThunk(
 export const deleteFavorites = createAsyncThunk(
   "favorites/deleteFavorite",
   async ({ userId, recipeId }, { rejectWithValue }) => {
-    console.log("Deleting Fave Handler", userId, recipeId);
     try {
       const response = await fetch(`${URL}/favorites`, {
         method: "DELETE",
@@ -70,7 +66,6 @@ export const deleteFavorites = createAsyncThunk(
         throw new Error("Failed to fetch favorites");
       }
       const data = await response.json();
-      console.log("Fetched Favorites", data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

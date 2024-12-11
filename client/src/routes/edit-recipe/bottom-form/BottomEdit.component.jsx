@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 // prettier-ignore
 const BottomEdit = ({ setPhotos, photos }) => {
-  console.log('PHOTOS', photos);
   const addNewPhotos = (photo) => {
     setPhotos((prev) => [...prev, photo]);
   };
@@ -15,16 +14,12 @@ const BottomEdit = ({ setPhotos, photos }) => {
       <PhotosCreate
         images={photos}
         addNewImage={addNewPhotos}
-        // photos={photos}
-        // addNewPhotos={addNewPhotos}
       />
       <EachPhotoCreate images={photos} addNewImage={addNewPhotos} setImages={setPhotos}/>
     </>
   );
 };
 BottomEdit.propTypes = {
-  // images: PropTypes.array.isRequired,
-  // setImages: PropTypes.func.isRequired,
   setPhotos: PropTypes.func.isRequired,
   photos: PropTypes.array.isRequired,
 };

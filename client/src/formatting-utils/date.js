@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 
 export const formatDate = (timeHere) => {
+  if (!timeHere) return;
   let newTime = new Date(timeHere);
-  console.log("NEW TIME", newTime);
   return format(newTime, "MM/dd/yyyy");
 };

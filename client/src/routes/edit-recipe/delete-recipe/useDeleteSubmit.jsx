@@ -6,9 +6,10 @@ import { deleteRecipe } from "../../../redux/crudRecipeSlice";
 const useDeleteRecipe = (setIsOpen, id) => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
-  const deleteRecipeById = async () => {
+  const deleteRecipeById = () => {
     setIsOpen(true);
     dispatch(deleteRecipe(id));
+    console.log("Set is open to true");
   };
 
   const fetchNewUserRecipes = () => {
