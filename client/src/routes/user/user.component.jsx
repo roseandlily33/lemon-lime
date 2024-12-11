@@ -105,12 +105,12 @@ const UserHome = () => {
                         }}
                         className="box boxShadowHover"
                       >
-                        <p
+                        <h4
                           style={{ color: "#77340D" }}
                           onClick={() => switchFunction(button.action)}
                         >
                           {button.title}
-                        </p>
+                        </h4>
                       </button>
                     );
                   })}

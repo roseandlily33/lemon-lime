@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
+// prettier-ignore
 export const UserContainer = styled.main`
   height: 100vh;
   width: 100vw;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;
 
 export const UserInfo = styled.div`
@@ -11,7 +12,8 @@ export const UserInfo = styled.div`
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
+  background-color: hsla(9.16, 92.3%, 69.4%, 0.2);
 `;
 
 export const UserOptionsContainer = styled.section`
@@ -44,7 +46,10 @@ export const UserRecipesContainer = styled.section`
   overflow-y: scroll;
   padding: 1rem;
   height: 100%;
-  border: 1px solid green;
+  /* border: 1px solid green; */
+  @media screen and (width <= 768px) {
+    width: 100%;
+  }
 `;
 
 export const UserOptions = styled.aside`
@@ -52,11 +57,26 @@ export const UserOptions = styled.aside`
   flex-direction: column;
   gap: 1rem;
   width: 20%;
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
+  margin-top: 1.5rem;
+  button {
+    margin: 0.5rem;
+  }
+  @media screen and (width <= 768px) {
+    flex-direction: row;
+    width: 100%;
+    margin-top: 0;
+    button {
+      padding: 1rem;
+    }
+  }
 `;
 
 export const UserContentContainer = styled.div`
   display: flex;
   height: 80vh;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
+  @media screen and (width <= 768px) {
+    flex-direction: column;
+  }
 `;
