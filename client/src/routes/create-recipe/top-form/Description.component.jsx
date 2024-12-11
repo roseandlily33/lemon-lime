@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 // prettier-ignore
 const Description = ({ formValues, handleChange }) => {
   return (
-    <div style={{display: 'flex', justifyContent: 'space-between', width: '92%'}}>
+    <div style={{display: 'flex', justifyContent: 'space-between', marginRight: '4rem'}}>
       <label htmlFor="description">Description:
       <span className="required"> *</span>
       </label>

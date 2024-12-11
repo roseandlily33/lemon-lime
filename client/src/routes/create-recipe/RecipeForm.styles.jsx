@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-//Responsive Design Done
+// prettier-ignore
 export const OuterForm = styled.main`
   height: 100vh;
   width: 100vw;
@@ -63,7 +63,7 @@ export const LeftDiv = styled.div`
 `;
 
 export const RightDiv = styled.div`
-  width: auto;
+  width: 40%;
   @media screen and (width >= 360px) {
     width: 100%;
     margin-top: 1rem;
@@ -77,8 +77,8 @@ export const RightDiv = styled.div`
     width: 30%;
     margin-top: 0rem;
     .cooking-image {
-      height: 250px;
-      width: 250px;
+      height: 350px;
+      width: 350px;
       float: right;
     }
   }
