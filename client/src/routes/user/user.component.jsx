@@ -2,7 +2,7 @@ import {
   UserContainer,
   UserRecipesContainer,
   UserContentContainer,
-  UserOptionsContainer,
+  // UserOptionsContainer,
   UserOptions,
   UserInfo,
 } from "./User.styles";
@@ -11,8 +11,9 @@ import { useNavigate } from "react-router-dom";
 import RecipeContainer3 from "../../components/recipe/Recipe3.component";
 import Loader from "../../components/loader/Loader.component";
 import { useSelector, useDispatch } from "react-redux";
-import Background from "../../images/Background2.jpg";
+// import Background from "../../images/Background2.jpg";
 import Profile from "../../images/Profile1.jpg";
+// import wave from "../../images/wave.svg";
 import React, { useEffect } from "react";
 import { fetchUserRecipes } from "../../redux/userSlice";
 
@@ -62,7 +63,7 @@ const UserHome = () => {
   };
 
   if (error) {
-    <h3>An error has occured</h3>;
+    return <h3>An error has occured</h3>;
   }
 
   return (
@@ -73,11 +74,12 @@ const UserHome = () => {
             <Loader />
           ) : (
             <>
-              <UserOptionsContainer>
+              {/* <UserOptionsContainer>
                 <div className="imgDiv">
+                <img src={wave} alt="wave" />
                   <img src={Background} alt="lemons background" />
                 </div>
-              </UserOptionsContainer>
+              </UserOptionsContainer> */}
               <UserInfo>
                 <img
                   src={Profile}

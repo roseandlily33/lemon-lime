@@ -3,16 +3,19 @@ import styled from "styled-components";
 export const UserContainer = styled.main`
   height: 100vh;
   width: 100vw;
+  border: 1px solid red;
 `;
 
 export const UserInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-left: 1rem;
+  padding: 1rem;
+  border: 1px solid orange;
 `;
 
 export const UserOptionsContainer = styled.section`
+  border: 1px solid orange;
   @media screen and (width >= 360px) {
     .imgDiv img {
       height: 30%;
@@ -35,29 +38,25 @@ export const UserOptionsContainer = styled.section`
 export const UserRecipesContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
-  width: 70%;
+  width: 80%;
   justify-content: center;
   gap: 1rem;
   overflow-y: scroll;
   padding: 1rem;
-  @media screen and (width >= 360px) {
-    max-height: 60vh;
-  }
-  @media screen and (width >= 768px) {
-    max-height: 53vh;
-  }
+  height: 100%;
+  border: 1px solid green;
 `;
 
 export const UserOptions = styled.aside`
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
   gap: 1rem;
-  width: 30%;
-  margin-left: 1rem;
+  width: 20%;
+  border: 1px solid purple;
 `;
 
 export const UserContentContainer = styled.div`
   display: flex;
-  gap: 2rem;
+  height: 80vh;
+  border: 1px solid blue;
 `;
