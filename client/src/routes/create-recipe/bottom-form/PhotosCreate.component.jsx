@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../../../components/modal/Model.component";
 import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton.component";
 
-const PhotosCreate = ({ images, addNewImage, addNewPhotos }) => {
+//addNewPhotos
+const PhotosCreate = ({ images, addNewImage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -20,10 +21,11 @@ const PhotosCreate = ({ images, addNewImage, addNewPhotos }) => {
       },
       function (error, result) {
         if (result.event === "success") {
-          let newImage = { publicId: result.info.public_id };
-          let newImageURL = result.info.url;
+          let newImage = {
+            publicId: result.info.public_id,
+            url: result.info.url,
+          };
           addNewImage(newImage);
-          addNewPhotos(newImageURL);
         } else if (error) {
           setIsOpen(true);
         }
@@ -32,7 +34,8 @@ const PhotosCreate = ({ images, addNewImage, addNewPhotos }) => {
         }
       }
     );
-  }, [images, addNewImage, addNewPhotos]);
+    //addNewPhotos
+  }, [images, addNewImage]);
 
   return (
     <>
@@ -50,7 +53,7 @@ const PhotosCreate = ({ images, addNewImage, addNewPhotos }) => {
         </Modal>
       )}
       <div key={1} className="image-item">
-        {error && <p className="error">{error}</p>}
+        <p className="error">{error}</p>
         <div className="image-options">
           <PrimaryButton
             functionName={(e) => {

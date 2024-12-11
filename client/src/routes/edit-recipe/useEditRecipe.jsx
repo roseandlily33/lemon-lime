@@ -7,7 +7,7 @@ import { editRecipe } from "../../redux/crudRecipeSlice";
 
 const useEditRecipe = (
   formValues,
-  images,
+  photos,
   instructions,
   ingredients,
   id,
@@ -20,7 +20,7 @@ const useEditRecipe = (
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    if (images?.length > 4) {
+    if (photos?.length > 4) {
       setError("Only 4 images can be uploaded");
     } else if (!ingredients?.length) {
       setError("There must be at least 1 ingredient");
@@ -37,14 +37,16 @@ const useEditRecipe = (
       formValues.prepTime
     );
     let newRecipeName = formValues.recipeName.toLowerCase();
-
+    const imageUrls = photos.map((img) => {
+      return { publicId: img.publicId };
+    });
     const fullRecipe = {
       ...formValues,
       instructions: instructions,
       ingredients: ingredients,
       totalTime: totalTime,
       recipeName: newRecipeName,
-      images: images,
+      images: imageUrls,
     };
     setIsOpen(true);
     dispatch(editRecipe({ recipe: fullRecipe, id }));

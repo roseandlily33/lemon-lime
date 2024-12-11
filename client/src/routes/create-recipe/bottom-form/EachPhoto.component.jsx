@@ -1,27 +1,36 @@
 import PropTypes from "prop-types";
 import React from "react";
+import DeletePhotoButton from "./DeletePhoto.component";
+
 // prettier-ignore
-const EachPhotoCreate = ({ photos }) => {
+//  images={photos} addNewImage={addNewPhotos} setImages={setPhotos}
+const EachPhotoCreate = ({ images, setImages }) => {
+  console.log("EACHPHTOTOCREATE", images);
   return (
     <>
       <div
         className="items"
         style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}
       >
-        {photos?.map((url) => (
+        {images?.map((p, idx) => (
+          <div key={idx} style={{display: 'flex',  flexDirection: 'column'}}>
           <img
-            key={url}
+            key={p.url}
             style={{ borderRadius: "5px" }}
-            src={url}
+            src={p.url}
             alt="images uploaded"
           />
+          <DeletePhotoButton photo={p} setImages={setImages}/>
+          </div>
         ))}
       </div>
     </>
   );
 };
 EachPhotoCreate.propTypes = {
-  photos: PropTypes.arrayOf(PropTypes.string).isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setImages: PropTypes.func.isRequired,
+  //setNewImage: PropTypes.func.isRequired,
 };
 
 export default EachPhotoCreate;

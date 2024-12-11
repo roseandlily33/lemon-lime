@@ -35,18 +35,21 @@ const useCreateRecipe = (
       formValues.prepTime
     );
     let newRecipeName = formValues.recipeName.toLowerCase();
-
+    const imageUrls = images.map((img) => {
+      return { publicId: img.publicId};
+    });
     const fullRecipe = {
       ...formValues,
       instructions: instructions,
       ingredients: ingredients,
       totalTime: totalTime,
       recipeName: newRecipeName,
-      images: images,
+      images: imageUrls,
       authorName: user.nickName,
     };
     setIsOpen(true);
     dispatch(createRecipe({ user: user, recipe: fullRecipe }));
+    //dispatch(fetchUserRecipes(user.sub));
   };
   const fetchNewUserRecipes = () => {
     dispatch(fetchUserRecipes(user.sub));
