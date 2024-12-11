@@ -36,7 +36,9 @@ const PhotosCreate = ({ images, addNewImage, addNewPhotos }) => {
 
   return (
     <>
-      <h3>Images</h3>
+      <h3>
+        Images <span>max 4</span>
+      </h3>
       <hr />
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>

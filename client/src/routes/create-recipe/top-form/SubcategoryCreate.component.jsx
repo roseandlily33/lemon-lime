@@ -4,7 +4,7 @@ import React from "react";
 const SubcategoryCreate = ({ formValues, handleChange }) => {
   return (
     <div className="each">
-      <label htmlFor={formValues?.subCategory}>
+      <label htmlFor="subCategory">
         {" "}
         Subcategory:
         <span className="required"> *</span>
@@ -12,7 +12,8 @@ const SubcategoryCreate = ({ formValues, handleChange }) => {
       <select
         style={{ width: "100px" }}
         name="subCategory"
-        defaultValue={formValues?.subCategory}
+        value={formValues?.subCategory}
+        // defaultValue={formValues?.subCategory}
         onChange={handleChange}
       >
         <option value={formValues?.subCategory["Breakfast"]}>Breakfast</option>

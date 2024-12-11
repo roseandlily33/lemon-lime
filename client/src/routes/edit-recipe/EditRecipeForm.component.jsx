@@ -37,6 +37,7 @@ const EditRecipeForm = () => {
 
   useEffect(() => {
     if (recipe) {
+      console.log("RECIPE", recipe);
       setFormValues({
         recipeName: recipe.recipeName,
         prepTime: recipe.prepTime,
