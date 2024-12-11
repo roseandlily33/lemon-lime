@@ -3,6 +3,7 @@ import InstructionsCreate from "../../create-recipe/middle-form/Instructions/Ins
 import PropTypes from "prop-types";
 import React from "react";
 
+// prettier-ignore
 const MiddleEdit = ({
   ingredients,
   setIngredients,

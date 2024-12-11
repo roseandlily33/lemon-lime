@@ -25,7 +25,11 @@ const IngredientsCreate = ({
       return;
     }
     if (count <= 15) {
-      const newIng = { id: uuidv4(), ing: ing, mea: mea };
+      const newIng = {
+        id: uuidv4(),
+        ing: ing.toLowerCase(),
+        mea: mea || "1/8 tsp",
+      };
       addNewIngredient(newIng);
       setIng("");
       setCount(count + 1);

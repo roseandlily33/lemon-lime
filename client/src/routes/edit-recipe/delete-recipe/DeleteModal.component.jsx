@@ -3,8 +3,14 @@ import PropTypes from "prop-types";
 import Modal from "../../../components/modal/Model.component";
 import Notification from "../../../components/notification/Notification.component";
 import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton.component";
+import { useNavigate } from "react-router-dom";
 
-const DeleteModalConfirmation = ({ notifiationType, successMessage }) => {
+const DeleteModalConfirmation = ({
+  notifiationType,
+  successMessage,
+  setIsOpen,
+}) => {
+  const navigate = useNavigate();
   return (
     <>
       <Modal onClose={() => setIsOpen(false)}>
@@ -20,6 +26,7 @@ const DeleteModalConfirmation = ({ notifiationType, successMessage }) => {
 DeleteModalConfirmation.propTypes = {
   notifiationType: PropTypes.bool.isRequired,
   successMessage: PropTypes.string.isRequired,
+  setIsOpen: PropTypes.func.isRequired,
 };
 
 export default DeleteModalConfirmation;

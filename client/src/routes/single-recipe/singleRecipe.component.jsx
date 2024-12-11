@@ -30,6 +30,7 @@ const SingleRecipeComponent = () => {
   const { recipe, comments, author, isLoading, error, averageOfStars } = useSelector(
     (state) => state.singleRecipe
   );
+  console.log("Single recipe", recipe);
 
   useEffect(() => {
     if (!recipe) {
@@ -76,7 +77,7 @@ const SingleRecipeComponent = () => {
                   {isAuthenticated && <Heart recipe={recipe?._id} />}
                 </div>
                 <>
-                  {averageOfStars && <p>{formatStars(averageOfStars)}</p>}
+                  {averageOfStars > 0 && <p>{formatStars(averageOfStars)}</p>}
                   <p>Cook Time: {recipe?.cookTime}</p>
                   <p>Prep Time: {recipe?.prepTime}</p>
                   <p>

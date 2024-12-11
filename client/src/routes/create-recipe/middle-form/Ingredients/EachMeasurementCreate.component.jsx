@@ -7,13 +7,20 @@ const EachMeasurementCreate = ({ mea, id, setMeas }) => {
   return (
     <>
       <div key={id}>
-        {/* <label style={{fontSize: '1.4rem'}} name={id}>{idx + 1}</label> */}
         <select
           name={mea}
-          defaultValue={defaultMea}
+          value={defaultMea}
+          //defaultValue={defaultMea}
           onChange={(e) => setMeas(e.target.value)}
           style={{ marginInline: "1.4rem" }}
         >
+          <option value={["1"]}>1</option>
+          <option value={["2"]}>2</option>
+          <option value={["3"]}>2</option>
+          <option value={["4"]}>2</option>
+          <option value={["5"]}>2</option>
+          <option value={["6"]}>6</option>
+          <option value={["1/16 tsp"]}>1/16 tsp</option>
           <option value={["1/8 tsp"]}>1/8 tsp</option>
           <option value={["1/4 tsp"]}>1/4 tsp</option>
           <option value={["1/2 tsp"]}>1/2 tsp</option>
