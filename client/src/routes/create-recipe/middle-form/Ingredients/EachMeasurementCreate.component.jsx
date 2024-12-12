@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const EachMeasurementCreate = ({ mea, id, setMeas }) => {
+const EachMeasurementCreate = ({ mea = "", id = "", setMeas }) => {
   const defaultMea = mea || "1/8 tsp";
   return (
     <div key={id}>
@@ -31,7 +31,7 @@ const EachMeasurementCreate = ({ mea, id, setMeas }) => {
 
 EachMeasurementCreate.propTypes = {
   mea: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   setMeas: PropTypes.func.isRequired,
 };
 

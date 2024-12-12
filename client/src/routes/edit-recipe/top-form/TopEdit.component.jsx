@@ -22,7 +22,7 @@ const TopEdit = ({ formValues, setFormValues }) => {
   );
 };
 TopEdit.propTypes = {
-  formValues: PropTypes.object.isRequired,
+  formValues: PropTypes.object,
   setFormValues: PropTypes.func.isRequired,
 };
 

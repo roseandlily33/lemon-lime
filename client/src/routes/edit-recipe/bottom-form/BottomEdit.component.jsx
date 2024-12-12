@@ -21,7 +21,7 @@ const BottomEdit = ({ setPhotos, photos }) => {
 };
 BottomEdit.propTypes = {
   setPhotos: PropTypes.func.isRequired,
-  photos: PropTypes.array.isRequired,
+  photos: PropTypes.array,
 };
 
 export default BottomEdit;

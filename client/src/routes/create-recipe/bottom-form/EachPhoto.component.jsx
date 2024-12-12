@@ -3,7 +3,6 @@ import React from "react";
 import DeletePhotoButton from "./DeletePhoto.component";
 
 // prettier-ignore
-//  images={photos} addNewImage={addNewPhotos} setImages={setPhotos}
 const EachPhotoCreate = ({ images, setImages }) => {
   return (
     <>
@@ -27,9 +26,8 @@ const EachPhotoCreate = ({ images, setImages }) => {
   );
 };
 EachPhotoCreate.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  images: PropTypes.arrayOf(PropTypes.string),
   setImages: PropTypes.func.isRequired,
-  //setNewImage: PropTypes.func.isRequired,
 };
 
 export default EachPhotoCreate;

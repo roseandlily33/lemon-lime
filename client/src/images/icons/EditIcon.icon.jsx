@@ -19,7 +19,7 @@ const EditIcon = ({ functionName }) => {
 };
 
 EditIcon.propTypes = {
-  functionName: PropTypes.func.isRequired,
+  functionName: PropTypes.func,
 };
 
 export default EditIcon;

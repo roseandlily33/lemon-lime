@@ -8,13 +8,13 @@ import CheckIcon from "../../../../images/icons/CheckIcon.icon";
 
 // prettier-ignore
 const EachIngredientCreate = ({
-  ing,
-  id,
-  idx,
+  ing = "",
+  id = 1,
+  idx = 1,
   deleteIngredient,
   setIngredients,
-  ingredients,
-  mea,
+  ingredients = [],
+  mea = "",
 }) => {
   useEffect(() => {
     setIngId(id);
@@ -94,13 +94,13 @@ const EachIngredientCreate = ({
   );
 };
 EachIngredientCreate.propTypes = {
-  ing: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  idx: PropTypes.number.isRequired,
+  ing: PropTypes.string,
+  id: PropTypes.string,
+  idx: PropTypes.number,
   deleteIngredient: PropTypes.func.isRequired,
   setIngredients: PropTypes.func.isRequired,
-  ingredients: PropTypes.array.isRequired,
-  mea: PropTypes.string.isRequired,
+  ingredients: PropTypes.array,
+  mea: PropTypes.string,
 };
 
 export default EachIngredientCreate;

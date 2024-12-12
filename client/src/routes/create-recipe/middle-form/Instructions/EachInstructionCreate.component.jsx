@@ -6,10 +6,10 @@ import CheckIcon from "../../../../images/icons/CheckIcon.icon";
 import DeleteIcon from "../../../../images/icons/DeleteIcon.icon";
 
 const EachInstructionCreate = ({
-  instr,
-  idx,
+  instr = "",
+  idx = 1,
   deleteInstruction,
-  instructions,
+  instructions = [],
   setInstructions,
 }) => {
   useEffect(() => {
@@ -93,15 +93,15 @@ EachInstructionCreate.propTypes = {
   instr: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     ins: PropTypes.string.isRequired,
-  }).isRequired,
-  idx: PropTypes.number.isRequired,
+  }),
+  idx: PropTypes.number,
   deleteInstruction: PropTypes.func.isRequired,
   instructions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       ins: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
   setInstructions: PropTypes.func.isRequired,
 };
 

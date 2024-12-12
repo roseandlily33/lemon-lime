@@ -48,7 +48,7 @@ RecipeContainer3.propTypes = {
         publicId: PropTypes.string,
       })
     ),
-  }).isRequired,
+  }),
 };
 
 export default RecipeContainer3;

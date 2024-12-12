@@ -64,11 +64,11 @@ EditRecipeSubmit.propTypes = {
     cookTime: PropTypes.number,
     prepTime: PropTypes.number,
     description: PropTypes.string,
-  }).isRequired,
+  }),
   photos: PropTypes.array,
   instructions: PropTypes.array,
   ingredients: PropTypes.array,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 };
 
 export default EditRecipeSubmit;

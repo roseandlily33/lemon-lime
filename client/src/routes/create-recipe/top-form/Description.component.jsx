@@ -21,7 +21,7 @@ const Description = ({ formValues, handleChange }) => {
   );
 };
 Description.propTypes = {
-  formValues: PropTypes.object.isRequired,
+  formValues: PropTypes.object,
   handleChange: PropTypes.func.isRequired,
 };
 

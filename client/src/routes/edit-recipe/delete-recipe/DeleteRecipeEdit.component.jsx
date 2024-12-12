@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../../../components/loader/Loader.component";
 import DestructiveButton from "../../../components/buttons/destructive-button/DestructiveButton.component";
-// import DeleteModalConfirmation from "./DeleteModal.component";
 import Modal from "../../../components/modal/Model.component";
 import useNotification from "../../../utils/useNotification";
 import { deleteRecipe, clearState } from "../../../redux/crudRecipeSlice";
@@ -21,27 +20,16 @@ const DeleteRecipe = ({ id }) => {
   const { isLoading, error, alert } = useSelector((state) => state.crudRecipes);
   const { notificationType, successMessage } = useNotification(error, alert);
 
-
   if (!user) {
     navigate("/");
   }
   const handleDeleteRecipe = async(e) => {
     e.preventDefault();
-    console.log('Handling delete recipe');
     dispatch(deleteRecipe(id));
-    console.log("after dispatch deleteRecipe");
     dispatch(fetchUserRecipes(user.sub));
-    console.log('After fetching user recipes');
     setIsOpen(true);
-    console.log("After setIsOPen", isOpen);
     dispatch(clearState());
-    console.log('Cleared state');
 }
-
-
-
-  console.log("USE NOTIFICATION", notificationType, successMessage);
-  console.log("FROM STATE", isLoading, error, alert);
 
   if (isLoading) {
     return <Loader />;
@@ -67,7 +55,7 @@ const DeleteRecipe = ({ id }) => {
   );
 };
 DeleteRecipe.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 };
 
 export default DeleteRecipe;

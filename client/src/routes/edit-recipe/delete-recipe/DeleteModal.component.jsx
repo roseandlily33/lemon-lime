@@ -7,13 +7,12 @@ import { useNavigate } from "react-router-dom";
 
 // prettier-ignore
 const DeleteModalConfirmation = ({
-  notifiationType,
-  successMessage,
+  notifiationType = "",
+  successMessage = "",
   setIsOpen,
 }) => {
 
   const navigate = useNavigate();
-  console.log("SET OPEN INSIDE", setIsOpen);
   return (
     <>
       <Modal onClose={() => setIsOpen(false)}>
@@ -27,8 +26,8 @@ const DeleteModalConfirmation = ({
   );
 };
 DeleteModalConfirmation.propTypes = {
-  notifiationType: PropTypes.bool.isRequired,
-  successMessage: PropTypes.string.isRequired,
+  notifiationType: PropTypes.bool,
+  successMessage: PropTypes.string,
   setIsOpen: PropTypes.func.isRequired,
 };
 

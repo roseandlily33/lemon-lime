@@ -31,9 +31,6 @@ const EditRecipeForm = () => {
 
   const [instructions, setInstructions] = useState([]);
   const [ingredients, setIngredients] = useState([]);
-  // Contains the publicId to fetch on cloudinary
-  //const [images, setImages] = useState([]);
-  // The link for the cloudinary & the publicId send this one to the router
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
@@ -47,7 +44,6 @@ const EditRecipeForm = () => {
       });
       setInstructions(recipe.instructions);
       setIngredients(recipe.ingredients);
-     // setImages(recipe.images || []);
     }
   }, [recipe]);
 
@@ -55,7 +51,7 @@ const EditRecipeForm = () => {
     const fetchSingle = async () => {
     const cloud = new Cloudinary({ cloud: { cloudName: 'dql7lqwmr' } });
     const processedImages = await Promise.all(
-      (recipe.images || []).map((img) => {
+      (recipe?.images || []).map((img) => {
         const myImageURL = cloud.image(img.publicId).toURL();
         return {
           publicId: img.publicId,

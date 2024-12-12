@@ -38,7 +38,7 @@ CookTimeCreate.propTypes = {
       PropTypes.number,
       PropTypes.arrayOf(PropTypes.number),
     ]),
-  }).isRequired,
+  }),
   handleChange: PropTypes.func.isRequired,
 };
 

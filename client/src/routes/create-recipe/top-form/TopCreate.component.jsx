@@ -23,7 +23,7 @@ const TopCreate = ({ formValues, setFormValues }) => {
   );
 };
 TopCreate.propTypes = {
-  formValues: PropTypes.object.isRequired,
+  formValues: PropTypes.object,
   setFormValues: PropTypes.func.isRequired,
 };
 

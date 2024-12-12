@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../../../components/modal/Model.component";
 import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton.component";
 
-//addNewPhotos
 const PhotosCreate = ({ images, addNewImage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
@@ -34,7 +33,6 @@ const PhotosCreate = ({ images, addNewImage }) => {
         }
       }
     );
-    //addNewPhotos
   }, [images, addNewImage]);
 
   return (
@@ -68,7 +66,7 @@ const PhotosCreate = ({ images, addNewImage }) => {
   );
 };
 PhotosCreate.propTypes = {
-  images: PropTypes.array.isRequired,
+  images: PropTypes.array,
   addNewImage: PropTypes.func.isRequired,
   addNewPhotos: PropTypes.func.isRequired,
 };

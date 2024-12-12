@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Measurement = ({ mea, setMea }) => {
+const Measurement = ({ mea = "", setMea }) => {
   return (
     <select name={mea} onChange={(e) => setMea(e.target.value)}>
       <option value={"1/8 tsp"}>1/8 tsp</option>
@@ -42,7 +42,7 @@ const Measurement = ({ mea, setMea }) => {
   );
 };
 Measurement.propTypes = {
-  mea: PropTypes.string.isRequired,
+  mea: PropTypes.string,
   setMea: PropTypes.func.isRequired,
 };
 

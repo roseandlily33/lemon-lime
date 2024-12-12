@@ -25,7 +25,7 @@ const SubcategoryCreate = ({ formValues, handleChange }) => {
   );
 };
 SubcategoryCreate.propTypes = {
-  formValues: PropTypes.object.isRequired,
+  formValues: PropTypes.object,
   handleChange: PropTypes.func.isRequired,
 };
 

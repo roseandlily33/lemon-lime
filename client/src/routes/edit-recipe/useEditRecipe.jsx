@@ -19,7 +19,6 @@ const useEditRecipe = (
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Editing recipe handler has been fired");
     setError("");
     if (photos?.length > 4) {
       setError("Only 4 images can be uploaded");

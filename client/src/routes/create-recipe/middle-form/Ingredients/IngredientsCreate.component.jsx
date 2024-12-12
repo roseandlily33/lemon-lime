@@ -9,7 +9,7 @@ import RegularInput from "../../../../components/input/regular-input/RegularInpu
 import AddIcon from "../../../../images/icons/AddIcon.icon";
 
 const IngredientsCreate = ({
-  ingredients,
+  ingredients = [],
   addNewIngredient,
   setIngredients,
 }) => {
@@ -98,11 +98,11 @@ const IngredientsCreate = ({
 IngredientsCreate.propTypes = {
   ingredients: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      ing: PropTypes.string.isRequired,
-      mea: PropTypes.string.isRequired,
+      id: PropTypes.string,
+      ing: PropTypes.string,
+      mea: PropTypes.string,
     })
-  ).isRequired,
+  ),
   addNewIngredient: PropTypes.func.isRequired,
   setIngredients: PropTypes.func.isRequired,
 };

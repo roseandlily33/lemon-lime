@@ -7,7 +7,7 @@ import IconButton from "../../../../components/buttons/icon-button/IconButton.co
 import AddIcon from "../../../../images/icons/AddIcon.icon";
 
 const InstructionsCreate = ({
-  instructions,
+  instructions = [],
   setInstructions,
   addNewInstruction,
 }) => {
@@ -86,7 +86,7 @@ const InstructionsCreate = ({
   );
 };
 InstructionsCreate.propTypes = {
-  instructions: PropTypes.array.isRequired,
+  instructions: PropTypes.array,
   setInstructions: PropTypes.func.isRequired,
   addNewInstruction: PropTypes.func.isRequired,
 };
