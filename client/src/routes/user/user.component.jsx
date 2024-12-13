@@ -2,7 +2,6 @@ import {
   UserContainer,
   UserRecipesContainer,
   UserContentContainer,
-  UserOptionsContainer,
   UserOptions,
   UserInfo,
 } from "./User.styles";
@@ -11,24 +10,31 @@ import { useNavigate } from "react-router-dom";
 import RecipeContainer3 from "../../components/recipe/Recipe3.component";
 import Loader from "../../components/loader/Loader.component";
 import { useSelector, useDispatch } from "react-redux";
-import Background from "../../images/Background2.jpg";
 import Profile from "../../images/Profile1.jpg";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchUserRecipes } from "../../redux/userSlice";
+import { selectFilteredRecipes } from "../../redux/userSlice";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 
 const UserHome = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth0();
   const dispatch = useDispatch();
-  if (!isAuthenticated) {
-    navigate("/");
-  }
+  const [userLoading, setUserLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const { userRecipes, isLoading, error } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (!userRecipes) {
+    if (user && !userRecipes) {
       dispatch(fetchUserRecipes(user.sub));
+    } else if (!authLoading && !isAuthenticated) {
+      navigate("/");
     }
-  }, [userRecipes]);
+  }, [userRecipes, user, isAuthenticated, dispatch]);
+  useEffect(() => {
+    if (!authLoading && user) {
+      setUserLoading(false);
+    }
+  }, [authLoading, user]);
 
   const navigate = useNavigate();
   const buttonItems = [
@@ -61,66 +67,73 @@ const UserHome = () => {
     }
   };
 
+  const searchUserRecipes = () => {
+    const recipes = selectFilteredRecipes(userRecipes, searchQuery);
+    console.log("Found recipes", recipes);
+  };
+
   if (error) {
-    <h3>An error has occured</h3>;
+    return <h3>An error has occured</h3>;
+  }
+  if (isLoading || userLoading) {
+    return <Loader />;
   }
 
   return (
     <UserContainer>
       {isAuthenticated ? (
         <>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              <UserOptionsContainer>
-                <div className="imgDiv">
-                  <img src={Background} alt="lemons background" />
-                </div>
-              </UserOptionsContainer>
-              <UserInfo>
-                <img
-                  src={Profile}
-                  alt="User Profile"
-                  style={{
-                    height: "150px",
-                    width: "150px",
-                    borderRadius: "50%",
-                  }}
-                />
-                <h2>Welcome {user?.nickname}</h2>
-              </UserInfo>
-              <UserContentContainer>
-                <UserOptions>
-                  {buttonItems.map((button) => {
-                    return (
-                      <button
-                        key={button.id}
-                        onClick={() => switchFunction(button?.action)}
-                        style={{
-                          backgroundColor: `${button.color}`,
-                          border: `${button.color}`,
-                        }}
-                        className="box boxShadowHover"
-                      >
-                        <p
-                          style={{ color: "#77340D" }}
-                          onClick={() => switchFunction(button.action)}
-                        >
-                          {button.title}
-                        </p>
-                      </button>
-                    );
-                  })}
-                </UserOptions>
-                <UserRecipesContainer className="scrollBar">
-                  {userRecipes?.map((r) => {
-                    return <RecipeContainer3 key={r?._id} recipe={r} />;
-                  })}
-                </UserRecipesContainer>
-              </UserContentContainer>
-            </>
-          )}
+          <UserInfo>
+            <img
+              src={Profile}
+              alt="User Profile"
+              style={{
+                height: "150px",
+                width: "150px",
+                borderRadius: "50%",
+              }}
+            />
+            <h2>Welcome {user?.nickname}</h2>
+          </UserInfo>
+          {/* Search Bar for recipes */}
+          <div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search for a recipe"
+            />
+            <PrimaryButton span="Search" functionName={searchUserRecipes} />
+          </div>
+          <UserContentContainer>
+            <UserOptions>
+              {buttonItems.map((button) => {
+                return (
+                  <button
+                    key={button.id}
+                    onClick={() => switchFunction(button?.action)}
+                    style={{
+                      backgroundColor: `${button.color}`,
+                      border: `${button.color}`,
+                    }}
+                    className="box boxShadowHover"
+                  >
+                    <h4
+                      style={{ color: "#77340D" }}
+                      onClick={() => switchFunction(button.action)}
+                    >
+                      {button.title}
+                    </h4>
+                  </button>
+                );
+              })}
+            </UserOptions>
+            <UserRecipesContainer className="scrollBar">
+              {userRecipes?.map((r) => {
+                return <RecipeContainer3 key={r?._id} recipe={r} />;
+              })}
+            </UserRecipesContainer>
+          </UserContentContainer>
         </>
       ) : (
         <h2>Login To View Your Recipes</h2>

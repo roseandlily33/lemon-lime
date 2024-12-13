@@ -5,10 +5,12 @@ import { formatStars } from "../../../formatting-utils/stars";
 import DeleteComment from "../delete-comment/DeleteComment.component";
 import React from "react";
 import PrimaryButton from "../../buttons/primary-button/PrimaryButton.component";
-//
+import { clearState } from "../../../redux/commentsSlice";
+import { useDispatch } from "react-redux";
 
 // prettier-ignore
 const SingleComment = ({ comments, setEditing, setEditComment }) => {
+  const dispatch = useDispatch();
   return (
     <>
       {comments?.map((c) => (
@@ -33,6 +35,7 @@ const SingleComment = ({ comments, setEditing, setEditComment }) => {
           >
             <PrimaryButton
               functionName={() => {
+                dispatch(clearState());
                 setEditing(true);
                 setEditComment(c);
               }}

@@ -6,11 +6,11 @@ import EditRecipeForm from "./EditRecipeForm.component";
 
 // prettier-ignore
 const EditRecipe = () => {
+  const navigate = useNavigate();
   const { isAuthenticated } = useAuth0();
   if (!isAuthenticated) {
     navigate("/");
   }
-  const navigate = useNavigate();
 
   return (
     <OuterForm>

@@ -18,7 +18,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const domain = process.env.REACT_APP_OAUTH_DOMAIN;
 const client_id = process.env.REACT_APP_OAUTH_CLIENTID;
-//console.log('PROCESS', process.env)
 
 root.render(
   <React.StrictMode>

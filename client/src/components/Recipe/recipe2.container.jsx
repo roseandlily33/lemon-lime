@@ -8,13 +8,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { fetchSingleRecipe } from "../../redux/singleRecipeSlice";
-import { useAuth0 } from "@auth0/auth0-react";
-import Heart from "../heart/Heart.component";
+// import { useAuth0 } from "@auth0/auth0-react";
+// import Heart from "../heart/Heart.component";
 
 const RecipeContainer2 = ({ recipe }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated } = useAuth0();
+  // const { isAuthenticated } = useAuth0();
   const url = `/recipe/${recipe._id}`;
 
   const handleClick = (e) => {
@@ -34,7 +34,7 @@ const RecipeContainer2 = ({ recipe }) => {
           <NavLink className="link" to={url} onClick={handleClick}>
             {recipe?.recipeName.slice(0, 15)}
           </NavLink>
-          {isAuthenticated && <Heart recipe={recipe._id} />}
+          {/* {isAuthenticated && <Heart recipe={recipe._id} />} */}
         </div>
         <p>{formatDate(recipe?.createdAt)}</p>
         <p>Favorites: {recipe?.favorites}</p>

@@ -3,10 +3,11 @@ import InstructionsCreate from "../../create-recipe/middle-form/Instructions/Ins
 import PropTypes from "prop-types";
 import React from "react";
 
+// prettier-ignore
 const MiddleEdit = ({
-  ingredients,
+  ingredients = [],
   setIngredients,
-  instructions,
+  instructions = [],
   setInstructions,
 }) => {
   const addNewInstruction = (ins) => {
@@ -31,9 +32,9 @@ const MiddleEdit = ({
   );
 };
 MiddleEdit.propTypes = {
-  ingredients: PropTypes.array.isRequired,
+  ingredients: PropTypes.array,
   setIngredients: PropTypes.func.isRequired,
-  instructions: PropTypes.array.isRequired,
+  instructions: PropTypes.array,
   setInstructions: PropTypes.func.isRequired,
 };
 

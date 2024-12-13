@@ -18,7 +18,6 @@ export const fetchUserRecipes = createAsyncThunk(
         throw new Error("Failed to fetch user");
       }
       const data = await res.json();
-      console.log("VISITOR DATA RETURNED", data);
       return data[0];
     } catch (err) {
       return rejectWithValue(err.message);

@@ -3,12 +3,20 @@ import PropTypes from "prop-types";
 import Modal from "../../../components/modal/Model.component";
 import Notification from "../../../components/notification/Notification.component";
 import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton.component";
+import { useNavigate } from "react-router-dom";
 
-const DeleteModalConfirmation = ({ notifiationType, successMessage }) => {
+// prettier-ignore
+const DeleteModalConfirmation = ({
+  notifiationType = "",
+  successMessage = "",
+  setIsOpen,
+}) => {
+
+  const navigate = useNavigate();
   return (
     <>
       <Modal onClose={() => setIsOpen(false)}>
-        <Notification success={notifiationType} message={successMessage} />
+        <Notification status={notifiationType} messageShown={successMessage} />
         <PrimaryButton
           functionName={() => navigate("/user/home")}
           span="Go Home"
@@ -18,8 +26,9 @@ const DeleteModalConfirmation = ({ notifiationType, successMessage }) => {
   );
 };
 DeleteModalConfirmation.propTypes = {
-  notifiationType: PropTypes.bool.isRequired,
-  successMessage: PropTypes.string.isRequired,
+  notifiationType: PropTypes.bool,
+  successMessage: PropTypes.string,
+  setIsOpen: PropTypes.func.isRequired,
 };
 
 export default DeleteModalConfirmation;

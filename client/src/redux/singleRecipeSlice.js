@@ -17,7 +17,6 @@ export const fetchSingleRecipe = createAsyncThunk(
     try {
       const res = await fetch(`${URL}/recipes/${id}`);
       const data = await res.json();
-      console.log("Single recipe data", data[0]);
       return data[0];
     } catch (err) {
       return rejectWithValue(err.message);
@@ -39,6 +38,14 @@ export const singleRecipeSlice = createSlice({
     addCommentRecipe: (state, action) => {
       state.comments.push(action.payload);
     },
+    incrementFave: (state) => {
+      state.recipe.favorites += 1;
+    },
+    decrementFave: (state) => {
+      if (state.recipe.favorites > 0) {
+        state.recipe.favorites -= 1;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -52,14 +59,16 @@ export const singleRecipeSlice = createSlice({
         state.author = action.payload?.authorName;
         state.averageOfStars = averageOfStars(action.payload?.comments);
         state.isLoading = false;
+        state.error = null;
       })
-      .addCase(fetchSingleRecipe.rejected, (state, action) => {
+      .addCase(fetchSingleRecipe.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = "Failed to fetch recipe";
       });
   },
 });
 
-export const { clearRecipe, addCommentRecipe } = singleRecipeSlice.actions;
+export const { clearRecipe, addCommentRecipe, incrementFave, decrementFave } =
+  singleRecipeSlice.actions;
 
 export default singleRecipeSlice.reducer;

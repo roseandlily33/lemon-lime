@@ -55,7 +55,7 @@ export const RightSide = styled.aside`
   }
   .userLink {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.peachyPink};
+    color: ${({ theme }) => theme.colors.orange};
     font-weight: 700;
   }
 `;
@@ -63,6 +63,7 @@ export const RightSide = styled.aside`
 export const Bottom = styled.section`
   width: 100%;
   display: flex;
+  flex-direction: column;
   height: auto;
   gap: 2em;
   margin-block: 2em;
@@ -72,10 +73,10 @@ export const Bottom = styled.section`
     padding-inline: 0.6rem;
     color: ${({ theme }) => theme.colors.white};
     padding-block: 1rem;
-    background-color: hsla(349, 43%, 66%, 0.5);
+    background-color: ${({ theme }) => theme.colors.mediumGreen};
     border-bottom: 1px solid ${({ theme }) => theme.colors.white};
   }
-  @media screen and (width >= 360px) {
+  /* @media screen and (width >= 360px) {
     flex-wrap: wrap;
   }
   @media screen and (width >= 768px) {
@@ -84,15 +85,15 @@ export const Bottom = styled.section`
   }
   @media screen and (width >= 1000px) {
     // border: 1px solid pink;
-  }
+  } */
 `;
 
 export const IngredientsDiv = styled.div`
   border-radius: 5px;
+  min-width: 100%;
   border: 2px solid ${({ theme }) => theme.colors.offWhite};
   .outside {
     display: flex;
-    width: 90%;
     margin: 0.5rem;
   }
   .insideIng1 {
@@ -106,17 +107,19 @@ export const IngredientsDiv = styled.div`
     padding-left: 1em;
     padding-top: 0.4em;
     margin-bottom: 1rem;
+    min-width: 100%;
   }
-  @media screen and (width >= 360px) {
+  /* @media screen and (width >= 360px) {
     width: 100%;
   }
   @media screen and (width >= 768px) {
     width: 30%;
-  }
+  } */
 `;
 
 export const InstructionsDiv = styled.div`
   border-radius: 5px;
+  min-width: 100%;
   border: 2px solid ${({ theme }) => theme.colors.offWhite};
   ol {
     margin: 0.5em;
@@ -125,10 +128,10 @@ export const InstructionsDiv = styled.div`
     padding-top: 0.4em;
     margin-bottom: 1rem;
   }
-  @media screen and (width >= 360px) {
+  /* @media screen and (width >= 360px) {
     width: 100%;
   }
   @media screen and (width >= 768px) {
     width: 70%;
-  }
+  } */
 `;

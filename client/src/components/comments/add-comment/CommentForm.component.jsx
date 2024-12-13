@@ -50,7 +50,7 @@ AddCommentForm.propTypes = {
   formState: PropTypes.shape({
     title: PropTypes.string,
     comment: PropTypes.string,
-  }).isRequired,
+  }),
   setFormState: PropTypes.func.isRequired,
   starRating: PropTypes.number.isRequired,
   setStarRating: PropTypes.func.isRequired,

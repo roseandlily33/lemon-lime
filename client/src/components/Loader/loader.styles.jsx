@@ -1,4 +1,11 @@
 import styled from "styled-components";
+export const LoaderContainer = styled.main`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const LoaderDiv = styled.div`
   display: flex;

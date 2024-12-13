@@ -6,9 +6,10 @@ import EachIngredientCreate from "./EachIngredientCreate.component";
 import { MiddleContainer, InputDiv } from "../../RecipeForm.styles";
 import IconButton from "../../../../components/buttons/icon-button/IconButton.component";
 import RegularInput from "../../../../components/input/regular-input/RegularInput.component";
+import AddIcon from "../../../../images/icons/AddIcon.icon";
 
 const IngredientsCreate = ({
-  ingredients,
+  ingredients = [],
   addNewIngredient,
   setIngredients,
 }) => {
@@ -19,11 +20,20 @@ const IngredientsCreate = ({
 
   const addCard = (e) => {
     e.preventDefault();
+    if (!ing?.length) {
+      setError("Please enter an ingredient");
+      return;
+    }
     if (count <= 15) {
-      const newIng = { id: uuidv4(), ing: ing, mea: mea };
+      const newIng = {
+        id: uuidv4(),
+        ing: ing.toLowerCase(),
+        mea: mea || "1/8 tsp",
+      };
       addNewIngredient(newIng);
       setIng("");
       setCount(count + 1);
+      setError("");
     } else {
       setError("Cannot add more than 15 ingredients");
     }
@@ -63,14 +73,15 @@ const IngredientsCreate = ({
           </>
         ) : (
           <h4 style={{ textAlign: "center", marginBlock: "2rem" }}>
-            Add Instructions
+            Add Ingredients
           </h4>
         )}
       </>
+      <p className="error">{error}</p>
       <InputDiv className="boxShadow">
-        {error && <p className="error">{error}</p>}
         <Measurement mea={mea} setMea={setMea} />
         <RegularInput
+          label=""
           type="text"
           value={ing}
           placeholder="Add an ingredient"
@@ -79,19 +90,7 @@ const IngredientsCreate = ({
         <IconButton
           functionName={(e) => addCard(e, ing)}
           span="Add Ingredient"
-          svg={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className="icon icon-add"
-            >
-              <path
-                className="secondary"
-                fillRule="evenodd"
-                d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"
-              />
-            </svg>
-          }
+          svg={<AddIcon />}
         />
       </InputDiv>
     </MiddleContainer>
@@ -100,11 +99,11 @@ const IngredientsCreate = ({
 IngredientsCreate.propTypes = {
   ingredients: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      ing: PropTypes.string.isRequired,
-      mea: PropTypes.string.isRequired,
+      id: PropTypes.string,
+      ing: PropTypes.string,
+      mea: PropTypes.string,
     })
-  ).isRequired,
+  ),
   addNewIngredient: PropTypes.func.isRequired,
   setIngredients: PropTypes.func.isRequired,
 };

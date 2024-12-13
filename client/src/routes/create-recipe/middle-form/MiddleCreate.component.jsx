@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const MiddleCreate = ({
-  ingredients,
+  ingredients = [],
   setIngredients,
-  instructions,
+  instructions = [],
   setInstructions,
 }) => {
   const addNewIngredient = (ing) => {
@@ -31,9 +31,9 @@ const MiddleCreate = ({
   );
 };
 MiddleCreate.propTypes = {
-  ingredients: PropTypes.array.isRequired,
+  ingredients: PropTypes.array,
   setIngredients: PropTypes.func.isRequired,
-  instructions: PropTypes.array.isRequired,
+  instructions: PropTypes.array,
   setInstructions: PropTypes.func.isRequired,
 };
 

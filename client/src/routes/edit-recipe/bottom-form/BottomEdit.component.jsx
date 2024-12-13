@@ -3,29 +3,25 @@ import EachPhotoCreate from "../../create-recipe/bottom-form/EachPhoto.component
 import React from "react";
 import PropTypes from "prop-types";
 
-const BottomEdit = ({ images, setImages, setPhotos, photos }) => {
-  const addNewImage = (img) => {
-    setImages((prev) => [...prev, img]);
-  };
+// prettier-ignore
+const BottomEdit = ({ setPhotos, photos }) => {
   const addNewPhotos = (photo) => {
     setPhotos((prev) => [...prev, photo]);
   };
   return (
     <>
+      {/* To Create the photo */}
       <PhotosCreate
-        images={images}
-        addNewImage={addNewImage}
-        addNewPhotos={addNewPhotos}
+        images={photos}
+        addNewImage={addNewPhotos}
       />
-      <EachPhotoCreate photos={photos} />
+      <EachPhotoCreate images={photos} setImages={setPhotos}/>
     </>
   );
 };
 BottomEdit.propTypes = {
-  images: PropTypes.array.isRequired,
-  setImages: PropTypes.func.isRequired,
   setPhotos: PropTypes.func.isRequired,
-  photos: PropTypes.array.isRequired,
+  photos: PropTypes.array,
 };
 
 export default BottomEdit;

@@ -43,7 +43,7 @@ const Comment = ({ singleRecipe }) => {
     <CommentContainer>
       <h4>Leave a review</h4>
       {isAuthenticated ? (
-        <CommentForm onSubmit={handleSubmit}>
+        <CommentForm onSubmit={addCommentPost}>
           <AddCommentForm
             formState={formState}
             starRating={starRating}
@@ -64,7 +64,7 @@ const Comment = ({ singleRecipe }) => {
 Comment.propTypes = {
   singleRecipe: PropTypes.shape({
     recipeName: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
 };
 
 export default Comment;

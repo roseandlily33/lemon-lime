@@ -1,4 +1,7 @@
+import { format } from "date-fns";
+
 export const formatDate = (timeHere) => {
+  if (!timeHere) return;
   let newTime = new Date(timeHere);
-  return newTime.toLocaleDateString();
+  return format(newTime, "MM/dd/yyyy");
 };

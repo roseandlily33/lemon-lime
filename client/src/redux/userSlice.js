@@ -64,11 +64,29 @@ export const userSlice = createSlice({
       state.user = null;
     },
     addFavorite: (state, action) => {
+      console.log("ACTION PAYLOAD", action.payload);
+      console.log("ADDING STATE", state.userFavorites);
       state.userFavorites.push(action.payload);
+      console.log("AFTER ADDING STATE", state.userFavorites);
     },
     removeFavorite: (state, action) => {
       state.userFavorites = state.userFavorites.filter((fave) => {
         return fave !== action.payload;
+      });
+    },
+    updateComment: (state, action) => {
+      console.log("Incoming", action.payload);
+      state.userComments = state.userComments.map((comment) => {
+        if (comment._id === action.payload._id) {
+          return action.payload;
+        }
+        return comment;
+      });
+      console.log("State comments after updated", state.userComments);
+    },
+    deleteCommentFromUser: (state, action) => {
+      state.userComments = state.userComments.filter((comment) => {
+        return comment._id !== action.payload;
       });
     },
   },
@@ -82,7 +100,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.userRecipes = action.payload.recipes;
         state.userComments = action.payload.comments;
-        state.userFavorites = action.payload.favorites;
+        state.userFavorites = Object.keys(action.payload.favorites);
       })
       .addCase(fetchUserRecipes.rejected, (state, action) => {
         state.isLoading = false;
@@ -97,7 +115,20 @@ export const selectCommentById = (state, commentId) =>
 export const selectRecipeById = (state, recipeId) =>
   state.user.userRecipes.find((recipe) => recipe._id === recipeId);
 
-export const { setUser, updateUser, logOut, addFavorite, removeFavorite } =
-  userSlice.actions;
+export const selectFilteredRecipes = (state, filter) => {
+  return state.user.userRecipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(filter.toLowerCase())
+  );
+};
+
+export const {
+  setUser,
+  updateUser,
+  logOut,
+  addFavorite,
+  removeFavorite,
+  updateComment,
+  deleteCommentFromUser,
+} = userSlice.actions;
 
 export default userSlice.reducer;

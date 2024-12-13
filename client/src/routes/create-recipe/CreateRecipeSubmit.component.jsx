@@ -16,6 +16,7 @@ const CreateRecipeSubmit = ({
   images,
   instructions,
   ingredients,
+  clearForm,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -27,7 +28,8 @@ const CreateRecipeSubmit = ({
     images,
     instructions,
     ingredients,
-    setIsOpen
+    setIsOpen,
+    clearForm
   );
 
   const { notificationType, successMessage } = useNotification(error, alert);
@@ -61,13 +63,14 @@ const CreateRecipeSubmit = ({
 CreateRecipeSubmit.propTypes = {
   formValues: PropTypes.shape({
     recipeName: PropTypes.string,
-    cookTime: PropTypes.number,
-    prepTime: PropTypes.number,
+    cookTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    prepTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     description: PropTypes.string,
-  }).isRequired,
+  }),
   images: PropTypes.array,
   instructions: PropTypes.array,
   ingredients: PropTypes.array,
+  clearForm: PropTypes.func,
 };
 
 export default CreateRecipeSubmit;

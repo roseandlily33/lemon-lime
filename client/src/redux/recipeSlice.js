@@ -17,7 +17,6 @@ export const fetchPopular = createAsyncThunk(
   async () => {
     try {
       const res = await fetch(`${URL}/recipes/popular`);
-      console.log("POPULAR RES", res);
       if (!res.ok) {
         throw new Error("Failed to fetch popular recipes");
       }

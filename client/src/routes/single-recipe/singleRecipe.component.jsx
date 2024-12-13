@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { formatDate } from "../../formatting-utils/date";
 import Lemon from "../../images/lemons.jpg";
@@ -27,18 +27,29 @@ const SingleRecipeComponent = () => {
   const { id } = useParams();
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
+  const [recipeLoading, setRecipeLoading] = useState(true);
   const { recipe, comments, author, isLoading, error, averageOfStars } = useSelector(
     (state) => state.singleRecipe
   );
 
   useEffect(() => {
+    dispatch(fetchSingleRecipe(id));
+  }, []);
+
+  useEffect(() => {
     if (!recipe) {
       dispatch(fetchSingleRecipe(id));
     }
-  }, [recipe, id]);
+  }, [recipe, dispatch, id]);
+
+  useEffect(() => {
+    if (recipe && !isLoading) {
+      setRecipeLoading(false);
+    }
+  }, [recipe, isLoading]);
 
 
-  if (isLoading) {
+  if (isLoading || recipeLoading) {
     return <Loader />;
   }
 
@@ -76,7 +87,7 @@ const SingleRecipeComponent = () => {
                   {isAuthenticated && <Heart recipe={recipe?._id} />}
                 </div>
                 <>
-                  {averageOfStars && <p>{formatStars(averageOfStars)}</p>}
+                  {averageOfStars > 0 && <p>{formatStars(averageOfStars)}</p>}
                   <p>Cook Time: {recipe?.cookTime}</p>
                   <p>Prep Time: {recipe?.prepTime}</p>
                   <p>

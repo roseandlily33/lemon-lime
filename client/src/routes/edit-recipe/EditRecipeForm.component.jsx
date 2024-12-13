@@ -16,6 +16,7 @@ import { selectRecipeById } from "../../redux/userSlice";
 import EditRecipeSubmit from "./EditRecipeSubmit";
 import { useParams } from "react-router-dom";
 
+// prettier-ignore
 const EditRecipeForm = () => {
   const { id } = useParams();
   const recipe = useSelector((state) => selectRecipeById(state, id));
@@ -30,10 +31,7 @@ const EditRecipeForm = () => {
 
   const [instructions, setInstructions] = useState([]);
   const [ingredients, setIngredients] = useState([]);
-  // Contains the publicId to fetch on cloudinary
-  const [images, setImages] = useState(recipe?.images || []);
-  // The link for the cloudinary - actual photo
-  const [photos, setPhotos] = useState(recipe?.photos || []);
+  const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     if (recipe) {
@@ -46,23 +44,28 @@ const EditRecipeForm = () => {
       });
       setInstructions(recipe.instructions);
       setIngredients(recipe.ingredients);
-      setImages(recipe.images || []);
     }
   }, [recipe]);
 
-  useEffect(() => {
+  useEffect(() => { 
     const fetchSingle = async () => {
-      const cloud = new Cloudinary({ cloud: { cloudName: "dql7lqwmr" } });
-      if (images) {
-        await images?.map((img) => {
-          const myImage = cloud.image(img.publicId).toURL();
-          setPhotos((prev) => [...prev, myImage]);
-          return;
-        });
-      }
-    };
+    const cloud = new Cloudinary({ cloud: { cloudName: 'dql7lqwmr' } });
+    const processedImages = await Promise.all(
+      (recipe?.images || []).map((img) => {
+        const myImageURL = cloud.image(img.publicId).toURL();
+        return {
+          publicId: img.publicId,
+          url: myImageURL,
+        };
+      })
+    );
+    setPhotos(processedImages);
+  };
+
+  if (recipe && recipe.images && recipe.images.length > 0) {
     fetchSingle();
-  }, [id, images]);
+  }
+  }, [id]);
 
   return (
     <>
@@ -88,14 +91,12 @@ const EditRecipeForm = () => {
       </MiddleForm>
       <BottomForm>
         <BottomEdit
-          images={images}
-          setImages={setImages}
           setPhotos={setPhotos}
           photos={photos}
         />
       </BottomForm>
       <EditRecipeSubmit
-        images={images}
+        photos={photos}
         ingredients={ingredients}
         instructions={instructions}
         formValues={formValues}

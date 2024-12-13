@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../../../components/modal/Model.component";
 import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton.component";
 
-const PhotosCreate = ({ images, addNewImage, addNewPhotos }) => {
+const PhotosCreate = ({ images, addNewImage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -20,10 +20,11 @@ const PhotosCreate = ({ images, addNewImage, addNewPhotos }) => {
       },
       function (error, result) {
         if (result.event === "success") {
-          let newImage = { publicId: result.info.public_id };
-          let newImageURL = result.info.url;
+          let newImage = {
+            publicId: result.info.public_id,
+            url: result.info.url,
+          };
           addNewImage(newImage);
-          addNewPhotos(newImageURL);
         } else if (error) {
           setIsOpen(true);
         }
@@ -32,11 +33,13 @@ const PhotosCreate = ({ images, addNewImage, addNewPhotos }) => {
         }
       }
     );
-  }, [images, addNewImage, addNewPhotos]);
+  }, [images, addNewImage]);
 
   return (
     <>
-      <h3>Images</h3>
+      <h3>
+        Images <span>max 4</span>
+      </h3>
       <hr />
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
@@ -48,7 +51,7 @@ const PhotosCreate = ({ images, addNewImage, addNewPhotos }) => {
         </Modal>
       )}
       <div key={1} className="image-item">
-        {error && <p className="error">{error}</p>}
+        <p className="error">{error}</p>
         <div className="image-options">
           <PrimaryButton
             functionName={(e) => {
@@ -63,9 +66,9 @@ const PhotosCreate = ({ images, addNewImage, addNewPhotos }) => {
   );
 };
 PhotosCreate.propTypes = {
-  images: PropTypes.array.isRequired,
+  images: PropTypes.array,
   addNewImage: PropTypes.func.isRequired,
-  addNewPhotos: PropTypes.func.isRequired,
+  //addNewPhotos: PropTypes.func.isRequired,
 };
 
 export default PhotosCreate;

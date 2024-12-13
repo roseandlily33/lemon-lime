@@ -4,7 +4,7 @@ import React from "react";
 const RecipeNameCreate = ({ formValues, handleChange }) => {
   return (
     <div className="each">
-      <label>
+      <label htmlFor="recipeName">
         Recipe Name:
         <span className="required"> *</span>
       </label>

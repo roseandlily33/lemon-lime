@@ -14,7 +14,7 @@ import useEditRecipe from "./useEditRecipe";
 
 const EditRecipeSubmit = ({
   formValues,
-  images,
+  photos,
   instructions,
   ingredients,
   id,
@@ -24,7 +24,7 @@ const EditRecipeSubmit = ({
   const { isLoading, error, alert } = useSelector((state) => state.crudRecipes);
   const { handleSubmit, errorState } = useEditRecipe(
     formValues,
-    images,
+    photos,
     instructions,
     ingredients,
     id,
@@ -61,14 +61,14 @@ const EditRecipeSubmit = ({
 EditRecipeSubmit.propTypes = {
   formValues: PropTypes.shape({
     recipeName: PropTypes.string,
-    cookTime: PropTypes.number,
-    prepTime: PropTypes.number,
+    cookTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    prepTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     description: PropTypes.string,
-  }).isRequired,
-  images: PropTypes.array,
+  }),
+  photos: PropTypes.array,
   instructions: PropTypes.array,
   ingredients: PropTypes.array,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 };
 
 export default EditRecipeSubmit;

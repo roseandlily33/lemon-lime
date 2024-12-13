@@ -4,41 +4,37 @@ import React from "react";
 const CookTimeCreate = ({ formValues, handleChange }) => {
   return (
     <div className="each">
-      <label htmlFor={formValues?.cookTime}>
+      <label htmlFor="cookTime">
         Cook Time: <span>in minutes</span>
         <span className="required"> *</span>
       </label>
       <select
         name="cookTime"
-        defaultValue={formValues?.cookTime}
+        value={formValues?.cookTime}
         onChange={handleChange}
       >
-        <option value={formValues?.cookTime[5]}>5</option>
-        <option value={formValues?.cookTime[10]}>10</option>
-        <option value={formValues?.cookTime[15]}>15</option>
-        <option value={formValues?.cookTime[20]}>20</option>
-        <option value={formValues?.cookTime[25]}>25</option>
-        <option value={formValues?.cookTime[30]}>30</option>
-        <option value={formValues?.cookTime[30]}>35</option>
-        <option value={formValues?.cookTime[40]}>40</option>
-        <option value={formValues?.cookTime[45]}>45</option>
-        <option value={formValues?.cookTime[50]}>50</option>
-        <option value={formValues?.cookTime[55]}>55</option>
-        <option value={formValues?.cookTime[60]}>60</option>
-        <option value={formValues?.cookTime[65]}>65</option>
-        <option value={formValues?.cookTime[70]}>70</option>
+        <option value={5}>5</option>
+        <option value={10}>10</option>
+        <option value={15}>15</option>
+        <option value={20}>20</option>
+        <option value={25}>25</option>
+        <option value={30}>30</option>
+        <option value={35}>35</option>
+        <option value={40}>40</option>
+        <option value={45}>45</option>
+        <option value={50}>50</option>
+        <option value={55}>55</option>
+        <option value={60}>60</option>
+        <option value={65}>65</option>
+        <option value={70}>70</option>
       </select>
     </div>
   );
 };
 CookTimeCreate.propTypes = {
   formValues: PropTypes.shape({
-    cookTime: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.arrayOf(PropTypes.number),
-    ]),
-  }).isRequired,
+    cookTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }),
   handleChange: PropTypes.func.isRequired,
 };
 
