@@ -81,6 +81,7 @@ const IngredientsCreate = ({
       <InputDiv className="boxShadow">
         <Measurement mea={mea} setMea={setMea} />
         <RegularInput
+          label=""
           type="text"
           value={ing}
           placeholder="Add an ingredient"

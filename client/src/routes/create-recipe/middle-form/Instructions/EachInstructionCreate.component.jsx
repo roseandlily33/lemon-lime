@@ -7,18 +7,21 @@ import DeleteIcon from "../../../../images/icons/DeleteIcon.icon";
 
 const EachInstructionCreate = ({
   instr = "",
+  key,
   idx = 1,
+  insID,
   deleteInstruction,
   instructions = [],
   setInstructions,
 }) => {
   useEffect(() => {
-    const { id, ins } = instr;
+    //id,
+    const { ins } = instr;
     setInst(ins);
-    setInsID(id);
+    // setInsID(id);
   }, [instr]);
 
-  const [insID, setInsID] = useState();
+  // const [insID, setInsID] = useState();
   const [inst, setInst] = useState();
   const [updating, setUpdating] = useState(false);
 
@@ -36,10 +39,10 @@ const EachInstructionCreate = ({
 
   return (
     <>
-      <EachI className="boxShadow" key={insID}>
+      <EachI className="boxShadow" key={key}>
         {updating ? (
           <>
-            <div className="left">
+            <div className="left" key={key}>
               <h4>{idx + 1}</h4>
               <input
                 type="text"
@@ -67,7 +70,7 @@ const EachInstructionCreate = ({
           </>
         ) : (
           <>
-            <div className="left">
+            <div className="left" key={key}>
               <h4>{idx + 1}</h4>
               <p>{inst}</p>
             </div>
@@ -94,7 +97,9 @@ EachInstructionCreate.propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     ins: PropTypes.string.isRequired,
   }),
+  key: PropTypes.string,
   idx: PropTypes.number,
+  insID: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   deleteInstruction: PropTypes.func.isRequired,
   instructions: PropTypes.arrayOf(
     PropTypes.shape({

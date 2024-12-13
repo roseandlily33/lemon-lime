@@ -20,9 +20,6 @@ const DeleteRecipe = ({ id }) => {
   const { isLoading, error, alert } = useSelector((state) => state.crudRecipes);
   const { notificationType, successMessage } = useNotification(error, alert);
 
-  if (!user) {
-    navigate("/");
-  }
   const handleDeleteRecipe = async(e) => {
     e.preventDefault();
     dispatch(deleteRecipe(id));

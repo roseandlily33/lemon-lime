@@ -68,7 +68,7 @@ const PhotosCreate = ({ images, addNewImage }) => {
 PhotosCreate.propTypes = {
   images: PropTypes.array,
   addNewImage: PropTypes.func.isRequired,
-  addNewPhotos: PropTypes.func.isRequired,
+  //addNewPhotos: PropTypes.func.isRequired,
 };
 
 export default PhotosCreate;

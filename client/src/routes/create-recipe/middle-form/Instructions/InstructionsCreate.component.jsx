@@ -53,12 +53,13 @@ const InstructionsCreate = ({
           <>
             {instructions.map((ins, idx) => (
               <EachInstructionCreate
-                key={ins._id}
+                key={ins._id || idx}
                 deleteInstruction={deleteInstruction}
                 instr={ins}
                 idx={idx}
                 instructions={instructions}
                 setInstructions={setInstructions}
+                insID={ins._id || idx}
               />
             ))}
           </>

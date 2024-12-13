@@ -17,7 +17,7 @@ const DeletePhotoButton = ({ photo, setImages }) => {
   );
 };
 DeletePhotoButton.propTypes = {
-  photo: PropTypes.string,
+  photo: PropTypes.object,
   setImages: PropTypes.func.isRequired,
 };
 

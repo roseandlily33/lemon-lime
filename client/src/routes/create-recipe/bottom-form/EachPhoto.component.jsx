@@ -26,8 +26,8 @@ const EachPhotoCreate = ({ images, setImages }) => {
   );
 };
 EachPhotoCreate.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string),
-  setImages: PropTypes.func.isRequired,
+  images: PropTypes.array,
+  setImages: PropTypes.func,
 };
 
 export default EachPhotoCreate;

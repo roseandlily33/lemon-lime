@@ -33,11 +33,7 @@ const CookTimeCreate = ({ formValues, handleChange }) => {
 };
 CookTimeCreate.propTypes = {
   formValues: PropTypes.shape({
-    cookTime: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.arrayOf(PropTypes.number),
-    ]),
+    cookTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }),
   handleChange: PropTypes.func.isRequired,
 };
