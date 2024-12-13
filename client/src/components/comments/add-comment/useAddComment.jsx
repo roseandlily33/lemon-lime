@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 const useAddComment = (singleRecipe, user, formState, starRating) => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
   const addCommentPost = async () => {
     const fullComment = {
       ...formState,

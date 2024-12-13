@@ -45,7 +45,7 @@ export const editComment = createAsyncThunk(
         body: JSON.stringify(comment),
       });
       if (!response.ok) {
-        throw new Error("Failed to add comment");
+        throw new Error("Failed to edit comment");
       }
       const data = await response.json();
       return data;
@@ -66,8 +66,9 @@ export const deleteComment = createAsyncThunk(
           "Content-Type": "application/json",
         },
       });
+      console.log("Delete comment response", response);
       if (!response.ok) {
-        throw new Error("Failed to add comment");
+        throw new Error("Failed to delete comment");
       }
       const data = await response.json();
       return data;

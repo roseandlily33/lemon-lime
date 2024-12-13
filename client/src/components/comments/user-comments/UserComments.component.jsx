@@ -14,6 +14,7 @@ const UserComments = () => {
   const comments = useSelector((state) => state.user.userComments);
   const [editing, setEditing] = useState(false);
   const [editComment, setEditComment] = useState();
+  console.log("COMMENTs", comments);
   return (
     <UserCommentsContainer>
       <h2>Your Comments</h2>

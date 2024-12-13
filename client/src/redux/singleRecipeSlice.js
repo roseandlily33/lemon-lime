@@ -59,10 +59,11 @@ export const singleRecipeSlice = createSlice({
         state.author = action.payload?.authorName;
         state.averageOfStars = averageOfStars(action.payload?.comments);
         state.isLoading = false;
+        state.error = null;
       })
-      .addCase(fetchSingleRecipe.rejected, (state, action) => {
+      .addCase(fetchSingleRecipe.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = "Failed to fetch recipe";
       });
   },
 });

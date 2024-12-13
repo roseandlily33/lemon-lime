@@ -74,6 +74,21 @@ export const userSlice = createSlice({
         return fave !== action.payload;
       });
     },
+    updateComment: (state, action) => {
+      console.log("Incoming", action.payload);
+      state.userComments = state.userComments.map((comment) => {
+        if (comment._id === action.payload._id) {
+          return action.payload;
+        }
+        return comment;
+      });
+      console.log("State comments after updated", state.userComments);
+    },
+    deleteCommentFromUser: (state, action) => {
+      state.userComments = state.userComments.filter((comment) => {
+        return comment._id !== action.payload;
+      });
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -100,7 +115,14 @@ export const selectCommentById = (state, commentId) =>
 export const selectRecipeById = (state, recipeId) =>
   state.user.userRecipes.find((recipe) => recipe._id === recipeId);
 
-export const { setUser, updateUser, logOut, addFavorite, removeFavorite } =
-  userSlice.actions;
+export const {
+  setUser,
+  updateUser,
+  logOut,
+  addFavorite,
+  removeFavorite,
+  updateComment,
+  deleteCommentFromUser,
+} = userSlice.actions;
 
 export default userSlice.reducer;
