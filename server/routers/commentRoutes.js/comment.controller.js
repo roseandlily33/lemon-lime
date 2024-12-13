@@ -92,18 +92,22 @@ async function httpEditComment(req, res){
 async function httpDeleteComment(req, res){
     try{
         const id = req.params.id; 
+        console.log("Deleting this comment", id);
         if (!id) {
             return res.status(400).json({ msg: 'Invalid id' });
         }
         const deletedComment = await Comment.findOneAndDelete({_id: id});
+        console.log("Deleted comment", deletedComment);
         if(!deletedComment){
             return res.status(404).json({msg: "Comment could not be deleted"})
         }
         const userUpdated = await User.findOneAndUpdate({_id: deletedComment.author}, {$pull: {comments: deletedComment._id}});
+        console.log("User updated");
         if(!userUpdated){
             return res.status(404).json({msg: "User has not been updated"})
         }
-        const recipeUpdated = await Recipe.findOneAndUpdate({_id: deletedComment.recipe}, {$pull: {comments: deletedComment._id}})
+        const recipeUpdated = await Recipe.findOneAndUpdate({_id: deletedComment.recipe}, {$pull: {comments: deletedComment._id}});
+        console.log("Recipe updated", recipeUpdated);
         if(!recipeUpdated){
             return res.status(404).json({msg: "Recipe has not been updated"})
         }
