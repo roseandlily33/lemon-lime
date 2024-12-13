@@ -13,12 +13,14 @@ import { useSelector, useDispatch } from "react-redux";
 import Profile from "../../images/Profile1.jpg";
 import React, { useEffect, useState } from "react";
 import { fetchUserRecipes } from "../../redux/userSlice";
+import { selectFilteredRecipes } from "../../redux/userSlice";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 
 const UserHome = () => {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth0();
   const dispatch = useDispatch();
   const [userLoading, setUserLoading] = useState(true);
-
+  const [searchQuery, setSearchQuery] = useState("");
   const { userRecipes, isLoading, error } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -65,6 +67,11 @@ const UserHome = () => {
     }
   };
 
+  const searchUserRecipes = () => {
+    const recipes = selectFilteredRecipes(userRecipes, searchQuery);
+    console.log("Found recipes", recipes);
+  };
+
   if (error) {
     return <h3>An error has occured</h3>;
   }
@@ -88,6 +95,16 @@ const UserHome = () => {
             />
             <h2>Welcome {user?.nickname}</h2>
           </UserInfo>
+          {/* Search Bar for recipes */}
+          <div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search for a recipe"
+            />
+            <PrimaryButton span="Search" functionName={searchUserRecipes} />
+          </div>
           <UserContentContainer>
             <UserOptions>
               {buttonItems.map((button) => {

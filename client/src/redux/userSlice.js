@@ -115,6 +115,12 @@ export const selectCommentById = (state, commentId) =>
 export const selectRecipeById = (state, recipeId) =>
   state.user.userRecipes.find((recipe) => recipe._id === recipeId);
 
+export const selectFilteredRecipes = (state, filter) => {
+  return state.user.userRecipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(filter.toLowerCase())
+  );
+};
+
 export const {
   setUser,
   updateUser,
