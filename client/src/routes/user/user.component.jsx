@@ -11,22 +11,28 @@ import RecipeContainer3 from "../../components/recipe/Recipe3.component";
 import Loader from "../../components/loader/Loader.component";
 import { useSelector, useDispatch } from "react-redux";
 import Profile from "../../images/Profile1.jpg";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchUserRecipes } from "../../redux/userSlice";
 
 const UserHome = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth0();
   const dispatch = useDispatch();
-  if (!isAuthenticated) {
-    navigate("/");
-  }
+  const [userLoading, setUserLoading] = useState(true);
+
   const { userRecipes, isLoading, error } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (!userRecipes) {
+    if (user && !userRecipes) {
       dispatch(fetchUserRecipes(user.sub));
+    } else if (!authLoading && !isAuthenticated) {
+      navigate("/");
     }
-  }, [userRecipes]);
+  }, [userRecipes, user, isAuthenticated, dispatch]);
+  useEffect(() => {
+    if (!authLoading && user) {
+      setUserLoading(false);
+    }
+  }, [authLoading, user]);
 
   const navigate = useNavigate();
   const buttonItems = [
@@ -62,7 +68,7 @@ const UserHome = () => {
   if (error) {
     return <h3>An error has occured</h3>;
   }
-  if (isLoading) {
+  if (isLoading || userLoading) {
     return <Loader />;
   }
 
