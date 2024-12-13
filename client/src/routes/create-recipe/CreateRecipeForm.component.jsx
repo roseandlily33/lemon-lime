@@ -23,8 +23,6 @@ const CreateRecipeForm = () => {
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState([]);
   const [images, setImages] = useState([]);
-  //For Displaying the photos
-  const [photos, setPhotos] = useState([]);
 
   const clearForm = () => {
     setFormValues({
@@ -61,12 +59,7 @@ const CreateRecipeForm = () => {
         />
       </MiddleForm>
       <BottomForm>
-        <BottomCreate
-          images={images}
-          setImages={setImages}
-          setPhotos={setPhotos}
-          photos={photos}
-        />
+        <BottomCreate images={images} setImages={setImages} />
       </BottomForm>
       <CreateRecipeSubmit
         formValues={formValues}
