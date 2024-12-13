@@ -38,6 +38,7 @@ async function httpAddFavoriteRecipe(req, res){
       console.log('Adding faves')
       const userId = req.body.userId;
       const recipeId = req.body.recipeId;
+      console.log('Req body for faves', req.body);
       if(!userId || !recipeId){
         return res.status(404).json({msg: 'Could not add a favorite recipe'})
       }
@@ -45,13 +46,16 @@ async function httpAddFavoriteRecipe(req, res){
       if (!user) {
         return res.status(404).json({ msg: 'User not found' });
       }
+      console.log("FOUND USER", user);
       const isFavorite = user.favorites.has(recipeId);
+      console.log("Is favorite", isFavorite);
       if (isFavorite) {
+        console.log("Already a fave", isFavorite);
         return res.status(400).json({ msg: 'Recipe is already a favorite' });
       }
       await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: 1}});
       await User.findOneAndUpdate({authId: userId}, {
-        $set: {["favorites." + recipeId]: ''}
+        $set: {["favorites." + recipeId]: 'true'}
       });
       return res.status(201).json({msg: 'Added the new recipe'})
     } catch(err){
@@ -66,8 +70,6 @@ async function httpDeleteFavoriteRecipe(req, res){
       console.log('Deleting recipe')
       let userId = req.body.userId;
       let recipeId = req.body.recipeId;
-      console.log('Req body', req.body);
-      console.log('USERID', userId, 'RECIPEID', recipeId);
       if(!userId || !recipeId){
         console.log('Missing item')
         return res.status(404).json({msg: "Could not delete favorite the recipe"});
@@ -76,13 +78,22 @@ async function httpDeleteFavoriteRecipe(req, res){
       if (!user) {
         console.log('User not found');
         return res.status(404).json({ msg: 'User not found' });
-      } else {
-         await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: -1}});
-         await User.findOneAndUpdate({authId: userId}, {
+      } 
+      const recipe = await Recipe.findById(recipeId);
+      if (!recipe) {
+        return res.status(404).json({msg: "Recipe not found"});
+      }
+      if(recipe.favorites > 0 ){
+        await Recipe.findOneAndUpdate({_id : recipeId}, {$inc: {favorites: -1}});
+      }
+        
+      const userFinal =  await User.findOneAndUpdate({authId: userId}, {
           $unset: {["favorites." + recipeId]: ''}
         });
+        console.log("USER FINAL REMOVED FAVED", userFinal);
+
       console.log('Removed the favorite recipe')
-      }
+     
       return res.status(201).json({msg: 'Removed the favorite recipe'})
     } catch(err){
       console.log('ERROR', err)
