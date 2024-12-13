@@ -38,6 +38,14 @@ export const singleRecipeSlice = createSlice({
     addCommentRecipe: (state, action) => {
       state.comments.push(action.payload);
     },
+    incrementFave: (state) => {
+      state.recipe.favorites += 1;
+    },
+    decrementFave: (state) => {
+      if (state.recipe.favorites > 0) {
+        state.recipe.favorites -= 1;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -59,6 +67,7 @@ export const singleRecipeSlice = createSlice({
   },
 });
 
-export const { clearRecipe, addCommentRecipe } = singleRecipeSlice.actions;
+export const { clearRecipe, addCommentRecipe, incrementFave, decrementFave } =
+  singleRecipeSlice.actions;
 
 export default singleRecipeSlice.reducer;

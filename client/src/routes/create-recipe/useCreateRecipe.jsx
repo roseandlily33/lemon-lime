@@ -10,7 +10,8 @@ const useCreateRecipe = (
   images,
   instructions,
   ingredients,
-  setIsOpen
+  setIsOpen,
+  clearForm
 ) => {
   const dispatch = useDispatch();
   const [errorState, setError] = useState("");
@@ -49,8 +50,9 @@ const useCreateRecipe = (
     };
     setIsOpen(true);
     dispatch(createRecipe({ user: user, recipe: fullRecipe }));
-    //dispatch(fetchUserRecipes(user.sub));
+    clearForm();
   };
+
   const fetchNewUserRecipes = () => {
     dispatch(fetchUserRecipes(user.sub));
   }

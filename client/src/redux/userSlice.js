@@ -64,7 +64,10 @@ export const userSlice = createSlice({
       state.user = null;
     },
     addFavorite: (state, action) => {
+      console.log("ACTION PAYLOAD", action.payload);
+      console.log("ADDING STATE", state.userFavorites);
       state.userFavorites.push(action.payload);
+      console.log("AFTER ADDING STATE", state.userFavorites);
     },
     removeFavorite: (state, action) => {
       state.userFavorites = state.userFavorites.filter((fave) => {
@@ -82,7 +85,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.userRecipes = action.payload.recipes;
         state.userComments = action.payload.comments;
-        state.userFavorites = action.payload.favorites;
+        state.userFavorites = Object.keys(action.payload.favorites);
       })
       .addCase(fetchUserRecipes.rejected, (state, action) => {
         state.isLoading = false;

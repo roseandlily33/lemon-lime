@@ -16,6 +16,7 @@ const CreateRecipeSubmit = ({
   images,
   instructions,
   ingredients,
+  clearForm,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -27,7 +28,8 @@ const CreateRecipeSubmit = ({
     images,
     instructions,
     ingredients,
-    setIsOpen
+    setIsOpen,
+    clearForm
   );
 
   const { notificationType, successMessage } = useNotification(error, alert);
@@ -68,6 +70,7 @@ CreateRecipeSubmit.propTypes = {
   images: PropTypes.array,
   instructions: PropTypes.array,
   ingredients: PropTypes.array,
+  clearForm: PropTypes.func,
 };
 
 export default CreateRecipeSubmit;

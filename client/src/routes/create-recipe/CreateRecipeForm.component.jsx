@@ -26,6 +26,18 @@ const CreateRecipeForm = () => {
   //For Displaying the photos
   const [photos, setPhotos] = useState([]);
 
+  const clearForm = () => {
+    setFormValues({
+      recipeName: "",
+      cookTime: "",
+      prepTime: "",
+      description: "",
+    });
+    setImages([]);
+    setInstructions([]);
+    setIngredients([]);
+  };
+
   return (
     <>
       <TopForm>
@@ -61,6 +73,7 @@ const CreateRecipeForm = () => {
         images={images}
         instructions={instructions}
         ingredients={ingredients}
+        clearForm={clearForm}
       />
     </>
   );
