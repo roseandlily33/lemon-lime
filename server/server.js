@@ -6,7 +6,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const app = express();
 const router = require("./routers");
-const { connectToMongoose } = require("./connection/mongo");
+const { connectToMongoose } = require("./utils/mongo");
 const PORT = process.env.PORT || 8000;
 require("dotenv").config();
 
