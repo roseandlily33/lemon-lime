@@ -5,6 +5,7 @@ MERN Recipe Application
 - [Description](#description)
 - [Screenshots](#screenshots)
 - [Live URL](#live-url)
+- [Development](#development)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
@@ -22,6 +23,17 @@ A MERN Recipe Application where you can favorite, search, share, edit and create
 ## Live URL:
 https://lemon-lime.onrender.com
 
+## Development:
+### Current stage: 
+- Middleware authentication on the backend 
+- Search on user home
+- Authentication on backend
+- Issue with delete comment modal
+- Responsive Styling
+
+### In Progress & Future Development: 
+- More actions on the user home page
+
 ## Features:
 - User Authentication with Auth0
 - Create, edit, and delete recipes
@@ -30,9 +42,10 @@ https://lemon-lime.onrender.com
 - Responsive Design
 
 ## Technologies Used:
-###Front End:
+### Front End:
 - React
 - React-Router-Dom
+- Redux
 - Auth0 (For Authentication)
 - UUID 
 - Hamburger Menu 
@@ -45,6 +58,8 @@ https://lemon-lime.onrender.com
 - Mongoose
 - Express
 - Security Packages; dotenv, helmet, bcrypt, cors
+
+- Prettier & Eslint
 
 ## Instiallation:
 1. Clone the repository
@@ -73,3 +88,4 @@ For the backend I chose MongoDB, because of it easy with flexibility when it com
 Apache
 
 ## Contact:
+vrose834@gmail.com
