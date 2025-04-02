@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "backend for lemon lime",
+  "description": "Backend for lemon lime",
   "main": "server.js",
   "engines": {
     "node": ">=16.0.0"
