@@ -8,7 +8,7 @@ import {
   LeftSide,
   RightSide,
   Bottom,
-} from "./SingleRecipe.styles";
+} from "./singleRecipe.styles";
 import Comment from "../../components/comments/add-comment/Comments.component";
 import Loader from "../../components/loader/Loader.component";
 import RecipeComments from "../../components/comments/recipe-comments/RecipeComment.component";
@@ -17,8 +17,8 @@ import Heart from "../../components/heart/Heart.component";
 import { NavLink } from "react-router-dom";
 import { formatStars } from "../../formatting-utils/stars";
 import { useAuth0 } from "@auth0/auth0-react";
-import IngredientSection from "./ingredients/Ingredients.component";
-import InstructionSection from "./instructions/Instructions.component";
+import IngredientSection from "./Ingredients/Ingredients.component";
+import InstructionSection from "./Instructions/Instructions.component";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchSingleRecipe } from "../../redux/singleRecipeSlice";
 

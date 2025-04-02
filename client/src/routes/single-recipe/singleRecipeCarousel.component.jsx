@@ -8,7 +8,7 @@ import {
   RightDirection,
   Indicator,
   RecipeImage,
-} from "./SingleRecipeCarousel.styles";
+} from "./singleRecipeCarousel.styles";
 import CloudImage from "../../photos-cloudinary/photo.component";
 import ChevronLeft from "../../images/icons/ChevronLeftIcon.icon";
 import ChevronRight from "../../images/icons/ChevronRightIcon.icon";

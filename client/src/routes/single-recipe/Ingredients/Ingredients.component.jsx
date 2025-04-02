@@ -1,4 +1,4 @@
-import { IngredientsDiv } from "../SingleRecipe.styles";
+import { IngredientsDiv } from "../singleRecipe.styles";
 import PropTypes from "prop-types";
 import React from "react";
 

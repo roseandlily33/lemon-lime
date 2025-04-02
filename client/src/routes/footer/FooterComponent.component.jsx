@@ -1,4 +1,4 @@
-import { FooterContainer } from "./Footer.styles";
+import { FooterContainer } from "./footer.styles";
 import Logo from "../../images/Lemon - Lime.svg";
 import React from "react";
 import { Link } from "react-router-dom";

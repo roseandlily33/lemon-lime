@@ -4,10 +4,10 @@ import {
   UserContentContainer,
   UserOptions,
   UserInfo,
-} from "./User.styles";
+} from "./user.styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-import RecipeContainer3 from "../../components/recipe/Recipe3.component";
+import RecipeContainer3 from "../../components/recipe/recipe3.component";
 import Loader from "../../components/loader/Loader.component";
 import { useSelector, useDispatch } from "react-redux";
 import Profile from "../../images/Profile1.jpg";

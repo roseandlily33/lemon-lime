@@ -30,6 +30,7 @@ https://lemon-lime.onrender.com
 - Authentication on backend
 - Issue with delete comment modal
 - Responsive Styling
+- Issue with the file names capitalization
 
 ### In Progress & Future Development: 
 - More actions on the user home page

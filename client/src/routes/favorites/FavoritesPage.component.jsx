@@ -2,7 +2,7 @@ import {
   FavoritesContainerMain,
   FavoritesRecipesDiv,
 } from "./Favorites.styles";
-import RecipeContainer2 from "../../components/recipe/Recipe2.container";
+import RecipeContainer2 from "../../components/recipe/recipe2.container";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
