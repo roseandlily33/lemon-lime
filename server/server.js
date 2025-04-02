@@ -9,6 +9,7 @@ const router = require("./routers");
 const { connectToMongoose } = require("./utils/connection");
 const PORT = process.env.PORT || 8000;
 require("dotenv").config();
+console.log('DIRNAME', __dirname);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -47,8 +48,8 @@ router.use((req, res, next) => {
   console.log('-------------------------');
   next(); 
 });
-
-const indexHtmlPath = path.join(__dirname, "../client/build/index.html");
+// ../
+const indexHtmlPath = path.join(__dirname, "client/build/index.html");
 if (indexHtmlPath) {
   console.log("Index html path exists", indexHtmlPath);
 } else {
@@ -57,7 +58,8 @@ if (indexHtmlPath) {
 
 app.get("*", (req, res) => {
   // Changed from join to resolve
-  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+  //../
+  res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
   // res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 

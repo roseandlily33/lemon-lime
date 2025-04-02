@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: yoda
+    name: lemon-lime
     env: node
     plan: free
     buildCommand: cd client && npm install && npm run build && cd ../server && npm install
@@ -8,8 +8,6 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: FRONTEND_ROUTE
-        value: https://yodasafetyservices.com
     staticPublishPath: client/build
     routes:
       - type: rewrite
