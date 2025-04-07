@@ -25,6 +25,11 @@ const SearchPage = () => {
     dispatch(setAlert(""));
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(setAlert(""));
+    setFirstLoad(false);
+  }, [dispatch]);
+
   const { results, recent, isLoading, error, alert } = useSelector(
     (state) => state.search
   );
@@ -34,10 +39,10 @@ const SearchPage = () => {
   }, [results, popularRecipes]);
 
   useEffect(() => {
-    if (results.length === 0 && !isLoading && !firstLoad) {
+    if (!firstLoad && results.length === 0 && !isLoading) {
       dispatch(setAlert("No Recipes Found"));
     }
-  }, [results, isLoading, dispatch]);
+  }, [results, isLoading, dispatch, firstLoad]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -60,11 +65,6 @@ const SearchPage = () => {
     const subCat = e.target.value;
     setSubCategory(subCat);
   };
-
-  useEffect(() => {
-    dispatch(setAlert(""));
-    setFirstLoad(false);
-  }, []);
 
   return (
     <SearchContainer>
