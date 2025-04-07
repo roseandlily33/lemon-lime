@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { ResultsDiv, StyledDiv, SearchContainer } from "./search.styles";
 import SearchResults from "./results/SearchResultsPage.component";
 import RecentlySearched from "./recent/RecentPage.component";
-import IconButton from "../../components/buttons/icon-button/IconButton.component";
+import IconButton from "../../components/buttons-template/icon-button/IconButton.component";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchSearchedRecipes,
@@ -10,7 +10,7 @@ import {
   setAlert,
   setRecent,
 } from "../../redux/searchSlice";
-import Loader from "../../components/loader/LoaderIcon.component";
+import Loader from "../../components/loader-spinner/LoaderIcon.component";
 import SearchIcon from "../../images/icons/SearchIcon.icon";
 
 const SearchPage = () => {

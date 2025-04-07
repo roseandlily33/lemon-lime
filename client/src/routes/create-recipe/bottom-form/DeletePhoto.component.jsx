@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import DestructiveButton from "../../../components/buttons/destructive-button/DestructiveButton.component";
+import DestructiveButton from "../../../components/buttons-template/destructive-button/DestructiveButton.component";
 
 const DeletePhotoButton = ({ photo, setImages }) => {
   const deletePhoto = (e, photo) => {

@@ -4,7 +4,7 @@ import { formatDate } from "../../../formatting-utils/date";
 import { formatStars } from "../../../formatting-utils/stars";
 import DeleteComment from "../delete-comment/DeleteComment.component";
 import React from "react";
-import PrimaryButton from "../../buttons/primary-button/PrimaryButton.component";
+import PrimaryButton from "../../buttons-template/primary-button/PrimaryButton.component";
 import { clearState } from "../../../redux/commentsSlice";
 import { useDispatch } from "react-redux";
 

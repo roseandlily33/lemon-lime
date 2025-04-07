@@ -1,4 +1,4 @@
-import Loader from "../../loader/LoaderIcon.component";
+import Loader from "../../loader-spinner/LoaderIcon.component";
 import PropTypes from "prop-types";
 import React from "react";
 import {

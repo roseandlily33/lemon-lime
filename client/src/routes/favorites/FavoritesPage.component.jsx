@@ -5,7 +5,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Loader from "../../components/loader/LoaderIcon.component";
+import Loader from "../../components/loader-spinner/LoaderIcon.component";
 import React from "react";
 import RecipeContainer2 from "../../components/recipe-containers/Recipe2.component";
 

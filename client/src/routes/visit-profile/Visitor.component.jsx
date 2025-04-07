@@ -13,7 +13,7 @@ import RecipeContainer from "../../components/recipe-containers/Recipe1.componen
 import Background from "../../images/Background4.jpg";
 import Profile from "../../images/Profile1.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/loader/LoaderIcon.component";
+import Loader from "../../components/loader-spinner/LoaderIcon.component";
 import {
   fetchUserRecipes,
   fetchUsersFavoriteRecipes,

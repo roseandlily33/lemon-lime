@@ -2,7 +2,7 @@ import React from "react";
 import { ErrorBoundary as ReactErrorBoundary } from "react-error-boundary";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
+import PrimaryButton from "../../components/buttons-template/primary-button/PrimaryButton.component";
 import { ErrorBoundaryContainer, ErrorInfo } from "./ErrorBoundary.styles";
 
 // UPDATED ERROR BOUNDARY COMPONENT

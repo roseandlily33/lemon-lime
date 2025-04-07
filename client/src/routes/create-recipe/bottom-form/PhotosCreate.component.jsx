@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../../components/modal/Model.component";
-import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton.component";
+import PrimaryButton from "../../../components/buttons-template/primary-button/PrimaryButton.component";
 
 const PhotosCreate = ({ images, addNewImage }) => {
   const [isOpen, setIsOpen] = useState(false);
