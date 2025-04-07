@@ -49,7 +49,7 @@ router.use((req, res, next) => {
   next(); 
 });
 // ../
-const indexHtmlPath = path.join(__dirname, "client/build/index.html");
+const indexHtmlPath = path.join(__dirname, "../client/build/index.html");
 if (indexHtmlPath) {
   console.log("Index html path exists", indexHtmlPath);
 } else {
@@ -59,7 +59,7 @@ if (indexHtmlPath) {
 app.get("*", (req, res) => {
   // Changed from join to resolve
   //../
-  res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
   // res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
@@ -74,13 +74,6 @@ async function startServer() {
   await app.listen(PORT, () => {
     console.log("Listening on port mongoose", PORT);
   });
-  if (process.env.ENV_DEV_PROD === "development") {
-    // DEVELOPMENT ONLY - Uncomment any time you need to update a model
-    // await updateUsers();
-    // await updateCompanies();
-    // await updateCourses();
-    // runCronJobNow();
-  }
 }
 
 startServer();
