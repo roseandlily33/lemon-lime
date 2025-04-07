@@ -2,7 +2,7 @@ import { CommentContainer, CommentForm, FormElement } from "./Comments.styles";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useAuth0 } from "@auth0/auth0-react";
-import RedirectLoginButton from "../../buttons-template/redirect-login-button/RedirectLogin.component";
+import RedirectLoginButton from "../../buttons/redirect-login-button/RedirectLogin.component";
 import { useSelector } from "react-redux";
 import Loader from "../../loader-spinner/LoaderIcon.component";
 import useAddComment from "./useAddComment";

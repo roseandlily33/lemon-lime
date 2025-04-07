@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Turn as Hamburger } from "hamburger-react";
-import PrimaryButton from "../../components/buttons-template/primary-button/PrimaryButton.component";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 import SearchIcon from "../../images/icons/SearchIcon.icon";
 import ThumbsUpIcon from "../../images/icons/ThumbsUpIcon.icon";
 import UserIcon from "../../images/icons/UserIcon.icon";

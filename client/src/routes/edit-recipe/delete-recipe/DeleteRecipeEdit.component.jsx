@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../../../components/loader-spinner/LoaderIcon.component";
-import DestructiveButton from "../../../components/buttons-template/destructive-button/DestructiveButton.component";
+import DestructiveButton from "../../../components/buttons/destructive-button/DestructiveButton.component";
 import Modal from "../../../components/modal/Model.component";
 import useNotification from "../../../utils/useNotification";
 import { deleteRecipe, clearState } from "../../../redux/crudRecipeSlice";
 import { fetchUserRecipes } from "../../../redux/userSlice";
 import Notification from "../../../components/notification/Notification.component";
-import PrimaryButton from "../../../components/buttons-template/primary-button/PrimaryButton.component";
+import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton.component";
 // prettier-ignore
 const DeleteRecipe = ({ id }) => {
   const navigate = useNavigate();

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import Measurement from "./Measurement.component";
 import EachIngredientCreate from "./EachIngredientCreate.component";
 import { MiddleContainer, InputDiv } from "../../RecipeForm.styles";
-import IconButton from "../../../../components/buttons-template/icon-button/IconButton.component";
+import IconButton from "../../../../components/buttons/icon-button/IconButton.component";
 import RegularInput from "../../../../components/input-template/regular-input/RegularInput.component";
 import AddIcon from "../../../../images/icons/AddIcon.icon";
 

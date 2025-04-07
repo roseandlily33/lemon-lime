@@ -14,7 +14,7 @@ import Profile from "../../images/Profile1.jpg";
 import React, { useEffect, useState } from "react";
 import { fetchUserRecipes } from "../../redux/userSlice";
 import { selectFilteredRecipes } from "../../redux/userSlice";
-import PrimaryButton from "../../components/buttons-template/primary-button/PrimaryButton.component";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 
 const UserHome = () => {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth0();

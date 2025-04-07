@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Lemons from "../../images/lemons.jpg";
 import { useNavigate } from "react-router-dom";
 import CloudImage from "../../photos-cloudinary/photo.component";
-import IconButton from "../buttons-template/icon-button/IconButton.component";
+import IconButton from "../buttons/icon-button/IconButton.component";
 import React from "react";
 import PropTypes from "prop-types";
 import EditIcon from "../../images/icons/EditIcon.icon";

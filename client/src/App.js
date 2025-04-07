@@ -14,7 +14,7 @@ import CreateRecipeForm from "./routes/create-recipe/CreateRecipe.component.jsx"
 import BasePage from "./routes/base/BasePage.component.jsx";
 import NotFound from "./routes/not-found/NotFoundPage.component.jsx";
 import VisitorPage from "./routes/visit-profile/Visitor.component.jsx";
-import UserComments from "./components/comments-template/user-comments/UserComments.component.js";
+import UserComments from "./components/comments/user-comments/UserComments.component.js";
 import UserBaseTemplate from "./routes/user/UserBaseTemplate.component.jsx";
 // Authentication:
 import { useAuth0 } from "@auth0/auth0-react";

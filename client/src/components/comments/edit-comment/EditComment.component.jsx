@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { CommentDiv } from "../user-comments/UserComments.styles";
 import RequiredInput from "../../input-template/required-input/RequiredInput.component";
 import { useSelector } from "react-redux";
-import PrimaryButton from "../../buttons-template/primary-button/PrimaryButton.component";
+import PrimaryButton from "../../buttons/primary-button/PrimaryButton.component";
 import Notification from "../../notification/Notification.component";
 import useNotification from "../../../utils/useNotification";
 import useEditComment from "./useEditComment";

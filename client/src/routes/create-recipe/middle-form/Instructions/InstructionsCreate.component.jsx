@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import { InputDiv, MiddleContainer } from "../../RecipeForm.styles";
 import EachInstructionCreate from "./EachInstructionCreate.component";
-import IconButton from "../../../../components/buttons-template/icon-button/IconButton.component";
+import IconButton from "../../../../components/buttons/icon-button/IconButton.component";
 import AddIcon from "../../../../images/icons/AddIcon.icon";
 
 const InstructionsCreate = ({

@@ -11,7 +11,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MainPicture from "../../images/Background3.jpg";
 import { useNavigate } from "react-router-dom";
-import PrimaryButton from "../../components/buttons-template/primary-button/PrimaryButton.component";
+import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 import Loader from "../../components/loader-spinner/LoaderIcon.component";
 import { fetchRecent } from "../../redux/recipeSlice";
 

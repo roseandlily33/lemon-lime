@@ -9,9 +9,9 @@ import {
   RightSide,
   Bottom,
 } from "./singleRecipe.styles";
-import Comment from "../../components/comments-template/add-comment/Comments.component";
+import Comment from "../../components/comments/add-comment/Comments.component";
 import Loader from "../../components/loader-spinner/LoaderIcon.component";
-import RecipeComments from "../../components/comments-template/recipe-comments/RecipeComment.component";
+import RecipeComments from "../../components/comments/recipe-comments/RecipeComment.component";
 import Carousel from "./SingleRecipeCarouselComponent.component";
 import Heart from "../../components/heart-icon/HeartIcon.component";
 import { NavLink } from "react-router-dom";

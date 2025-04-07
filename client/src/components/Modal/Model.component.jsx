@@ -1,7 +1,7 @@
 import { ModalContainer } from "./modal.styles";
 import React from "react";
 import PropTypes from "prop-types";
-import SecondaryButton from "../buttons-template/secondary-button/SecondaryButton.component";
+import SecondaryButton from "../buttons/secondary-button/SecondaryButton.component";
 
 const Modal = ({ children, onClose }) => {
   return (
