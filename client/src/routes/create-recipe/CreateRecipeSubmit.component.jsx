@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { SubmitButtonContainer } from "./RecipeForm.styles";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import Loader from "../../components/loader/Loader.component";
+import Loader from "../../components/loader/LoaderIcon.component";
 import CreateEditRecipeButton from "../../components/buttons/create-recipe-button/CreateRecipeButton.component";
 import useNotification from "../../utils/useNotification";
 import Modal from "../../components/modal/Model.component";

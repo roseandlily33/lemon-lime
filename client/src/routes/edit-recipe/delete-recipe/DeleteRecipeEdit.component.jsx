@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import Loader from "../../../components/loader/Loader.component";
+import Loader from "../../../components/loader/LoaderIcon.component";
 import DestructiveButton from "../../../components/buttons/destructive-button/DestructiveButton.component";
 import Modal from "../../../components/modal/Model.component";
 import useNotification from "../../../utils/useNotification";
@@ -20,13 +20,13 @@ const DeleteRecipe = ({ id }) => {
   const { isLoading, error, alert } = useSelector((state) => state.crudRecipes);
   const { notificationType, successMessage } = useNotification(error, alert);
 
-  const handleDeleteRecipe = async(e) => {
+  const handleDeleteRecipe = async (e) => {
     e.preventDefault();
     dispatch(deleteRecipe(id));
     dispatch(fetchUserRecipes(user.sub));
     setIsOpen(true);
     dispatch(clearState());
-}
+  }
 
   if (isLoading) {
     return <Loader />;
@@ -36,12 +36,12 @@ const DeleteRecipe = ({ id }) => {
     <>
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
-        <Notification status={notificationType} messageShown={successMessage} />
-        <PrimaryButton
-          functionName={() => navigate("/user/home")}
-          span="Go Home"
-        />
-      </Modal>
+          <Notification status={notificationType} messageShown={successMessage} />
+          <PrimaryButton
+            functionName={() => navigate("/user/home")}
+            span="Go Home"
+          />
+        </Modal>
       )}
       <DestructiveButton
         functionName={(e) => handleDeleteRecipe(e)}

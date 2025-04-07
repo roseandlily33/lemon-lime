@@ -1,5 +1,5 @@
-import RecipeContainer from "../../components/recipe/recipe.component";
-import RecipeContainer2 from "../../components/recipe/recipe2.container";
+import RecipeContainer from "../../components/recipe/Recipe1.component";
+import RecipeContainer2 from "../../components/recipe/Recipe2.component";
 import {
   MainDiv,
   BottomDiv,
@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import MainPicture from "../../images/Background3.jpg";
 import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
-import Loader from "../../components/loader/Loader.component";
+import Loader from "../../components/loader/LoaderIcon.component";
 import { fetchRecent } from "../../redux/recipeSlice";
 
 const HomePage = () => {

@@ -1,4 +1,4 @@
-import { SideContainer, ButtonRecipeContainer } from "./Recipe3.styles";
+import { SideContainer, ButtonRecipeContainer } from "./recipe3.styles";
 import { formatDate } from "../../formatting-utils/date";
 import { NavLink } from "react-router-dom";
 import Lemons from "../../images/lemons.jpg";

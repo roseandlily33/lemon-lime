@@ -2,11 +2,11 @@ import {
   FavoritesContainerMain,
   FavoritesRecipesDiv,
 } from "./favorites.styles";
-import RecipeContainer2 from "../../components/recipe/recipe2.container";
+import RecipeContainer2 from "../../components/recipe/Recipe2.component";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Loader from "../../components/loader/Loader.component";
+import Loader from "../../components/loader/LoaderIcon.component";
 import React from "react";
 
 const FavoritesPage = () => {

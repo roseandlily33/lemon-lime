@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useAuth0 } from "@auth0/auth0-react";
 import RedirectLoginButton from "../../buttons/redirect-login-button/RedirectLogin.component";
 import { useSelector } from "react-redux";
-import Loader from "../../loader/Loader.component";
+import Loader from "../../loader/LoaderIcon.component";
 import useAddComment from "./useAddComment";
 import AddCommentForm from "./CommentForm.component";
 

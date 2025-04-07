@@ -10,7 +10,7 @@ import {
   setAlert,
   setRecent,
 } from "../../redux/searchSlice";
-import Loader from "../../components/loader/Loader.component";
+import Loader from "../../components/loader/LoaderIcon.component";
 import SearchIcon from "../../images/icons/SearchIcon.icon";
 
 const SearchPage = () => {

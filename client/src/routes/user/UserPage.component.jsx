@@ -7,8 +7,8 @@ import {
 } from "./user.styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-import RecipeContainer3 from "../../components/recipe/recipe3.component";
-import Loader from "../../components/loader/Loader.component";
+import RecipeContainer3 from "../../components/recipe/Recipe3.components";
+import Loader from "../../components/loader/LoaderIcon.component";
 import { useSelector, useDispatch } from "react-redux";
 import Profile from "../../images/Profile1.jpg";
 import React, { useEffect, useState } from "react";

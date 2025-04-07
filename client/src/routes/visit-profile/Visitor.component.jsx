@@ -9,11 +9,11 @@ import {
   UserOptions,
   UserRecipeContainer,
 } from "./Visitor.styles";
-import RecipeContainer from "../../components/recipe/recipe.component";
+import RecipeContainer from "../../components/recipe/Recipe1.component";
 import Background from "../../images/Background4.jpg";
 import Profile from "../../images/Profile1.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/loader/Loader.component";
+import Loader from "../../components/loader/LoaderIcon.component";
 import {
   fetchUserRecipes,
   fetchUsersFavoriteRecipes,

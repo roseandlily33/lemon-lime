@@ -3,7 +3,7 @@ import { SubmitButtonContainer } from "../create-recipe/RecipeForm.styles";
 import DeleteRecipe from "./delete-recipe/DeleteRecipeEdit.component";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import Loader from "../../components/loader/Loader.component";
+import Loader from "../../components/loader/LoaderIcon.component";
 import { useNavigate } from "react-router-dom";
 import CreateRecipeButton from "../../components/buttons/create-recipe-button/CreateRecipeButton.component";
 import useNotification from "../../utils/useNotification";

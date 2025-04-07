@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { RatingDiv } from "./Rating.styles";
+import { RatingDiv } from "./rating.styles";
 import React from "react";
 
 //name took it out of the props

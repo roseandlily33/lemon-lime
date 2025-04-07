@@ -1,4 +1,4 @@
-import RecipeContainer2 from "../../../components/recipe/recipe2.container";
+import RecipeContainer2 from "../../../components/recipe/Recipe2.component";
 import PropTypes from "prop-types";
 import React from "react";
 import { SearchResultsDiv } from "./searchResults.styles";
