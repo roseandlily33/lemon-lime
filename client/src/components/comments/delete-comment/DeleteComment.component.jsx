@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import Modal from "../../modal/Model.component";
+import Modal from "../../modal-popup/Model.component";
 import { useSelector } from "react-redux";
 import SecondaryButton from "../../buttons/secondary-button/SecondaryButton.component";
 import DestructiveButton from "../../buttons/destructive-button/DestructiveButton.component";

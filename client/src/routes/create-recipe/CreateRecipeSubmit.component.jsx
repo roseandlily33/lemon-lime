@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Loader from "../../components/loader-spinner/LoaderIcon.component";
 import CreateEditRecipeButton from "../../components/buttons/create-recipe-button/CreateRecipeButton.component";
 import useNotification from "../../utils/useNotification";
-import Modal from "../../components/modal/Model.component";
+import Modal from "../../components/modal-popup/Model.component";
 import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 import Notification from "../../components/notification/Notification.component";
 import { useNavigate } from "react-router-dom";

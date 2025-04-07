@@ -7,7 +7,7 @@ import Loader from "../../components/loader-spinner/LoaderIcon.component";
 import { useNavigate } from "react-router-dom";
 import CreateRecipeButton from "../../components/buttons/create-recipe-button/CreateRecipeButton.component";
 import useNotification from "../../utils/useNotification";
-import Modal from "../../components/modal/Model.component";
+import Modal from "../../components/modal-popup/Model.component";
 import Notification from "../../components/notification/Notification.component";
 import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 import useEditRecipe from "./useEditRecipe";

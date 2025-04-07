@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../../components/modal/Model.component";
+import Modal from "../../../components/modal-popup/Model.component";
 import PrimaryButton from "../../../components/buttons/primary-button/PrimaryButton.component";
 
 const PhotosCreate = ({ images, addNewImage }) => {

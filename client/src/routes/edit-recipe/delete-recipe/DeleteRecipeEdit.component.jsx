@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../../../components/loader-spinner/LoaderIcon.component";
 import DestructiveButton from "../../../components/buttons/destructive-button/DestructiveButton.component";
-import Modal from "../../../components/modal/Model.component";
+import Modal from "../../../components/modal-popup/Model.component";
 import useNotification from "../../../utils/useNotification";
 import { deleteRecipe, clearState } from "../../../redux/crudRecipeSlice";
 import { fetchUserRecipes } from "../../../redux/userSlice";
