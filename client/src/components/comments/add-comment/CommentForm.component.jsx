@@ -1,7 +1,7 @@
 import React from "react";
 import { FormElement } from "./Comments.styles";
 import RequiredInput from "../../input-template/required-input/RequiredInput.component";
-import Rating from "../../rating/rating.component";
+import Rating from "../../rating-stars/RatingStars.component";
 import TextArea from "../../textarea/textarea.component";
 import PrimaryButton from "../../buttons/primary-button/PrimaryButton.component";
 import PropTypes from "prop-types";

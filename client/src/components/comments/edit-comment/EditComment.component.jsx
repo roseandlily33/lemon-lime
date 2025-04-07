@@ -1,4 +1,4 @@
-import Rating from "../../rating/rating.component";
+import Rating from "../../rating-stars/RatingStars.component";
 import PropTypes from "prop-types";
 import { CommentForm, FormElement } from "../add-comment/Comments.styles";
 import React, { useState, useEffect } from "react";
