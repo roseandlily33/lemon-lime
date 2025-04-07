@@ -1,4 +1,4 @@
-import { RecentContainer } from "./Recent.styles";
+import { RecentContainer } from "./recent.styles";
 import PropTypes from "prop-types";
 import React from "react";
 

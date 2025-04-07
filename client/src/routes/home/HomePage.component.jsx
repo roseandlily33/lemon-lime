@@ -6,7 +6,7 @@ import {
   LeftMainDiv,
   RightMainDiv,
   HeroImage,
-} from "./Home.styles";
+} from "./home.styles";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MainPicture from "../../images/Background3.jpg";

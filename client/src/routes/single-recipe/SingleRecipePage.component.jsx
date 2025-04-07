@@ -12,7 +12,7 @@ import {
 import Comment from "../../components/comments/add-comment/Comments.component";
 import Loader from "../../components/loader/Loader.component";
 import RecipeComments from "../../components/comments/recipe-comments/RecipeComment.component";
-import Carousel from "./SingleRecipeCarousel.component";
+import Carousel from "./SingleRecipeCarouselComponent.component";
 import Heart from "../../components/heart/Heart.component";
 import { NavLink } from "react-router-dom";
 import { formatStars } from "../../formatting-utils/stars";

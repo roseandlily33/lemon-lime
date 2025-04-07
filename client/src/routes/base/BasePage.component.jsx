@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import React from "react";
-import { MainContainer } from "./Base.styles";
+import { MainContainer } from "./base.styles";
 import ErrorBoundary from "../error-boundary/ErrorBoundaryPage";
 
 const BasePage = React.memo(() => {

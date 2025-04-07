@@ -1,7 +1,7 @@
 import RecipeContainer2 from "../../../components/recipe/recipe2.container";
 import PropTypes from "prop-types";
 import React from "react";
-import { SearchResultsDiv } from "./SearchResults.styles";
+import { SearchResultsDiv } from "./searchResults.styles";
 
 const SearchResults = React.memo(({ results = [] }) => {
   return (

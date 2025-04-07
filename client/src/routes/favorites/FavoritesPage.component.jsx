@@ -1,7 +1,7 @@
 import {
   FavoritesContainerMain,
   FavoritesRecipesDiv,
-} from "./Favorites.styles";
+} from "./favorites.styles";
 import RecipeContainer2 from "../../components/recipe/recipe2.container";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { ResultsDiv, StyledDiv, SearchContainer } from "./Search.styles";
-import SearchResults from "./results/SearchResults.component";
-import RecentlySearched from "./recent/Recent.component";
+import { ResultsDiv, StyledDiv, SearchContainer } from "./search.styles";
+import SearchResults from "./results/SearchResultsPage.component";
+import RecentlySearched from "./recent/RecentPage.component";
 import IconButton from "../../components/buttons/icon-button/IconButton.component";
 import { useDispatch, useSelector } from "react-redux";
 import {
