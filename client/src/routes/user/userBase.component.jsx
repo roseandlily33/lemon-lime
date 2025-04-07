@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import React from "react";
 
-const UserBase = React.memo(() => {
+const UserBaseTemplate = React.memo(() => {
   return (
     <>
       <Outlet />
@@ -9,6 +9,6 @@ const UserBase = React.memo(() => {
   );
 });
 
-UserBase.displayName = "UserBase";
+UserBaseTemplate.displayName = "UserBase";
 
-export default UserBase;
+export default UserBaseTemplate;

@@ -11,11 +11,11 @@ import SearchPage from "./routes/search/SearchPage.component.jsx";
 import Footer from "./routes/footer/FooterComponent.component.jsx";
 import SingleRecipeComponent from "./routes/single-recipe/SingleRecipe.component.jsx";
 import CreateRecipeForm from "./routes/create-recipe/CreateRecipe.component.jsx";
-import UserBase from "./routes/user/UserBase.component.jsx";
 import BasePage from "./routes/base/BasePage.component.jsx";
 import NotFound from "./routes/not-found/NotFoundPage.component.jsx";
 import VisitorPage from "./routes/visit-profile/Visitor.component.jsx";
 import UserComments from "./components/comments/user-comments/UserComments.component.jsx";
+import UserBaseTemplate from "./routes/user/UserBase.component.jsx";
 // Authentication:
 import { useAuth0 } from "@auth0/auth0-react";
 // Redux:
@@ -46,7 +46,7 @@ function App() {
               <Route path="recipe">
                 <Route path=":id" element={<SingleRecipeComponent />} />
               </Route>
-              <Route path="user" element={<UserBase />}>
+              <Route path="user" element={<UserBaseTemplate />}>
                 <Route index path="home" element={<UserHome />} />
                 <Route path="create" element={<CreateRecipeForm />} />
                 <Route path="edit/:id" element={<EditRecipe />} />
@@ -54,17 +54,9 @@ function App() {
               </Route>
               <Route path="favorites" element={<FavoritesPage />} />
               <Route path="search" element={<SearchPage />} />
-              {/* <Route path='signin' element={<AuthComponent />} /> */}
-            </Route>
-            <Route path="user" element={<UserBase />}>
-              <Route index path="home" element={<UserHome />} />
-              <Route path="create" element={<CreateRecipeForm />} />
-              <Route path="edit/:id" element={<EditRecipe />} />
-              <Route path="comments" element={<UserComments />} />
             </Route>
             <Route path="favorites" element={<FavoritesPage />} />
             <Route path="search" element={<SearchPage />} />
-            {/* <Route path='signin' element={<AuthComponent />} /> */}
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
