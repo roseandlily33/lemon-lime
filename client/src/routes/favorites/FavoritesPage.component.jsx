@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../../components/loader/LoaderIcon.component";
 import React from "react";
-import RecipeContainer2 from "../../components/recipe/Recipe2.component";
+import RecipeContainer2 from "../../components/recipe-containers/Recipe2.component";
 
 const FavoritesPage = () => {
   const { isAuthenticated } = useAuth0();

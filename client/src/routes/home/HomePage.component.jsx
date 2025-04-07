@@ -1,5 +1,5 @@
-import RecipeContainer from "../../components/recipe/Recipe1.component";
-import RecipeContainer2 from "../../components/recipe/Recipe2.component";
+import RecipeContainer from "../../components/recipe-containers/Recipe1.component";
+import RecipeContainer2 from "../../components/recipe-containers/Recipe2.component";
 import {
   MainDiv,
   BottomDiv,
