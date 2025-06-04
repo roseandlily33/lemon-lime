@@ -24,12 +24,12 @@ const SearchPage = () => {
     dispatch(clearSearch());
     dispatch(setAlert(""));
   }, [dispatch]);
-
+   // eslint-disable-next-line
   useEffect(() => {
     dispatch(setAlert(""));
     setFirstLoad(false);
   }, [dispatch]);
-
+   // eslint-disable-next-line
   const { results, recent, isLoading, error, alert } = useSelector(
     (state) => state.search
   );

@@ -1,4 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 //Responsive Done for the home page
 export const MainDiv = styled.main`
   display: flex;
@@ -33,7 +45,7 @@ export const HeroImage = styled.section`
   }
   img {
     width: 100%;
-    height: 20vh;
+    height: 24vh;
     opacity: 0.8;
   }
   .overlay {
@@ -110,6 +122,8 @@ export const LeftMainDiv = styled.aside`
   height: 30vh;
   overflow-y: scroll;
   padding: 1em;
+  animation: ${fadeIn} 0.5s ease-in-out;
+
   @media screen and (width >= 768px) {
     height: 60vh;
     width: 60%;
@@ -123,8 +137,31 @@ export const RightMainDiv = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: ${fadeIn} 0.5s ease-in-out;
+
   @media screen and (width >= 768px) {
     height: 60vh;
     width: 35%;
+  }
+`;
+export const ScrollIndicator = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 5px;
+  background-color: ${({ theme }) => theme.colors.lightGreen};
+  border-radius: 10px;
+  animation: bounce 1.5s infinite;
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 `;

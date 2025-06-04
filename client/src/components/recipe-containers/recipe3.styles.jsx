@@ -13,10 +13,9 @@ export const SideContainer = styled.div`
   img {
     margin-top: 0.2em;
     height: 150px;
-    width: 250px;
+    width: 240px;
     max-width: 250px;
     max-height: 150px;
-    border-radius: 5px;
   }
 `;
 

@@ -1,5 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
+// Keyframes for fade-in animation
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 // Responsive Styling Done
 export const RecipeCont = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
@@ -7,6 +18,9 @@ export const RecipeCont = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
+  > div {
+    animation: ${fadeIn} 0.5s ease-in-out;
+  }
   @media screen and (width >= 360px) {
     padding: 0.5rem;
     width: 100%;

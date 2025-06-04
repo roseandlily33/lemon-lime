@@ -1,82 +1,152 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-// prettier-ignore
-export const UserContainer = styled.main`
+// Animation for Sidebar hover effect
+const slideIn = keyframes`
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+
+export const UserContainer = styled.div`
+  display: flex;
+  flex-direction: row;
   height: 100vh;
   width: 100vw;
-  /* border: 1px solid red; */
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+  }
+`;
+
+export const Sidebar = styled.aside`
+  width: 25%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: var(--boxShadow);
+  animation: ${slideIn} 0.5s ease-out;
+  border-right: 12px solid var(--yellow);
+  // make it transparent
+  background-color: rgba(255, 255, 255, 0.4);
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+  button {
+    width: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    border-right: none;
+  }
 `;
 
 export const UserInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  /* border: 1px solid orange; */
-  background-color: hsla(9.16, 92.3%, 69.4%, 0.2);
+  text-align: center;
+  .profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid var(--yellow);
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+      border-color: var(--lightGreen);
+    }
+  }
+
+  h2 {
+    font-family: "Poppins", sans-serif;
+    color: var(--darkOrange);
+    margin-top: 1rem;
+  }
 `;
 
-export const UserOptionsContainer = styled.section`
-  border: 1px solid orange;
-  @media screen and (width >= 360px) {
-    .imgDiv img {
-      height: 30%;
-      width: 100%;
-    }
+export const UserInfoCard = styled.div`
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+`;
+
+export const MainContent = styled.main`
+  width: 75%;
+  padding: 2rem;
+  overflow-y: auto;
+  border-radius: 20px;
+  box-shadow: var(--boxShadowHover);
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
-  @media screen and (width >= 768px) {
-    .imgDiv img {
-      height: 20%;
-      width: 100%;
-    }
-  }
-  @media screen and (width >= 1000px) {
-    .imgDiv img {
-      height: 400px;
-      width: 100%;
+`;
+
+export const SearchBar = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  input {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 2px solid var(--yellow);
+    background-color: white;
+    transition: border-color 0.3s ease-in-out;
+
+    &:focus {
+      border-color: var(--lightGreen);
     }
   }
 `;
-export const UserRecipesContainer = styled.section`
+
+export const SearchCard = styled.div`
+  background-color: #f9f871;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+`;
+
+export const RecipeGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  overflow-y: auto;
+
+  div {
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: var(--boxShadowHover);
+    }
+  }
+`;
+
+export const RecipeCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
+  gap: 1rem;
   justify-content: center;
-  gap: 1rem;
-  overflow-y: scroll;
+  width: 100%;
+`;
+
+export const Header = styled.header`
+  background-color: #ffcccb;
   padding: 1rem;
-  height: 100%;
-  /* border: 1px solid green; */
-  @media screen and (width <= 768px) {
-    width: 100%;
-  }
-`;
-
-export const UserOptions = styled.aside`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 20%;
-  /* border: 1px solid purple; */
-  margin-top: 1.5rem;
-  button {
-    margin: 0.5rem;
-  }
-  @media screen and (width <= 768px) {
-    flex-direction: row;
-    width: 100%;
-    margin-top: 0;
-    button {
-      padding: 1rem;
-    }
-  }
-`;
-
-export const UserContentContainer = styled.div`
-  display: flex;
-  height: 80vh;
-  /* border: 1px solid blue; */
-  @media screen and (width <= 768px) {
-    flex-direction: column;
-  }
+  text-align: center;
+  border-radius: 10px;
 `;
