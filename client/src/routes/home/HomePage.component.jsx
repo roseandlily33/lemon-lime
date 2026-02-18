@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../../components/buttons/primary-button/PrimaryButton.component";
 import Loader from "../../components/loader-spinner/LoaderIcon.component";
 import { fetchRecent } from "../../redux/recipeSlice";
+import LemonLimeBackground from '../../images/LemonLimeBackground.png';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -26,17 +27,18 @@ const HomePage = () => {
     loadingNewest,
     errorPopular,
     errorNewest,
-  } = useSelector((state) => state.recipes);
+  } = useSelector((state) => state?.recipes);
 
   useEffect(() => {
     dispatch(fetchRecent());
-  }, []);
+  }, [dispatch]);
 
   return (
     <MainDiv>
       <HeroImage>
         <div className="overlay">
-          <img src={MainPicture} alt="Main Lemons" />
+          {/* <img src={MainPicture} alt="Main Lemons" /> */}
+          <img src={LemonLimeBackground} alt="Lemon Lime Background" />
         </div>
         <div className="text">
           <h2>Discover your new</h2>

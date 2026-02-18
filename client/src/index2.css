@@ -29,8 +29,9 @@ li, ul, ol, p {
   font-weight: 700;
 }
 .logoImage{
-  height: 120px;
-  width: 220px;     
+  height: 70px;
+  width: 420px;   
+  border: 2px solid red;  
 }
 .icon{
   height: 25px;

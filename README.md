@@ -17,6 +17,9 @@ MERN Recipe Application
 ## Description
 A MERN Recipe Application where you can favorite, search, share, edit and create your favorite recipes. 
 
+## NOTE
+There is a couple of bugs and the project is in progress and is currently on the backburner, but overall is up and working now. 
+
 ## Screenshots:
 ![Screenshot](screenshot.png)
 

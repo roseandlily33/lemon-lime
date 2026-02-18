@@ -34,13 +34,54 @@ const CreateRecipeSubmit = ({
 
   const { notificationType, successMessage } = useNotification(error, alert);
 
+  const [validationError, setValidationError] = useState("");
+
+  const validateForm = () => {
+    if (!formValues.recipeName || formValues.recipeName.trim() === "") {
+      setValidationError("Recipe name is required.");
+      return false;
+    }
+    if (!formValues.prepTime || isNaN(formValues.prepTime)) {
+      setValidationError("Prep time is required and must be a number.");
+      return false;
+    }
+    if (!formValues.cookTime || isNaN(formValues.cookTime)) {
+      setValidationError("Cook time is required and must be a number.");
+      return false;
+    }
+    if (!formValues.description || formValues.description.trim() === "") {
+      setValidationError("Description is required.");
+      return false;
+    }
+    if (!formValues.subCategory || formValues.subCategory.trim() === "") {
+      setValidationError("Subcategory is required.");
+      return false;
+    }
+    if (!instructions || instructions.length === 0) {
+      setValidationError("At least one instruction is required.");
+      return false;
+    }
+    if (!ingredients || ingredients.length === 0) {
+      setValidationError("At least one ingredient is required.");
+      return false;
+    }
+    setValidationError("");
+    return true;
+  };
+
+  const handleValidatedSubmit = () => {
+    if (validateForm()) {
+      handleSubmit();
+    }
+  };
+
   if (isLoading) {
     return <Loader />;
   }
 
   return (
     <SubmitButtonContainer>
-      <p className="error">{errorState}</p>
+      <p className="error">{validationError || errorState}</p>
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
           <Notification
@@ -56,7 +97,7 @@ const CreateRecipeSubmit = ({
           />
         </Modal>
       )}
-      <CreateEditRecipeButton functionName={handleSubmit} span="Submit" />
+      <CreateEditRecipeButton functionName={handleValidatedSubmit} span="Submit" />
     </SubmitButtonContainer>
   );
 };

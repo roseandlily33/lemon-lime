@@ -1,23 +1,3 @@
-// import { useState, useEffect, useMemo } from "react";
-
-// const useNotification = (error, alert) => {
-//   const [notificationType, setNotificationType] = useState("");
-//   const [successMessage, setSuccessMessage] = useState("");
-
-//   useEffect(() => {
-//     if (error) {
-//       setSuccessMessage(alert);
-//       setNotificationType("error");
-//     } else {
-//       setSuccessMessage(alert);
-//       setNotificationType("success");
-//     }
-//   }, [error, alert]);
-
-//   return { notificationType, successMessage };
-// };
-
-// export default useNotification;
 import { useMemo } from "react";
 
 const useNotification = (error, alert) => {

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: [],
+  user: null,
   userRecipes: [],
   userComments: [],
   userFavorites: [],
@@ -20,11 +20,12 @@ export const fetchUserRecipes = createAsyncThunk(
         throw new Error("Failed to fetch user");
       }
       const data = await res.json();
-      return data[0];
+      // If backend returns an array, use data[0], else use data
+      return Array.isArray(data) ? data[0] : data;
     } catch (err) {
       return rejectWithValue(err.message);
     }
-  }
+  },
 );
 
 // Create a recipe
@@ -47,7 +48,7 @@ export const submitRecipe = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const userSlice = createSlice({
@@ -98,9 +99,12 @@ export const userSlice = createSlice({
       })
       .addCase(fetchUserRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.userRecipes = action.payload.recipes;
-        state.userComments = action.payload.comments;
-        state.userFavorites = Object.keys(action.payload.favorites);
+        state.user = action.payload;
+        state.userRecipes = action.payload?.recipes || [];
+        state.userComments = action.payload?.comments || [];
+        state.userFavorites = action.payload?.favorites
+          ? Object.keys(action.payload.favorites)
+          : [];
       })
       .addCase(fetchUserRecipes.rejected, (state, action) => {
         state.isLoading = false;
@@ -117,7 +121,7 @@ export const selectRecipeById = (state, recipeId) =>
 
 export const selectFilteredRecipes = (state, filter) => {
   return state.user.userRecipes.filter((recipe) =>
-    recipe.title.toLowerCase().includes(filter.toLowerCase())
+    recipe.title.toLowerCase().includes(filter.toLowerCase()),
   );
 };
 

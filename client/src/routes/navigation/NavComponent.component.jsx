@@ -1,4 +1,4 @@
-import Logo from "../../images/Lemon - Lime.svg";
+import Logo from "../../images/Lemon - Lime-New.png";
 import { Navbar, RightNav } from "./nav.styles";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -18,11 +18,12 @@ const NavBar = () => {
     <Navbar className="boxShadow">
       <NavLink to="/">
         <img
-          className="logoImage"
+          // className="logoImage"
           src={Logo}
           alt="lemon lime logo"
           title="home"
-          style={{ marginInline: "2rem", marginBlock: "1rem" }}
+          // style={{ marginInline: "2rem", marginBlock: "1rem" }}
+          style={{ marginInline: "2rem", height: '100px', width: '300px', objectFit: 'contain' }}
         />
       </NavLink>
       <RightNav>

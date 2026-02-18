@@ -12,6 +12,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 const connectToMongoose = async() => {
+    console.log('Connecting to MongoDB...', MONGO_URL);
     await mongoose.connect(MONGO_URL);;
 };
 

@@ -45,12 +45,15 @@ export const HeroImage = styled.section`
   }
   img {
     width: 100%;
-    height: 24vh;
+    height: 40vh;
     opacity: 0.8;
+    object-fit: cover;
   }
   .overlay {
     height: auto;
-    background-color: rgba(0, 0, 0, 0.8);
+    min-height: 500px;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* border: 2px solid red; */
   }
   .text {
     animation: 1s ease-out 0s 1 slideInFromLeft;
@@ -64,7 +67,7 @@ export const HeroImage = styled.section`
   }
 
   @media screen and (width >= 360px) {
-    height: 20vh;
+    height: 30vh;
     .text {
       top: 11%;
       left: 3%;
@@ -77,9 +80,9 @@ export const HeroImage = styled.section`
     }
   }
   @media screen and (width >= 768px) {
-    height: 30vh;
+    height: 45vh;
     img {
-      height: 30vh;
+      height: 45vh;
     }
     .text {
       top: 13%;
@@ -90,9 +93,9 @@ export const HeroImage = styled.section`
     }
   }
   @media screen and (width >= 1100px) {
-    height: 40vh;
+    height: 60vh;
     img {
-      height: 40vh;
+      height: 60vh;
     }
     .text {
       top: 15%;
@@ -103,19 +106,13 @@ export const HeroImage = styled.section`
 export const BottomDiv = styled.section`
   display: flex;
   width: 100%;
-  position: absolute;
+  position: static;
   padding: 1rem;
-  @media screen and (width >= 360px) {
-    top: 27%;
-    flex-direction: column;
-  }
+  margin-top: 0;
+  flex-direction: column;
   @media screen and (width >= 768px) {
-    top: 37%;
     flex-direction: row;
     justify-content: space-around;
-  }
-  @media screen and (width >= 1000px) {
-    top: 47%;
   }
 `;
 export const LeftMainDiv = styled.aside`

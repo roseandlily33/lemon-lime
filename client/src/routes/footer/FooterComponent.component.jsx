@@ -1,5 +1,5 @@
 import { FooterContainer } from "./footer.styles";
-import Logo from "../../images/Lemon - Lime.svg";
+import Logo from "../../images/Lemon - Lime-New.png";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -9,8 +9,8 @@ const Footer = () => {
       <img
         src={Logo}
         alt="Lemon Lime Logo"
-        className="logoImage"
-        style={{ marginInline: "2rem" }}
+        // className="logoImage"
+        style={{ marginInline: "2rem", height: '100px', width: '300px', objectFit: 'contain' }}
       />
       <h6>
         Created by Victoria:{" "}

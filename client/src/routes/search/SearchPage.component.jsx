@@ -14,7 +14,7 @@ import Loader from "../../components/loader-spinner/LoaderIcon.component";
 import SearchIcon from "../../images/icons/SearchIcon.icon";
 
 const SearchPage = () => {
-  const popularRecipes = useSelector((state) => state.recipes.popularRecipes);
+  const popularRecipes = useSelector((state) => state?.recipes?.popularRecipes);
   const [searching, setSearching] = useState("");
   const [subCategory, setSubCategory] = useState("All");
   const [firstLoad, setFirstLoad] = useState(true);

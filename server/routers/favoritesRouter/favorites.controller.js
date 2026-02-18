@@ -16,7 +16,7 @@ async function httpGetUsersFavoriteRecipes(req, res){
       } else {
          foundUserFaves = await User.findOne({_id: userId}, {favorites: true});
       }
-      const favorites = foundUserFaves.favorites;
+      const favorites = foundUserFaves?.favorites;
       if(!favorites)  return res.status(404).json({msg: 'Could not find favorite recipes'})
       const faveIds = Array.from(foundUserFaves.favorites.keys());
       if(faveIds.length === 0) return res.status(200).json({favorites: [], favoriteRecipes: []});

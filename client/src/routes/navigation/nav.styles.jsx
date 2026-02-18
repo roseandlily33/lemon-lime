@@ -6,7 +6,9 @@ export const Navbar = styled.header`
   justify-content: space-between;
   align-items: center;
   /* flex-wrap: wrap; */
-  padding: 1em;
+  padding: 2rem;
+  padding-block: 3rem;
+  height: 10vh;
   background-color: ${({ theme }) => theme.colors.white};
   @media screen and (width >= 360px) {
     height: 8vh;
