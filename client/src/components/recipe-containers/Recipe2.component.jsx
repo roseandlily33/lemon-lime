@@ -1,4 +1,5 @@
 import { SideContainer } from "./recipe2.styles";
+import { FaRegCalendarAlt, FaRegHeart } from "react-icons/fa";
 import { formatDate } from "../../formatting-utils/date";
 import { NavLink } from "react-router-dom";
 import Lemons from "../../images/lemons.jpg";
@@ -32,12 +33,18 @@ const RecipeContainer2 = ({ recipe }) => {
       <div className="topDiv">
         <div>
           <NavLink className="link" to={url} onClick={handleClick}>
-            {recipe?.recipeName.slice(0, 15)}
+            <span style={{ fontWeight: 700, fontSize: '1.3rem', color: '#A1AA2D' }}>{recipe?.recipeName.slice(0, 15)}</span>
           </NavLink>
-          {/* {isAuthenticated && <Heart recipe={recipe._id} />} */}
         </div>
-        <p>{formatDate(recipe?.createdAt)}</p>
-        <p>Favorites: {recipe?.favorites}</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '1.15rem', fontWeight: 600, color: '#444' }}>
+          <FaRegCalendarAlt style={{ color: '#E3A445', marginRight: 4 }} />
+          <span style={{ fontStyle: 'italic' }}>{formatDate(recipe?.createdAt)}</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '1.15rem', fontWeight: 600, color: '#222' }}>
+          <FaRegHeart style={{ color: '#D0415A', marginRight: 4 }} />
+          <span style={{ fontWeight: 500 }}>Favorites:</span>
+          <span style={{ marginLeft: 4 }}>{recipe?.favorites}</span>
+        </div>
       </div>
       {recipe?.images[0] ? (
         <CloudImage publicId={recipe?.images[0]?.publicId} />

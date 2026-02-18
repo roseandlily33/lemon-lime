@@ -29,7 +29,7 @@ const CreateRecipeSubmit = ({
     instructions,
     ingredients,
     setIsOpen,
-    clearForm
+    clearForm,
   );
 
   const { notificationType, successMessage } = useNotification(error, alert);
@@ -97,7 +97,10 @@ const CreateRecipeSubmit = ({
           />
         </Modal>
       )}
-      <CreateEditRecipeButton functionName={handleValidatedSubmit} span="Submit" />
+      <CreateEditRecipeButton
+        functionName={handleValidatedSubmit}
+        span="Submit"
+      />
     </SubmitButtonContainer>
   );
 };

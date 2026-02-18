@@ -113,7 +113,7 @@ li, ul, ol, p {
     }
     h6{
       font-family: 'Jost', sans-serif;
-        font-size: 0.93rem;
+        font-size: 1rem;
     }
     li, ul, ol, p{
       font-size: 1rem;
@@ -126,10 +126,10 @@ li, ul, ol, p {
       color: hsl(41, 9%, 35%);
     }
     label{
-      font-size: 0.866rem;
+      font-size: 1rem;
     }
     span{
-      font-size: 0.7rem;
+      font-size: 1rem;
       font-style: italic;
     }
     .link{

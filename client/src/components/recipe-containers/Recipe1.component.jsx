@@ -3,7 +3,16 @@ import {
   TopLabel,
   LeftContainer,
   RightContainer,
+  InfoRow,
+  IconText,
+  CategoryTag,
 } from "./recipe.styles";
+import {
+  FaRegClock,
+  FaRegHeart,
+  FaRegCalendarAlt,
+  FaTag,
+} from "react-icons/fa";
 import { formatDate } from "../../formatting-utils/date";
 import { NavLink } from "react-router-dom";
 import Lemons from "../../images/lemons.jpg";
@@ -37,16 +46,44 @@ const RecipeContainer = ({ recipe }) => {
       <LeftContainer>
         <TopLabel>
           <NavLink className="link" to={url} onClick={handleClick}>
-            {recipe?.recipeName.slice(0, 20)}
+            <span
+              style={{ fontWeight: 700, fontSize: "1.5rem", color: "#A1AA2D" }}
+            >
+              {recipe?.recipeName.slice(0, 20)}
+            </span>
           </NavLink>
-          {/* {isAuthenticated && <Heart recipe={recipe._id} />} */}
         </TopLabel>
-        <p>{formatDate(recipe?.createdAt)}</p>
-        <p>
-          Total Time: {recipe?.totalTime?.hours}:{recipe?.totalTime?.minutes}
-        </p>
-        <p>Favorites: {recipe?.favorites}</p>
-        <p>{recipe?.subCategory}</p>
+        <InfoRow>
+          <IconText style={{ fontWeight: 600 }}>
+            <FaRegCalendarAlt style={{ color: "#E3A445", marginRight: 4 }} />
+            <span style={{ fontStyle: "italic" }}>
+              {formatDate(recipe?.createdAt)}
+            </span>
+          </IconText>
+        </InfoRow>
+        <InfoRow>
+          <IconText style={{ fontWeight: 600 }}>
+            <FaRegClock style={{ color: "#BCC456", marginRight: 4 }} />
+            <span style={{ fontWeight: 500 }}>Total Time:</span>
+            <span style={{ marginLeft: 4 }}>
+              {recipe?.totalTime?.hours ?? 0}:
+              {recipe?.totalTime?.minutes?.toString().padStart(2, "0") ?? "00"}
+            </span>
+          </IconText>
+        </InfoRow>
+        <InfoRow>
+          <IconText style={{ fontWeight: 600 }}>
+            <FaRegHeart style={{ color: "#D0415A", marginRight: 4 }} />
+            <span style={{ fontWeight: 500 }}>Favorites:</span>
+            <span style={{ marginLeft: 4 }}>{recipe?.favorites}</span>
+          </IconText>
+        </InfoRow>
+        <InfoRow>
+          <CategoryTag>
+            <FaTag style={{ marginRight: 4 }} />
+            {recipe?.subCategory}
+          </CategoryTag>
+        </InfoRow>
       </LeftContainer>
       <RightContainer>
         {recipe?.images[0] ? (
@@ -73,7 +110,7 @@ RecipeContainer.propTypes = {
     images: PropTypes.arrayOf(
       PropTypes.shape({
         publicId: PropTypes.string,
-      })
+      }),
     ),
   }),
 };

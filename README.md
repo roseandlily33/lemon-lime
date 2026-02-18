@@ -15,10 +15,10 @@ MERN Recipe Application
 - [Contact](#contact)
 
 ## Description
-A MERN Recipe Application where you can favorite, search, share, edit and create your favorite recipes. 
+A MERN Recipe Application where you can favorite, search, share, edit and create your favorite recipes. Uses custom imagery I made from Figma including a Logo. 
 
 ## NOTE
-There is a couple of bugs and the project is in progress and is currently on the backburner, but overall is up and working now. 
+There is a couple of bugs and the project is in progress and is currently on the backburner, but overall is up and working now. I am not sure if all the responsive design is in place either. 
 
 ## Screenshots:
 ![Screenshot](screenshot.png)
